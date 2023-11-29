@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>329531027756-87kcjsivc0eakuc3gghdpue4ko04jih3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.329531027756-87kcjsivc0eakuc3gghdpue4ko04jih3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBiJ9ce7NBKNn7LJcSmBWggOgSU_jUyJa8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>329531027756</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ubn.alero</string>
+	<key>PROJECT_ID</key>
+	<string>alero-15590</string>
+	<key>STORAGE_BUCKET</key>
+	<string>alero-15590.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:329531027756:ios:5347e01256aa69c56efc89</string>
+</dict>
+</plist>

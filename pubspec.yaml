@@ -1,0 +1,209 @@
+name: alero
+description: Alero Native Flutter Mobile Application
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.3+24
+
+
+environment:
+  sdk: ">=2.10.5 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+  cupertino_icons: ^1.0.0
+  flutter_secure_storage: ^3.3.5
+  flutter_svg: ^0.19.1
+  eva_icons_flutter: ^2.0.1
+  container_tab_indicator: ^0.2.0
+  json_annotation: any
+  http: 0.12.2
+  synchronized: ^2.1.0
+  connectivity: ^3.0.3
+  data_connection_checker: ^0.3.4
+  one_context: ^0.5.0
+  carousel_slider: ^3.0.0
+  basic_utils: ^2.7.1
+  fl_chart: ^0.12.3
+  syncfusion_flutter_charts: ^18.4.43+2
+  flutter_shimmer_widget: ^1.0.0
+  device_info: ^2.0.0
+  date_time_format: ^2.0.0
+  dart_random_choice: ^0.0.2
+  flutter_phoenix: ^1.0.0
+  quiver: ^3.0.0
+  flutter_staggered_grid_view: ^0.3.4
+  flutter_bloc: ^7.0.0
+  custom_pop_up_menu: ^1.2.0
+  firebase_core: ^1.0.3
+  firebase_analytics: ^7.1.1
+  firebase_crashlytics: ^2.0.0
+  firebase_performance: ^0.6.0+2
+  get_it: ^6.0.0
+  map_path: ^1.0.0
+  permission_handler: any
+  path_provider: any
+  flutter_downloader: any
+  scrollable_positioned_list: any
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.11.1
+
+
+
+
+# The following section is specific to Flutter.
+flutter:
+
+  uses-material-design: true
+
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway.ttf
+
+    - family: Raleway-Light
+      fonts:
+        - asset: fonts/Raleway-Light.ttf
+
+    - family: Poppins-Regular
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+
+    - family: Poppins-Bold
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf
+        - asset: fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Nunito-Bold.ttf
+          weight: 700
+
+
+
+
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/login/alero_logo.svg
+    - assets/login/light_circles_group.svg
+    - assets/login/ubn_logo_white.svg
+    - assets/login/alero_logo_img.png
+    - assets/login/login_effects.svg
+
+    - assets/landing/alero_log_out.svg
+    - assets/landing/alero_landing_lead.svg
+    - assets/landing/landing_graph_inner.svg
+    - assets/landing/landing_graph_outer.svg
+    - assets/landing/landing_chart_inner.svg
+    - assets/landing/landing_chart_outer.svg
+    - assets/landing/landing_lock.svg
+
+    - assets/search/search_back_button.svg
+    - assets/search/search_filter_button.svg
+    - assets/search/search_forward_button.svg
+    - assets/search/search_back_new.svg
+    - assets/search/search_list_back_new.svg
+    - assets/search/search_list_forward_new.svg
+    - assets/search/alt_search_close.svg
+    - assets/search/alt_search_button.svg
+
+    - assets/customer/customer_accounts.svg
+    - assets/customer/customer_channels.svg
+    - assets/customer/customer_dashboard.svg
+    - assets/customer/customer_gift_card.svg
+    - assets/customer/customer_investments.svg
+    - assets/customer/customer_loans.svg
+    - assets/customer/customer_log_out.svg
+    - assets/customer/customer_pnd.svg
+    - assets/customer/customer_search.svg
+    - assets/customer/customer_value_chain.svg
+    - assets/customer/profile_image_male.svg
+    - assets/customer/profile_image_female.svg
+    - assets/customer/customer_non_individual.svg
+    - assets/customer/profile_dashboard.svg
+    - assets/customer/profile_logout.svg
+    - assets/customer/profile_search.svg
+    - assets/customer/dialog_close_button.svg
+
+    - assets/customer/biodata/biodata_age.svg
+    - assets/customer/biodata/biodata_bank.svg
+    - assets/customer/biodata/biodata_call.svg
+    - assets/customer/biodata/biodata_gender.svg
+    - assets/customer/biodata/biodata_id.svg
+    - assets/customer/biodata/biodata_mail.svg
+    - assets/customer/biodata/biodata_profession.svg
+    - assets/customer/biodata/biodata_relationship.svg
+    - assets/customer/biodata/biodata_rm.svg
+    - assets/customer/biodata/biodata_warning.svg
+    - assets/customer/biodata/biodata_corporate_rc.svg
+    - assets/customer/biodata/biodata_corporate_tax.svg
+
+    - assets/customer/overview/overview_card.svg
+    - assets/customer/overview/overview_card.png
+    - assets/customer/overview/overview_accounts.svg
+    - assets/customer/overview/overview_channels.svg
+    - assets/customer/overview/overview_investments.svg
+    - assets/customer/overview/overview_loans.svg
+    - assets/customer/overview/overview_pnd.svg
+    - assets/customer/overview/overview_value_chain.svg
+    - assets/customer/overview/channels_leading.svg
+    - assets/customer/overview/channels_card_background.png
+    - assets/customer/overview/naira_investments.png
+
+    - assets/customer/trends/trends_arrow_down.svg
+    - assets/customer/trends/trends_arrow_up.svg
+    - assets/customer/trends/trends_nba.svg
+    - assets/customer/trends/trends_spend.svg
+    - assets/customer/trends/trends_touchpoint.svg
+    - assets/customer/trends/trends_history_down.svg
+    - assets/customer/trends/trends_history_up.svg
+    - assets/customer/trends/trends_down_caret.svg
+    - assets/customer/trends/trends_empty_pie.svg
+    - assets/customer/trends/trends_spend_icon.svg
+    - assets/customer/trends/trends_touchpoint_icon.svg
+    - assets/customer/trends/trends_cooporate_loans.svg
+
+#    - assets/icons/arrow_left.svg
+    - assets/icons/budgeting.svg
+    - assets/icons/customer.svg
+    - assets/icons/kyc.svg
+    - assets/icons/menu.svg
+    - assets/icons/more_vertical.svg
+    - assets/icons/music.png
+    - assets/icons/performance.svg
+    - assets/icons/person.svg
+#    - assets/icons/profile_user.svg
+    - assets/icons/reports.svg
+    - assets/icons/search.svg
+#    - assets/icons/shopping_bag.svg
+    - assets/icons/star.svg
+    - assets/icons/video_call.svg
+
+    - assets/icons/profile_user.svg
+
+    - assets/performance/balance_sheet.svg
+    - assets/performance/cost_allocation.svg
+    - assets/performance/commission.svg
+    - assets/performance/cost_report.svg
+#    - assets/performance/scorecard.svg
+    - assets/performance/profitability.svg
+
+    - assets/performance/customer_pr.svg
+    - assets/performance/account_pr.svg
+    - assets/performance/product_pr.svg
+    - assets/performance/monthly_pr.svg
+    - assets/performance/nrff.svg
+
+
