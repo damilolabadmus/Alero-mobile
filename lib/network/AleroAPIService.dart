@@ -20,6 +20,7 @@ import 'package:alero/models/customer/CompletenessAndValidityData.dart';
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/models/customer/TouchPointData.dart';
 import 'package:alero/models/landing/view_modules_response.dart';
+import 'package:alero/models/performance/AprResponse.dart';
 import 'package:alero/models/performance/CostAllocationTypeResponse.dart';
 import 'package:alero/models/performance/CostAllocationUploadResponse.dart';
 import 'package:alero/models/performance/CprResponse.dart';
@@ -3165,37 +3166,6 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-  /// Get Account Profitability Report.
-  /*Future<List<MprResponse>> getAccountProfitabilityReport(
-      String reportLevel, String startDate, String endDate) async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    try {
-      var response = await http.get(
-          Global.BaseUrlTest +
-              '/Apr/BankReport/$reportLevel/$startDate/$endDate',
-          headers: preAuthHeaders);
-      if (response.statusCode == 200) {
-        return aprResponseFromJson(response.body);
-      } else if (response.statusCode == 404) {
-        pandora.logFirebaseEvent('GET_ACCOUNT_PR',
-            '/Apr/BankReport/$reportLevel/$startDate/$endDate', response.body);
-        return [];
-      }
-    } on Exception catch (exception) {
-      pandora.logFirebaseEvent(
-          'GET_ACCOUNT_PR',
-          '/Apr/BankReport/$reportLevel/$startDate/$endDate',
-          exception.toString());
-      return [];
-    } catch (error) {
-      pandora.logFirebaseEvent('GET_ACCOUNT_PR',
-          '/Apr/BankReport/$reportLevel/$startDate/$endDate', error.toString());
-      throw Exception(error);
-    }
-  }*/
-
   /// Get Customer Profitability Report (Top Customers)
   Future<List<CprResponse>> getTopCprData() async {
     ioc.badCertificateCallback =
@@ -3490,15 +3460,92 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-  Future<void> testHttpMetric(String baseUrl) async {
+  /// Get Top Account Profitability Report.
+  Future<List<AprResponse>> getTopAprData() async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
-
-    final MetricHttpClient metricHttpClient = MetricHttpClient(http);
-
-    final Request request = Request("SEND", Uri.parse(baseUrl));
-
-    metricHttpClient.send(request);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/top-accounts',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> aprList = jsonResponse.map((json) =>
+          AprResponse.fromJson(json)).toList();
+      print('Apr TOP data =');
+      print(response.statusCode);
+      print(aprList);
+      return aprList;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_TOP_APR', '/apr/top-accounts',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_TOP_APR', '/apr/top-accounts',
+          response.body);
+      return [];
+    }
   }
+
+  /// Get Bottom Account Profitability Report.
+  Future<List<AprResponse>> getBottomAprData() async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/bottom-accounts',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> aprList = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      print('Apr bottom data =');
+      print(response.statusCode);
+      print(aprList);
+      return aprList;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_BOTTOM_APR', '/apr/bottom-accounts',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_BOTTOM_APR', '/apr/bottom-accounts',
+          response.body);
+      return [];
+    }
+  }
+
+  /// Get An Account Profitability Report By Account Number.
+  Future<List<AprResponse>> getAprDataByAccNo(String accountNo) async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNo',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      print('Apr by account number =');
+      print(response.statusCode);
+      print(aprByAcctNo);
+      return aprByAcctNo;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_APR_BY_ACCOUNT_NUMBER', '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNo',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_APR_BY_ACCOUNT_NUMBER', '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNo',
+          response.body);
+      return [];
+    }
+  }
+
 }

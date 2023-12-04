@@ -199,7 +199,7 @@ const kDealsHeaderStyle = TextStyle(
 
 const kMprItemStyle = TextStyle(
   color: Colors.black54,
-  fontSize: 14.0,
+  fontSize: 13.0,
   fontWeight: FontWeight.w700,
   fontFamily: 'Poppins-Regular',
 );
