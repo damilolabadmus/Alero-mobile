@@ -8,6 +8,7 @@ import 'package:alero/screens/alero/performance/performance_management_page.dart
 import 'package:alero/screens/alero/performance/my_balance_sheet_page.dart';
 import 'package:alero/screens/alero/performance/profitability_reports_page.dart';
 import 'package:alero/screens/alero/profitability/account_pr.dart';
+import 'package:alero/screens/alero/profitability/apr_details_page.dart';
 import 'package:alero/screens/alero/profitability/cpr_balance_sheet.dart';
 import 'package:alero/screens/alero/profitability/cpr_profit_loss_page.dart';
 import 'package:alero/screens/alero/profitability/cpr_page.dart';
@@ -89,7 +90,7 @@ class Routes {
         return RouteAnimator(page: BalanceSheetSideMenu());
       case '/my-balance-sheet-page':
         GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'MyBalanceSheetPage');
+            .setCurrentScreen(screenName: 'My BalanceSheet Page');
         return RouteAnimator(page: MyBalanceSheetPage(regionId: arguments));
       case '/profitability-reports':
         GetIt.I<FirebaseAnalytics>()
@@ -157,12 +158,24 @@ class Routes {
         return RouteAnimator(page: CprProfitAndLossPage());
       case '/searched-cpr':
         GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Search Cpr Page');
+            .setCurrentScreen(screenName: 'Searched Cpr Page');
         return RouteAnimator(page: SearchCprPage());
       case '/cpr-balance-sheet':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Cpr Balance Sheet');
         return RouteAnimator(page: CprBalanceSheet());
+      case '/account-pr':
+        GetIt.I<FirebaseAnalytics>()
+            .setCurrentScreen(screenName: 'Account Profitability Report Page');
+        return RouteAnimator(page: AccountProfitabilityReportPage());
+      case '/apr-details':
+        GetIt.I<FirebaseAnalytics>()
+            .setCurrentScreen(screenName: 'Apr Details Page');
+        return RouteAnimator(page: AprDetailsPage());
+     /* case '/searched-apr':
+        GetIt.I<FirebaseAnalytics>()
+            .setCurrentScreen(screenName: 'Searched Apr Page');
+        return RouteAnimator(page: );*/
       default:
         return RouteAnimator(page: ErrorPage());
     }
