@@ -78,10 +78,6 @@ class AleroAPIService {
   }
 
 
-  /*void updateTokenValue(String newTokenValue) {
-    tokenValue = newTokenValue;
-  }
-*/
   /// Login user with email and password
   Future<LoginResponse> loginUser(String email, String password) async {
     ioc.badCertificateCallback =
@@ -3274,31 +3270,6 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-
- /*/// Create concession
-  Future<ConcessionResponse> createConcession(dynamic dealData) async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    try {
-      var response = await http.post(Global.InitialBaseUrl + '/concession/add-new-concession',
-          headers: postAuthHeaders(Global.API_TOKEN),
-          body: jsonEncode(dealData));
-      if (response.statusCode == 200) {
-        ConcessionResponse newConcession = ConcessionResponse.fromJson(jsonDecode(response.body));
-        return newConcession;
-      } else if (response.statusCode == 401) {
-        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
-        throw Exception(response.body);
-      } else {
-        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
-      }
-    }  catch (error) {
-      pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', error.toString());
-      throw error;
-    }
-  }*/
-
   /// Get Bank Wide Monthly Profitability Report
   Future<List<MprResponse>> getBankWideMprData(String reportDate) async {
     ioc.badCertificateCallback =
@@ -3531,9 +3502,6 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
       List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
-      print('Apr by account number =');
-      print(response.statusCode);
-      print(aprByAcctNo);
       return aprByAcctNo;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
@@ -3547,5 +3515,79 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       return [];
     }
   }
+
+  /// Get APR Period.
+  Future<List<AprResponse>> getAprPeriod() async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/apr-periods',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      return aprByAcctNo;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_APR_PERIOD', '/apr/apr-periods',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent('GET_APR_PERIOD', '/apr/apr-periods', response.body);
+      return [];
+    }
+  }
+
+  /// Get APR By Customer.
+  Future<List<AprResponse>> searchAprByCustomer(String customer) async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/apr-customer-search/$customer',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      return aprByAcctNo;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_APR_CUSTOMER', '/apr/apr-customer-search/$customer',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_APR_CUSTOMER', '/apr/apr-customer-search/$customer',
+          response.body);
+      return [];
+    }
+  }
+
+  /// Create concession
+  /* Future<ConcessionResponse> createConcession(dynamic dealData) async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    try {
+      var response = await http.post(Global.InitialBaseUrl + '/concession/add-new-concession',
+          headers: postAuthHeaders(Global.API_TOKEN),
+          body: jsonEncode(dealData));
+      if (response.statusCode == 200) {
+        ConcessionResponse newConcession = ConcessionResponse.fromJson(jsonDecode(response.body));
+        return newConcession;
+      } else if (response.statusCode == 401) {
+        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
+        throw Exception(response.body);
+      } else {
+        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
+      }
+    }  catch (error) {
+      pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', error.toString());
+      throw error;
+    }
+  }*/
 
 }

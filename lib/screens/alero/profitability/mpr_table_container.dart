@@ -14,9 +14,6 @@ class MprTableContainer extends StatefulWidget {
   State<MprTableContainer> createState() => _MprTableContainerState();
 }
 
-
-
-/// Below is the Drop down to see subclass, complete the code and run to check if its okay
 class _MprTableContainerState extends State<MprTableContainer> {
   String formatMonthKey(String monthKey) {
     DateTime date = DateTime.parse(monthKey.substring(0, 4) +
@@ -63,7 +60,6 @@ class _MprTableContainerState extends State<MprTableContainer> {
                         DataColumn(label: Text('SubClass')),
                         DataColumn(label: Text('SubClass currentBudgetValue')),
                         DataColumn(label: Text('SubClass ytdBudgetValue')),
-                        // Add more DataColumn widgets for SubClass attributes
                       ],
                       rows: [
                         DataRow(
@@ -71,7 +67,6 @@ class _MprTableContainerState extends State<MprTableContainer> {
                             DataCell(Text('SubClass.categoryName ?? ''')),
                             DataCell(Text(subCategory.currentBudgetValue.toString())),
                             DataCell(Text(subCategory.ytdBudgetValue.toString())),
-                            // Add more DataCell widgets for SubClass attributes
                           ],
                         ),
                       ],

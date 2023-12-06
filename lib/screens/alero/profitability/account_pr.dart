@@ -3,6 +3,7 @@ import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/style/theme.dart' as Style;
 import 'package:container_tab_indicator/container_tab_indicator.dart';
 import 'package:flutter/material.dart';
+import 'apr_bottom_nav_bar.dart';
 import 'apr_dashboard_table_container.dart';
 import 'cpr_app_bar.dart';
 import 'cpr_bottom_navigation_bar.dart';
@@ -25,6 +26,9 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
 
   List<AprResponse> topAprData = [];
   List<AprResponse> bottomAprData = [];
+  List<AprResponse> aprByAcctNo = [];
+  List<AprResponse> searchAprData = [];
+  List<AprResponse> aprPeriodData = [];
 
   Future<List<AprResponse>> getTopApr() async {
     List<AprResponse> _aprData = await apiService.getTopAprData();
@@ -44,17 +48,36 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
     return bottomAprData;
   }
 
+  Future<List<AprResponse>> getAprPeriod() async {
+    List<AprResponse> _aprData = await apiService.getAprPeriod();
+    setState(() {
+      aprPeriodData = _aprData;
+      print('Get Apr Period = $aprPeriodData');
+    });
+    return aprPeriodData;
+  }
+
+  Future<List<AprResponse>> getAprByAccNo(String accountNo) async {
+    List<AprResponse> _aprData = await apiService.getAprDataByAccNo(accountNo);
+    setState(() {
+      aprByAcctNo = _aprData;
+      print('The Apr by account number = $aprByAcctNo');
+    });
+    return aprByAcctNo;
+  }
+
   /*@override
   void initState() {
     super.initState();
   }
 */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: CprAppBar(),
-        body: Padding(
+      resizeToAvoidBottomInset: false,
+      appBar: CprAppBar(),
+      body: Padding(
           padding: EdgeInsets.only(left: 8.0, top: 10, right: 5.0),
           child: Container(
             child: Padding(
@@ -94,7 +117,7 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
             ),
           ),
         ),
-        bottomNavigationBar: CprBottomNavigationBar(barItemSelected: true));
+     bottomNavigationBar: AprBottomNavigationBar(barItemSelected: true));
   }
 
   Widget aprDataTabs() {
@@ -172,5 +195,5 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
           ),
         ),
       ),
-    );}
+   );}
 }

@@ -57,10 +57,10 @@ class _CallBottomNavigationBarState extends State<CallBottomNavigationBar> {
             ),
           ),
           title: Text("Pipeline Deals",
-              style: TextStyle(
-                  fontSize: 12.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+            style: TextStyle(
+              fontSize: 12.0,
+              fontFamily: 'Poppins-Regular',
+              fontWeight: FontWeight.normal)),
         ),
       ],
     );
@@ -95,4 +95,5 @@ class _CallBottomNavigationBarState extends State<CallBottomNavigationBar> {
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/pipeline', (Route<dynamic> route) => false);
   }
+
 }

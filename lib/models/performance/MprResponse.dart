@@ -1,9 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
-/// The bottom nav of mpr
-///
-
-
 class MprResponse {
   String categoryName;
   List<SubCategory> rowObjectSubList;
