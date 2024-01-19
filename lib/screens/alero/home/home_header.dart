@@ -25,6 +25,7 @@ class HomeHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(),
+        // ,
         CustomPopupMenu(
           child: Container(
             child: SvgPicture.asset('assets/icons/profile-user.svg',width: 30,height: 30,),
@@ -39,52 +40,54 @@ class HomeHeader extends StatelessWidget {
                   children: menuItems
                       .map(
                         (item) => GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () async {
-                        var apiService = AleroAPIService();
-                        var response;
-                        OneContext().showProgressIndicator();
-                        try {
-                          OneContext().hideProgressIndicator();
-                          response = await apiService.logoutUser();
-                          if (response != null) {
-                            _controller.hideMenu;
-                            Phoenix.rebirth(context);
-                            OneContext().hideProgressIndicator();
-                          }
-                        } catch (error) {
-                          print(error);
-                          OneContext().hideProgressIndicator();
-                        }
-                      },
-                      child: Container(
-                        height: 40,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              item.icon,
-                              size: 15,
-                              color: Colors.white,
-                            ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(left: 10),
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: Text(
-                                  item.title,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () async {
+                            var apiService = AleroAPIService();
+                            var response;
+                            OneContext().showProgressIndicator();
+                            try {
+                              OneContext().hideProgressIndicator();
+                              response = await apiService.logoutUser();
+                              if (response != null) {
+                                _controller.hideMenu;
+                                Phoenix.rebirth(context);
+                                OneContext().hideProgressIndicator();
+                              }
+                            } catch (error) {
+                              print(error);
+                              OneContext().hideProgressIndicator();
+                            }
+                          },
+                          child: Container(
+                            height: 40,
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  item.icon,
+                                  size: 15,
+                                  color: Colors.blue,
+                                  // color: Colors.white,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    padding: EdgeInsets.symmetric(vertical: 10),
+                                    child: Text(
+                                      item.title,
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        // color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  )
+                      )
                       .toList(),
                 ),
               ),

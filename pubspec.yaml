@@ -49,6 +49,7 @@ dependencies:
   path_provider: any
   flutter_downloader: any
   scrollable_positioned_list: any
+  percent_indicator: any
 
 
 dev_dependencies:
@@ -179,6 +180,8 @@ flutter:
     - assets/icons/budgeting.svg
     - assets/icons/customer.svg
     - assets/icons/kyc.svg
+    - assets/icons/light_bulb.svg
+    - assets/icons/loading.svg
     - assets/icons/menu.svg
     - assets/icons/more_vertical.svg
     - assets/icons/music.png

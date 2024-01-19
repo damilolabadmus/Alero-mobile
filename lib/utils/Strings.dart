@@ -7,8 +7,6 @@ class Errors{
   static const String connectionError = 'Connection Error, Please check your Internet';
 
   static const String searchFieldError = 'Search field cannot be empty';
-  static const String nullInputError = 'Please select a customer in the dashboard';
-  static const String nullSearchError = 'Please use the search box in the dashboard';
 }
 class Success{
   const Success();

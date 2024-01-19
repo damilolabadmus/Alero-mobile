@@ -246,10 +246,9 @@ const dashboardMenuAccess = [
 ];
 
 const performanceDashboardMenu = [
-  {"image": 'assets/customer/customer_investments.svg', "name": "My Balance\nsheet", 'position': 0},
+  {"image": 'assets/customer/trends/trends_nba.svg', "name": "My Balance\nsheet", 'position': 0},
   {"image": 'assets/customer/trends/trends_spend_icon.svg', "name": "Profitability\nReport", 'position': 1},
-  {"image": 'assets/customer/trends/trends_nba.svg', "name": "Cost\nAllocation", 'position': 2},
-  {"image": 'assets/customer/overview/overview_investments.svg', "name": "Customer\nPR", 'position': 3},
+  {"image": 'assets/customer/customer_investments.svg', "name": "Cost\nAllocation", 'position': 2},
 ];
 
 
@@ -264,7 +263,7 @@ const performanceDashboardMenu = [
 
 
 const profitabilityDashboardMenu = [
-  {"image": 'assets/customer/biodata/biodata_id.svg', "name": "Customer\nPR", 'position': 0},
+  {"image": 'assets/customer/trends/trends_spend_icon.svg', "name": "Customer\nPR", 'position': 0},
   {"image": 'assets/customer/overview/overview_channels.svg', "name": "Account\nPR", 'position': 1},
   {"image": 'assets/customer/overview/overview_loans.svg', "name": "Monthly\nPR", 'position': 2},
   {"image": 'assets/customer/biodata/biodata_id.svg', "name": "NRFF", 'position': 3},

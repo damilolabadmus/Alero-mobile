@@ -6,6 +6,7 @@ const kCprColor = Color(0xFF202020);
 const kBlueColor = Color(0xFF6E8AFA);
 const kBestSellerColor = Color(0xFFFFD073);
 const kGreenColor = Color(0xFF49CC96);
+const KMprItemColor = Color(0xFF2B2525);
 
 // Booleans
 const bool yes = true;
@@ -198,13 +199,12 @@ const kDealsHeaderStyle = TextStyle(
 );
 
 const kMprItemStyle = TextStyle(
-  color: Colors.black54,
-  fontSize: 13.0,
-  fontWeight: FontWeight.w700,
+  fontSize: 12.0,
+  color: KMprItemColor,
   fontFamily: 'Poppins-Regular',
 );
 
-const kMyBalanceSheetHeaderStyle = TextStyle(
+const KPmItemsHeader = TextStyle(
   color: Colors.black87,
   fontSize: 12.0,
   fontWeight: FontWeight.w700,

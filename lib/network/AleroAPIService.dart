@@ -32,8 +32,6 @@ import 'package:alero/models/performance/NrffReponse.dart';
 import 'package:alero/models/response/ExpenseList.dart';
 import 'package:alero/models/response/login_response.dart';
 import 'package:alero/utils/Pandora.dart';
-import 'package:alero/utils/firebase_performance.dart';
-import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 import '../models/customer/CustomerDetailsResponse.dart';
 import '../models/customer/DataExceptionResponse.dart';
@@ -115,9 +113,9 @@ class AleroAPIService {
           body: json.encode({"username": email, "password": password}));
       responseMap = json.decode(response.body);
       tokenValue = responseMap['token'];
+      print('ARE YOU SURE THERES PANDORA PM TOKEN $tokenValue');
       pandora.saveToSharedPreferences('token', tokenValue);
       if (response.statusCode == 200) {
-         print('Token value = $tokenValue');
         return LoginResponseForPm.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         pandora.logFirebaseEvent('LOGIN', '/token', response.body);
@@ -147,7 +145,6 @@ class AleroAPIService {
       tokenValue = responseMap['token'];
       pandora.saveToSharedPreferences('token', tokenValue);
       if (response.statusCode == 200) {
-         print('Token value = $tokenValue');
         return LoginResponseForPm.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         pandora.logFirebaseEvent('LOGIN', '/token', response.body);
@@ -2478,8 +2475,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var pmToken = await pandora.getFromSharedPreferences('token');
-      var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$regionId/Areas',
+      var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$regionId/Areas',
           headers: postAuthHeaders(pmToken));
+      print('THE AREA LIST =');
+      print(response.body);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         List<dynamic> areas = json.decode(response.body);
         areaList = areas.map((area) => area['areaName']).whereType<String>().toList();
@@ -2510,8 +2510,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
-    var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$areaCode/branches',
+    var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$areaCode/branches',
         headers: postAuthHeaders(pmToken));
+    print('THE BRANCH LIST =');
+    print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       List<dynamic> branches = json.decode(response.body);
       branchList = branches.map((branch) => branch['branchName']).whereType<String>().toList();
@@ -2533,8 +2536,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
-    var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$branchCode/rms',
+    var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$branchCode/rms',
         headers: postAuthHeaders(pmToken));
+    print('THE RM LIST =');
+    print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       List<dynamic> rms = json.decode(response.body);
       rmList = rms.map((rm) => rm['rmName']).whereType<String>().toList();
@@ -2554,7 +2560,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
-    var response = await http.get(Global.InitialBaseUrl + '/aleroUserMgt/getRegions', headers: postAuthHeaders(Global.API_TOKEN));
+    var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/getRegions', headers: postAuthHeaders(Global.API_TOKEN));
     if (response.statusCode == 200) {
       print(response.body);
         List<dynamic> regionCode = json.decode(response.body);
@@ -2583,7 +2589,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var pmToken = await pandora.getFromSharedPreferences('token');
-      var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$regionId/Areas',
+      var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$regionId/Areas',
           headers: postAuthHeaders(pmToken));
       if (response.statusCode == 200) {
         List<dynamic> areas = json.decode(response.body);
@@ -2619,7 +2625,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var pmToken = await pandora.getFromSharedPreferences('token');
-      var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$areaCode/branches',
+      var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$areaCode/branches',
           headers: postAuthHeaders(pmToken));
       if (response.statusCode == 200) {
         List<dynamic> branches = json.decode(response.body);
@@ -2655,7 +2661,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var pmToken = await pandora.getFromSharedPreferences('token');
-      var response = await http.get(Global.BaseUrlTest + '/aleroUserMgt/$branchCode/rms',
+      var response = await http.get(Global.PresentBaseUrl + '/aleroUserMgt/$branchCode/rms',
           headers: postAuthHeaders(pmToken));
       if (response.statusCode == 200) {
         List<dynamic> rms = json.decode(response.body);
@@ -2690,7 +2696,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetSegmentSummary/$date?segment=$segment',
+        Global.PresentBaseUrl + '/Scorecard/GetSegmentSummary/$date?segment=$segment',
         headers: preAuthHeaders);
     print('The segment bank wide =');
     print(response.body);
@@ -2713,7 +2719,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/Division/$segment/$runDate?regionCode=$regionCode',
+        Global.PresentBaseUrl + '/Scorecard/Division/$segment/$runDate?regionCode=$regionCode',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2734,7 +2740,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetClusterBreakdown/$regionCode/$segment?areaId=$areaId&date=$date',
+        Global.PresentBaseUrl + '/Scorecard/GetClusterBreakdown/$regionCode/$segment?areaId=$areaId&date=$date',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2755,7 +2761,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetHubBreakdown/$areaCode/$segment?branchCode=$branchCode&date=$date',
+        Global.PresentBaseUrl + '/Scorecard/GetHubBreakdown/$areaCode/$segment?branchCode=$branchCode&date=$date',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2776,7 +2782,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetAvgSegmentSummary/$date?segment=$segment',
+        Global.PresentBaseUrl + '/Scorecard/GetAvgSegmentSummary/$date?segment=$segment',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetResponseFromJson(response.body);
@@ -2797,7 +2803,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetAvgDivisionBreakdown/$segment/$date?regionCode=$regionCode',
+        Global.PresentBaseUrl + '/Scorecard/GetAvgDivisionBreakdown/$segment/$date?regionCode=$regionCode',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2818,7 +2824,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetAvgClusterBreakdown?division=$regionCode&segment=$segment&date=$date',
+        Global.PresentBaseUrl + '/Scorecard/GetAvgClusterBreakdown?division=$regionCode&segment=$segment&date=$date',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2839,7 +2845,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-        Global.BaseUrlTest + '/Scorecard/GetAvgHubBreakdown?cluster=$areaCode&segment=$segment&date=$date',
+        Global.PresentBaseUrl + '/Scorecard/GetAvgHubBreakdown?cluster=$areaCode&segment=$segment&date=$date',
         headers: preAuthHeaders);
     if (response.statusCode == 200) {
       return myBalanceSheetRmResponseFromJson(response.body);
@@ -2859,18 +2865,23 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    print('INSIDE REGION PM TOKEN $pmToken');
     var response = await http.get(
-        Global.BaseUrlTest + '/PLNrff/RegionBankWide/$date',
-        headers: preAuthHeaders);
+        Global.PresentBaseUrl + '/PLNrff/RegionBankWide/date=$date',
+        headers: postAuthHeaders(pmToken));
+    print('API SERVICE IN NRFF BANK WIDE = ');
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent('GET_BANK_WIDE_NRFF_DATA',
-          '/PLNrff/RegionBankWide/$date', response.body);
+          '/PLNrff/RegionBankWide/date=$date', response.body);
       return [];
     } else {
       pandora.logFirebaseEvent('GET_BANK_WIDE_NRFF_DATA',
-          '/PLNrff/RegionBankWide/$date', response.body);
+          '/PLNrff/RegionBankWide/date=$date', response.body);
       return [];
     }
   }
@@ -2880,9 +2891,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest + '/PLNrff/Regions/$date?region=$regionId',
-        headers: preAuthHeaders);
+        Global.PresentBaseUrl + '/PLNrff/Regions/$date?region=$regionId',
+        headers: postAuthHeaders(pmToken));
+    print('API SERVICE IN NRFF REGION WIDE = ');
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -2902,9 +2917,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest + '/PLNrff/Area/$areaId/$date',
-        headers: preAuthHeaders);
+        Global.PresentBaseUrl + '/PLNrff/Area/$areaId/$date',
+        headers: postAuthHeaders(pmToken));
+    print('API SERVICE IN NRFF AREA WIDE = ');
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -2924,9 +2943,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest + '/PLNrff/Branches/$branchCode?date=$date',
-        headers: preAuthHeaders);
+        Global.PresentBaseUrl + '/PLNrff/Branches/$branchCode?date=$date',
+        headers: postAuthHeaders(pmToken));
+    print('API SERVICE IN NRFF BRANCH WIDE = ');
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -2946,10 +2969,14 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest +
+        Global.PresentBaseUrl +
             '/PLNrff/Rms/$date?branchCode=$branchCode&rmCode=$rmCode',
-        headers: preAuthHeaders);
+        headers: postAuthHeaders(pmToken));
+    print('API SERVICE IN NRFF RM WIDE = ');
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -2973,9 +3000,10 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest + '/PLNrff/Segments/$date?segmentId=$segment',
-        headers: preAuthHeaders);
+        Global.PresentBaseUrl + '/PLNrff/Segments/$date?segmentId=$segment',
+        headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -2995,10 +3023,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest +
+        Global.PresentBaseUrl +
             '/PLNrff/Regions/segment/$date?segmentId=$segment&regionCode=$regionCode',
-        headers: preAuthHeaders);
+        headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -3022,10 +3051,10 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
-    var response = await http.get(
-        Global.BaseUrlTest +
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(Global.PresentBaseUrl +
             '/PLNrff/Areas/region/$date?regionId=$regionId&segmentId=$segment&areaId=$areaId',
-        headers: preAuthHeaders);
+        headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -3049,10 +3078,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest +
+        Global.PresentBaseUrl +
             '/PLNrff/Branch/area/$date?area=$areaId&segmentId=$segment',
-        headers: preAuthHeaders);
+        headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -3076,10 +3106,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.BaseUrlTest +
+        Global.PresentBaseUrl +
             '/PLNrff/Rms/segment/$date?branchCode=$branchCode&segmentId=$segment&rmCode=$rmCode',
-        headers: preAuthHeaders);
+        headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
     } else if (response.statusCode == 404) {
@@ -3090,8 +3121,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       return [];
     } else {
       pandora.logFirebaseEvent(
-          'GET_SEGMENT_RM_NRFF',
-          '/PLNrff/Rms/segment/$date?branchCode=$branchCode&segmentId=$segment&rmCode=$rmCode',
+          'GET_SEGMENT_RM_NRFF', '/PLNrff/Rms/segment/$date?branchCode=$branchCode&segmentId=$segment&rmCode=$rmCode',
           response.body);
       return [];
     }
@@ -3277,7 +3307,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.PresentBaseUrl + '/mpr/report/bank?$reportDate',
+        Global.PresentBaseUrl + '/mpr/report/bank?reportDate=$reportDate',
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -3289,12 +3319,12 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         return mprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
-            'GET_BANK_WIDE_MPR', '/mpr/report/bank?$reportDate',
+            'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
             response.body);
         return [];
       } else {
         pandora.logFirebaseEvent(
-            'GET_BANK_WIDE_MPR', '/mpr/report/bank?$reportDate',
+            'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
             response.body);
         return [];
       }
@@ -3307,22 +3337,24 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.PresentBaseUrl + '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&$startDate&$endDate',
+        Global.PresentBaseUrl + '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&statDate=$startDate&endDate=$endDate',
         headers: postAuthHeaders(pmToken));
+    print('MPR REGION body =');
+    print(response.body);
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
       List<MprResponse> mprList = jsonResponse.map((json) => MprResponse.fromJson(json)).toList();
-      print('Mpr region in 202 =');
+      print('MPR REGION =');
       print(response.statusCode);
       print(mprList);
       return mprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent('GET_REGION_MPR_DATA',
-          '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&$startDate&$endDate', response.body);
+          '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&statDate=$startDate&endDate=$endDate', response.body);
       return [];
     } else {
       pandora.logFirebaseEvent('GET_REGION_MPR_DATA',
-          '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&$startDate&$endDate', response.body);
+          '/mpr/report/region-report?reportLevel=$regionName&regionId=$regionId&statDate=$startDate&endDate=$endDate', response.body);
       return [];
     }
   }
@@ -3334,7 +3366,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.PresentBaseUrl + '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&$startDate&$endDate',
+        Global.PresentBaseUrl + '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&startDate=$startDate&endDate=$endDate',
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -3345,11 +3377,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       return mprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
-          'GET_AREA_MPR_DATA', '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&$startDate&$endDate', response.body);
+          'GET_AREA_MPR_DATA', '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&startDate=$startDate&endDate=$endDate', response.body);
       return [];
     } else {
       pandora.logFirebaseEvent(
-          'GET_AREA_MPR_DATA', '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&$startDate&$endDate', response.body);
+          'GET_AREA_MPR_DATA', '/mpr/report/area?reportLevel=$areaName&areaId=$areaId&startDate=$startDate&endDate=$endDate', response.body);
       return [];
     }
   }
@@ -3360,7 +3392,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.PresentBaseUrl + '/mpr/report/branch?reportLevel=$branchName&branchId=$branchId&$startDate&$endDate',
+        Global.PresentBaseUrl + '/mpr/report/branch?reportLevel=$branchName&branchId=$branchId&startDate=$startDate&endDate=$endDate',
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -3370,10 +3402,10 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
        print(mprList);
         return mprList;
     } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent('GET_BRANCH_MPR_DATA', '/mpr/report/branch?reportLevel=$branchName&$branchId=branchId&$startDate&$endDate', response.body);
+      pandora.logFirebaseEvent('GET_BRANCH_MPR_DATA', '/mpr/report/branch?reportLevel=$branchName&$branchId=branchId&startDate=$startDate&endDate=$endDate', response.body);
       return [];
     } else {
-      pandora.logFirebaseEvent('GET_BRANCH_MPR_DATA', '/mpr/report/branch?reportLevel=$branchName&branchId=$branchId&$startDate&$endDate', response.body);
+      pandora.logFirebaseEvent('GET_BRANCH_MPR_DATA', '/mpr/report/branch?reportLevel=$branchName&branchId=$branchId&startDate=$startDate&endDate=$endDate', response.body);
       return [];
     }
   }
@@ -3413,7 +3445,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(
-        Global.PresentBaseUrl + '/mpr/report/segment?segmentId=$segment&$startDate&$endDate',
+        Global.PresentBaseUrl + '/mpr/report/segment?segmentId=$segment&startDate=$startDate&endDate=$endDate',
         headers: postAuthHeaders(pmToken));
     print('Mpr segment data =');
     print(response.body);
@@ -3423,10 +3455,12 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
           MprResponse.fromJson(json)).toList();
       return mprList;
     } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent('GET_SEGMENT_MPR', '/mpr/report/segment?segmentId=$segment&$startDate&$endDate', response.body);
+      pandora.logFirebaseEvent('GET_SEGMENT_MPR', '/mpr/report/segment?segmentId=$segment&startDate=$startDate&endDate=$endDate',
+          response.body);
       return [];
     } else {
-      pandora.logFirebaseEvent('GET_SEGMENT_MPR', '/mpr/report/segment?segmentId=$segment&$startDate&$endDate', response.body);
+      pandora.logFirebaseEvent('GET_SEGMENT_MPR', '/mpr/report/segment?segmentId=$segment&startDate=$startDate&endDate=$endDate',
+          response.body);
       return [];
     }
   }
@@ -3437,26 +3471,19 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
-    var response = await http.get(
-        Global.PresentBaseUrl + '/apr/top-accounts',
-        headers: postAuthHeaders(pmToken));
+    var response = await http.get(Global.PresentBaseUrl + '/apr/top-accounts', headers: postAuthHeaders(pmToken));
+    print(response.statusCode);
+    print(response.body);
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<AprResponse> aprList = jsonResponse.map((json) =>
-          AprResponse.fromJson(json)).toList();
-      print('Apr TOP data =');
-      print(response.statusCode);
-      print(aprList);
-      return aprList;
+      List<AprResponse> topAprList = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      print(topAprList);
+      return topAprList;
     } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent(
-          'GET_TOP_APR', '/apr/top-accounts',
-          response.body);
+      pandora.logFirebaseEvent('GET_TOP_APR', '/apr/top-accounts', response.body);
       return [];
     } else {
-      pandora.logFirebaseEvent(
-          'GET_TOP_APR', '/apr/top-accounts',
-          response.body);
+      pandora.logFirebaseEvent('GET_TOP_APR', '/apr/top-accounts', response.body);
       return [];
     }
   }
@@ -3472,11 +3499,11 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<AprResponse> aprList = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      List<AprResponse> bottomAprList = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
       print('Apr bottom data =');
       print(response.statusCode);
-      print(aprList);
-      return aprList;
+      print(bottomAprList);
+      return bottomAprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
           'GET_BOTTOM_APR', '/apr/bottom-accounts',
@@ -3490,7 +3517,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-  /// Get An Account Profitability Report By Account Number.
+  /// Get Account Profitability Report By Account Number.
   Future<List<AprResponse>> getAprDataByAccNo(String accountNo) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -3526,9 +3553,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         Global.PresentBaseUrl + '/apr/apr-periods',
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
-      List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
-      return aprByAcctNo;
+      return [];
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
           'GET_APR_PERIOD', '/apr/apr-periods',
@@ -3541,6 +3566,33 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
   /// Get APR By Customer.
+  Future<List<AprResponse>> searchAprByCustomer(String accountNumber) async {
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var pmToken = await pandora.getFromSharedPreferences('token');
+    var response = await http.get(
+        Global.PresentBaseUrl + '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNumber',
+        headers: postAuthHeaders(pmToken));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(response.body);
+      List<AprResponse> searchApr = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      return searchApr;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_APR_CUSTOMER', '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNumber',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_APR_CUSTOMER', '/apr/GetAccountProfitabilityReportByAccountNumber/$accountNumber',
+          response.body);
+      return [];
+    }
+  }
+
+  /*/// Old API
+  /// Get APR By Customer.
   Future<List<AprResponse>> searchAprByCustomer(String customer) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -3551,8 +3603,8 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<AprResponse> aprByAcctNo = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
-      return aprByAcctNo;
+      List<AprResponse> searchApr = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
+      return searchApr;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
           'GET_APR_CUSTOMER', '/apr/apr-customer-search/$customer',
@@ -3564,7 +3616,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
           response.body);
       return [];
     }
-  }
+  }*/
 
   /// Create concession
   /* Future<ConcessionResponse> createConcession(dynamic dealData) async {

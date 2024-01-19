@@ -135,7 +135,8 @@ static String moneyFormat2(double price) {
 
       return formattedValue;
     } else {
-      return 'Invalid Input';
+      return value;
+      // return 'Invalid Input;
     }
   }
 
@@ -159,7 +160,6 @@ static String moneyFormat2(double price) {
     if (isNegative) {
       formattedPrice = '-$formattedPrice';
     }
-
     return formattedPrice;
   }
 
@@ -168,6 +168,34 @@ static String moneyFormat2(double price) {
     var processedDate =
     DateTimeFormat.format(date, format: DateTimeFormats.americanAbbr);
     return processedDate = processedDate.substring(0, processedDate.length - 8);
+  }
+
+  static String keyItemFormat(String value) {
+    String modifiedString;
+    int firstSpaceIndex = value.indexOf(' ');
+    int secondSpaceIndex = value.indexOf(' ', firstSpaceIndex + 1);
+    if (secondSpaceIndex != -1) {
+      modifiedString = value.replaceRange(secondSpaceIndex, secondSpaceIndex + 1, '\n');
+      print('The modifiedString = $modifiedString');
+    } else {
+      print("String doesn't contain a second space.");
+    }
+}
+
+  static String replaceUnderscoreFormat(String value) {
+    String combinedValue;
+    combinedValue = value.replaceAll('_', ' ');
+    return combinedValue;
+  }
+
+  static String replaceHyphenFormat(String input) {
+    String modifiedString;
+    if (input != null) {
+      modifiedString = input.replaceAll('-', '');
+      return modifiedString;
+    } else {
+      return input;
+    }
   }
 
   Future<void> saveToSharedPreferences(String key, String value) async {

@@ -964,7 +964,6 @@ class _BodyState extends State<Body> {
         pandora.showToast('Failed to connect', context,
             MessageTypes.FAILED.toString().split('.').last);
       }
-
       OneContext().hideProgressIndicator();
     }
     OneContext().hideProgressIndicator();

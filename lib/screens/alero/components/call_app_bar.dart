@@ -13,7 +13,7 @@ class CallAppBar extends StatelessWidget implements PreferredSizeWidget{
       centerTitle: true,
       leading: GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
+          Navigator.pop(context);
         },
         child: Padding(
           padding: const EdgeInsets.all(13.0),

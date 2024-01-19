@@ -88,7 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeHeader(),
           SizedBox(height: 30),
           Container(
             child: SingleChildScrollView(
@@ -167,10 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
         pandora.showToast('Coming Soon', context,
             MessageTypes.INFO.toString().split('.').last);
         break;
-        case 3:
+        /*case 3:
         Navigator.of(context)
             .pushNamed('/concession-dashboard', arguments: firstName);
-        break;
+        break;*/
       default:
         pandora.showToast('Coming Soon', context,
             MessageTypes.INFO.toString().split('.').last);

@@ -41,7 +41,7 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                   Text('Dashboard',
                     style: TextStyle(
                       color: Colors.lightBlue,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins-Regular',
                     ),
@@ -103,10 +103,6 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
       case 2:
         Navigator.of(context)
             .pushNamed('/cost-allocation', arguments: firstName);
-        break;
-      case 3:
-        Navigator.of(context)
-            .pushNamed('/concession', arguments: firstName);
         break;
       default:
         pandora.showToast('Coming soon...', context,

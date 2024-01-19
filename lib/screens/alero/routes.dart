@@ -3,18 +3,19 @@ import 'package:alero/screens/alero/concession/terminate_concession.dart';
 import 'package:alero/screens/alero/customer/customer_accounts.dart';
 import 'package:alero/screens/alero/home/home_screen.dart';
 import 'package:alero/screens/alero/call/pipeline_page.dart';
-import 'package:alero/screens/alero/performance/balance_sheet_side_menu.dart';
+import 'package:alero/screens/alero/my_balance_sheet/balance_sheet_side_menu.dart';
 import 'package:alero/screens/alero/performance/performance_management_page.dart';
-import 'package:alero/screens/alero/performance/my_balance_sheet_page.dart';
-import 'package:alero/screens/alero/performance/profitability_reports_page.dart';
-import 'package:alero/screens/alero/profitability/account_pr.dart';
-import 'package:alero/screens/alero/profitability/apr_details_page.dart';
-import 'package:alero/screens/alero/profitability/cpr_balance_sheet.dart';
-import 'package:alero/screens/alero/profitability/cpr_profit_loss_page.dart';
-import 'package:alero/screens/alero/profitability/cpr_page.dart';
-import 'package:alero/screens/alero/profitability/search_cpr_page.dart';
-import 'package:alero/screens/alero/profitability/monthly_pr.dart';
-import 'package:alero/screens/alero/profitability/net_revenue_from_funds.dart';
+import 'package:alero/screens/alero/my_balance_sheet/my_balance_sheet_page.dart';
+import 'package:alero/screens/alero/profitability/profitability_reports_page.dart';
+import 'package:alero/screens/alero/profitability/apr/account_pr.dart';
+import 'package:alero/screens/alero/profitability/apr/apr_balance_sheet.dart';
+import 'package:alero/screens/alero/profitability/apr/apr_details_page.dart';
+import 'package:alero/screens/alero/profitability/cpr/cpr_balance_sheet.dart';
+import 'package:alero/screens/alero/profitability/cpr/cpr_profit_loss_page.dart';
+import 'package:alero/screens/alero/profitability/cpr/cpr_page.dart';
+import 'package:alero/screens/alero/profitability/cpr/search_cpr_page.dart';
+import 'package:alero/screens/alero/profitability/mpr/monthly_pr.dart';
+import 'package:alero/screens/alero/profitability/nrff/net_revenue_from_funds.dart';
 import 'package:alero/screens/alero/prospect/prospect_bio_data_input.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -172,10 +173,14 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Apr Details Page');
         return RouteAnimator(page: AprDetailsPage());
-     /* case '/searched-apr':
+      case '/apr-balance-sheet':
+        GetIt.I<FirebaseAnalytics>()
+            .setCurrentScreen(screenName: 'Apr Balance Sheet');
+        return RouteAnimator(page: AprBalanceSheet());
+      /*case '/searched-apr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Searched Apr Page');
-        return RouteAnimator(page: );*/
+        return RouteAnimator(page: S);*/
       default:
         return RouteAnimator(page: ErrorPage());
     }

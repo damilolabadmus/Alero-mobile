@@ -86,6 +86,7 @@ class SubCategory {
   dynamic ytdAchieved;
   dynamic fyBudget;
   dynamic runRate;
+  bool isExpanded;
 
   SubCategory({
     this.categoryName,
@@ -101,7 +102,14 @@ class SubCategory {
     this.ytdAchieved,
     this.fyBudget,
     this.runRate,
+    this.isExpanded = false,
   });
+
+  bool get getIsExpanded => isExpanded;
+
+  set setIsExpanded(bool value) {
+    isExpanded = value;
+  }
 
   factory SubCategory.fromJson(Map<String, dynamic> json) {
     return SubCategory(

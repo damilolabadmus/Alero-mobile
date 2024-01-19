@@ -26,7 +26,7 @@ class NrffResponse {
   });
 
   factory NrffResponse.fromJson(Map<String, dynamic> json) => NrffResponse(
-    product: json["Product"] == null ? ' ' : json["Product"],
+    product: json["Product"] == null ? '-' : json["Product"],
     actualValue: json["ActualValue"] == null ? 0.0 : json["ActualValue"],
     averageValue: json["AverageValue"] == null ? 0.0 : json["AverageValue"],
     interestExpense: json["InterestExpense"] == null ? 0.0 : json["InterestExpense"],
@@ -47,8 +47,19 @@ class NrffResponse {
     "Nrff": nrff,
   };
 
-  @override
+  /*@override
   String toString() {
     return 'NrffResponse{Product: $product, ActualValue: $actualValue, AverageValue: $averageValue, InterestExpense: $interestExpense, EffInRate: $effInRate, FtpExpense: $ftpExpense, EffFtpRate: $effFtpRate, Nrff: $nrff}';
   }
+
+  double getSum() {
+    return actualValue +
+        averageValue +
+        interestExpense +
+        effInRate +
+        ftpExpense +
+        effFtpRate +
+        nrff;
+  }*/
+
 }
