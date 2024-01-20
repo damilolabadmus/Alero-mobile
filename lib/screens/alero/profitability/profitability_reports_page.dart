@@ -46,7 +46,6 @@ class ProfitabilityReportsPage extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Style.Colors.elementBack,
       body: ProfitabilityReportsDashboard(),
       bottomNavigationBar: SimpleBottomNavItem());
   }

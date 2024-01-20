@@ -39,10 +39,10 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 10),
-                    Text('P/L Reports',
+                    Text('Profitability Reports',
                       style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 18.0,
+                        fontSize: 15.0,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins-Regular',
                       ),
@@ -52,11 +52,11 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Below are different reports to select from.',
-                        style: kBankItemTitle.copyWith(fontSize: 15)),),],),
+                        style: kBankItemTitle.copyWith(fontSize: 14)),),],),
                 SizedBox(height: 20.0),
                 Container(
                   child: GridView.count(
-                    crossAxisCount: 2,
+                    crossAxisCount: 3,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     children: dashboardItem,
@@ -79,7 +79,7 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
     int i = 0;
     dashboardItems.forEach((element) {
       _dashboardItem.add(
-          DashboardItem(
+          DashboardItemAlign(
         message: element['name'],
         image: element['image'],
         color: randomColors[i].withOpacity(0.5),
@@ -121,13 +121,14 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
 
   void generateColors(int length) {
     var list = [
-      0xFF99C9D9,
-      0xFF008EC4,
-      0xFFBBBBBB,
-      0xFFFFDAA6,
-      0xFFB3A369,
-      0xFFF4B459,
-      0xFF7AC369
+      0xFFFFE082,
+      0xFFFFCCBC,
+      0xFFB3E5FC,
+      0xFFE0E0E0,
+      0xFFFFCCBC,
+      0xFFB3E5FC,
+      0xFFE0E0E0,
+      0xFFE1BEE7,
     ];
     for (int i = 0; i < length; i++) {
       if (!randomColors.contains(list[i])) {

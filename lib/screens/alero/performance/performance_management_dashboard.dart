@@ -4,6 +4,7 @@ import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PerformanceManagementDashboard extends StatefulWidget {
   const PerformanceManagementDashboard({Key key}) : super(key: key);
@@ -55,7 +56,7 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                   SizedBox(height: 20.0),
                   GridView.count(
                     physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
+                    crossAxisCount: 3,
                     shrinkWrap: true,
                     children: dashboardItem,
                   ),
@@ -77,7 +78,7 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
     
     int i = 0;
     dashboardItems.forEach((element) {
-      _dashboardItem.add(DashboardItem(
+      _dashboardItem.add(DashboardItemAlign(
         message: element['name'],
         image: element['image'],
         color: randomColors[i].withOpacity(0.5),
@@ -113,13 +114,14 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
 
   void generateColors(int length) {
     var list = [
-      0xFF99C9D9,
-      0xFF008EC4,
-      0xFFBBBBBB,
-      0xFFFFDAA6,
-      0xFFB3A369,
-      0xFFF4B459,
-      0xFF7AC369
+      0xFFADD8E6,
+      0xFFD2B48C,
+      0xFFB0C4DE,
+      0xFFD2B48C,
+      0xFFB0E0E6,
+      0xFF87CEFA,
+      0xFFD2B48C,
+      0xFFAFEEEE,
     ];
     for (int i = 0; i < length; i++) {
       if (!randomColors.contains(list[i])) {

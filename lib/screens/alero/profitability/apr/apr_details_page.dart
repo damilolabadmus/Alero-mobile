@@ -42,12 +42,12 @@ class _AprDetailsPageState extends State<AprDetailsPage> {
                     Padding(
                         padding: const EdgeInsets.only(left: 3.0),
                         child: Container(
-                          width: widget.aprDetails != null ? widget.aprDetails[0].customerName.length > 12 ? 100.0 : null : 0,
+                          width: widget.aprDetails != null ? widget.aprDetails[0].accountName.length > 10 ? 120.0 : null : 0,
                           padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
                           decoration: BoxDecoration(
                               color: Colors.black38,
                               borderRadius: BorderRadius.circular(4.0)),
-                          child: Text(widget.aprDetails == null ? '' : widget.aprDetails[0].customerName.toString(),
+                          child: Text(widget.aprDetails == null ? '' : widget.aprDetails[0].accountName.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
@@ -62,7 +62,7 @@ class _AprDetailsPageState extends State<AprDetailsPage> {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Below shows the details page for apr.',
+                    'Below shows the details page for the report.',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Style.Colors.subBlackTextColor,

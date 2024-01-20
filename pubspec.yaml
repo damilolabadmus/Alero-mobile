@@ -193,20 +193,13 @@ flutter:
 #    - assets/icons/shopping_bag.svg
     - assets/icons/star.svg
     - assets/icons/video_call.svg
+    - assets/icons/customer_pr.svg
+    - assets/icons/nrff.svg
+    - assets/icons/monthly_pr.svg
+    - assets/icons/account_pr.svg
 
     - assets/icons/profile_user.svg
 
-    - assets/performance/balance_sheet.svg
-    - assets/performance/cost_allocation.svg
-    - assets/performance/commission.svg
-    - assets/performance/cost_report.svg
-#    - assets/performance/scorecard.svg
-    - assets/performance/profitability.svg
 
-    - assets/performance/customer_pr.svg
-    - assets/performance/account_pr.svg
-    - assets/performance/product_pr.svg
-    - assets/performance/monthly_pr.svg
-    - assets/performance/nrff.svg
 
 

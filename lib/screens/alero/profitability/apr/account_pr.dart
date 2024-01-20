@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'apr_bottom_nav_bar.dart';
 import 'apr_dashboard_table_container.dart';
 import '../profitability_app_bar.dart';
-import '../cpr/cpr_search_field.dart';
+import 'apr_search_field.dart';
 
 class AccountProfitabilityReportPage extends StatefulWidget {
   final String userId;
@@ -22,7 +22,7 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
   var apiService = AleroAPIService();
   bool dataLoaded = false;
   bool isInitialLoading = true;
-  bool isSearchCustomer;
+  bool isSearchAccount;
   bool aprDataNotNull;
 
   List<AprResponse> topAprData = [];
@@ -105,7 +105,7 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins-Regular'),),
                     SizedBox(height: 4),
-                    CprSearchField(searchCprCallback: (query) { setState(() {isSearchCustomer = query;});}
+                    AprSearchField(searchAprCallback: (query) { setState(() {isSearchAccount = query;});}
                      ),
                     SizedBox(height: 2),
                     aprDataTabs()],),

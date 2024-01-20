@@ -123,7 +123,6 @@ class _AprSearchFieldState extends State<AprSearchField> {
                           isSearched = true;
                           widget.searchAprCallback(isSearched);
                         });
-
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>
                             SearchAprPage(searchedAprData: aprByAcctNoData)));
                       },
@@ -137,8 +136,7 @@ class _AprSearchFieldState extends State<AprSearchField> {
                         ),
                       ),
                     )),
-              ),
-            )),
+              ),)),
       ),
     );
   }
