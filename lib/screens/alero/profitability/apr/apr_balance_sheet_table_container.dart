@@ -1,9 +1,6 @@
 import 'dart:ui';
 import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/models/performance/CprResponse.dart';
-import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_details_item.dart';
-import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -63,10 +60,11 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
                 headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade50),
                 columns: [
                   DataColumn(label: Text('Category', style: kDisburseBlueStyle)),
-                  /* DataCo lumn(label: Text(completeTopCprData[1].mainReport[1].currentMonthBudget.keys.toString().substring(1, completeTopCprData[1].mainReport[1].currentMonthBudget.keys.toString().length - 1), style: kDisburseBlueStyle)),
-                      DataColumn(label: Text(completeTopCprData[1].mainReport[1].currentMonthVariance.keys.toString().substring(1, completeTopCprData[1].mainReport[1].currentMonthVariance.keys.toString().length - 1), style: kDisburseBlueStyle)),
-                      DataColumn(label: Text(completeTopCprData[1].mainReport[1].currentMonthAchieved.keys.toString().substring(1, completeTopCprData[1].mainReport[1].currentMonthAchieved.keys.toString().length - 1), style: kDisburseBlueStyle)),
-                      */DataColumn(label: Text('YTD \nActual (₦\'m)', style: kDisburseBlueStyle)),
+
+                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthBudget.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthVariance.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthBudget.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('YTD \nActual (₦\'m)', style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nBudget (₦\'m)', style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nVariance (₦\'m)', style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nAchieved (₦\'m)', style: kDisburseBlueStyle)),
@@ -76,21 +74,21 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
                 rows: List.generate(balanceSheetData.length, (index) {
                   final accountData = balanceSheetData[index];
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.selected)) {
-                              return Theme.of(context).colorScheme.primary.withOpacity(0.08);
-                            }
-                            if (index.isOdd) {
-                              return Colors.grey.withOpacity(0.15);
-                            }
-                            return null;
-                          }),
+                    color: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return Theme.of(context).colorScheme.primary.withOpacity(0.08);
+                          }
+                          if (index.isOdd) {
+                            return Colors.grey.withOpacity(0.15);
+                          }
+                          return null;
+                        }),
                       cells: [
                         DataCell(Text(widget.aprData[index].mainReport[1].incomeType.toString(), style: (isHover) ? kDisburseBlueStyle : kDealsHeaderStyle)),
-                        /*DataCell(Text(completeTopCprData[index].excludedTab[1].currentMonthBudget.values.toString()*//*.substring(1, completeTopCprData[index].mainReport[1].currentMonthVariance.values.toString().length - 1)*//*, style: kDealsHeaderStyle)),
-                            DataCell(Text(completeTopCprData[index].excludedTab[1].currentMonthVariance.values.toString().substring(1, completeTopCprData[index].mainReport[1].currentMonthVariance.values.toString().length - 1), style: kDealsHeaderStyle)),
-                            DataCell(Text(completeTopCprData[index].excludedTab[1].currentMonthAchieved.values.toString().substring(1, completeTopCprData[index].mainReport[1].currentMonthAchieved.values.toString().length - 1), style: kDealsHeaderStyle)),*/
+                        DataCell(Text(balanceSheetData[index].currentMonthBudget.values.toString(), style: kDealsHeaderStyle)),
+                        DataCell(Text(balanceSheetData[index].currentMonthVariance.values.toString(), style: kDealsHeaderStyle)),
+                        DataCell(Text(balanceSheetData[index].currentMonthAchieved.values.toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.moneyFormat(accountData.ytDActualValue.toDouble()).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.moneyFormat(accountData.ytDBudgetValue.toDouble()).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.moneyFormat(accountData.variance.toDouble()).toString(), style: kDealsHeaderStyle)),

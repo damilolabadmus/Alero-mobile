@@ -156,11 +156,11 @@ class _AprDashboardTableContainerState extends State<AprDashboardTableContainer>
                                           color: Colors.white70
                                       ),
                                       Text("View More",
-                                          style: TextStyle(
-                                              fontSize: 10.0,
-                                              color: Colors.white70,
-                                              fontFamily: 'Poppins-Regular',
-                                              fontWeight: FontWeight.w700)),
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                          color: Colors.white70,
+                                          fontFamily: 'Poppins-Regular',
+                                          fontWeight: FontWeight.w700)),
                                     ]
                                 ),
                               ),
