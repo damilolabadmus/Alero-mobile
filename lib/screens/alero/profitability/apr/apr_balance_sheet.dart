@@ -1,6 +1,3 @@
-import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/network/AleroAPIService.dart';
-import 'package:alero/screens/alero/profitability/apr/apr_details_table_container.dart';
 import 'package:alero/screens/alero/profitability/singleton.dart';
 import 'package:flutter/material.dart';
 import '../../../../../style/theme.dart' as Style;
@@ -9,6 +6,8 @@ import 'apr_bottom_nav_bar.dart';
 import '../profitability_app_bar.dart';
 
 class AprBalanceSheet extends StatefulWidget {
+  final aprData;
+  AprBalanceSheet({this.aprData});
 
   @override
   State<AprBalanceSheet> createState() => _AprBalanceSheetState();
@@ -45,7 +44,7 @@ class _AprBalanceSheetState extends State<AprBalanceSheet> {
                           decoration: BoxDecoration(
                               color: Colors.black38,
                               borderRadius: BorderRadius.circular(4.0)),
-                          child: Text('Account name',
+                          child: Text(widget.aprData[0].accountName ?? '',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12.0,

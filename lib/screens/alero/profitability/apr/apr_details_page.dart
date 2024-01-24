@@ -1,10 +1,9 @@
-import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/screens/alero/components/call_app_bar.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:one_context/one_context.dart';
 import '../../../../../style/theme.dart' as Style;
-import 'apr_balance_sheet.dart';
 import 'apr_bottom_nav_bar.dart';
 import 'apr_details_table_container.dart';
 
@@ -23,7 +22,7 @@ class _AprDetailsPageState extends State<AprDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: appBar(),
+        appBar: SimpleCallAppBar.build(context),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(10.0),
@@ -81,49 +80,5 @@ class _AprDetailsPageState extends State<AprDetailsPage> {
           ),
         ),
       bottomNavigationBar: AprBottomNavigationBar(aprDataNotNull: widget.aprDetails == null ? false : true));
-  }
-
-  AppBar appBar() => AppBar(
-    elevation: 0,
-    toolbarHeight: 40,
-    backgroundColor: Style.Colors.searchActiveBg,
-    leading: GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(13.0),
-        child: Icon(
-          EvaIcons.arrowBack,
-          color: Colors.black,
-        ),),
-    ),
-    actions: [
-      Padding(
-          padding: const EdgeInsets.only(right: 24.0),
-          child: GestureDetector(
-            onTap: () {
-              logoutUser(context);
-            },
-            child: SvgPicture.asset('assets/customer/profile_logout.svg', width: 17),
-          )),],
-  );
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
   }
 }

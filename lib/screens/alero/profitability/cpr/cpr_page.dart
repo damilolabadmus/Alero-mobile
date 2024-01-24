@@ -19,15 +19,14 @@ class CustomerProfitabilityReportPage extends StatefulWidget {
 }
 
 class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityReportPage> {
-  var apiService = AleroAPIService();
   List<String> tabTitles = ["Top Customer", "Bottom Customer"];
+  List<CprResponse> completeTopCprData = [];
+  List<CprResponse> completeBottomCprData = [];
+  var apiService = AleroAPIService();
   bool dataLoaded = false;
   bool isInitialLoading = true;
   bool isSearchCustomer;
   bool cprDataNotNull;
-
-  List<CprResponse> completeTopCprData = [];
-  List<CprResponse> completeBottomCprData = [];
 
   @override
   void initState() {
@@ -38,7 +37,6 @@ class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityR
     }
 
     startTimeout();
-
   }
 
   void startTimeout() {
@@ -95,7 +93,7 @@ class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityR
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      'Customer Profitability Report',
+                      'Customer Profitability Report.',
                       style: TextStyle(
                         color: Colors.lightBlue,
                         fontSize: 15.0,
@@ -191,9 +189,6 @@ Widget cprDataTabs() {
                           cprDataNotNull = cprDataNotNull;
                         });
                       },
-                      /*pageIndex: (pageIndex) {
-                        pageIndex = pageIndex;
-                      },*/
                     ),
                     CprDashboardTableContainer(
                       cprData: completeBottomCprData

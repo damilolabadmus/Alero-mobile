@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:alero/models/performance/NrffReponse.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
@@ -7,6 +6,7 @@ import 'package:alero/utils/loading_quotes.dart';
 import 'package:flutter/material.dart';
 
 class NrffTableContainer extends StatefulWidget {
+
   List<NrffResponse> nrffData = [];
 
   NrffTableContainer({@required this.nrffData});
@@ -16,6 +16,9 @@ class NrffTableContainer extends StatefulWidget {
 }
 
 class _NrffTableContainerState extends State<NrffTableContainer> {
+
+  bool isDataLoaded = false;
+
   double sumColumn(List<NrffResponse> products, double Function(NrffResponse) getValue) {
     double sum = 0.0;
     for (var product in products) {
@@ -23,8 +26,6 @@ class _NrffTableContainerState extends State<NrffTableContainer> {
     }
     return sum;
   }
-
-  bool isDataLoaded = false;
 
   @override
   void initState() {

@@ -16,14 +16,13 @@ class AprSearchField extends StatefulWidget {
 }
 
 class _AprSearchFieldState extends State<AprSearchField> {
-  final Pandora pandora = new Pandora();
-  var apiService = AleroAPIService();
-  bool isSearched = false;
-  bool dataLoaded = false;
-  bool isInitialLoading = true;
-
   List<AprResponse> aprByAcctNoData = [];
   List<AprResponse> aprByCustomerData = [];
+  final Pandora pandora = new Pandora();
+  var apiService = AleroAPIService();
+  bool isInitialLoading = true;
+  bool isSearched = false;
+  bool dataLoaded = false;
 
   @override
   void initState() {

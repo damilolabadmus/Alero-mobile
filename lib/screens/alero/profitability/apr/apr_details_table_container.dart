@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:alero/screens/alero/components/empty_details_item.dart';
 import 'package:alero/screens/alero/profitability/singleton.dart';
-import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
+import 'apr_balance_sheet.dart';
 
 class AprDetailsTableContainer extends StatefulWidget {
   final aprDetails;
@@ -64,6 +64,8 @@ class _AprDetailsTableContainerState extends State<AprDetailsTableContainer> {
       }
     }
 
+    AprBalanceSheet(aprData: widget.aprDetails);
+
     return widget.aprDetails == null ? EmptyDetailsItem() :
     Card(
       elevation: 2,
@@ -80,33 +82,40 @@ class _AprDetailsTableContainerState extends State<AprDetailsTableContainer> {
             ),
             columns: [
               DataColumn(label: Text('Category', style: kDisburseBlueStyle)),
-              DataColumn(label: Text(Pandora.keyItemFormat(currentMonthBudgets[0].keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-              DataColumn(label: Text(Pandora.keyItemFormat(currentMonthVariances[0].keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-              DataColumn(label: Text(Pandora.keyItemFormat(currentMonthAchieve[0].keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-              DataColumn(label: Text('YTD \nActual', style: kDisburseBlueStyle)),
-              DataColumn(label: Text('YTD \nBudget', style: kDisburseBlueStyle)),
-              DataColumn(label: Text('YTD \nVariance', style: kDisburseBlueStyle)),
-              DataColumn(label: Text('YTD \nAchieved', style: kDisburseBlueStyle)),
-              DataColumn(label: Text('FullYear \nBudget', style: kDisburseBlueStyle)),
-              DataColumn(label: Text('Run \nRate', style: kDisburseBlueStyle)),
+              if (widget.aprDetails.isNotEmpty)
+                for (var key in widget.aprDetails.first.rowMonthsItem.keys)
+                  DataColumn(label: Text(Pandora.formatMonthKey(key), style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+              DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthBudgets[0].keys.toString()), style: kDisburseBlueStyle)),
+              DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthVariances[0].keys.toString()), style: kDisburseBlueStyle)),
+              DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthAchieve[0].keys.toString()), style: kDisburseBlueStyle)),
+              DataColumn(label: Text('YTD\nActual', style: kDisburseBlueStyle)),
+              DataColumn(label: Text('YTD\nBudget', style: kDisburseBlueStyle)),
+              DataColumn(label: Text('YTD\nVariance', style: kDisburseBlueStyle)),
+              DataColumn(label: Text('YTD\nAchieved', style: kDisburseBlueStyle)),
+              DataColumn(label: Text('Full Year \nBudget', style: kDisburseBlueStyle)),
+              DataColumn(label: Text('Run\nRate', style: kDisburseBlueStyle)),
             ],
             rows: List.generate(widget.aprDetails.length > 0 ? widget.aprDetails.length : [].length, (index) {
               return DataRow(
                 color: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.selected)) {
-                        return Theme.of(context).colorScheme.primary.withOpacity(0.08);
-                      }
-                      if (index.isOdd) {
-                        return Colors.grey.withOpacity(0.15);
-                      }
-                      return null;
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return Theme.of(context).colorScheme.primary.withOpacity(0.08);
+                    }
+                    if (index.isOdd) {
+                      return Colors.grey.withOpacity(0.15);
+                    }
+                    return null;
                     }),
                   cells: [
                     DataCell(Text(incomeTypes[index], style: kDealsHeaderStyle)),
-                    DataCell(Text(currentMonthBudgets[index].values.toString().substring(1, currentMonthBudgets[index].values.toString().length - 1), style: kDealsHeaderStyle)),
-                    DataCell(Text(currentMonthVariances[index].values.toString().substring(1, currentMonthVariances[index].values.toString().length - 1), style: kDealsHeaderStyle)),
-                    DataCell(Text(currentMonthAchieve[index].values.toString().substring(1, currentMonthAchieve[index].values.toString().length - 1), style: kDealsHeaderStyle)),
+                    if (widget.aprDetails.rowMonthsItem != null)
+                      for (var value in widget.aprDetails.rowMonthsItem.values)
+                        DataCell(Text(Pandora.dynamicMoneyFormat(value).toString(), style: kDealsHeaderStyle)),
+                    DataCell(Text(currentMonthBudgets[index].values.toString(), style: kDealsHeaderStyle)),
+                    DataCell(Text(currentMonthVariances[index].values.toString(), style: kDealsHeaderStyle)),
+                    // DataCell(Text(currentMonthVariances[index].values.toString().substring(1, currentMonthVariances[index].values.toString().length - 1), style: kDealsHeaderStyle)),
+                    DataCell(Text(currentMonthAchieve[index].values.toString(), style: kDealsHeaderStyle)),
                     DataCell(Text(Pandora.moneyFormat(ytDActualValues[index].toDouble()).toString(), style: kDealsHeaderStyle)),
                     DataCell(Text(Pandora.moneyFormat(ytDBudgetValues[index].toDouble()).toString(), style: kDealsHeaderStyle)),
                     DataCell(Text(Pandora.moneyFormat(variances[index].toDouble()).toString(), style: kDealsHeaderStyle)),

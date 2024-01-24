@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:alero/network/AleroAPIService.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -6,11 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:one_context/one_context.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Global.dart';
 
 class Pandora {
-  //Snackbar Conditions
+  /// Snackbar Conditions
   void showToast(String message, BuildContext context, String messageType) {
     print(messageType);
     switch (messageType) {
@@ -29,7 +31,7 @@ class Pandora {
     }
   }
 
-  //Snackbar Renderer
+  /// Snackbar Renderer
   void displayToast(String message, BuildContext context, Color color) {
     final scaffold = Scaffold.of(context);
     scaffold.showSnackBar(
@@ -63,7 +65,28 @@ class Pandora {
     );
   }
 
-  //Internet Connection manager
+  /// logout user
+  static Future<void> logoutUser(BuildContext context) async {
+    var apiService = AleroAPIService();
+    var response;
+
+    try {
+      OneContext().showProgressIndicator();
+      response = await apiService.logoutUser();
+      OneContext().hideProgressIndicator();
+
+      if (response != null) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        OneContext().hideProgressIndicator();
+      }
+    } catch (error) {
+      print(error);
+      OneContext().hideProgressIndicator();
+    }
+  }
+
+  /// Internet Connection manager
   Future<bool> hasInternet() async {
     bool hasInternet = false;
     try {
@@ -109,6 +132,7 @@ static String moneyFormat2(double price) {
     return formatter.format(price);
   }*/
 
+  /// Format money (String, double, int, etc)
   static String dynamicMoneyFormat(dynamic value) {
     if (value is num) {
       String thousandsSeparator = ',';
@@ -138,6 +162,7 @@ static String moneyFormat2(double price) {
     }
   }
 
+  /// Format money (double)
   static String moneyFormat(double price) {
     String thousandsSeparator = ',';
     String decimalSeparator = '.';
@@ -161,7 +186,7 @@ static String moneyFormat2(double price) {
     return formattedPrice;
   }
 
-
+  /// Format date
   static String dateFormat(DateTime date) {
     var processedDate =
     DateTimeFormat.format(date, format: DateTimeFormats.americanAbbr);
@@ -180,12 +205,14 @@ static String moneyFormat2(double price) {
     }
 }
 
+  /// Replace _ in a String with ' '
   static String replaceUnderscoreFormat(String value) {
     String combinedValue;
     combinedValue = value.replaceAll('_', ' ');
     return combinedValue;
   }
 
+  /// Replace - in a String with ' '
   static String replaceHyphenFormat(String input) {
     String modifiedString;
     if (input != null) {
@@ -194,6 +221,15 @@ static String moneyFormat2(double price) {
     } else {
       return input;
     }
+  }
+
+  /// Format month
+  static String formatMonthKey(String monthKey) {
+    DateTime date = DateTime.parse(monthKey.substring(0, 4) +
+        '-' +
+        monthKey.substring(4, 6) +
+        '-01');
+    return '\n${DateFormat.MMM().format(date)} ${DateFormat('y').format(date)}';
   }
 
   Future<void> saveToSharedPreferences(String key, String value) async {

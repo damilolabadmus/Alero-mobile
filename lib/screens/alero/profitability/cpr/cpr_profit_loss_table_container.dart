@@ -81,6 +81,9 @@ class _CprProfitAndLossTableContainerState extends State<CprProfitAndLossTableCo
                 ),
                 columns: [
                   DataColumn(label: Text('Category', style: kDisburseBlueStyle)),
+                  if (widget.cprData.isNotEmpty)
+                    for (var key in widget.cprData.first.rowMonthsItem.keys)
+                      DataColumn(label: Text(Pandora.formatMonthKey(key), style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
                   DataColumn(label: Text(Pandora.keyItemFormat(currentMonthBudgets[1].keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
                   DataColumn(label: Text(currentMonthVariances[1].keys.toString().replaceAll('_', ' ').toString(), style: kDisburseBlueStyle)),
                   DataColumn(label: Text(currentMonthAchieve[1].keys.toString().replaceAll('_', ' '), style: kDisburseBlueStyle)),

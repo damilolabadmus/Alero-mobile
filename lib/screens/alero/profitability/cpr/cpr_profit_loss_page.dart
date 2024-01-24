@@ -41,7 +41,7 @@ class _CprProfitAndLossPageState extends State<CprProfitAndLossPage> {
                     Padding(
                         padding: const EdgeInsets.only(left: 3.0, bottom: 5),
                         child: Container(
-                          width: widget.cprProfitAndLoss != null ? widget.cprProfitAndLoss[0].customerName.length > 12 ? 100.0 : null : 0,
+                          width: widget.cprProfitAndLoss != null ? widget.cprProfitAndLoss[0].customerName.length > 12 ? 120.0 : null : 0,
                           // width: 150,
                           padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 3),
                           decoration: BoxDecoration(

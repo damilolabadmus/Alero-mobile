@@ -2,6 +2,7 @@ import 'package:alero/models/performance/NrffReponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/call_app_bar.dart';
 import 'package:alero/screens/alero/performance/performance_title_container.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
@@ -623,30 +624,12 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
                         'assets/customer/profile_logout.svg',
                       ),
                       onTap: () {
-                        logoutUser(context);
+                        Pandora.logoutUser(context);
                       },
                     )
                   ],
                 ),
               ))),
     );
-  }
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
   }
 }

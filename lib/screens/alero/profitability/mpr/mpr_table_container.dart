@@ -259,6 +259,7 @@ class _MprTableContainerState extends State<MprTableContainer> {
       );
   }
 }*/
+
 class MprTableContainer extends StatefulWidget {
   final mprData;
 
@@ -447,16 +448,16 @@ class _MprTableContainerState extends State<MprTableContainer> {
                         Colors.blueGrey.shade50),
                     columns: [
                       DataColumn(label: Text('\nCategory', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Current \nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Current \nActual', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Current \nVariance', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Current \nAchieved', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Ytd \nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Ytd \nActual', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Ytd \nVariance', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Ytd \nAchieved', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('FullYear \nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                      DataColumn(label: Text('Run \nRate', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Current\nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Current\nActual', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Current\nVariance', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Current\nAchieved', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Ytd\nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Ytd\nActual', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Ytd\nVariance', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Ytd\nAchieved', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('FullYear\nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
+                      DataColumn(label: Text('Run\nRate', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
                     ],
                     rows: [],
                   ),

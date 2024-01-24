@@ -6,6 +6,7 @@ import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class AprBalanceSheetTableContainer extends StatefulWidget {
   final aprData;
@@ -20,21 +21,30 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
   bool isHover = false;
   List<AprExcludedTab> balanceSheetData = [];
 
-  Future<List<AprExcludedTab>> getAprBalanceSheetData() async {
-    if (widget.aprData != null) {
-      List<AprResponse> _aprData = widget.aprData;
-      setState(() {
-        print('APR BALANCE SHEET =');
-        balanceSheetData = _aprData[1].excludedTab;
-      });
-      return balanceSheetData;
-    }
+  String formatMonthKey(String monthKey) {
+    DateTime date = DateTime.parse(monthKey.substring(0, 4) +
+        '-' +
+        monthKey.substring(4, 6) +
+        '-01');
+    return '\n${DateFormat.MMM().format(date)} ${DateFormat('y').format(date)}';
   }
 
   @override
   void initState() {
     super.initState();
     getAprBalanceSheetData();
+  }
+
+  Future<List<AprExcludedTab>> getAprBalanceSheetData() async {
+    if (widget.aprData != null) {
+      List<AprResponse> _aprData = widget.aprData;
+      setState(() {
+        print('APR BALANCE SHEET =');
+        balanceSheetData = _aprData[1].excludedTab;
+        print(balanceSheetData);
+      });
+      return balanceSheetData;
+    }
   }
 
   @override
@@ -60,10 +70,9 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
                 headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade50),
                 columns: [
                   DataColumn(label: Text('Category', style: kDisburseBlueStyle)),
-
-                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthBudget.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthVariance.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-                  DataColumn(label: Text(Pandora.keyItemFormat(balanceSheetData[0].currentMonthBudget.keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(balanceSheetData[0].currentMonthBudget.keys.toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(balanceSheetData[0].currentMonthVariance.keys.toString().replaceAll('_', ' ').toString(), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(balanceSheetData[0].currentMonthBudget.keys.toString().replaceAll('_', ' ').toString(), style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nActual (₦\'m)', style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nBudget (₦\'m)', style: kDisburseBlueStyle)),
                   DataColumn(label: Text('YTD \nVariance (₦\'m)', style: kDisburseBlueStyle)),
@@ -85,7 +94,8 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
                           return null;
                         }),
                       cells: [
-                        DataCell(Text(widget.aprData[index].mainReport[1].incomeType.toString(), style: (isHover) ? kDisburseBlueStyle : kDealsHeaderStyle)),
+                        DataCell(Text(widget.aprData[index].mainReport[0].incomeType.toString(), style: (isHover) ? kDisburseBlueStyle : kDealsHeaderStyle)),
+                        // DataCell(Text(widget.aprData[index].mainReport[1].incomeType.toString(), style: (isHover) ? kDisburseBlueStyle : kDealsHeaderStyle)),
                         DataCell(Text(balanceSheetData[index].currentMonthBudget.values.toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(balanceSheetData[index].currentMonthVariance.values.toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(balanceSheetData[index].currentMonthAchieved.values.toString(), style: kDealsHeaderStyle)),

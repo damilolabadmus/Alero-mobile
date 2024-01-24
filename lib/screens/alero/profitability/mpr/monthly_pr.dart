@@ -324,7 +324,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       areaType != null && branchType == null && rmType == null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: areaType != null ? areaType.length > 12 ? 100.0 : null : null,
+                            width: areaType != null ? areaType.length > 12 ? 120.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
@@ -342,7 +342,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       areaType != null && branchType != null && rmType == null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: branchType != null ? branchType.length > 12 ? 100.0 : null : null,
+                            width: branchType != null ? branchType.length > 12 ? 120.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
@@ -376,7 +376,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       segmentType != null && rmType != null && branchType != null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: segmentType != null ? segmentType.length > 12 ? 100.0 : null : null,
+                            width: segmentType != null ? segmentType.length > 12 ? 120.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
@@ -393,7 +393,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           : Padding(
                         padding: const EdgeInsets.only(left: 3.0),
                         child: Container(
-                          width: regionType != null ? regionType.length > 12 ? 100.0 : null : null,
+                          width: regionType != null ? regionType.length > 12 ? 120.0 : null : null,
                           padding: EdgeInsets.all(7.0),
                           decoration: BoxDecoration(
                               color: Colors.black38,
@@ -582,7 +582,6 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                                 : rmType != null ? rmType = item
                                 : segmentType != null ? segmentType = item
                                 : segmentType = item;
-
                           });
                         },
                       ),
