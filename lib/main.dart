@@ -15,6 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   GetIt.I.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics());
+  DeviceDetails details = DeviceDetails();
+  await details.initPlatformState();
   runApp(
     Phoenix(
       child: MyApp(),
@@ -26,8 +28,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //FirebaseCrashlytics.instance.crash();
-    DeviceDetails details = DeviceDetails();
-    details.initPlatformState();
+    /*DeviceDetails details = DeviceDetails();
+    details.initPlatformState();*/
     return ScreenInteractionListener(
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
