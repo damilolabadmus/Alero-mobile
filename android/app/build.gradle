@@ -33,7 +33,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     lintOptions {
         disable 'InvalidPackage'
@@ -43,8 +43,8 @@ android {
 
     defaultConfig {
         applicationId "com.ubn.alero"
-        minSdkVersion 18
-        targetSdkVersion 31
+        minSdkVersion 19
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
