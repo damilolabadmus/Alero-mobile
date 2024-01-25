@@ -25,11 +25,12 @@ class _CustomerBottomNavigationBarState extends State<CustomerBottomNavigationBa
               'assets/customer/customer_pnd.svg',
             ),
           ),
-          title: Text("Prospects",
-              style: TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+          label: "Prospects",
+          // title: Text("Prospects",
+          //     style: TextStyle(
+          //         fontSize: 10.0,
+          //         fontFamily: 'Poppins-Regular',
+          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -38,12 +39,12 @@ class _CustomerBottomNavigationBarState extends State<CustomerBottomNavigationBa
               'assets/customer/profile_logout.svg',
             ),
           ),
-          // ignore: deprecated_member_use
-          title: Text("Logout",
-              style: TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+          label: "Logout",
+          // title: Text("Logout",
+          //     style: TextStyle(
+          //         fontSize: 10.0,
+          //         fontFamily: 'Poppins-Regular',
+          //         fontWeight: FontWeight.normal)),
         ),
       ],
     );

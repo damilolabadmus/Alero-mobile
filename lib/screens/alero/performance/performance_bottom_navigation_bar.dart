@@ -31,11 +31,12 @@ class _PerformanceBottomNavigationBarState extends State<PerformanceBottomNaviga
                 'assets/customer/profile_dashboard.svg',
               ),
             ),
-            title: Text("Dashboard",
-                style: TextStyle(
-                    fontSize: 10.0,
-                    fontFamily: 'Poppins-Regular',
-                    fontWeight: FontWeight.normal)),
+            label: "Dashboard",
+            // title: Text("Dashboard",
+            //     style: TextStyle(
+            //         fontSize: 10.0,
+            //         fontFamily: 'Poppins-Regular',
+            //         fontWeight: FontWeight.normal)),
           ),
           BottomNavigationBarItem(
             icon: Padding(
@@ -44,11 +45,12 @@ class _PerformanceBottomNavigationBarState extends State<PerformanceBottomNaviga
                 'assets/customer/profile_search.svg',
               ),
             ),
-            title: Text("Account Reports",
-                style: TextStyle(
-                    fontSize: 10.0,
-                    fontFamily: 'Poppins-Regular',
-                    fontWeight: FontWeight.normal)),
+            label: "Account Reports",
+            // title: Text("Account Reports",
+            //     style: TextStyle(
+            //         fontSize: 10.0,
+            //         fontFamily: 'Poppins-Regular',
+            //         fontWeight: FontWeight.normal)),
           ),
           BottomNavigationBarItem(
             icon: Padding(
@@ -57,11 +59,12 @@ class _PerformanceBottomNavigationBarState extends State<PerformanceBottomNaviga
                 'assets/customer/profile_logout.svg',
               ),
             ),
-            title: Text("Logout",
-                style: TextStyle(
-                    fontSize: 10.0,
-                    fontFamily: 'Poppins-Regular',
-                    fontWeight: FontWeight.normal)),
+            label: "Logout",
+            // title: Text("Logout",
+            //     style: TextStyle(
+            //         fontSize: 10.0,
+            //         fontFamily: 'Poppins-Regular',
+            //         fontWeight: FontWeight.normal)),
           ),
         ],
       ),
