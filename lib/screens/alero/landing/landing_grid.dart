@@ -22,7 +22,7 @@ class LandingGridItem extends StatelessWidget {
         width: size.width * 0.4,
         color: Colors.white,
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             Positioned(
               left: -9,
