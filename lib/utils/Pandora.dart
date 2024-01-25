@@ -33,7 +33,7 @@ class Pandora {
 
   //Snackbar Renderer
   void displayToast(String message, BuildContext context, Color color) {
-    final scaffold = Scaffold.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
         content: Container(
