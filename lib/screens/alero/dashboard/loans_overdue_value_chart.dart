@@ -64,7 +64,7 @@ class _LoansOverdueValueChartState extends State<LoansOverdueValueChart> {
               primaryXAxis: CategoryAxis(labelRotation: 300, labelStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w600)),
               tooltipBehavior: _tooltipBehavior,
               primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
-              series: <ChartSeries>[
+              series: <CartesianSeries>[
                 StackedColumnSeries<LoanClassificationStatus, String>(
                   dataSource: loanOverdue,
                   xValueMapper: (LoanClassificationStatus data, _) => data.loanStatus,
