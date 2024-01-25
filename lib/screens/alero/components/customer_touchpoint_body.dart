@@ -39,7 +39,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     "AppId": Global.AppId,
     "DeviceIp": Global.DeviceIp,
     "DeviceManufacturer": Global.DeviceManufacturer,
-    "DeviceName": Global.DeviceName,
+    // "DeviceName": Global.DeviceName,
     "DeviceModel": Global.DeviceModel,
     "DeviceType": Global.DeviceType
   };
@@ -52,7 +52,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     "DeviceIp": Global.DeviceIp,
     "DeviceManufacturer": Global.DeviceManufacturer,
     "DeviceModel": Global.DeviceModel,
-    "DeviceName": Global.DeviceName,
+    // "DeviceName": Global.DeviceName,
     "DeviceType": Global.DeviceType
   };
 

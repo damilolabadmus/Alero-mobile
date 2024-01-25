@@ -227,7 +227,7 @@ static String moneyFormat2(double price) {
     GetIt.I<FirebaseAnalytics>().logEvent(
       name: Global.USER_NAME,
       parameters: <String, dynamic>{
-        'device_name': Global.DeviceName,
+        // 'device_name': Global.DeviceName,
         'action': action,
         'endpoint': endpoint,
         'event': event,

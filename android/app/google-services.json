@@ -29,6 +29,13 @@
             {
               "client_id": "329531027756-64hn445qgf6csdprcs2vauvgjkihtqid.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "329531027756-87kcjsivc0eakuc3gghdpue4ko04jih3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ubn.alero"
+              }
             }
           ]
         }
