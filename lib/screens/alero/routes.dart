@@ -168,7 +168,7 @@ class Routes {
       case '/account-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Account Profitability Report Page');
-        return RouteAnimator(page: AccountProfitabilityReportPage());
+        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments));
       case '/apr-details':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Apr Details Page');
