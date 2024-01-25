@@ -14,7 +14,7 @@ import 'utils/device_details.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  GetIt.I.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics());
+  GetIt.I.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
   runApp(
     Phoenix(
       child: MyApp(),
