@@ -9,12 +9,11 @@ import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
 class RevenueTrendChart extends StatefulWidget {
-
   @override
   _RevenueTrendChartState createState() => _RevenueTrendChartState();
 }
-class _RevenueTrendChartState extends State<RevenueTrendChart> {
 
+class _RevenueTrendChartState extends State<RevenueTrendChart> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<BankRevenueData> rtcData = [];
@@ -25,7 +24,6 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
     Style.Colors.fourthColor,
     Style.Colors.fourthColor,
   ];
-
 
   @override
   initState() {
@@ -63,9 +61,7 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
     int bankRevenueindex = 0;
     return FutureBuilder(
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null ||
-            snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.none && snapshot.hasData == null || snapshot.connectionState == ConnectionState.waiting) {
           return Align(
             alignment: Alignment.center,
             child: SvgPicture.asset(
@@ -89,23 +85,40 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
               maxY: 1.4,*/
               titlesData: FlTitlesData(
                 show: yes,
-                bottomTitles: SideTitles(
-                  rotateAngle: kRotateAngle,
-                  showTitles: yes,
-                  getTextStyles: (value) => kRevTitlesTextStyle,
-                  getTitles: (value) {
-                    return bankRevenue[value.toInt()].periodName.toString();
-                  },
-                  margin: 10.0,
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    getTitlesWidget: (value, meta) => SideTitleWidget(
+                      angle: kRotateAngle,
+                      child: Text(
+                        bankRevenue[value.toInt()].periodName.toString(),
+                        style: kRevTitlesTextStyle,
+                      ),
+                      axisSide: AxisSide.bottom,
+                      fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
+                    ),
+                    // rotateAngle: kRotateAngle,
+                    showTitles: yes,
+                    // getTextStyles: (value) => kRevTitlesTextStyle,
+                    // getTitles: (value) {
+                    //   return bankRevenue[value.toInt()].periodName.toString();
+                    // },
+                    // margin: 10.0,
+                  ),
                 ),
-                topTitles: SideTitles(
-                  showTitles: false,
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                leftTitles: SideTitles(
-                  showTitles: false,
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                rightTitles: SideTitles(
-                  showTitles: false,
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
               ),
               gridData: FlGridData(
@@ -119,24 +132,23 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankRevenue.map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
-                      bankRev.revenueData >= 100000000000 ?
-                      bankRev.revenueData/kDepositsDivisor : bankRev.revenueData/kRevenueChartDivisor
-                  )).toList(),
+                  spots: bankRevenue
+                      .map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
+                          bankRev.revenueData >= 100000000000 ? bankRev.revenueData / kDepositsDivisor : bankRev.revenueData / kRevenueChartDivisor))
+                      .toList(),
                   /*spots: bankRevenue.map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
                       bankRev.revenueData/kRevenueChartDivisor)).toList(),*/
                   isCurved: yes,
-                  colors: gradientColors,
+                  color: gradientColors.first,
                   barWidth: 2,
                   belowBarData: BarAreaData(
                     show: yes,
-                    colors: gradientColors
-                        .map((color) => color.withOpacity(0.1))
-                        .toList(),
+                    color: gradientColors.first.withOpacity(0.1),
                   ),
                   // dotData: FlDotData(show: true),
                 ),
-              ],),
+              ],
+            ),
           ),
         );
       },

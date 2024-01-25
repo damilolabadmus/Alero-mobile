@@ -7,15 +7,12 @@ import 'package:async/async.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
-
 class DepositsChart extends StatefulWidget {
-
   @override
   _DepositsChartState createState() => _DepositsChartState();
 }
 
 class _DepositsChartState extends State<DepositsChart> {
-
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<BankDepositsData> dtcData = [];
@@ -65,9 +62,7 @@ class _DepositsChartState extends State<DepositsChart> {
     int bankDepositsIndex = 0;
     return FutureBuilder(
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null ||
-            snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.none && snapshot.hasData == null || snapshot.connectionState == ConnectionState.waiting) {
           return Align(
             alignment: Alignment.center,
             child: SvgPicture.asset(
@@ -90,25 +85,44 @@ class _DepositsChartState extends State<DepositsChart> {
               maxY: 1.5,*/
               titlesData: FlTitlesData(
                 show: yes,
-                bottomTitles: SideTitles(
-                  rotateAngle: kRotateAngle,
-                  showTitles: yes,
-                  getTextStyles: (value) => TextStyle(color: Colors.black45,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 9.0),
-                  getTitles: (value) {
-                    return bankDeposits[value.toInt()].periodName.toString();
-                  },
-                  margin: 10.0,
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    getTitlesWidget: (value, meta) => SideTitleWidget(
+                        child: Text(
+                          bankDeposits[value.toInt()].periodName.toString(),
+                          style: TextStyle(
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 9.0,
+                          ),
+                        ),
+                        angle: kRotateAngle,
+                        axisSide: AxisSide.bottom,
+                        fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
+                        ),
+                    // rotateAngle: kRotateAngle,
+                    showTitles: yes,
+                    // getTextStyles: (value) => TextStyle(color: Colors.black45, fontWeight: FontWeight.bold, fontSize: 9.0),
+                    // getTitles: (value) {
+                    //   return bankDeposits[value.toInt()].periodName.toString();
+                    // },
+                    // margin: 10.0,
+                  ),
                 ),
-                topTitles: SideTitles(
-                  showTitles: false,
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                leftTitles: SideTitles(
-                  showTitles: false,
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                rightTitles: SideTitles(
-                  showTitles: false,
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
               ),
               gridData: FlGridData(
@@ -127,18 +141,17 @@ class _DepositsChartState extends State<DepositsChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankDeposits.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), bankDep.depositsData/divisor)).toList(),
+                  spots: bankDeposits.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), bankDep.depositsData / divisor)).toList(),
                   isCurved: yes,
-                  colors: gradientColors,
+                  color: gradientColors.first,
                   barWidth: 2,
                   belowBarData: BarAreaData(
                     show: yes,
-                    colors: gradientColors
-                        .map((color) => color.withOpacity(0.1))
-                        .toList(),
+                    color: gradientColors.first.withOpacity(0.1),
                   ),
                 ),
-              ],),
+              ],
+            ),
           ),
         );
       },
@@ -146,4 +159,3 @@ class _DepositsChartState extends State<DepositsChart> {
     );
   }
 }
-

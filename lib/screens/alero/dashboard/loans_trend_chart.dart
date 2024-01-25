@@ -8,13 +8,11 @@ import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
 class LoansTrendChart extends StatefulWidget {
-
   @override
   _LoansTrendChartState createState() => _LoansTrendChartState();
 }
 
 class _LoansTrendChartState extends State<LoansTrendChart> {
-
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<BankLoanData> ltcData = [];
@@ -63,14 +61,14 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
     int bankLoanIndex = 0;
     return FutureBuilder(
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null ||
-            snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.none && snapshot.hasData == null || snapshot.connectionState == ConnectionState.waiting) {
           return Align(
             alignment: Alignment.center,
             child: SvgPicture.asset(
               'assets/customer/trends/trends_empty_pie.svg',
-            ),);}
+            ),
+          );
+        }
         return Container(
           height: 230,
           width: 400,
@@ -87,25 +85,44 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
               maxY: 9.6,*/
               titlesData: FlTitlesData(
                 show: yes,
-                bottomTitles: SideTitles(
-                  rotateAngle: kRotateAngle,
-                  showTitles: yes,
-                  getTextStyles: (value) => TextStyle(color: Colors.black45,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 8.0),
-                  getTitles: (value) {
-                    return bankLoan[value.toInt()].periodName.toString();
-                  },
-                  margin: 10.0,
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    getTitlesWidget: (value, meta) => SideTitleWidget(
+                      angle: kRotateAngle,
+                      child: Text(
+                        bankLoan[value.toInt()].periodName.toString(),
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 8.0,
+                        ),
+                      ),
+                      axisSide: AxisSide.bottom,
+                      fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
+                    ),
+                    // rotateAngle: kRotateAngle,
+                    showTitles: yes,
+                    // getTextStyles: (value) => TextStyle(color: Colors.black45, fontWeight: FontWeight.bold, fontSize: 8.0),
+                    // getTitles: (value) {
+                    //   return bankLoan[value.toInt()].periodName.toString();
+                    // },
+                    // margin: 10.0,
+                  ),
                 ),
-                topTitles: SideTitles(
-                  showTitles: false,
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                leftTitles: SideTitles(
-                  showTitles: false,
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
-                rightTitles: SideTitles(
-                  showTitles: false,
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
                 ),
               ),
               gridData: FlGridData(
@@ -119,19 +136,17 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankLoan.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(),
-                      bankLn.loansData/kLoansChartDivisor)).toList(),
+                  spots: bankLoan.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), bankLn.loansData / kLoansChartDivisor)).toList(),
                   isCurved: yes,
-                  colors: gradientColors,
+                  color: gradientColors.first,
                   barWidth: 2,
                   belowBarData: BarAreaData(
                     show: yes,
-                    colors: gradientColors
-                        .map((color) => color.withOpacity(0.1))
-                        .toList(),
+                    color: gradientColors.first.withOpacity(0.1),
                   ),
                 ),
-              ],),
+              ],
+            ),
           ),
         );
       },
