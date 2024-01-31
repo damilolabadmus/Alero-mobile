@@ -83,7 +83,7 @@ class _CustomerChannelsUsageVolumeChartState extends State<CustomerChannelsUsage
             tooltipBehavior: _tooltipBehavior,
             // primaryYAxis: NumericAxis(numberFormat: NumberFormat.compactCurrency(symbol: "₦")),
             primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
-            series: <ChartSeries>[
+            series: <CartesianSeries>[
               StackedColumnSeries<TouchPointData, String>(
                 dataSource: channels,
                 xValueMapper: (TouchPointData data, _) => data.channel,

@@ -23,9 +23,7 @@ class BarChartInflowState extends State<BarChartInflow> {
     super.initState();
     List<BarChartGroupData> _flowBars = [];
     for (var i = 0; i < widget.tfData.length; i++) {
-      _flowBars.add(makeGroupData(
-          i, widget.tfData[i].transactionCount.toDouble(),
-          isTouched: i == touchedIndex));
+      _flowBars.add(makeGroupData(i, widget.tfData[i].transactionCount.toDouble(), isTouched: i == touchedIndex));
     }
     if (mounted) {
       setState(() {
@@ -38,12 +36,17 @@ class BarChartInflowState extends State<BarChartInflow> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.5,
-      child: Card(
-          elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          color: Colors.white,
-          child: loadBarchatData()),
+      child: Card(elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)), color: Colors.white, child: loadBarchatData()),
     );
+  }
+
+  String getCustomTitle(double value) {
+    for (var i = 0; i < widget.tfData.length; i++) {
+      if (value.toInt() == i) {
+        return widget.tfData[i].transactionDate.substring(0, 3);
+      }
+    }
+    return ''; // Default value if no match is found
   }
 
   Widget loadBarchatData() {
@@ -55,16 +58,15 @@ class BarChartInflowState extends State<BarChartInflow> {
           enabled: true,
           touchTooltipData: BarTouchTooltipData(
             tooltipBgColor: Colors.red,
-            tooltipPadding: const EdgeInsets.all(0),
-            tooltipBottomMargin: 8,
+            tooltipPadding: const EdgeInsets.only(bottom: 8),
             getTooltipItem: (
-                BarChartGroupData group,
-                int groupIndex,
-                BarChartRodData rod,
-                int rodIndex,
-                ) {
+              BarChartGroupData group,
+              int groupIndex,
+              BarChartRodData rod,
+              int rodIndex,
+            ) {
               return BarTooltipItem(
-                rod.y.round().toString(),
+                rod.toY.round().toString(),
                 TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -72,12 +74,10 @@ class BarChartInflowState extends State<BarChartInflow> {
               );
             },
           ),
-          touchCallback: (barTouchResponse) {
+          touchCallback: (touchEvent, barTouchResponse) {
             if (mounted) {
               setState(() {
-                if (barTouchResponse.spot != null &&
-                    barTouchResponse.touchInput is! FlPanEnd &&
-                    barTouchResponse.touchInput is! FlLongPressEnd) {
+                if (barTouchResponse.spot != null && touchEvent is! FlPanEndEvent && touchEvent is! FlLongPressEnd) {
                   touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
                 } else {
                   touchedIndex = -1;
@@ -88,24 +88,48 @@ class BarChartInflowState extends State<BarChartInflow> {
         ),
         titlesData: FlTitlesData(
           show: true,
-          bottomTitles: SideTitles(
+          bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
             showTitles: true,
-            getTextStyles: (value) => const TextStyle(
-                fontFamily: 'Poppins-Regular',
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 6),
-            margin: 4,
-            getTitles: (double value) {
-              for (var i = 0; i < widget.tfData.length; i++) {
-                if (value.toInt() == i) {
-                  return widget.tfData[i].transactionDate.substring(0, 3);
-                }
-              }
+            getTitlesWidget: (value, _) {
+              return SideTitleWidget(
+                child: Text(
+                  getCustomTitle(value),
+                  style: const TextStyle(
+                    fontFamily: 'Poppins-Regular',
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 6,
+                  ),
+                ),
+                axisSide: AxisSide.bottom,
+              );
             },
+          )),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
           ),
-          leftTitles: SideTitles(showTitles: false),
         ),
+        // titlesData: FlTitlesData(
+        //   show: true,
+        //   bottomTitles: SideTitles(
+        //     showTitles: true,
+        //     getTextStyles: (value) => const TextStyle(
+        //         fontFamily: 'Poppins-Regular',
+        //         color: Colors.black,
+        //         fontWeight: FontWeight.bold,
+        //         fontSize: 6),
+        //     margin: 4,
+        //     getTitles: (double value) {
+        //       for (var i = 0; i < widget.tfData.length; i++) {
+        //         if (value.toInt() == i) {
+        //           return widget.tfData[i].transactionDate.substring(0, 3);
+        //         }
+        //       }
+        //     },
+        //   ),
+        //   leftTitles: SideTitles(showTitles: false),
+        // ),
         borderData: FlBorderData(
           show: false,
         ),
@@ -115,24 +139,24 @@ class BarChartInflowState extends State<BarChartInflow> {
   }
 
   BarChartGroupData makeGroupData(
-      int x,
-      double y, {
-        bool isTouched = false,
-        Color barColor = Colors.blue,
-        double width = 5,
-        List<int> showTooltips = const [],
-      }) {
+    int x,
+    double y, {
+    bool isTouched = false,
+    Color barColor = Colors.blue,
+    double width = 5,
+    List<int> showTooltips = const [],
+  }) {
     return BarChartGroupData(
       x: x,
       barRods: [
         BarChartRodData(
-          y: isTouched ? y + 1 : y,
-          colors: isTouched ? [Colors.red] : [barColor],
+          toY: isTouched ? y + 1 : y,
+          color: isTouched ? Colors.red : barColor,
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: 20,
-            colors: [Style.Colors.trendsGraphGrey],
+            toY: 20,
+            color: Style.Colors.trendsGraphGrey,
           ),
         ),
       ],

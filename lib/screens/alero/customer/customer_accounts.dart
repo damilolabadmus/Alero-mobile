@@ -163,11 +163,12 @@ class _CustomerAccountsState extends State<CustomerAccounts> {
             ),
           ),
           // ignore: deprecated_member_use
-          title: Text("Dashboard",
-              style: TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+          label: "Dashboard",
+          // title: Text("Dashboard",
+          //     style: TextStyle(
+          //         fontSize: 10.0,
+          //         fontFamily: 'Poppins-Regular',
+          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -176,11 +177,12 @@ class _CustomerAccountsState extends State<CustomerAccounts> {
             ),
           ),
           // ignore: deprecated_member_use
-          title: Text("Search",
-              style: TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+          label: "Search",
+          // title: Text("Search",
+          //     style: TextStyle(
+          //         fontSize: 10.0,
+          //         fontFamily: 'Poppins-Regular',
+          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -189,11 +191,12 @@ class _CustomerAccountsState extends State<CustomerAccounts> {
             ),
           ),
           // ignore: deprecated_member_use
-          title: Text("Logout",
-              style: TextStyle(
-                  fontSize: 10.0,
-                  fontFamily: 'Poppins-Regular',
-                  fontWeight: FontWeight.normal)),
+          label: "Logout",
+          // title: Text("Logout",
+          //     style: TextStyle(
+          //         fontSize: 10.0,
+          //         fontFamily: 'Poppins-Regular',
+          //         fontWeight: FontWeight.normal)),
         ),
       ],
     );

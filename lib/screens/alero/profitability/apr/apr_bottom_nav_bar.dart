@@ -82,7 +82,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Dashboard"),
+        label: "Dashboard",
+        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -90,7 +91,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.grey.shade500,
           size: 18,
         ),
-        title: Text("Account Details"),
+        label: "Account Details",
+        // title: Text("Account Details"),
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -98,7 +100,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Balance Sheet"),
+        label: "Balance Sheet",
+        // title: Text("Balance Sheet"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -106,7 +109,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.black45,
           size: 18,
         ),
-        title: Text("Searched Account."),
+        label: "Searched Account.",
+        // title: Text("Searched Account."),
       ),
     ];}
 
@@ -119,7 +123,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Dashboard"),
+        label: "Dashboard",
+        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -127,7 +132,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.grey.shade500,
           size: 18,
         ),
-        title: Text("Account Details"),
+        label: "Account Details",
+        // title: Text("Account Details"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -135,7 +141,8 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           color: Colors.black45,
           size: 18,
         ),
-        title: Text("Searched Account"),
+        label: "Searched Account.",
+        // title: Text("Searched Account"),
       ),
     ];
   }

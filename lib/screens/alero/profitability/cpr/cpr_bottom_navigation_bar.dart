@@ -86,7 +86,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Dashboard"),
+        label: "Dashboard",
+        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         tooltip: 'Please click \'view more\' to select a customer.',
@@ -95,7 +96,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.grey.shade500,
           size: 18,
         ),
-        title: Text("Customer P & L"),
+        label: "Customer P & L",
+        // title: Text("Customer P & L"),
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -103,7 +105,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Balance Sheet"),
+        label: "Balance Sheet",
+        // title: Text("Balance Sheet"),
       ),
       BottomNavigationBarItem(
         tooltip: 'Please use the search box above',
@@ -112,7 +115,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.black45,
           size: 18,
         ),
-        title: Text("Searched Cust."),
+        label: "Searched Cust.",
+        // title: Text("Searched Cust."),
       ),
     ];}
 
@@ -124,7 +128,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.black45,
           height: 12,
         ),
-        title: Text("Dashboard"),
+        label: "Dashboard",
+        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -132,7 +137,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.grey.shade500,
           size: 18,
         ),
-        title: Text("Customer P & L"),
+        label: "Customer P & L",
+        // title: Text("Customer P & L"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -140,7 +146,8 @@ class _CprBottomNavigationBarState extends State<CprBottomNavigationBar> {
           color: Colors.black45,
           size: 18,
         ),
-        title: Text("Searched Cust."),
+        label: "Searched Cust.",
+        // title: Text("Searched Cust."),
       ),
     ];}
 }

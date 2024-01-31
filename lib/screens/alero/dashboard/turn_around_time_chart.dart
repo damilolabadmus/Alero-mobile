@@ -67,7 +67,7 @@ class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
                       fontSize: 8,
                       fontWeight: FontWeight.w600)),
               tooltipBehavior: _tooltipBehavior,
-              series: <ChartSeries>[
+              series: <CartesianSeries>[
                 StackedColumnSeries<TurnAroundTimeResponse, String>(
                   dataSource: tat,
                   xValueMapper: (TurnAroundTimeResponse data, _) => data.turnAroundTime,

@@ -162,16 +162,16 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
                       child: PieChart(
                         PieChartData(
                             pieTouchData:
-                            PieTouchData(touchCallback: (pieTouchResponse) {
+                            PieTouchData(touchCallback: (touchEvent, pieTouchResponse) {
                               if (mounted) {
                                 setState(() {
-                                  if (pieTouchResponse.touchInput
+                                  if (touchEvent
                                   is FlLongPressEnd ||
-                                      pieTouchResponse.touchInput is FlPanEnd) {
+                                      touchEvent is FlPanEndEvent) {
                                     touchedIndex = -1;
                                   } else {
                                     touchedIndex =
-                                        pieTouchResponse.touchedSectionIndex;
+                                        pieTouchResponse.touchedSection.touchedSectionIndex;
                                   }
                                 });
                               }
