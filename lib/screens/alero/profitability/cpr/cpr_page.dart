@@ -54,8 +54,8 @@ class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityR
   void fetchData() async {
     try {
       List<Future<List<CprResponse>>> futures = [
-        apiService.getTopCprData().timeout(Duration(minutes: 4)),
-        apiService.getBottomCprData().timeout(Duration(minutes: 4)),
+        apiService.getTopCprData().timeout(Duration(minutes: 10)),
+        apiService.getBottomCprData().timeout(Duration(minutes: 10)),
       ];
 
       List<List<CprResponse>> results = await Future.wait(futures);
@@ -85,7 +85,7 @@ class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityR
         appBar: ProfitabilityAppBar(),
         body: PageStorage(
           bucket: PageStorageBucket(),
-          child: isInitialLoading ? Center(child: CircularProgressIndicator()) // Show loading indicator for the initial load
+          child: isInitialLoading ? Center(child: CircularProgressIndicator())
               : Padding(
             padding: EdgeInsets.only(top: 10, right: 5.0),
             child: Container(
