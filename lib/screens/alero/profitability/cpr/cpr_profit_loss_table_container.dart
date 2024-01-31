@@ -3,7 +3,6 @@ import 'package:alero/screens/alero/components/empty_details_item.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
-
 import '../singleton.dart';
 
 class CprProfitAndLossTableContainer extends StatefulWidget {
@@ -81,15 +80,15 @@ class _CprProfitAndLossTableContainerState extends State<CprProfitAndLossTableCo
                 ),
                 columns: [
                   DataColumn(label: Text('Category', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text(Pandora.keyItemFormat(currentMonthBudgets[1].keys.toString().replaceAll('_', ' ')).toString(), style: kDisburseBlueStyle)),
-                  DataColumn(label: Text(currentMonthVariances[1].keys.toString().replaceAll('_', ' ').toString(), style: kDisburseBlueStyle)),
-                  DataColumn(label: Text(currentMonthAchieve[1].keys.toString().replaceAll('_', ' '), style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('YTD \nActual', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('YTD \nBudget', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('YTD \nVariance', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('YTD \nAchieved', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('FullYear \nBudget', style: kDisburseBlueStyle)),
-                  DataColumn(label: Text('Run \nRate', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthBudgets[0].keys.toString()), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthVariances[0].keys.toString()), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text(Pandora.replaceUnderscoreFormat(currentMonthAchieve[0].keys.toString()), style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('YTD\nActual', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('YTD\nBudget', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('YTD\nVariance', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('YTD\nAchieved', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('Full Year \nBudget', style: kDisburseBlueStyle)),
+                  DataColumn(label: Text('Run\nRate', style: kDisburseBlueStyle)),
                 ],
                 rows: List.generate(widget.cprData.length, (index) {
                   return DataRow(

@@ -19,6 +19,7 @@ class AccountProfitabilityReportPage extends StatefulWidget {
 
 class _AccountProfitabilityReportPageState extends State<AccountProfitabilityReportPage> {
   List<String> tabTitles = ["Top Account", "Bottom Account"];
+
   var apiService = AleroAPIService();
   bool dataLoaded = false;
   bool isInitialLoading = true;
