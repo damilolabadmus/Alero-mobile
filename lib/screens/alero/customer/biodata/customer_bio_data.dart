@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/components/empty_list_item.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -14,9 +16,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
 
 class CustomerBioData extends StatefulWidget {
-  final CustomerDetailsResponse customerDetails;
+  final CustomerDetailsResponse? customerDetails;
 
-  CustomerBioData({Key key, @required this.customerDetails}) : super(key: key);
+  CustomerBioData({Key? key, required this.customerDetails}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -33,9 +35,9 @@ class _CustomerBioDataState extends State<CustomerBioData> {
   var data;
   bool loading = true;
 
-  int customerRelationshipAge;
+  int? customerRelationshipAge;
 
-  String customerId = "",
+  String? customerId = "",
       groupId = "",
       businessSegment = "",
       customerGender = "",
@@ -54,7 +56,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
       nextOfKinMobileNumber = "",
       isPepCustomer = " ";
 
-  String incompleteData = " ", invalidData = " ";
+  String? incompleteData = " ", invalidData = " ";
 
   void getCustomerDetails() {
     if (mounted) {
@@ -83,11 +85,11 @@ class _CustomerBioDataState extends State<CustomerBioData> {
     getCustomerDataExceptions(groupId);
   }
 
-  Future getCustomerDataExceptions(String groupId) async {
+  Future getCustomerDataExceptions(String? groupId) async {
     var exceptionDetails;
     return this._memoizer.runOnce(() async {
       try {
-        exceptionDetails = await apiService.getCustomerDataExceptions(groupId);
+        exceptionDetails = await apiService.getCustomerDataExceptions(groupId!);
         if (mounted) {
           setState(() {
             incompleteData = exceptionDetails.incompleteData;
@@ -228,7 +230,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 6, vertical: 2),
                                       child: Text(
-                                        businessSegment,
+                                        businessSegment!,
                                         style: TextStyle(
                                           color:
                                           Style.Colors.searchActiveBgText,
@@ -243,7 +245,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 2),
                                     child: Text(
-                                      (customerRelationshipAge < 1)
+                                      (customerRelationshipAge! < 1)
                                           ? "Customer for less than 1 year"
                                           : "Customer for $customerRelationshipAge years",
                                       style: TextStyle(
@@ -282,7 +284,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                     'assets/customer/biodata/biodata_gender.svg',
                                                   ),
                                                 ),
-                                                Text(customerGender,
+                                                Text(customerGender!,
                                                     style: TextStyle(
                                                       color: Style.Colors
                                                           .blackTextColor,
@@ -329,7 +331,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               'assets/customer/biodata/biodata_call.svg',
                                             ),
                                           ),
-                                          Text(mobileNumber,
+                                          Text(mobileNumber!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -350,7 +352,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               'assets/customer/biodata/biodata_mail.svg',
                                             ),
                                           ),
-                                          Text(customerEmail,
+                                          Text(customerEmail!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -384,7 +386,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               'assets/customer/biodata/biodata_rm.svg',
                                             ),
                                           ),
-                                          Text(rmName,
+                                          Text(rmName!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -405,7 +407,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               'assets/customer/biodata/biodata_bank.svg',
                                             ),
                                           ),
-                                          Text(branchName,
+                                          Text(branchName!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -468,7 +470,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                       'assets/customer/biodata/biodata_id.svg',
                                                     ),
                                                   ),
-                                                  Text(identificationType,
+                                                  Text(identificationType!,
                                                       style: TextStyle(
                                                         color: Style
                                                             .Colors.blackTextColor,
@@ -498,7 +500,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                     'assets/customer/biodata/biodata_profession.svg',
                                                   ),
                                                 ),
-                                                Text(occupation,
+                                                Text(occupation!,
                                                     style: TextStyle(
                                                       color: Style.Colors
                                                           .blackTextColor,
@@ -521,7 +523,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                       'assets/customer/biodata/biodata_relationship.svg',
                                                     ),
                                                   ),
-                                                  Text(maritalStatus,
+                                                  Text(maritalStatus!,
                                                       style: TextStyle(
                                                         color: Style
                                                             .Colors.blackTextColor,
@@ -698,7 +700,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               ),
                                             ),
                                             Flexible(
-                                              child: Text(customerAddress,
+                                              child: Text(customerAddress!,
                                                   softWrap: true,
                                                   style: TextStyle(
                                                     color: Style
@@ -733,7 +735,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                 size: 15.0,
                                               ),
                                             ),
-                                            Text(customerCity,
+                                            Text(customerCity!,
                                                 style: TextStyle(
                                                   color: Style
                                                       .Colors.blackTextColor,
@@ -755,7 +757,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                   size: 15.0,
                                                 ),
                                               ),
-                                              Text(customerState,
+                                              Text(customerState!,
                                                   style: TextStyle(
                                                     color: Style.Colors.blackTextColor,
                                                     fontSize: 12.0,
@@ -820,7 +822,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                               ),
                                             ),
                                             Flexible(
-                                              child: Text(nextOfKinName,
+                                              child: Text(nextOfKinName!,
                                                   softWrap: true,
                                                   style: TextStyle(
                                                     color: Style
@@ -851,7 +853,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                                                 'assets/customer/biodata/biodata_call.svg',
                                               ),
                                             ),
-                                            Text(nextOfKinMobileNumber,
+                                            Text(nextOfKinMobileNumber!,
                                                 style: TextStyle(
                                                   color: Style
                                                       .Colors.blackTextColor,
@@ -949,7 +951,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(incompleteData,
+                  child: Text(incompleteData!,
                       softWrap: true,
                       style: TextStyle(
                         color: Style.Colors.blackTextColor,
@@ -966,7 +968,7 @@ class _CustomerBioDataState extends State<CustomerBioData> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                (incompleteData.isEmpty)
+                (incompleteData!.isEmpty)
                     ? EmptyListItem(message: "No Incomplete Data")
                     : Align(
                   alignment: Alignment.centerLeft,
@@ -981,11 +983,11 @@ class _CustomerBioDataState extends State<CustomerBioData> {
                 SizedBox(
                   height: 4,
                 ),
-                (invalidData.isEmpty)
+                (invalidData!.isEmpty)
                     ? EmptyListItem(message: "No Invalid Data")
                     : Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(invalidData,
+                  child: Text(invalidData!,
                       softWrap: true,
                       style: TextStyle(
                         color: Style.Colors.blackTextColor,

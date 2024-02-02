@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 RevenueDetailsResponse revenueDetailsResponseFromJson(String str) => RevenueDetailsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class RevenueDetailsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  RevenueDetailsResponseResult result;
+  String? responseCode;
+  String? responseDescription;
+  RevenueDetailsResponseResult? result;
 
   factory RevenueDetailsResponse.fromJson(Map<String, dynamic> json) => RevenueDetailsResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class RevenueDetailsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 
@@ -42,16 +44,16 @@ class RevenueDetailsResponseResult {
     this.isFaulted,
   });
 
-  ResultRev result;
-  int id;
+  ResultRev? result;
+  int? id;
   dynamic exception;
-  int status;
-  bool isCanceled;
-  bool isCompleted;
-  bool isCompletedSuccessfully;
-  int creationOptions;
+  int? status;
+  bool? isCanceled;
+  bool? isCompleted;
+  bool? isCompletedSuccessfully;
+  int? creationOptions;
   dynamic asyncState;
-  bool isFaulted;
+  bool? isFaulted;
 
   factory RevenueDetailsResponseResult.fromJson(Map<String, dynamic> json) => RevenueDetailsResponseResult(
     result: ResultRev.fromJson(json["result"]),
@@ -67,7 +69,7 @@ class RevenueDetailsResponseResult {
   );
 
   Map<String, dynamic> toJson() => {
-    "result": result.toJson(),
+    "result": result!.toJson(),
     "id": id,
     "exception": exception,
     "status": status,
@@ -88,10 +90,10 @@ class ResultRev {
     this.totalRevenue,
   });
 
-  double feesRevenue;
-  double grossRevenue;
-  double nrff;
-  double totalRevenue;
+  double? feesRevenue;
+  double? grossRevenue;
+  double? nrff;
+  double? totalRevenue;
 
   factory ResultRev.fromJson(Map<String, dynamic> json) => ResultRev(
     feesRevenue: json["feesRevenue"],

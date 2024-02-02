@@ -1,25 +1,27 @@
+
+
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 
 class ProspectDataCard extends StatelessWidget {
-  const ProspectDataCard({Key key,
+  const ProspectDataCard({Key? key,
     this.icon,
-    @required this.value,
-    @required this.iconColour,
-    @required this.valueColour,
-    @required this.fontSize,
+    required this.value,
+    required this.iconColour,
+    required this.valueColour,
+    required this.fontSize,
     this.letterSpacing,
     this.wordSpacing,
 
   }) : super(key: key);
 
-  final IconData icon;
+  final IconData? icon;
   final String value;
   final Color iconColour;
   final Color valueColour;
   final double fontSize;
-  final double letterSpacing;
-  final double wordSpacing;
+  final double? letterSpacing;
+  final double? wordSpacing;
 
 
   @override

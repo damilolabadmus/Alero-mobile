@@ -5,7 +5,7 @@ import 'package:alero/screens/alero/components/back_logout_header.dart';
 class SingleCustomerViewLanding extends StatelessWidget {
   final String rmName;
 
-  SingleCustomerViewLanding({@required this.rmName});
+  SingleCustomerViewLanding({required this.rmName});
 
   @override
   Widget build(BuildContext context) {

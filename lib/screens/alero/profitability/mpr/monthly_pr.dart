@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/MprResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/call_app_bar.dart';
@@ -10,9 +12,9 @@ import 'package:intl/intl.dart';
 import 'mpr_table_container.dart';
 
 class MonthlyProfitabilityReport extends StatefulWidget {
-  final String userId;
+  final String? userId;
 
-  MonthlyProfitabilityReport({@required this.userId});
+  MonthlyProfitabilityReport({required this.userId});
 
   @override
   State<MonthlyProfitabilityReport> createState() =>
@@ -21,20 +23,20 @@ class MonthlyProfitabilityReport extends StatefulWidget {
 
 class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport> {
   var apiService = AleroAPIService();
-  String dateSelected;
-  Function search;
+  String? dateSelected;
+  Function? search;
   List<MprResponse> mprSummary = [];
 
-  String regionType;
-  String segmentType;
-  String areaType;
-  String branchType;
-  String rmType;
+  String? regionType;
+  String? segmentType;
+  String? areaType;
+  String? branchType;
+  String? rmType;
 
-  String regionItem;
-  String areaItem;
-  String branchItem;
-  String rmItem;
+  String? regionItem;
+  String? areaItem;
+  String? branchItem;
+  String? rmItem;
 
   List<MprResponse> mprBankWide = [];
   List<MprResponse> regionGeoMpr = [];
@@ -49,13 +51,13 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
   bool isFetchingData = false;
 
   DateTime startDate = DateTime.now();
-  String selectedDate;
+  String? selectedDate;
   String bankDate = DateFormat('MMM yyyy').format(DateTime.now());
   String initialDate = DateFormat('yyyy-MM').format(DateTime.now());
 
 
   void _selectDate(BuildContext context) async {
-    OverlayEntry overlayEntry;
+    OverlayEntry? overlayEntry;
 
     try {
       setState(() {
@@ -77,7 +79,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
 
       Overlay.of(context).insert(overlayEntry);
 
-      DateTime _datePicker = await showDatePicker(
+      DateTime? _datePicker = await showDatePicker(
         context: context,
         initialDate: startDate,
         firstDate: DateTime(1990),
@@ -89,7 +91,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
         setState(() {
           selectedDate = newSelectedDate;
 
-          List<String> dateParts = selectedDate.split('-');
+          List<String> dateParts = selectedDate!.split('-');
           int year = int.parse(dateParts[0]);
           int month = int.parse(dateParts[1]);
           DateTime dateTime = DateTime(year, month);
@@ -188,9 +190,9 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     'UNTAGGED',
   ];
 
-  List<String> regionList;
-  Future<List<String>> getRegionList() async {
-    List<String> _listOfRegions = await apiService.getRegionList();
+  List<String>? regionList;
+  Future<List<String>?> getRegionList() async {
+    List<String>? _listOfRegions = await apiService.getRegionList();
     setState(() {
       regionList = _listOfRegions;
     });
@@ -207,27 +209,27 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     'TREASURY'
   ];
 
-  List<String> areaByRegion;
-  Future<List<String>> getAreaListByRegionId(String regionId) async {
-    List<String> _listOfAreas = await apiService.getAreaList(regionId);
+  List<String>? areaByRegion;
+  Future<List<String>?> getAreaListByRegionId(String regionId) async {
+    List<String>? _listOfAreas = await apiService.getAreaList(regionId);
     setState(() {
       areaByRegion = _listOfAreas;
     });
     return areaByRegion;
   }
 
-  List<String> branchByArea;
-  Future<List<String>> getBranchListByAreaCode(String areaCode) async {
-    List<String> _branchArea = await apiService.getBranchList(areaCode);
+  List<String>? branchByArea;
+  Future<List<String>?> getBranchListByAreaCode(String areaCode) async {
+    List<String>? _branchArea = await apiService.getBranchList(areaCode);
     setState(() {
       branchByArea = _branchArea;
     });
     return branchByArea;
   }
 
-  List<String> rmByBranch;
-  Future<List<String>> getRmListByAreaCode(String branchCode) async {
-    List<String> _rmBranch = await apiService.getRmList(branchCode);
+  List<String>? rmByBranch;
+  Future<List<String>?> getRmListByAreaCode(String branchCode) async {
+    List<String>? _rmBranch = await apiService.getRmList(branchCode);
     setState(() {
       rmByBranch = _rmBranch;
     });
@@ -261,7 +263,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     });
   }
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       List<Future<List<MprResponse>>> futures = [
         apiService.getBankWideMprData(selectedDate ?? initialDate).timeout(Duration(minutes: 10)),
@@ -324,12 +326,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       areaType != null && branchType == null && rmType == null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: areaType != null ? areaType.length > 12 ? 100.0 : null : null,
+                            width: areaType != null ? areaType!.length > 12 ? 100.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
                                 borderRadius: BorderRadius.circular(8.0)),
-                            child: Text(areaType,
+                            child: Text(areaType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -342,12 +344,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       areaType != null && branchType != null && rmType == null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: branchType != null ? branchType.length > 12 ? 100.0 : null : null,
+                            width: branchType != null ? branchType!.length > 12 ? 100.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
                                 borderRadius: BorderRadius.circular(8.0)),
-                            child: Text(branchType,
+                            child: Text(branchType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -359,12 +361,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       areaType != null && branchType != null && rmType != null  ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: rmType != null ? rmType.length > 12 ? 100.0 : null : null,
+                            width: rmType != null ? rmType!.length > 12 ? 100.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
                                 borderRadius: BorderRadius.circular(8.0)),
-                            child: Text(rmType,
+                            child: Text(rmType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -376,12 +378,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       segmentType != null && rmType != null && branchType != null ? Padding(
                           padding: const EdgeInsets.only(left: 3.0),
                           child: Container(
-                            width: segmentType != null ? segmentType.length > 12 ? 100.0 : null : null,
+                            width: segmentType != null ? segmentType!.length > 12 ? 100.0 : null : null,
                             padding: EdgeInsets.all(7.0),
                             decoration: BoxDecoration(
                                 color: Colors.black38,
                                 borderRadius: BorderRadius.circular(8.0)),
-                            child: Text(segmentType,
+                            child: Text(segmentType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -393,12 +395,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           : Padding(
                         padding: const EdgeInsets.only(left: 3.0),
                         child: Container(
-                          width: regionType != null ? regionType.length > 12 ? 100.0 : null : null,
+                          width: regionType != null ? regionType!.length > 12 ? 100.0 : null : null,
                           padding: EdgeInsets.all(7.0),
                           decoration: BoxDecoration(
                               color: Colors.black38,
                               borderRadius: BorderRadius.circular(8.0)),
-                          child: Text(regionType == null ? 'Bank' : regionType,
+                          child: Text(regionType == null ? 'Bank' : regionType!,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12.0,
@@ -421,7 +423,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                               value: item,
                               child: Text(item),
                             );
-                          }).toList() : regionList.map((item) {
+                          }).toList() : regionList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -429,7 +431,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : regionType != null && areaType == null && branchType == null && rmType == null ?
                             (context) {
-                          return areaByRegion == null ? [] : areaByRegion.map((item) {
+                          return areaByRegion == null ? [] : areaByRegion!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -437,7 +439,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : regionType != null && areaType != null && branchType == null && rmType == null ?
                             (context) {
-                          return branchByArea == null ? [] : branchByArea.map((item) {
+                          return branchByArea == null ? [] : branchByArea!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -445,14 +447,14 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         }
                         : regionType != null && areaType != null && branchType != null && rmType == null ? (context) {
-                          return rmByBranch == null ? [] : rmByBranch.map((item) {
+                          return rmByBranch == null ? [] : rmByBranch!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
                             );
                           }).toList();
                         } : (context) {
-                          return rmByBranch == null ? [] : rmByBranch.map((item) {
+                          return rmByBranch == null ? [] : rmByBranch!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -518,7 +520,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                         }
                             : areaType != null ?
                             (context) {
-                          return areaByRegion.map((item) {
+                          return areaByRegion!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -526,7 +528,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : branchType != null ?
                             (context) {
-                          return branchByArea.map((item) {
+                          return branchByArea!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -534,7 +536,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : rmType != null ?
                             (context) {
-                          return rmByBranch.map((item) {
+                          return rmByBranch!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),

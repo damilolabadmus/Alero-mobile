@@ -6,10 +6,10 @@ class TabBarWidget extends StatelessWidget {
   final List<Widget> children;
 
   const TabBarWidget({
-    Key key,
+    Key? key,
     // @required this.title,
-    @required this.tabs,
-    @required this.children,
+    required this.tabs,
+    required this.children,
   }) : super(key: key);
 
   @override

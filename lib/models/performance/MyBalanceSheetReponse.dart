@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 List<MyBalanceSheetResponse> myBalanceSheetResponseFromJson(String str) =>
     List<MyBalanceSheetResponse>.from(json.decode(str).map((x) => MyBalanceSheetResponse.fromJson(x)));
@@ -24,9 +26,9 @@ class MyBalanceSheetResponse {
 
   dynamic format;
   dynamic breakdown;
-  int position;
-  String productCategory;
-  String product;
+  int? position;
+  String? productCategory;
+  String? product;
   dynamic currentBalance;
   dynamic previousBal;
   dynamic variance;

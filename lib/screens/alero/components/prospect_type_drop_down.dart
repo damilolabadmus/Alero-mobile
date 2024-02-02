@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
@@ -14,15 +16,15 @@ class _ProspectTypeDropDownState extends State<ProspectTypeDropDown> {
   ];
 
   int selectedValue = 0;
-  String value = '';
+  String? value = '';
 
-  Text getValue(String value) {
+  Text getValue(String? value) {
     if (value == '') {
       return Text('Select One',
           style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     } else {
       return Text(
-          value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+          value!, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     }
   }
 
@@ -139,5 +141,6 @@ class _ProspectTypeDropDownState extends State<ProspectTypeDropDown> {
         ),
       );
     }
+    return DropdownMenuItem(child: Container());
   }
 }

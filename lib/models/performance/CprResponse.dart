@@ -1,14 +1,16 @@
+
+
 import 'package:flutter/cupertino.dart';
 
 class CprResponse {
-  final String customerNo;
-  final String customerName;
+  final String? customerNo;
+  final String? customerName;
   final dynamic accountCount;
-  final String customerType;
-  final String activeStatus;
-  final String region;
-  final String area;
-  final String branchName;
+  final String? customerType;
+  final String? activeStatus;
+  final String? region;
+  final String? area;
+  final String? branchName;
   final dynamic actualBalance;
   final dynamic averageBalance;
   final dynamic ftpIncome;
@@ -17,30 +19,30 @@ class CprResponse {
   final dynamic totalExpense;
   final dynamic profitability;
   final dynamic totalIncome;
-  final String customerCategory;
+  final String? customerCategory;
   final List<MainReport> mainReport;
   final List<ExcludedTab> excludedTab;
 
   CprResponse({
-    @required this.customerNo,
-    @required this.customerName,
-    @required this.accountCount,
-    @required this.customerType,
-    @required this.activeStatus,
-    @required this.region,
-    @required this.area,
-    @required this.branchName,
-    @required this.actualBalance,
-    @required this.averageBalance,
-    @required this.ftpIncome,
-    @required this.interestExpense,
-    @required this.interestIncome,
-    @required this.totalExpense,
-    @required this.profitability,
-    @required this.totalIncome,
-    @required this.customerCategory,
-    @required this.mainReport,
-    @required this.excludedTab,
+    required this.customerNo,
+    required this.customerName,
+    required this.accountCount,
+    required this.customerType,
+    required this.activeStatus,
+    required this.region,
+    required this.area,
+    required this.branchName,
+    required this.actualBalance,
+    required this.averageBalance,
+    required this.ftpIncome,
+    required this.interestExpense,
+    required this.interestIncome,
+    required this.totalExpense,
+    required this.profitability,
+    required this.totalIncome,
+    required this.customerCategory,
+    required this.mainReport,
+    required this.excludedTab,
   });
 
   factory CprResponse.fromJson(Map<String, dynamic> json) {
@@ -73,9 +75,9 @@ class CprResponse {
 }
 
 class MainReport {
-  final String customerName;
-  final String customerNo;
-  final String incomeType;
+  final String? customerName;
+  final String? customerNo;
+  final String? incomeType;
   final Map<String, dynamic> monthsData;
   final Map<String, dynamic> currentMonthBudget;
   final Map<String, dynamic> currentMonthVariance;
@@ -86,23 +88,23 @@ class MainReport {
   final dynamic ytDAchieved;
   final dynamic fullYearBudget;
   final dynamic runRate;
-  final List<dynamic> dropdown;
+  final List<dynamic>? dropdown;
 
   MainReport({
-    @required this.customerName,
-    @required this.customerNo,
-    @required this.incomeType,
-    @required this.monthsData,
-    @required this.currentMonthBudget,
-    @required this.currentMonthVariance,
-    @required this.currentMonthAchieved,
-    @required this.ytDActualValue,
-    @required this.ytDBudgetValue,
-    @required this.variance,
-    @required this.ytDAchieved,
-    @required this.fullYearBudget,
-    @required this.runRate,
-    @required this.dropdown,
+    required this.customerName,
+    required this.customerNo,
+    required this.incomeType,
+    required this.monthsData,
+    required this.currentMonthBudget,
+    required this.currentMonthVariance,
+    required this.currentMonthAchieved,
+    required this.ytDActualValue,
+    required this.ytDBudgetValue,
+    required this.variance,
+    required this.ytDAchieved,
+    required this.fullYearBudget,
+    required this.runRate,
+    required this.dropdown,
   });
 
   factory MainReport.fromJson(Map<String, dynamic> json) {
@@ -128,9 +130,9 @@ class MainReport {
 }
 
 class ExcludedTab {
-  final String customerName;
-  final String customerNo;
-  final String incomeType;
+  final String? customerName;
+  final String? customerNo;
+  final String? incomeType;
   final Map<String, dynamic> monthsData;
   final Map<String, dynamic> currentMonthBudget;
   final Map<String, dynamic> currentMonthVariance;
@@ -143,19 +145,19 @@ class ExcludedTab {
   final dynamic runRate;
 
   ExcludedTab({
-    @required this.customerName,
-    @required this.customerNo,
-    @required this.incomeType,
-    @required this.monthsData,
-    @required this.currentMonthBudget,
-    @required this.currentMonthVariance,
-    @required this.currentMonthAchieved,
-    @required this.ytDActualValue,
-    @required this.ytDBudgetValue,
-    @required this.variance,
-    @required this.ytDAchieved,
-    @required this.fullYearBudget,
-    @required this.runRate,
+    required this.customerName,
+    required this.customerNo,
+    required this.incomeType,
+    required this.monthsData,
+    required this.currentMonthBudget,
+    required this.currentMonthVariance,
+    required this.currentMonthAchieved,
+    required this.ytDActualValue,
+    required this.ytDBudgetValue,
+    required this.variance,
+    required this.ytDAchieved,
+    required this.fullYearBudget,
+    required this.runRate,
   });
 
   factory ExcludedTab.fromJson(Map<String, dynamic> json) {

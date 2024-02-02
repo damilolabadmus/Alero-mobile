@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
 
@@ -31,9 +33,9 @@ class IconMenu {
   final Color iconColor;
 
   const IconMenu({
-    @required this.text,
-    @required this.icon,
-    @required this.iconColor,
+    required this.text,
+    required this.icon,
+    required this.iconColor,
   });
 }
 
@@ -62,8 +64,8 @@ class ConvertedIconMenu {
   final Color iconColor;
 
   const ConvertedIconMenu({
-    @required this.text,
-    @required this.icon,
-    @required this.iconColor,
+    required this.text,
+    required this.icon,
+    required this.iconColor,
   });
 }

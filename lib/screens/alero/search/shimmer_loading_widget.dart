@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'package:flutter_shimmer_widget/templates_shimmer_widget.dart';
 
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -1,12 +1,14 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 
 class NBOItem extends StatelessWidget {
-  final String value;
+  final String? value;
   final Color backgroundColor;
 
-  const NBOItem({Key key, @required this.value, @required this.backgroundColor}) : super(key: key);
+  const NBOItem({Key? key, required this.value, required this.backgroundColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class NBOItem extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(12),
-                child: Text(value,
+                child: Text(value!,
                     style: TextStyle(
                       color: Style.Colors.blackTextColor,
                       fontSize: 12.0,

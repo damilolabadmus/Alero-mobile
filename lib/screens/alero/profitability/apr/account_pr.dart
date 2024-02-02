@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/AprResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/style/theme.dart' as Style;
@@ -9,9 +11,9 @@ import '../profitability_app_bar.dart';
 import 'apr_search_field.dart';
 
 class AccountProfitabilityReportPage extends StatefulWidget {
-  final String userId;
+  final String? userId;
 
-  AccountProfitabilityReportPage({@required this.userId});
+  AccountProfitabilityReportPage({required this.userId});
 
   @override
   State<AccountProfitabilityReportPage> createState() => _AccountProfitabilityReportPageState();
@@ -22,8 +24,8 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
   var apiService = AleroAPIService();
   bool dataLoaded = false;
   bool isInitialLoading = true;
-  bool isSearchAccount;
-  bool aprDataNotNull;
+  bool? isSearchAccount;
+  bool? aprDataNotNull;
 
   List<AprResponse> topAprData = [];
   List<AprResponse> bottomAprData = [];

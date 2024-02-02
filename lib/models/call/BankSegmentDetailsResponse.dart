@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 BankSegmentDetailsResponse bankSegmentDetailsFromJson(String str) => BankSegmentDetailsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class BankSegmentDetailsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<Result> result;
+  String? responseCode;
+  String? responseDescription;
+  List<Result>? result;
 
   factory BankSegmentDetailsResponse.fromJson(Map<String, dynamic> json) => BankSegmentDetailsResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class BankSegmentDetailsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
@@ -33,7 +35,7 @@ class Result {
     this.segment,
   });
 
-  String segment;
+  String? segment;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     segment: json["segment"],

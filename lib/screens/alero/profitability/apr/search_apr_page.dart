@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import '../profitability_app_bar.dart';
 import 'package:alero/style/theme.dart' as Style;
@@ -7,9 +9,9 @@ import 'apr_search_field.dart';
 
 class SearchAprPage extends StatefulWidget {
   final searchedAprData;
-  bool isSearched;
+  bool? isSearched;
 
-  SearchAprPage({Key key, this.searchedAprData, this.isSearched}) : super(key: key);
+  SearchAprPage({Key? key, this.searchedAprData, this.isSearched}) : super(key: key);
 
   @override
   State<SearchAprPage> createState() => _SearchAprPageState();

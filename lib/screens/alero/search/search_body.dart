@@ -1,3 +1,5 @@
+
+
 import '../../../models/response/CustomerList.dart';
 import '../../../network/AleroAPIService.dart';
 import '../../../style/theme.dart' as Style;
@@ -13,8 +15,8 @@ import 'search_search_field.dart';
 import 'shimmer_loading_widget.dart';
 
 class SearchBody extends StatefulWidget {
-  final String searchQuery;
-  SearchBody({Key key, @required this.searchQuery}) : super(key: key);
+  final String? searchQuery;
+  SearchBody({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -26,7 +28,7 @@ class _SearchBodyState extends State<SearchBody> {
   final Pandora pandora = new Pandora();
   var apiService = AleroAPIService();
   final AsyncMemoizer _searchMem = AsyncMemoizer();
-  bool foundUser;
+  late bool foundUser;
 
   List<Widget> customers = [];
   List<CustomerList> customerList = [];
@@ -77,9 +79,9 @@ class _SearchBodyState extends State<SearchBody> {
     }
   }
 
-  Future searchForCustomer(String searchQuery) async {
+  Future searchForCustomer(String? searchQuery) async {
     return this._searchMem.runOnce(() async {
-      final foundUsers = await apiService.searchForUser(searchQuery);
+      final foundUsers = (await apiService.searchForUser(searchQuery!))!;
       searchCustomers(foundUsers);
       return foundUsers;
     });
@@ -190,7 +192,7 @@ class _SearchBodyState extends State<SearchBody> {
     List<Widget> searchItem = [];
 
     for (var customer in customerList) {
-      if (customer.customerName
+      if (customer.customerName!
           .toLowerCase()
           .trim()
           .contains(searchedName.toLowerCase().trim())) {

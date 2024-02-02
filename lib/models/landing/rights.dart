@@ -1,11 +1,13 @@
+
+
 class Rights {
 
-  String roleRightId;
-  String rightId;
-  String rightName;
-  String roleId;
-  String makerId;
-  String makerDateTime;
+  String? roleRightId;
+  String? rightId;
+  String? rightName;
+  String? roleId;
+  String? makerId;
+  String? makerDateTime;
 
   Rights.fromJsonMap(Map<String, dynamic> map):
         roleRightId = map["roleRightId"],

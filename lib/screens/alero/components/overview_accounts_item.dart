@@ -1,14 +1,16 @@
+
+
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../style/theme.dart' as Style;
 import 'package:intl/intl.dart';
 
 class AccountsCardItem extends StatelessWidget {
-  final String accountNumber, accountType, currency;
-  final double amount;
+  final String? accountNumber, accountType, currency;
+  final double? amount;
 
   const AccountsCardItem(
-      {Key key,
+      {Key? key,
         this.accountNumber,
         this.accountType,
         this.amount,
@@ -37,7 +39,7 @@ class AccountsCardItem extends StatelessWidget {
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(accountNumber,
+                        child: Text(accountNumber!,
                             style: TextStyle(
                               color: Style.Colors.overviewTextGrey,
                               fontSize: 11.0,
@@ -50,7 +52,7 @@ class AccountsCardItem extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(accountType.toUpperCase(),
+                        child: Text(accountType!.toUpperCase(),
                             softWrap: true,
                             style: TextStyle(
                               color: Style.Colors.overviewTextDarkGrey,
@@ -66,22 +68,22 @@ class AccountsCardItem extends StatelessWidget {
                   ),
                   Align(
                       alignment: Alignment.centerLeft,
-                      child: currency.toUpperCase() == 'NGN'
+                      child: currency!.toUpperCase() == 'NGN'
                           ? Text("₦ " + formatCurrency.format(amount),
                           style: kCurrencyStyle)
-                          : currency.toUpperCase() == 'USD'
+                          : currency!.toUpperCase() == 'USD'
                           ? Text("\$ " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'CAD'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'CAD'
                           ? Text("\$ " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'EUR'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'EUR'
                           ? Text("\€ " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'CNY'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'CNY'
                           ? Text("\¥ " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'CHF'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'CHF'
                           ? Text("CHF " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'GBP'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'GBP'
                           ? Text("\£ " + formatCurrency.format(amount),
-                          style: kCurrencyStyle) : currency.toUpperCase() == 'ZAR'
+                          style: kCurrencyStyle) : currency!.toUpperCase() == 'ZAR'
                           ? Text("R " + formatCurrency.format(amount),
                           style: kCurrencyStyle)
                           : Text(/*"\₦ "*/ "\$ "+ formatCurrency.format(amount),

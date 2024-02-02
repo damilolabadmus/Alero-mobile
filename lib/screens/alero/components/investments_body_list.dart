@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:async/async.dart';
@@ -7,11 +9,11 @@ import 'empty_list_item.dart';
 import 'overview_investments_list_item.dart';
 
 class InvestmentsBodyList extends StatefulWidget {
-  final String customerId, groupId;
-  final String customerAccountNo;
+  final String? customerId, groupId;
+  final String? customerAccountNo;
 
   const InvestmentsBodyList(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -63,10 +65,10 @@ class _InvestmentsBodyListState extends State<InvestmentsBodyList> {
     );
   }
 
-  Future getCustomerInvestmentsData(String groupId) async {
+  Future getCustomerInvestmentsData(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
       final investmentData =
-      widget.customerAccountNo == null ? await apiService.getCustomerInvestmentData(groupId) : await apiService.getCustomerInvestmentDataWithAccountNo(widget.customerAccountNo);
+      widget.customerAccountNo == null ? await apiService.getCustomerInvestmentData(groupId!) : await apiService.getCustomerInvestmentDataWithAccountNo(widget.customerAccountNo!);
       List<Widget> investmentItem = [];
       if (investmentData.length == 0) {
         investmentItem.add(EmptyListItem(message: 'No Investments'));

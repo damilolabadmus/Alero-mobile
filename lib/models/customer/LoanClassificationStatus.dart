@@ -1,28 +1,30 @@
+
+
 class LoanClassificationStatus{
-  String _rmCode;
-  String _loanStatus;
-  int _loanStatusCount;
-  double _loanStatusAmount;
+  String? _rmCode;
+  String? _loanStatus;
+  int? _loanStatusCount;
+  double? _loanStatusAmount;
 
   LoanClassificationStatus(
-      {String rmCode,
-        String loanStatus,
-        int loanStatusCount,
-        double loanStatusAmount}) {
+      {String? rmCode,
+        String? loanStatus,
+        int? loanStatusCount,
+        double? loanStatusAmount}) {
     this._rmCode = rmCode;
     this._loanStatus = loanStatus;
     this._loanStatusCount = loanStatusCount;
     this._loanStatusAmount = loanStatusAmount;
   }
 
-  String get rmCode => _rmCode;
-  set rmCode(String rmCode) => _rmCode = rmCode;
-  String get loanStatus => _loanStatus;
-  set loanStatus(String loanStatus) => _loanStatus = loanStatus;
-  int get loanStatusCount => _loanStatusCount;
-  set loanStatusCount(int loanStatusCount) => _loanStatusCount = loanStatusCount;
-  double get loanStatusAmount => _loanStatusAmount;
-  set loanStatusAmount(double loanStatusAmount) => _loanStatusAmount = loanStatusAmount;
+  String? get rmCode => _rmCode;
+  set rmCode(String? rmCode) => _rmCode = rmCode;
+  String? get loanStatus => _loanStatus;
+  set loanStatus(String? loanStatus) => _loanStatus = loanStatus;
+  int? get loanStatusCount => _loanStatusCount;
+  set loanStatusCount(int? loanStatusCount) => _loanStatusCount = loanStatusCount;
+  double? get loanStatusAmount => _loanStatusAmount;
+  set loanStatusAmount(double? loanStatusAmount) => _loanStatusAmount = loanStatusAmount;
 
   LoanClassificationStatus.fromJson(Map<String, dynamic> json) {
     _rmCode = json['rmCode'];

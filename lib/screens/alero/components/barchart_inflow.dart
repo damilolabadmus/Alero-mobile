@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/TransactionFlow.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +8,14 @@ import '../../../style/theme.dart' as Style;
 class BarChartInflow extends StatefulWidget {
   final List<TransactionFlow> tfData;
 
-  const BarChartInflow({Key key, @required this.tfData}) : super(key: key);
+  const BarChartInflow({Key? key, required this.tfData}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => BarChartInflowState();
 }
 
 class BarChartInflowState extends State<BarChartInflow> {
-  int touchedIndex;
+  int? touchedIndex;
 
   final Color barBackgroundColor = const Color(0xff72d8bf);
   List<BarChartGroupData> flowBars = [];
@@ -23,7 +25,7 @@ class BarChartInflowState extends State<BarChartInflow> {
     super.initState();
     List<BarChartGroupData> _flowBars = [];
     for (var i = 0; i < widget.tfData.length; i++) {
-      _flowBars.add(makeGroupData(i, widget.tfData[i].transactionCount.toDouble(), isTouched: i == touchedIndex));
+      _flowBars.add(makeGroupData(i, widget.tfData[i].transactionCount!.toDouble(), isTouched: i == touchedIndex));
     }
     if (mounted) {
       setState(() {
@@ -43,7 +45,7 @@ class BarChartInflowState extends State<BarChartInflow> {
   String getCustomTitle(double value) {
     for (var i = 0; i < widget.tfData.length; i++) {
       if (value.toInt() == i) {
-        return widget.tfData[i].transactionDate.substring(0, 3);
+        return widget.tfData[i].transactionDate!.substring(0, 3);
       }
     }
     return ''; // Default value if no match is found
@@ -77,8 +79,8 @@ class BarChartInflowState extends State<BarChartInflow> {
           touchCallback: (touchEvent, barTouchResponse) {
             if (mounted) {
               setState(() {
-                if (barTouchResponse.spot != null && touchEvent is! FlPanEndEvent && touchEvent is! FlLongPressEnd) {
-                  touchedIndex = barTouchResponse.spot.touchedBarGroupIndex;
+                if (barTouchResponse!.spot != null && touchEvent is! FlPanEndEvent && touchEvent is! FlLongPressEnd) {
+                  touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
                 } else {
                   touchedIndex = -1;
                 }

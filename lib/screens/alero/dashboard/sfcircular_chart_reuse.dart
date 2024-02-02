@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/CompletenessAndValidityData.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +8,12 @@ import '../../../../style/theme.dart' as Style;
 
 class CircularChart extends StatefulWidget {
 
-  const CircularChart({Key key,
-    @required this.titleText,
-    @required this.dataSource,
-    @required this.xValueMapper,
-    @required this.yValueMapper,
-    @required this.tooltipBehavior,
+  const CircularChart({Key? key,
+    required this.titleText,
+    required this.dataSource,
+    required this.xValueMapper,
+    required this.yValueMapper,
+    required this.tooltipBehavior,
 
   }) : super(key: key);
 
@@ -52,9 +54,9 @@ class _CircularChartState extends State<CircularChart> {
         DoughnutSeries<CompletenessAndValidityData, String>(
           legendIconType: LegendIconType.verticalLine,
           radius: kAngle,
-          dataSource: widget.dataSource,
-          xValueMapper: widget.xValueMapper,
-          yValueMapper: widget.yValueMapper,
+          dataSource: widget.dataSource as List<CompletenessAndValidityData>?,
+          xValueMapper: widget.xValueMapper as String? Function(CompletenessAndValidityData, int),
+          yValueMapper: widget.yValueMapper as num? Function(CompletenessAndValidityData, int),
           strokeColor: Colors.white,
           strokeWidth: kPadding1,
           enableTooltip: yes,

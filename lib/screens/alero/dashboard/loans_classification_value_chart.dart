@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -13,12 +15,12 @@ class LoansClassificationValueChart extends StatefulWidget {
 }
 
 class _LoansClassificationValueChartState extends State<LoansClassificationValueChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
   var apiService = AleroAPIService();
   List<LoanClassificationStatus> lcData = [];
   String loanStatus = '';
   int loanStatusAmount = 0;
-  List<LoanClassificationStatus> loanClassification;
+  List<LoanClassificationStatus?>? loanClassification;
 
   @override
   void initState() {
@@ -29,7 +31,7 @@ class _LoansClassificationValueChartState extends State<LoansClassificationValue
 
   getLoansClassificationStatus() async {
     var test = await apiService.getLoanClassificationStatus();
-    loanClassification = test as List<LoanClassificationStatus>;
+    loanClassification = test as List<LoanClassificationStatus?>;
     return loanClassification;
   }
 
@@ -58,10 +60,10 @@ class _LoansClassificationValueChartState extends State<LoansClassificationValue
             tooltipBehavior: _tooltipBehavior,
             primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
             series: <CartesianSeries>[
-              StackedColumnSeries<LoanClassificationStatus, String>(
-                dataSource: loanClassification,
-                xValueMapper: (LoanClassificationStatus data, _) => data.loanStatus,
-                yValueMapper: (LoanClassificationStatus data, _) => data.loanStatusAmount,
+              StackedColumnSeries<LoanClassificationStatus?, String>(
+                dataSource: loanClassification ?? [],
+                xValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatus,
+                yValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatusAmount,
                 enableTooltip: yes,
               ),],),
         );

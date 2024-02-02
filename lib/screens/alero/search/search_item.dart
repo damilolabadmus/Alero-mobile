@@ -1,9 +1,11 @@
+
+
 import '../../../style/theme.dart' as Style;
 import 'package:flutter/material.dart';
 
 class SearchItemCard extends StatelessWidget {
   const SearchItemCard(
-      {Key key,
+      {Key? key,
         this.customerName,
         this.businessSegment,
         this.customerYears,
@@ -11,16 +13,16 @@ class SearchItemCard extends StatelessWidget {
         this.press})
       : super(key: key);
 
-  final String customerName;
-  final int customerYears;
-  final String businessSegment;
-  final bool active;
-  final Function press;
+  final String? customerName;
+  final int? customerYears;
+  final String? businessSegment;
+  final bool? active;
+  final Function? press;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: press,
+      onTap: press as void Function()?,
       child: Card(
         color: Style.Colors.overviewCardBg,
         elevation: 0,
@@ -32,7 +34,7 @@ class SearchItemCard extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: active
+                    color: active!
                         ? Style.Colors.overviewActiveBg
                         : Style.Colors.searchInActiveBgLeading,
                     borderRadius: BorderRadius.only(
@@ -42,7 +44,7 @@ class SearchItemCard extends StatelessWidget {
                       topRight: Radius.circular(2),
                     ),
                     border: Border.all(
-                        color: active
+                        color: active!
                             ? Style.Colors.overviewActiveBg
                             : Style.Colors.searchInActiveBgLeading)),
                 child: SizedBox(
@@ -60,7 +62,7 @@ class SearchItemCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(child: Text(
-                          customerName,
+                          customerName!,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                           style: TextStyle(
@@ -79,7 +81,7 @@ class SearchItemCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          businessSegment,
+                          businessSegment!,
 
                           /// "Customer for $customerYears year's",
                           style: TextStyle(
@@ -91,21 +93,21 @@ class SearchItemCard extends StatelessWidget {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              color: active
+                              color: active!
                                   ? Style.Colors.searchActiveBg
                                   : Style.Colors.searchInActiveBg,
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(
-                                  color: active
+                                  color: active!
                                       ? Style.Colors.searchActiveBg
                                       : Style.Colors.searchInActiveBg)),
                           child: Padding(
                             padding: EdgeInsets.only(
                                 left: 6, top: 2, right: 6, bottom: 2),
                             child: Text(
-                              active ? 'active' : 'inactive',
+                              active! ? 'active' : 'inactive',
                               style: TextStyle(
-                                color: active
+                                color: active!
                                     ? Style.Colors.searchActiveBgText
                                     : Style.Colors.searchInActiveBgText,
                                 fontSize: 9.0,

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -8,10 +10,10 @@ import 'customer_complaints_list_item.dart';
 import 'empty_list_item.dart';
 
 class CustomerComplaintsList extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
   const CustomerComplaintsList(
-      {Key key, @required this.customerId, @required this.groupId})
+      {Key? key, required this.customerId, required this.groupId})
       : super(key: key);
 
   @override
@@ -62,9 +64,9 @@ class _CustomerComplaintsListState extends State<CustomerComplaintsList> {
     );
   }
 
-  Future getcustomerComplaints(String groupId) async {
+  Future getcustomerComplaints(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      final signatories = await apiService.getCustomerComplaints(groupId);
+      final signatories = await apiService.getCustomerComplaints(groupId!);
       List<Widget> _customerComplaintsItem = [];
       if (signatories.length == 0) {
         _customerComplaintsItem

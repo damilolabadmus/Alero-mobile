@@ -1,24 +1,26 @@
+
+
 import 'rights.dart';
 import 'user_roles.dart';
 
 class GetStaffInformation {
-  String id;
-  String username;
-  String staffId;
-  String fullName;
-  String firstName;
-  String lastName;
-  String password;
-  String makerId;
-  String maker;
-  String makerDatetime;
-  String modifierId;
-  String modifier;
-  String modifierDatetime;
-  String lastLogin;
-  String recordStat;
+  String? id;
+  String? username;
+  String? staffId;
+  String? fullName;
+  String? firstName;
+  String? lastName;
+  String? password;
+  String? makerId;
+  String? maker;
+  String? makerDatetime;
+  String? modifierId;
+  String? modifier;
+  String? modifierDatetime;
+  String? lastLogin;
+  String? recordStat;
   List<UserRoles> userRoles = [];
-  List<Object> userAttributes = [];
+  List<Object>? userAttributes = [];
   List<Rights> rights = [];
 
   GetStaffInformation.fromJson(Map<String, dynamic> json) {
@@ -39,21 +41,21 @@ class GetStaffInformation {
     recordStat = json['recordStat'];
     if (json['userRoles'] != null) {
       // ignore: deprecated_member_use
-      userRoles = new List<UserRoles>();
+      userRoles = <UserRoles>[];
       json['userRoles'].forEach((v) {
         userRoles.add(new UserRoles.fromJson(v));
       });
     }
     if (json['userAttributes'] != null) {
       // ignore: deprecated_member_use
-      userAttributes = new List<Null>();
+      userAttributes = <Object>[];
       json['userAttributes'].forEach((v) {
-        userAttributes.add(new Object());
+        userAttributes!.add(new Object());
       });
     }
     if (json['rights'] != null) {
       // ignore: deprecated_member_use
-      rights = new List<Rights>();
+      rights = <Rights>[];
       json['rights'].forEach((v) {
         rights.add(new Rights.fromJson(v));
       });

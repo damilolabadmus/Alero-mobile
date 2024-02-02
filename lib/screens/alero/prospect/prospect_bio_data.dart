@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/screens/alero/call/call_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/prospect/prospect_bio_data_card.dart';
@@ -11,21 +13,21 @@ import 'package:flutter/material.dart';
 
 class ProspectBioData extends StatefulWidget {
 
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress = "";
-  bool prospectConverted;
-  String accountNo;
-  String introducerStaffCode = "";
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress = "";
+  bool? prospectConverted;
+  String? accountNo;
+  String? introducerStaffCode = "";
 
   ProspectBioData(
       this.prospectId,
@@ -58,21 +60,21 @@ class ProspectBioData extends StatefulWidget {
 
 class _ProspectBioDataState extends State<ProspectBioData> {
 
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress = "";
-  bool prospectConverted;
-  String accountNo;
-  String introducerStaffCode = "";
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress = "";
+  bool? prospectConverted;
+  String? accountNo;
+  String? introducerStaffCode = "";
 
 
   _ProspectBioDataState(
@@ -162,7 +164,7 @@ class _ProspectBioDataState extends State<ProspectBioData> {
                 icon: Icon(
                     Icons.home
                 ),
-                iconSize: 30.0,
+                iconSize: 30.0, onPressed: () {  },
               ),
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
@@ -199,7 +201,7 @@ class _ProspectBioDataState extends State<ProspectBioData> {
                               ),),
                           ),
                           Text(
-                            prospectName,
+                            prospectName!,
                             style: TextStyle(
                               color: Colors.lightBlue,
                               fontSize: 17.0,
@@ -230,7 +232,7 @@ class _ProspectBioDataState extends State<ProspectBioData> {
 
                   ProspectBioDataCard(
                     productOfferedValue: productOffered ?? '',
-                    customerWalletSizeValue: customerWalletSize.toString() ?? '',
+                    customerWalletSizeValue: customerWalletSize?.toString() ?? '',
                     businessSegmentValue: businessSegment ?? '',
                     contactPersonNameValue: contactPersonName ?? '',
                     contactPersonEmailValue: contactPersonEmail ?? '',

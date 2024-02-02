@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +9,10 @@ import 'package:alero/screens/alero/components/overview_trade_transactions_list_
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 
 class TradeTransactionsBodyList extends StatefulWidget {
-  final String customerId, groupId;
-  final String customerAccountNo;
+  final String? customerId, groupId;
+  final String? customerAccountNo;
 
-  const TradeTransactionsBodyList({Key key, this.customerId, this.groupId, this.customerAccountNo}) : super(key: key);
+  const TradeTransactionsBodyList({Key? key, this.customerId, this.groupId, this.customerAccountNo}) : super(key: key);
 
   @override
   State<TradeTransactionsBodyList> createState() => _TradeTransactionsBodyListState();
@@ -29,11 +31,11 @@ class _TradeTransactionsBodyListState extends State<TradeTransactionsBodyList> {
   }
 
 
-  Future getTradeTransactionsDetails(String groupId) async {
+  Future getTradeTransactionsDetails(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
       final tradeTransactionsData = widget.customerAccountNo == null
-          ? await apiService.getCustomerTradeTransactionsData(groupId)
-          : await apiService.getCustomerTradeTransactionsDataWithAccountNo(widget.customerAccountNo);
+          ? await apiService.getCustomerTradeTransactionsData(groupId!)
+          : await apiService.getCustomerTradeTransactionsDataWithAccountNo(widget.customerAccountNo!);
       List<Widget> tradeTransactionItem = [];
       if (tradeTransactionsData.length == 0) {
         tradeTransactionItem.add(

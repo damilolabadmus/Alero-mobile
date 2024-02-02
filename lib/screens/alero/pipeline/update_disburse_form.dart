@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsStatusResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/call/pipeline_page.dart';
@@ -6,15 +8,15 @@ import 'package:flutter/material.dart';
 class UpdateDisburseForm extends StatefulWidget {
   final DealsForDisbursement disbursedStatus;
 
-  const UpdateDisburseForm({Key key, @required this.disbursedStatus}) : super(key: key);
+  const UpdateDisburseForm({Key? key, required this.disbursedStatus}) : super(key: key);
 
   @override
   _UpdateDisburseFormState createState() => _UpdateDisburseFormState();
 }
 
 class _UpdateDisburseFormState extends State<UpdateDisburseForm> {
-  String disbursedAmount;
-  TextEditingController disbursedAmountController;
+  String? disbursedAmount;
+  TextEditingController? disbursedAmountController;
 
   var apiService = AleroAPIService();
 
@@ -42,7 +44,7 @@ class _UpdateDisburseFormState extends State<UpdateDisburseForm> {
     Map getDisburseDetails() {
       return {
         'pipelineId': widget.disbursedStatus.pipelineId,
-        'disbursedAmount': disbursedAmountController.text.toString(),
+        'disbursedAmount': disbursedAmountController!.text.toString(),
       };
     }
     Widget updateDisburseButton = Container(
@@ -110,8 +112,8 @@ class _UpdateDisburseFormState extends State<UpdateDisburseForm> {
                           fontSize: 14
                       ),),
                     TextFormField(
-                      validator: (String value) {
-                        if (value.isEmpty) {
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
                           return 'Pls, enter amount.';
                         } else if (num.tryParse(value) == null) {
                           return 'Please enter a valid amount.';

@@ -13,8 +13,8 @@ import 'package:alero/screens/alero/home/home_header.dart';
 import '/utils/Strings.dart' as Strings;
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key, this.data}) : super(key: key);
-  final String data;
+  const HomeScreen({Key? key, this.data}) : super(key: key);
+  final String? data;
 
   @override
   State<StatefulWidget> createState() {
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Global.isRM = userStatusResponse.canView;
       } catch (ex) {
         pandora.showToast(
-            ex, context, MessageTypes.WARNING.toString().split('.').last);
+            ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
       }
 
       /// Get Staff Information
@@ -49,13 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
         if (mounted) {
           setState(() {
             firstName = GetStaffInformation.fromJson(
-                jsonDecode(Global.STAFF_INFORMATION))
-                .firstName;
+                jsonDecode(Global.STAFF_INFORMATION!))
+                .firstName!;
           });
         }
       } catch (ex) {
         pandora.showToast(
-            ex, context, MessageTypes.WARNING.toString().split('.').last);
+            ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
       }
     } else {
       pandora.showToast(Strings.Errors.connectionError, context,
@@ -64,12 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
     OneContext().hideProgressIndicator();
   }
 
-  bool isCallManagement;
+  late bool isCallManagement;
   getModulesAuthorization() async {
     final userAuthorisation = await apiService.getUserAuthorization();
-    HasAccessToCallManagement userAccess = userAuthorisation.result.hasAccessToCallManagement;
-    HasAccessTo callManagementAccess = userAccess.hasAccessToProspect;
-    isCallManagement = callManagementAccess.canCreate;
+    HasAccessToCallManagement userAccess = userAuthorisation.result!.hasAccessToCallManagement!;
+    HasAccessTo callManagementAccess = userAccess.hasAccessToProspect!;
+    isCallManagement = callManagementAccess.canCreate!;
   }
 
 

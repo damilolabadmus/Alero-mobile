@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/components/customer_directors_list.dart';
 import 'package:alero/screens/alero/components/customer_signatories_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -14,9 +16,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
 
 class CooporateBioData extends StatefulWidget {
-  final CustomerDetailsResponse customerDetails;
+  final CustomerDetailsResponse? customerDetails;
 
-  CooporateBioData({Key key, @required this.customerDetails}) : super(key: key);
+  CooporateBioData({Key? key, required this.customerDetails}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -31,9 +33,9 @@ class _CooporateBioDataState extends State<CooporateBioData> {
   var data;
   bool loading = true;
 
-  int customerRelationshipAge;
+  int? customerRelationshipAge;
 
-  String customerId = "",
+  String? customerId = "",
       groupId = "",
       businessSegment = "",
       rcNumber = "",
@@ -198,7 +200,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 6, vertical: 2),
                                       child: Text(
-                                        businessSegment,
+                                        businessSegment!,
                                         style: TextStyle(
                                           color:
                                           Style.Colors.searchActiveBgText,
@@ -213,7 +215,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 2),
                                     child: Text(
-                                      (customerRelationshipAge < 1)
+                                      (customerRelationshipAge! < 1)
                                           ? "Customer for less than 1 year"
                                           : "Customer for $customerRelationshipAge years",
                                       style: TextStyle(
@@ -252,7 +254,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                                     'assets/customer/biodata/biodata_corporate_rc.svg',
                                                   ),
                                                 ),
-                                                Text(rcNumber,
+                                                Text(rcNumber!,
                                                     style: TextStyle(
                                                       color: Style.Colors
                                                           .blackTextColor,
@@ -276,7 +278,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                                     ),
                                                   ),
                                                   Expanded(
-                                                    child: Text(tin,
+                                                    child: Text(tin!,
                                                         style: TextStyle(
                                                           color: Style.Colors
                                                               .blackTextColor,
@@ -302,7 +304,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                               'assets/customer/biodata/biodata_call.svg',
                                             ),
                                           ),
-                                          Text(mobileNumber,
+                                          Text(mobileNumber!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -324,7 +326,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                             ),
                                           ),
                                           Expanded(
-                                              child: Text(customerEmail,
+                                              child: Text(customerEmail!,
                                                   overflow: TextOverflow.fade,
                                                   style: TextStyle(
                                                     color: Style
@@ -360,7 +362,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                               'assets/customer/biodata/biodata_rm.svg',
                                             ),
                                           ),
-                                          Text(rmName,
+                                          Text(rmName!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -381,7 +383,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                               'assets/customer/biodata/biodata_bank.svg',
                                             ),
                                           ),
-                                          Text(branchName,
+                                          Text(branchName!,
                                               style: TextStyle(
                                                 color:
                                                 Style.Colors.blackTextColor,
@@ -564,7 +566,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                               ),
                                             ),
                                             Flexible(
-                                              child: Text(customerAddress,
+                                              child: Text(customerAddress!,
                                                   softWrap: true,
                                                   style: TextStyle(
                                                     color: Style
@@ -599,7 +601,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                                 size: 15.0,
                                               ),
                                             ),
-                                            Text(customerCity,
+                                            Text(customerCity!,
                                                 style: TextStyle(
                                                   color: Style
                                                       .Colors.blackTextColor,
@@ -621,7 +623,7 @@ class _CooporateBioDataState extends State<CooporateBioData> {
                                                   size: 15.0,
                                                 ),
                                               ),
-                                              Text(customerState,
+                                              Text(customerState!,
                                                   style: TextStyle(
                                                     color:
                                                     Style.Colors.blackTextColor,

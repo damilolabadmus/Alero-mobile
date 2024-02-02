@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankDepositsData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -15,11 +17,11 @@ class DepositsChart extends StatefulWidget {
 class _DepositsChartState extends State<DepositsChart> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  List<BankDepositsData> dtcData = [];
+  List<BankDepositsData?> dtcData = [];
   int divisor = 1000000000000;
   String periodName = '';
   double depositsData = 0.0;
-  List<BankDepositsData> bankDeposits;
+  List<BankDepositsData?>? bankDeposits;
 
   @override
   void initState() {
@@ -36,21 +38,21 @@ class _DepositsChartState extends State<DepositsChart> {
     return this._asyncMemoizer.runOnce(() async {
       var test = await apiService.getBankDepositsChart();
       setState(() {
-        bankDeposits = test;
+        bankDeposits = test as List<BankDepositsData?>?;
         dtcData = [];
-        if (bankDeposits.length == 0) {
+        if (bankDeposits!.length == 0) {
           dtcData.add(BankDepositsData(
             periodName: '',
             depositsData: 0.0,
           ));
         } else {
-          bankDeposits.forEach((trend) {
+          bankDeposits!.forEach((trend) {
             dtcData.add(trend);
           });
         }
         for (int i = 0; i < dtcData.length; i++) {
-          periodName = periodName + dtcData[i].periodName;
-          depositsData = depositsData + dtcData[i].depositsData;
+          periodName = periodName + dtcData[i]!.periodName!;
+          depositsData = depositsData + dtcData[i]!.depositsData!;
         }
       });
       return bankDeposits;
@@ -89,7 +91,7 @@ class _DepositsChartState extends State<DepositsChart> {
                   sideTitles: SideTitles(
                     getTitlesWidget: (value, meta) => SideTitleWidget(
                         child: Text(
-                          bankDeposits[value.toInt()].periodName.toString(),
+                          bankDeposits![value.toInt()]!.periodName.toString(),
                           style: TextStyle(
                             color: Colors.black45,
                             fontWeight: FontWeight.bold,
@@ -141,7 +143,7 @@ class _DepositsChartState extends State<DepositsChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankDeposits.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), bankDep.depositsData / divisor)).toList(),
+                  spots: bankDeposits!.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), bankDep!.depositsData! / divisor)).toList(),
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

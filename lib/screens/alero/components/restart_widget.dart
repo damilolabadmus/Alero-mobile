@@ -1,12 +1,14 @@
+
+
 import 'package:flutter/cupertino.dart';
 
 class RestartWidget extends StatefulWidget {
   RestartWidget({this.child});
 
-  final Widget child;
+  final Widget? child;
 
   static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_RestartWidgetState>().restartApp();
+    context.findAncestorStateOfType<_RestartWidgetState>()!.restartApp();
   }
 
   @override
@@ -26,7 +28,7 @@ class _RestartWidgetState extends State<RestartWidget> {
   Widget build(BuildContext context) {
     return KeyedSubtree(
       key: key,
-      child: widget.child,
+      child: widget.child!,
     );
   }
 }

@@ -1,19 +1,21 @@
+
+
 import '../../../style/theme.dart' as Style;
 import 'package:flutter/material.dart';
 
 class ValueChainListItem extends StatelessWidget {
   const ValueChainListItem({
-    Key key,
-    @required this.valueChainCustomerId,
-    @required this.valueChainGroup,
-    @required this.valueChain,
-    @required this.valueChainSector,
+    Key? key,
+    required this.valueChainCustomerId,
+    required this.valueChainGroup,
+    required this.valueChain,
+    required this.valueChainSector,
   }) : super(key: key);
 
-  final String valueChainCustomerId;
-  final String valueChainGroup;
-  final String valueChain;
-  final String valueChainSector;
+  final String? valueChainCustomerId;
+  final String? valueChainGroup;
+  final String? valueChain;
+  final String? valueChainSector;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +51,14 @@ class ValueChainListItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(valueChainCustomerId,
+                    Text(valueChainCustomerId!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 11.0,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Poppins-Bold',
                         )),
-                    Text(valueChainGroup,
+                    Text(valueChainGroup!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 11.0,
@@ -94,14 +96,14 @@ class ValueChainListItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(valueChain,
+                    Text(valueChain!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 11.0,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Poppins-Bold',
                         )),
-                    Text(valueChainSector,
+                    Text(valueChainSector!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 11.0,

@@ -1,12 +1,14 @@
 /// canView : false
 
-class ViewStatusResponse {
-  bool _canView;
 
-  bool get canView => _canView;
+
+class ViewStatusResponse {
+  bool? _canView;
+
+  bool? get canView => _canView;
 
   ViewStatusResponse({
-    bool canView}){
+    bool? canView}){
     _canView = canView;
   }
 

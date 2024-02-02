@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<ExpenseList> expenseListFromJson(String str) => List<ExpenseList>.from(json.decode(str).map((x) => ExpenseList.fromJson(x)));
@@ -5,8 +7,8 @@ List<ExpenseList> expenseListFromJson(String str) => List<ExpenseList>.from(json
 String expenseListToJson(List<ExpenseList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ExpenseList {
-  String period;
-  String periodCode;
+  String? period;
+  String? periodCode;
 
   ExpenseList({
     this.period,

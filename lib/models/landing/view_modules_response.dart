@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 ViewModulesResponse viewModulesResponseFromJson(String str) => ViewModulesResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class ViewModulesResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  Result result;
+  String? responseCode;
+  String? responseDescription;
+  Result? result;
 
   factory ViewModulesResponse.fromJson(Map<String, dynamic> json) => ViewModulesResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class ViewModulesResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 
@@ -48,22 +50,22 @@ class Result {
     this.hasAccessToFinancialModule,
   });
 
-  bool hasAccessToUTrack;
-  bool hasAccessToTrialBalance;
-  bool hasAccessToBalanceSheet;
-  HasAccessToUserManagement hasAccessToUserManagement;
-  bool hasAccessToSingleCustomerView;
-  HasAccessTo hasAccessToFraudReportingTool;
-  bool hasAccessToPerformanceManagementTracker;
-  bool hasAccessToProductCatalogue;
-  HasAccessToCallManagement hasAccessToCallManagement;
-  HasAccessToBudget hasAccessToBudget;
-  HasAccessToScorecardOthers hasAccessToScorecardOthers;
-  HasAccessToAdjustment hasAccessToAdjustment;
-  HasAccessToRaffleDraw hasAccessToRaffleDraw;
-  HasAccessToApr hasAccessToApr;
-  HasAccessToDataDictionary hasAccessToDataDictionary;
-  HasAccessToFinancialModule hasAccessToFinancialModule;
+  bool? hasAccessToUTrack;
+  bool? hasAccessToTrialBalance;
+  bool? hasAccessToBalanceSheet;
+  HasAccessToUserManagement? hasAccessToUserManagement;
+  bool? hasAccessToSingleCustomerView;
+  HasAccessTo? hasAccessToFraudReportingTool;
+  bool? hasAccessToPerformanceManagementTracker;
+  bool? hasAccessToProductCatalogue;
+  HasAccessToCallManagement? hasAccessToCallManagement;
+  HasAccessToBudget? hasAccessToBudget;
+  HasAccessToScorecardOthers? hasAccessToScorecardOthers;
+  HasAccessToAdjustment? hasAccessToAdjustment;
+  HasAccessToRaffleDraw? hasAccessToRaffleDraw;
+  HasAccessToApr? hasAccessToApr;
+  HasAccessToDataDictionary? hasAccessToDataDictionary;
+  HasAccessToFinancialModule? hasAccessToFinancialModule;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     hasAccessToUTrack: json["hasAccessToUTrack"],
@@ -88,19 +90,19 @@ class Result {
     "hasAccessToUTrack": hasAccessToUTrack,
     "hasAccessToTrialBalance": hasAccessToTrialBalance,
     "hasAccessToBalanceSheet": hasAccessToBalanceSheet,
-    "hasAccessToUserManagement": hasAccessToUserManagement.toJson(),
+    "hasAccessToUserManagement": hasAccessToUserManagement!.toJson(),
     "hasAccessToSingleCustomerView": hasAccessToSingleCustomerView,
-    "hasAccessToFraudReportingTool": hasAccessToFraudReportingTool.toJson(),
+    "hasAccessToFraudReportingTool": hasAccessToFraudReportingTool!.toJson(),
     "hasAccessToPerformanceManagementTracker": hasAccessToPerformanceManagementTracker,
     "hasAccessToProductCatalogue": hasAccessToProductCatalogue,
-    "hasAccessToCallManagement": hasAccessToCallManagement.toJson(),
-    "hasAccessToBudget": hasAccessToBudget.toJson(),
-    "hasAccessToScorecardOthers": hasAccessToScorecardOthers.toJson(),
-    "hasAccessToAdjustment": hasAccessToAdjustment.toJson(),
-    "hasAccessToRaffleDraw": hasAccessToRaffleDraw.toJson(),
-    "hasAccessToApr": hasAccessToApr.toJson(),
-    "hasAccessToDataDictionary": hasAccessToDataDictionary.toJson(),
-    "hasAccessToFinancialModule": hasAccessToFinancialModule.toJson(),
+    "hasAccessToCallManagement": hasAccessToCallManagement!.toJson(),
+    "hasAccessToBudget": hasAccessToBudget!.toJson(),
+    "hasAccessToScorecardOthers": hasAccessToScorecardOthers!.toJson(),
+    "hasAccessToAdjustment": hasAccessToAdjustment!.toJson(),
+    "hasAccessToRaffleDraw": hasAccessToRaffleDraw!.toJson(),
+    "hasAccessToApr": hasAccessToApr!.toJson(),
+    "hasAccessToDataDictionary": hasAccessToDataDictionary!.toJson(),
+    "hasAccessToFinancialModule": hasAccessToFinancialModule!.toJson(),
   };
 }
 
@@ -111,9 +113,9 @@ class HasAccessToAdjustment {
     this.canViewAdjustment,
   });
 
-  bool canCreateAdjustment;
-  bool canApproveAdjustment;
-  bool canViewAdjustment;
+  bool? canCreateAdjustment;
+  bool? canApproveAdjustment;
+  bool? canViewAdjustment;
 
   factory HasAccessToAdjustment.fromJson(Map<String, dynamic> json) => HasAccessToAdjustment(
     canCreateAdjustment: json["canCreateAdjustment"],
@@ -134,8 +136,8 @@ class HasAccessToApr {
     this.canViewAdminApr,
   });
 
-  bool canViewUserApr;
-  bool canViewAdminApr;
+  bool? canViewUserApr;
+  bool? canViewAdminApr;
 
   factory HasAccessToApr.fromJson(Map<String, dynamic> json) => HasAccessToApr(
     canViewUserApr: json["canViewUserApr"],
@@ -161,9 +163,9 @@ class HasAccessToBudget {
     this.canAccessHrBudget,
   });
 
-  bool canAccessBudget;
-  bool canAccessBudgetAdmin;
-  bool canAccessHrBudget;
+  bool? canAccessBudget;
+  bool? canAccessBudgetAdmin;
+  bool? canAccessHrBudget;
 
   factory HasAccessToBudget.fromJson(Map<String, dynamic> json) => HasAccessToBudget(
     canAccessBudget: json["canAccessBudget"],
@@ -184,8 +186,8 @@ class HasAccessToCallManagement {
     this.hasAccessToPipelineDeal,
   });
 
-  HasAccessTo hasAccessToProspect;
-  HasAccessTo hasAccessToPipelineDeal;
+  HasAccessTo? hasAccessToProspect;
+  HasAccessTo? hasAccessToPipelineDeal;
 
   factory HasAccessToCallManagement.fromJson(Map<String, dynamic> json) => HasAccessToCallManagement(
     hasAccessToProspect: HasAccessTo.fromJson(json["hasAccessToProspect"]),
@@ -193,8 +195,8 @@ class HasAccessToCallManagement {
   );
 
   Map<String, dynamic> toJson() => {
-    "hasAccessToProspect": hasAccessToProspect.toJson(),
-    "hasAccessToPipelineDeal": hasAccessToPipelineDeal.toJson(),
+    "hasAccessToProspect": hasAccessToProspect!.toJson(),
+    "hasAccessToPipelineDeal": hasAccessToPipelineDeal!.toJson(),
   };
 }
 
@@ -204,8 +206,8 @@ class HasAccessTo {
     this.canViewReports,
   });
 
-  bool canCreate;
-  bool canViewReports;
+  bool? canCreate;
+  bool? canViewReports;
 
   factory HasAccessTo.fromJson(Map<String, dynamic> json) => HasAccessTo(
     canCreate: json["canCreate"],
@@ -228,7 +230,7 @@ class HasAccessToDataDictionary {
     this.canViewDataDictionary,
   });
 
-  bool canViewDataDictionary;
+  bool? canViewDataDictionary;
 
   factory HasAccessToDataDictionary.fromJson(Map<String, dynamic> json) => HasAccessToDataDictionary(
     canViewDataDictionary: json["canViewDataDictionary"],
@@ -246,9 +248,9 @@ class HasAccessToFinancialModule {
     this.canViewFinancialModule,
   });
 
-  bool canCreateFinancialModuleAdjustment;
-  bool canApproveFinancialModuleAdjustment;
-  bool canViewFinancialModule;
+  bool? canCreateFinancialModuleAdjustment;
+  bool? canApproveFinancialModuleAdjustment;
+  bool? canViewFinancialModule;
 
   factory HasAccessToFinancialModule.fromJson(Map<String, dynamic> json) => HasAccessToFinancialModule(
     canCreateFinancialModuleAdjustment: json["canCreateFinancialModuleAdjustment"],
@@ -268,7 +270,7 @@ class HasAccessToRaffleDraw {
     this.canViewRaffleDraw,
   });
 
-  bool canViewRaffleDraw;
+  bool? canViewRaffleDraw;
 
   factory HasAccessToRaffleDraw.fromJson(Map<String, dynamic> json) => HasAccessToRaffleDraw(
     canViewRaffleDraw: json["canViewRaffleDraw"],
@@ -285,8 +287,8 @@ class HasAccessToScorecardOthers {
     this.canAccessServiceAssuranceApp,
   });
 
-  bool canAccessBranchServicesApp;
-  bool canAccessServiceAssuranceApp;
+  bool? canAccessBranchServicesApp;
+  bool? canAccessServiceAssuranceApp;
 
   factory HasAccessToScorecardOthers.fromJson(Map<String, dynamic> json) => HasAccessToScorecardOthers(
     canAccessBranchServicesApp: json["canAccessBranchServicesApp"],
@@ -307,10 +309,10 @@ class HasAccessToUserManagement {
     this.hasAccessToConfigureAlero,
   });
 
-  bool hasAccessToAuditLog;
-  bool hasAccessToCreateRole;
-  bool hasAccessToCreateUser;
-  bool hasAccessToConfigureAlero;
+  bool? hasAccessToAuditLog;
+  bool? hasAccessToCreateRole;
+  bool? hasAccessToCreateUser;
+  bool? hasAccessToConfigureAlero;
 
   factory HasAccessToUserManagement.fromJson(Map<String, dynamic> json) => HasAccessToUserManagement(
     hasAccessToAuditLog: json["hasAccessToAuditLog"],

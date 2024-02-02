@@ -1,11 +1,13 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 
 class EmptyListItem extends StatelessWidget {
-  final String message;
+  final String? message;
 
-  const EmptyListItem({Key key, this.message}) : super(key: key);
+  const EmptyListItem({Key? key, this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class EmptyListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(12),
-                child: Text(message,
+                child: Text(message!,
                     style: TextStyle(
                       color: Style.Colors.blackTextColor,
                       fontSize: 12.0,

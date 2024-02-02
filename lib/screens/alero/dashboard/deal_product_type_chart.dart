@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsByProductTypeResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -13,13 +15,13 @@ class DealProductTypeChart extends StatefulWidget {
 }
 
 class _DealProductTypeChartState extends State<DealProductTypeChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   var apiService = AleroAPIService();
   List<DealByProductTypeResponse> ptData = [];
   int count = 0;
   String product = '';
-  List<DealByProductTypeResponse> products;
+  List<DealByProductTypeResponse?>? products;
 
   @override
   void initState() {
@@ -30,7 +32,7 @@ class _DealProductTypeChartState extends State<DealProductTypeChart> {
 
   getDealsByProductType() async {
     var test = await apiService.getDealsByProductTypeChart();
-    products = test as List<DealByProductTypeResponse>;
+    products = test as List<DealByProductTypeResponse?>;
     return products;
   }
 
@@ -74,14 +76,14 @@ class _DealProductTypeChartState extends State<DealProductTypeChart> {
               ),
               tooltipBehavior: _tooltipBehavior,
               series: <CircularSeries>[
-                DoughnutSeries<DealByProductTypeResponse, String>(
+                DoughnutSeries<DealByProductTypeResponse?, String>(
                   strokeColor: Colors.white,
                   strokeWidth: kPadding1,
                   legendIconType: LegendIconType.verticalLine,
                   radius: kAngle,
                   dataSource: products,
-                  xValueMapper: (DealByProductTypeResponse data, _) => data.product,
-                  yValueMapper: (DealByProductTypeResponse data, _) => data.count,
+                  xValueMapper: (DealByProductTypeResponse? data, _) => data!.product,
+                  yValueMapper: (DealByProductTypeResponse? data, _) => data!.count,
                   enableTooltip: yes,
                 ),
               ],

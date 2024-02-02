@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/call/prospect_page.dart';
 import 'package:alero/screens/alero/concession/terminate_concession.dart';
 import 'package:alero/screens/alero/customer/customer_accounts.dart';
@@ -48,43 +50,43 @@ class Routes {
       case '/landing':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Landing Page');
-        return RouteAnimator(page: HomeScreen(data: arguments));
+        return RouteAnimator(page: HomeScreen(data: arguments as String?));
       case '/single-customer-view':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Single Customer View Page');
         return RouteAnimator(
-            page: SingleCustomerViewLanding(rmName: arguments));
+            page: SingleCustomerViewLanding(rmName: arguments as String));
       case '/search':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Search Page');
-        return RouteAnimator(page: SearchPage(searchQuery: arguments));
+        return RouteAnimator(page: SearchPage(searchQuery: arguments as String?));
       case '/customer-profile':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Customer Profile Page');
-        return RouteAnimator(page: CustomerAccounts(groupId: arguments));
+        return RouteAnimator(page: CustomerAccounts(groupId: arguments as String?));
       case '/call-management':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Call Management Page');
-        return RouteAnimator(page: CallManagementPage(userId: arguments));
+        return RouteAnimator(page: CallManagementPage(userId: arguments as String?));
       case '/prospect-bio-data-input':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Prospect BioData Input Page');
-        return RouteAnimator(page: ProspectBioDataInput(prospectId: arguments));
+        return RouteAnimator(page: ProspectBioDataInput(prospectId: arguments as String?));
       case '/pipeline':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Pipeline Deals Page');
-        return RouteAnimator(page: PipelinePage(groupId: arguments));
+        return RouteAnimator(page: PipelinePage(groupId: arguments as String?));
       case '/callManagementPage':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Call Management Page');
-        return RouteAnimator(page: CallManagementPage(userId: arguments));
+        return RouteAnimator(page: CallManagementPage(userId: arguments as String?));
       case '/prospect':
         GetIt.I<FirebaseAnalytics>().setCurrentScreen(screenName: 'Prospect Page');
-        return RouteAnimator(page: ProspectPage(data: arguments));
+        return RouteAnimator(page: ProspectPage(data: arguments as String?));
       case '/performance-management':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Performance Management Page');
-        return RouteAnimator(page: PerformanceManagementPage(userId: arguments));
+        return RouteAnimator(page: PerformanceManagementPage(userId: arguments as String?));
       case '/balance_sheet_side_menu':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'BalanceSheetSideMenu');
@@ -92,39 +94,39 @@ class Routes {
       case '/my-balance-sheet-page':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'My BalanceSheet Page');
-        return RouteAnimator(page: MyBalanceSheetPage(regionId: arguments));
+        return RouteAnimator(page: MyBalanceSheetPage(regionId: arguments as String?));
       case '/profitability-reports':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Profitability Reports');
-        return RouteAnimator(page: ProfitabilityReportsPage(userId: arguments));
+        return RouteAnimator(page: ProfitabilityReportsPage(userId: arguments as String?));
       case '/cost-allocation':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Cost Allocation');
-        return RouteAnimator(page: CostAllocationPage(userId: arguments));
+        return RouteAnimator(page: CostAllocationPage(userId: arguments as String?));
       case '/customer-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Customer Profitability Report');
-        return RouteAnimator(page: CustomerProfitabilityReportPage(searchQuery: arguments));
+        return RouteAnimator(page: CustomerProfitabilityReportPage(searchQuery: arguments as String?));
       case '/account-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Account Profitability Report');
-        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments));
+        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments as String?));
       case '/monthly-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Monthly Profitability Report');
-        return RouteAnimator(page: MonthlyProfitabilityReport(userId: arguments));
+        return RouteAnimator(page: MonthlyProfitabilityReport(userId: arguments as String?));
       case '/nrff':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Net Revenue From Funds');
-        return RouteAnimator(page: NetRevenueFromFunds(userId: arguments));
+        return RouteAnimator(page: NetRevenueFromFunds(userId: arguments as String?));
       case '/cost-allocation-report':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Cost Allocation Report');
-        return RouteAnimator(page: CostAllocationReport(userId: arguments));
+        return RouteAnimator(page: CostAllocationReport(userId: arguments as String?));
       case '/cost-allocation-upload-summary':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Cost Allocation Upload Summary');
-        return RouteAnimator(page: AllocationUploadSummary(userId: arguments));
+        return RouteAnimator(page: AllocationUploadSummary(userId: arguments as String?));
       case '/concession-dashboard':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Concession Dashboard');
@@ -168,7 +170,7 @@ class Routes {
       case '/account-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Account Profitability Report Page');
-        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments));
+        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments as String?));
       case '/apr-details':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Apr Details Page');

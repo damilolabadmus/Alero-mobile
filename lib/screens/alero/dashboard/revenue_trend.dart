@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankRevenueData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/dashboard/revenue_trend_chart.dart';
@@ -53,10 +55,10 @@ class _RevenueTrendState extends State<RevenueTrend> {
 
       setState(() {
         for (int i = 0; i < rtData.length; i++) {
-          ytdRevenue = ytdRevenue + rtData[i].ytdRevenue;
-          loansRevenue = loansRevenue + rtData[i].loansRevenue;
-          depositsRevenue = depositsRevenue + rtData[i].depositsRevenue;
-          commFeesRevenue = commFeesRevenue + rtData[i].commFeesRevenue;
+          ytdRevenue = ytdRevenue + rtData[i].ytdRevenue!;
+          loansRevenue = loansRevenue + rtData[i].loansRevenue!;
+          depositsRevenue = depositsRevenue + rtData[i].depositsRevenue!;
+          commFeesRevenue = commFeesRevenue + rtData[i].commFeesRevenue!;
         }
       });
       return revenue;
@@ -114,14 +116,14 @@ class _RevenueTrendState extends State<RevenueTrend> {
 class RevenueItem extends StatelessWidget {
   RevenueItem({this.revenue, this.value});
 
-  final String revenue;
-  final String value;
+  final String? revenue;
+  final String? value;
 
   @override
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Text(revenue,
+          Text(revenue!,
             style: TextStyle(
               color: Colors.blueGrey,
               fontSize: 12.0,

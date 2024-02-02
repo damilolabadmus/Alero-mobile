@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/ComplaintFLow.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -7,7 +9,7 @@ class LineChartComplaints extends StatefulWidget {
   final Color color;
 
   const LineChartComplaints(
-      {Key key, @required this.cfData, @required this.color})
+      {Key? key, required this.cfData, required this.color})
       : super(key: key);
 
   @override
@@ -15,7 +17,7 @@ class LineChartComplaints extends StatefulWidget {
 }
 
 class LineChartComplaintsState extends State<LineChartComplaints> {
-  int touchedIndex;
+  int? touchedIndex;
 
   final Color barBackgroundColor = const Color(0xff72d8bf);
 

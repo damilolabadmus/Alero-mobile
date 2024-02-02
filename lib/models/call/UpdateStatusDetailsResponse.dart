@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 UpdateStatusDetailsResponse updateStatusDetailsResponseFromJson(String str) => UpdateStatusDetailsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class UpdateStatusDetailsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  StatusResult result;
+  String? responseCode;
+  String? responseDescription;
+  StatusResult? result;
 
   factory UpdateStatusDetailsResponse.fromJson(Map<String, dynamic> json) => UpdateStatusDetailsResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class UpdateStatusDetailsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 
@@ -34,8 +36,8 @@ class StatusResult {
     this.statusUpdate2,
   });
 
-  List<DealsStatusUpdate> statusUpdate1;
-  List<DealsStatusUpdate> statusUpdate2;
+  List<DealsStatusUpdate>? statusUpdate1;
+  List<DealsStatusUpdate>? statusUpdate2;
 
   factory StatusResult.fromJson(Map<String, dynamic> json) => StatusResult(
     statusUpdate1: List<DealsStatusUpdate>.from(json["statusUpdate1"].map((x) => DealsStatusUpdate.fromJson(x))),
@@ -43,8 +45,8 @@ class StatusResult {
   );
 
   Map<String, dynamic> toJson() => {
-    "statusUpdate1": List<dynamic>.from(statusUpdate1.map((x) => x.toJson())),
-    "statusUpdate2": List<dynamic>.from(statusUpdate2.map((x) => x.toJson())),
+    "statusUpdate1": List<dynamic>.from(statusUpdate1!.map((x) => x.toJson())),
+    "statusUpdate2": List<dynamic>.from(statusUpdate2!.map((x) => x.toJson())),
   };
 }
 
@@ -57,11 +59,11 @@ class DealsStatusUpdate {
     this.listOfSubstatus,
   });
 
-  String statusId;
-  String status;
-  FinalStage finalStage;
-  int category;
-  List<DealsListOfSubstatus> listOfSubstatus;
+  String? statusId;
+  String? status;
+  FinalStage? finalStage;
+  int? category;
+  List<DealsListOfSubstatus>? listOfSubstatus;
 
   factory DealsStatusUpdate.fromJson(Map<String, dynamic> json) => DealsStatusUpdate(
     statusId: json["statusId"],
@@ -74,9 +76,9 @@ class DealsStatusUpdate {
   Map<String, dynamic> toJson() => {
     "statusId": statusId,
     "status": status,
-    "finalStage": finalStageValues.reverse[finalStage],
+    "finalStage": finalStageValues.reverse![finalStage],
     "category": category,
-    "listOfSubstatus": List<dynamic>.from(listOfSubstatus.map((x) => x.toJson())),
+    "listOfSubstatus": List<dynamic>.from(listOfSubstatus!.map((x) => x.toJson())),
   };
 }
 
@@ -93,8 +95,8 @@ class DealsListOfSubstatus {
     this.status,
   });
 
-  String statusId;
-  String status;
+  String? statusId;
+  String? status;
 
   factory DealsListOfSubstatus.fromJson(Map<String, dynamic> json) => DealsListOfSubstatus(
     statusId: json["statusId"],
@@ -109,11 +111,11 @@ class DealsListOfSubstatus {
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     if (reverseMap == null) {
       reverseMap = map.map((k, v) => new MapEntry(v, k));
     }

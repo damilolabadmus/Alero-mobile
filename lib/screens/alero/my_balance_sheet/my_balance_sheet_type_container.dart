@@ -1,3 +1,5 @@
+
+
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +9,9 @@ import 'package:intl/intl.dart';
 
 class MyBalanceSheetTypeContainer extends StatefulWidget {
   final balanceSheetData;
-  final String selectedStartDate;
-  String previousDate;
-  String monthEndDate;
+  final String? selectedStartDate;
+  String? previousDate;
+  String? monthEndDate;
 
   MyBalanceSheetTypeContainer({this.balanceSheetData, this.selectedStartDate, this.previousDate, this.monthEndDate});
 
@@ -45,7 +47,7 @@ class _MyBalanceSheetTypeContainerState extends State<MyBalanceSheetTypeContaine
 
   @override
   Widget build(BuildContext context) {
-    String previousProduct;
+    String? previousProduct;
     int rowIndex = 0;
 
     return Padding(
@@ -65,10 +67,10 @@ class _MyBalanceSheetTypeContainerState extends State<MyBalanceSheetTypeContaine
                 headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade50),
                 columns: [
                   DataColumn(label: Text('Category')),
-                  DataColumn(label: Text(widget.selectedStartDate == null ? '(₦\'m)' : widget.selectedStartDate + '(₦\'m)')),
-                  DataColumn(label: Text(widget.previousDate == null ? '(₦\'m)' : widget.previousDate + '(₦\'m)')),
+                  DataColumn(label: Text(widget.selectedStartDate == null ? '(₦\'m)' : widget.selectedStartDate! + '(₦\'m)')),
+                  DataColumn(label: Text(widget.previousDate == null ? '(₦\'m)' : widget.previousDate! + '(₦\'m)')),
                   DataColumn(label: Text('DTD Variance (₦\'m)')),
-                  DataColumn(label: Text(widget.monthEndDate == null ? '(₦\'m)' : widget.monthEndDate + '(₦\'m)')),
+                  DataColumn(label: Text(widget.monthEndDate == null ? '(₦\'m)' : widget.monthEndDate! + '(₦\'m)')),
                   DataColumn(label: Text('MTD Variance (₦\'m)')),
                 ],
                   rows: productTotals.keys.map((product) {
@@ -79,7 +81,7 @@ class _MyBalanceSheetTypeContainerState extends State<MyBalanceSheetTypeContaine
                         : null;
                     rowIndex++;
                     return DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
+                      color: MaterialStateProperty.resolveWith<Color?>(
                             (Set<MaterialState> states) {
                           if (states.contains(MaterialState.selected)) {
                             return Theme.of(context).colorScheme.primary.withOpacity(0.08);

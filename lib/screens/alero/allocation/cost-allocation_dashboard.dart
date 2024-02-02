@@ -1,3 +1,5 @@
+
+
 import 'package:alero/dummy/dummy.dart';
 import 'package:alero/screens/alero/components/dashboard_item.dart';
 import 'package:alero/utils/Pandora.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../../style/theme.dart' as Style;
 
 class CostAllocationDashboard extends StatefulWidget {
-  const CostAllocationDashboard({Key key}) : super(key: key);
+  const CostAllocationDashboard({Key? key}) : super(key: key);
 
   @override
   State<CostAllocationDashboard> createState() => _CostAllocationDashboardState();
@@ -83,11 +85,11 @@ class _CostAllocationDashboardState extends State<CostAllocationDashboard> {
     dashboardItems.forEach((element) {
       _dashboardItem.add(
           DashboardItem(
-            message: element['name'],
-            image: element['image'],
+            message: element['name'] as String?,
+            image: element['image'] as String?,
             color: randomColors[i].withOpacity(0.5),
             press: () {
-              onMenuClick(element['position']);
+              onMenuClick(element['position'] as int?);
             },
           ));
       i++;
@@ -97,7 +99,7 @@ class _CostAllocationDashboardState extends State<CostAllocationDashboard> {
     });
   }
 
-  onMenuClick(int element) {
+  onMenuClick(int? element) {
     switch (element) {
       case 0:
         Navigator.of(context)

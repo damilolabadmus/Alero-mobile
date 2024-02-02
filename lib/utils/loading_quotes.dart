@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/dummy/generated_quotes.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,15 +10,15 @@ import 'package:flutter_svg/svg.dart';
 class LoadingQuotes extends StatefulWidget {
   final String title;
 
-  const LoadingQuotes({@required this.title});
+  const LoadingQuotes({required this.title});
 
   @override
   State<LoadingQuotes> createState() => _LoadingQuotesState();
 }
 
 class _LoadingQuotesState extends State<LoadingQuotes> {
-  int _currentIndex;
-  Timer _timer;
+  late int _currentIndex;
+  late Timer _timer;
 
   @override
   void initState() {

@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 ProspectDetailsResponse prospectFromJson(String str) => ProspectDetailsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class ProspectDetailsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  Result result;
+  String? responseCode;
+  String? responseDescription;
+  Result? result;
 
   factory ProspectDetailsResponse.fromJson(Map<String, dynamic> json) => ProspectDetailsResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class ProspectDetailsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson() ?? {},
+    "result": result?.toJson() ?? {},
   };
 }
 
@@ -38,7 +40,7 @@ class Result {
     this.allProspects,
   });
 
-  List<UserProspect> userProspects;
+  List<UserProspect>? userProspects;
   dynamic hubProspects;
   dynamic clusterProspects;
   dynamic divisionProspects;
@@ -55,7 +57,7 @@ class Result {
   );
 
   Map<String, dynamic> toJson() => {
-    "userProspects": List<dynamic>.from(userProspects.map((x) => x.toJson())),
+    "userProspects": List<dynamic>.from(userProspects!.map((x) => x.toJson())),
     "hubProspects": hubProspects,
     "clusterProspects": clusterProspects,
     "divisionProspects": divisionProspects,
@@ -84,22 +86,22 @@ class UserProspect {
     this.introducerStaffCode,
   });
 
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress;
-  bool prospectConverted;
-  String accountNo;
-  bool edit;
-  String introducerStaffCode;
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress;
+  bool? prospectConverted;
+  String? accountNo;
+  bool? edit;
+  String? introducerStaffCode;
 
   factory UserProspect.fromJson(Map<String, dynamic> json) => UserProspect(
     prospectId: json["prospectId"],

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:async/async.dart';
@@ -7,11 +9,11 @@ import 'empty_list_item.dart';
 import 'overview_loans_list_item.dart';
 
 class LoansBodyList extends StatefulWidget {
-  final String customerId, groupId;
-  final String customerAccountNo;
+  final String? customerId, groupId;
+  final String? customerAccountNo;
 
   const LoansBodyList(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -62,11 +64,11 @@ class _LoansBodyListState extends State<LoansBodyList> {
     );
   }
 
-  Future getLoanDetails(String groupId) async {
+  Future getLoanDetails(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
       final loansData = widget.customerAccountNo == null
-          ? await apiService.getCustomerLoansData(groupId)
-          : await apiService.getCustomerLoansDataWithAccountNo(widget.customerAccountNo);
+          ? await apiService.getCustomerLoansData(groupId!)
+          : (await apiService.getCustomerLoansDataWithAccountNo(widget.customerAccountNo!))!;
       List<Widget> loanItem = [];
       if (loansData.length == 0) {
         loanItem.add(EmptyListItem(message: 'No Loans Found'));

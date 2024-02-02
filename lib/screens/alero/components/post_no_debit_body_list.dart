@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:async/async.dart';
@@ -7,11 +9,11 @@ import 'empty_list_item.dart';
 import 'overview_pnd_list_item.dart';
 
 class PostNoDebitBodyList extends StatefulWidget {
-  final String customerId, groupId;
-  final String customerAccountNo;
+  final String? customerId, groupId;
+  final String? customerAccountNo;
 
   const PostNoDebitBodyList(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -64,11 +66,11 @@ class _PostNoDebitBodyListState extends State<PostNoDebitBodyList> {
   }
 
 
-  Future getPostNoDebitData(String groupId) async {
+  Future getPostNoDebitData(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
       final pndDataWithAccountNo = widget.customerAccountNo == null
-          ? await apiService.getPNDData(groupId)
-          : await apiService.getPNDWithAccountNo(widget.customerAccountNo);
+          ? await apiService.getPNDData(groupId!)
+          : await apiService.getPNDWithAccountNo(widget.customerAccountNo!);
       List<Widget> pndItemWithAccountNo = [];
       if (pndDataWithAccountNo.length == 0) {
         pndItemWithAccountNo.add(EmptyListItem(message: 'No PND Data Found'));

@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/screens/alero/customer/trends/cooporate_trends.dart';
 import 'package:alero/screens/alero/customer/trends/customer_trends.dart';
@@ -22,7 +24,7 @@ import 'trends/customer_trends.dart';
 class CustomerDetails extends StatefulWidget {
   final String groupId;
 
-  CustomerDetails({Key key, @required this.groupId}) : super(key: key);
+  CustomerDetails({Key? key, required this.groupId}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -32,8 +34,8 @@ class CustomerDetails extends StatefulWidget {
 
 class _CustomerDetailsState extends State<CustomerDetails> {
   var apiService = AleroAPIService();
-  String customerName = " ", customerGender = " ", customerType = " ";
-  CustomerDetailsResponse customerDetailsResponse;
+  String? customerName = " ", customerGender = " ", customerType = " ";
+  CustomerDetailsResponse? customerDetailsResponse;
   final AsyncMemoizer _memoizer = AsyncMemoizer();
 
   List<String> tabTitles = ["Biodata", "Overview", "Trends"];
@@ -77,8 +79,8 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                   width: 10,
                 ),
                 Expanded(
-                    child: Text(customerName,
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    child: Text(customerName!,
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Style.Colors.blackTextColor,
                           fontFamily: 'Poppins-Bold',
                           fontWeight: FontWeight.bold),
@@ -246,7 +248,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context, false);
-          return Future.value(false);
+          // return Future.value(false);
           //returnLanding(context);
         },
         child: Padding(

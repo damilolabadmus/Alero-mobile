@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
@@ -10,7 +12,7 @@ import 'cpr_profit_loss_page.dart';
 
 class CprDashboardTableContainer extends StatefulWidget {
   final cprData;
-  final Function(bool data) cprDataNotNull;
+  final Function(bool data)? cprDataNotNull;
 
   CprDashboardTableContainer({this.cprData, this.cprDataNotNull});
 
@@ -19,7 +21,7 @@ class CprDashboardTableContainer extends StatefulWidget {
 }
 
 class _CprDashboardTableContainerState extends State<CprDashboardTableContainer> {
-  bool isColor;
+  bool? isColor;
   bool isDataLoaded = false;
 
   @override
@@ -104,7 +106,7 @@ class _CprDashboardTableContainerState extends State<CprDashboardTableContainer>
               rows: List.generate(widget.cprData.length, (index) {
                 final customerData = widget.cprData[index];
                 return DataRow(
-                  color: MaterialStateProperty.resolveWith<Color>(
+                  color: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.selected)) {
                         return Theme.of(context).colorScheme.primary.withOpacity(0.08);
@@ -132,7 +134,7 @@ class _CprDashboardTableContainerState extends State<CprDashboardTableContainer>
                         onTap: () {
                           setState(() {
                             isColor = true;
-                            widget.cprDataNotNull(true);
+                            widget.cprDataNotNull!(true);
                           });
                           Navigator.push(context, MaterialPageRoute(builder: (context) => CprProfitAndLossPage(
                               cprProfitAndLoss: widget.cprData,

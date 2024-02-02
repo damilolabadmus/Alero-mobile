@@ -1,14 +1,16 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 import 'package:flutter_svg/svg.dart';
 
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String header;
-  final Function press;
+  final String? header;
+  final Function? press;
 
   const BackAppBar({
-    Key key,
+    Key? key,
     this.header,
     this.press,
   }) : super(key: key);
@@ -20,7 +22,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       centerTitle: true,
       title: Text(
-        header,
+        header!,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Style.Colors.blackTextColor,
@@ -30,7 +32,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       leading: GestureDetector(
-        onTap: press,
+        onTap: press as void Function()?,
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: SvgPicture.asset(

@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import '../profitability_app_bar.dart';
 import 'cpr_bottom_navigation_bar.dart';
@@ -7,9 +9,9 @@ import 'package:alero/style/theme.dart' as Style;
 
 class SearchCprPage extends StatefulWidget {
   final searchedCprData;
-  bool isSearched;
+  bool? isSearched;
 
-  SearchCprPage({Key key, this.searchedCprData, this.isSearched}) : super(key: key);
+  SearchCprPage({Key? key, this.searchedCprData, this.isSearched}) : super(key: key);
 
   @override
   State<SearchCprPage> createState() => _SearchCprPageState();

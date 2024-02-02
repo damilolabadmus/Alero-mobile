@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/prospect/prospect_bio_data_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +12,9 @@ class ProspectAdd extends StatefulWidget {
 }
 
 class _ProspectAddState extends State<ProspectAdd> with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation animation1;
-  Animation animation2;
+  late AnimationController controller;
+  late Animation animation1;
+  late Animation animation2;
 
 
   @override

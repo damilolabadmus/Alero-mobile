@@ -11,7 +11,7 @@ import 'landing_search_field.dart';
 class LandingBody extends StatefulWidget {
   final String rmName;
 
-  const LandingBody({Key key, @required this.rmName}) : super(key: key);
+  const LandingBody({Key? key, required this.rmName}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +22,7 @@ class LandingBody extends StatefulWidget {
 class _LandingBodyState extends State<LandingBody> {
   final Pandora pandora = new Pandora();
   var apiService = AleroAPIService();
-  String firstName;
+  late String firstName;
   TextEditingController searchFieldController = new TextEditingController();
 
   @override

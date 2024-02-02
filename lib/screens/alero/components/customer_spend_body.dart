@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/LifeStyleCount.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_list_item.dart';
@@ -11,9 +13,9 @@ import '../../../style/theme.dart' as Style;
 import 'indicator.dart';
 
 class CustomerSpendBody extends StatefulWidget {
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
-  const CustomerSpendBody({Key key, @required this.customerId, @required this.groupId, this.customerAccountNo}) : super(key: key);
+  const CustomerSpendBody({Key? key, required this.customerId, required this.groupId, this.customerAccountNo}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -24,9 +26,9 @@ class CustomerSpendBody extends StatefulWidget {
 class _CustomerSpendBodyState extends State<CustomerSpendBody> {
   bool isSpendValue = false;
   var apiService = AleroAPIService();
-  int touchedIndex;
+  int? touchedIndex;
   bool hadLoaded = false;
-  bool hasdata;
+  late bool hasdata;
 
   List<LifestyleCount> count = [];
   List<Color> randomColors = [];
@@ -118,13 +120,13 @@ class _CustomerSpendBodyState extends State<CustomerSpendBody> {
     }
   }
 
-  Future getLifeStyleCount(String customerId) async {
+  Future getLifeStyleCount(String? customerId) async {
     if (!hadLoaded) {
       List<dynamic> lifeStyle;
       if (!isSpendValue) {
-        lifeStyle = await apiService.getLifeStyleCountData(customerId);
+        lifeStyle = await apiService.getLifeStyleCountData(customerId!);
       } else {
-        lifeStyle = await apiService.getLifeStyleValueData(customerId);
+        lifeStyle = await apiService.getLifeStyleValueData(customerId!);
       }
       count = [];
       List<Widget> _indicators = [];
@@ -200,7 +202,7 @@ class _CustomerSpendBodyState extends State<CustomerSpendBody> {
                                       if (touchEvent is FlLongPressEnd || touchEvent is FlPanEndEvent) {
                                         touchedIndex = -1;
                                       } else {
-                                        touchedIndex = pieTouchResponse.touchedSection.touchedSectionIndex;
+                                        touchedIndex = pieTouchResponse!.touchedSection!.touchedSectionIndex;
                                       }
                                     });
                                   }
@@ -242,7 +244,7 @@ class _CustomerSpendBodyState extends State<CustomerSpendBody> {
     );
   }
 
-  List<PieChartSectionData> showingCountSections() {
+  List<PieChartSectionData>? showingCountSections() {
     print(count.length);
     if (count.isNotEmpty)
       return List.generate(count.length, (i) {
@@ -260,6 +262,7 @@ class _CustomerSpendBodyState extends State<CustomerSpendBody> {
               color: randomColors[i],
             ));
       });
+    return null;
   }
 
   void generateColors(int length) {

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/CprResponse.dart';
 import 'package:alero/screens/alero/profitability/cpr/cpr_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/profitability/cpr/cpr_dashboard_table_container.dart';
@@ -9,9 +11,9 @@ import '../profitability_app_bar.dart';
 import 'cpr_search_field.dart';
 
 class CustomerProfitabilityReportPage extends StatefulWidget {
-  final String searchQuery;
+  final String? searchQuery;
 
-  CustomerProfitabilityReportPage({Key key, @required this.searchQuery}) : super(key: key);
+  CustomerProfitabilityReportPage({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
   State<CustomerProfitabilityReportPage> createState() =>
@@ -23,8 +25,8 @@ class _CustomerProfitabilityReportPageState extends State<CustomerProfitabilityR
   List<String> tabTitles = ["Top Customer", "Bottom Customer"];
   bool dataLoaded = false;
   bool isInitialLoading = true;
-  bool isSearchCustomer;
-  bool cprDataNotNull;
+  bool? isSearchCustomer;
+  bool? cprDataNotNull;
 
   List<CprResponse> completeTopCprData = [];
   List<CprResponse> completeBottomCprData = [];

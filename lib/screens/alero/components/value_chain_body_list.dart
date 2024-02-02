@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/value_chain_list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +9,10 @@ import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'empty_list_item.dart';
 
 class ValueChainBodyList extends StatefulWidget {
-   final String customerId, groupId;
+   final String? customerId, groupId;
 
    const ValueChainBodyList(
-       {Key key, @required this.customerId, @required this.groupId})
+       {Key? key, required this.customerId, required this.groupId})
        : super(key: key);
 
    @override
@@ -57,9 +59,9 @@ return FutureBuilder(
  future: getValueChainData(widget.customerId),);}
 
 // No specificity for value chain
-Future getValueChainData(String customerId) async {
+Future getValueChainData(String? customerId) async {
     return this._valueChain.runOnce(() async {
-        final valueChainData = await apiService.getValueChainData(customerId);
+        final valueChainData = await apiService.getValueChainData(customerId!);
         print(valueChainData);
         List<Widget> valueChainItem = [];
         if (valueChainData.length == 0) {

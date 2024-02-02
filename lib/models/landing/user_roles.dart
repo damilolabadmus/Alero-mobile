@@ -1,21 +1,23 @@
+
+
 import 'rights.dart';
 
 class UserRoles {
-  String userRoleId;
-  String userId;
-  String appUser;
-  String roleId;
-  String roleName;
-  String role;
-  String roleFilter;
+  String? userRoleId;
+  String? userId;
+  String? appUser;
+  String? roleId;
+  String? roleName;
+  String? role;
+  String? roleFilter;
   List<Rights> rights = [];
-  String activeStat;
-  String makerId;
-  String makerDatetime;
-  String modifierId;
-  String modifierDatetime;
-  String expiryDate;
-  bool updateRelated;
+  String? activeStat;
+  String? makerId;
+  String? makerDatetime;
+  String? modifierId;
+  String? modifierDatetime;
+  String? expiryDate;
+  bool? updateRelated;
 
   UserRoles.fromJson(Map<String, dynamic> json) {
     userRoleId = json['userRoleId'];
@@ -26,8 +28,7 @@ class UserRoles {
     role = json['role'];
     roleFilter = json['roleFilter'];
     if (json['rights'] != null) {
-      // ignore: deprecated_member_use
-      rights = new List<Rights>();
+      rights = <Rights>[];
       json['rights'].forEach((v) {
         rights.add(new Rights.fromJson(v));
       });

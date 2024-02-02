@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/dashboard/completed_deals_by_product.dart';
 import 'package:alero/screens/alero/dashboard/deal_currency_chart.dart';
 import 'package:alero/screens/alero/dashboard/deal_product_type_chart.dart';
@@ -7,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
 
 class CallManagementDashboard extends StatefulWidget {
-  final String data;
+  final String? data;
 
-  CallManagementDashboard({Key key, @required this.data}) : super(key: key);
+  CallManagementDashboard({Key? key, this.data}) : super(key: key);
 
   @override
   _CallManagementDashboardState createState() => _CallManagementDashboardState();

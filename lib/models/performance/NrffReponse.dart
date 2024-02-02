@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<NrffResponse> nrffResponseFromJson(String str) => List<NrffResponse>.from(json.decode(str).map((x) => NrffResponse.fromJson(x)));
@@ -5,7 +7,7 @@ List<NrffResponse> nrffResponseFromJson(String str) => List<NrffResponse>.from(j
 String nrffResponseToJson(List<NrffResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class NrffResponse {
-  String product;
+  String? product;
   dynamic actualValue;
   dynamic averageValue;
   dynamic interestExpense;

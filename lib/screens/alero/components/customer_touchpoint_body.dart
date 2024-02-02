@@ -1,3 +1,5 @@
+
+
 import 'dart:io';
 import 'package:alero/models/customer/TrendTouchPointData.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -14,10 +16,10 @@ import 'package:async/async.dart';
 import 'empty_list_item.dart';
 
 class CustomerTouchPointBody extends StatefulWidget {
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
   const CustomerTouchPointBody(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -27,11 +29,11 @@ class CustomerTouchPointBody extends StatefulWidget {
 }
 
 class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   final ioc = new HttpClient();
   final Pandora pandora = new Pandora();
-  String prefToken;
+  String? prefToken;
 
   var preAuthHeaders = {
     "content-type": "application/json",
@@ -47,7 +49,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
   var postAuthHeaders = {
     "content-type": "application/json",
     "accept": "application/json",
-    "Authorization": "Bearer " + Global.API_TOKEN,
+    "Authorization": "Bearer " + Global.API_TOKEN!,
     "AppId": Global.AppId,
     "DeviceIp": Global.DeviceIp,
     "DeviceManufacturer": Global.DeviceManufacturer,
@@ -59,7 +61,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
   bool isTouchPointValue = false;
   bool isTypeValue = false;
   var apiService = AleroAPIService();
-  int touchedIndex;
+  int? touchedIndex;
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
 
   List<TrendTouchPointData> tpData = [];
@@ -194,11 +196,11 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     }
   }
 
-  Future getTouchPoints(String groupId) async {
+  Future getTouchPoints(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
       var lifeStyle = widget.customerAccountNo == null ? await apiService
-          .getTouchPointData(groupId)
-          : await apiService.getAccountTouchPointData(widget.customerAccountNo);
+          .getTouchPointData(groupId!)
+          : await apiService.getAccountTouchPointData(widget.customerAccountNo!);
       tpData = [];
       List<Widget> _indicators = [];
       if (lifeStyle.length == 0) {
@@ -265,7 +267,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
                   xValueMapper: (TrendTouchPointData data, _) =>
                   data.transactionChannel,
                   yValueMapper: (TrendTouchPointData data, _) => (!isTouchPointValue) ?
-                  double.parse(data.transactionVolume) : double.parse(data.touchPointCount),
+                  double.parse(data.transactionVolume!) : double.parse(data.touchPointCount!),
                   strokeColor: Colors.white,
                   strokeWidth: kPadding1,
                   enableTooltip: yes,

@@ -1,3 +1,5 @@
+
+
 import '../../../style/theme.dart' as Style;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,12 +7,12 @@ import 'package:intl/intl.dart';
 import '../../../utils/Pandora.dart';
 
 class OverviewInvestmentsListItem extends StatelessWidget {
-  final String investmentType, investmentDuration, maturityDate, bookedDate;
-  final bool active;
-  final double balance;
+  final String? investmentType, investmentDuration, maturityDate, bookedDate;
+  final bool? active;
+  final double? balance;
 
   const OverviewInvestmentsListItem(
-      {Key key,
+      {Key? key,
         this.bookedDate,
         this.investmentType,
         this.investmentDuration,
@@ -22,8 +24,8 @@ class OverviewInvestmentsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = new NumberFormat.currency(symbol: "");
-    var bDate = DateTime.parse(bookedDate + 'Z');
-    var mDate = DateTime.parse(maturityDate + 'Z');
+    var bDate = DateTime.parse(bookedDate! + 'Z');
+    var mDate = DateTime.parse(maturityDate! + 'Z');
 
     return Card(
       color: Style.Colors.overviewCardBg,
@@ -54,19 +56,19 @@ class OverviewInvestmentsListItem extends StatelessWidget {
                   highlightColor: Style.Colors.mainColor,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: active
+                        color: active!
                             ? Style.Colors.overviewActiveBg
                             : Style.Colors.overviewInactiveBg,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: active
+                          color: active!
                               ? Style.Colors.overviewActiveBg
                               : Style.Colors.overviewInactiveBg,
                         )),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       child: Text(
-                        active ? 'active' : 'inactive',
+                        active! ? 'active' : 'inactive',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 7.0,
@@ -84,7 +86,7 @@ class OverviewInvestmentsListItem extends StatelessWidget {
             ),
             Row(
               children: [
-                Text(investmentType,
+                Text(investmentType!,
                     style: TextStyle(
                       color: Style.Colors.blackTextColor,
                       fontSize: 12.0,
@@ -99,7 +101,7 @@ class OverviewInvestmentsListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(investmentDuration,
+                Text(investmentDuration!,
                     style: TextStyle(
                       color: Style.Colors.overviewTextLightGrey,
                       fontSize: 9.0,

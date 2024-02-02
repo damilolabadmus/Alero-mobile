@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/components/screen_iteraction_listener.dart';
 import 'package:alero/utils/Global.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
             ],
             builder: OneContext().builder,
             home: LoginPage()),
-        timeout: Global.APP_TIMEOUT,
+        timeout: Global.APP_TIMEOUT!,
         route: '');
   }
 }

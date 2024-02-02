@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealHistoryResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/models/call/DealsStatusResponse.dart';
@@ -10,7 +12,7 @@ import 'package:async/async.dart';
 import 'package:intl/intl.dart';
 
 class CompletedPage extends StatefulWidget {
-  const CompletedPage({Key key}) : super(key: key);
+  const CompletedPage({Key? key}) : super(key: key);
 
   @override
   _CompletedPageState createState() => _CompletedPageState();
@@ -21,15 +23,15 @@ class _CompletedPageState extends State<CompletedPage> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<CompletedDeals> completedStatus = [];
-  DealsStatusResponse completedDeals;
-  int index;
+  DealsStatusResponse? completedDeals;
+  int? index;
 
   Future<dynamic> getCompleted() async {
     return this._asyncMemoizer.runOnce(() async {
       var _completed = await apiService.getAllDeals();
       setState(() {
         completedDeals = _completed;
-        completedStatus = completedDeals.result.completedDeals.toList();
+        completedStatus = completedDeals!.result!.completedDeals!.toList();
       });
       print(completedStatus[0].customerName);
     });
@@ -111,13 +113,13 @@ class _CompletedPageState extends State<CompletedPage> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsCompleted.entryDate)),
+                                        PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsCompleted.entryDate!)),
                                         PipelineDealsHeader(title: dealsCompleted.customerName),
-                                        dealsCompleted.accountNo == null || dealsCompleted.accountNo.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: dealsCompleted.accountNo),
+                                        dealsCompleted.accountNo == null || dealsCompleted.accountNo!.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: dealsCompleted.accountNo),
                                         PipelineDealsHeader(title: dealsCompleted.customerType),
                                         PipelineDealsHeader(title: dealsCompleted.transactionType),
-                                        PipelineDealsHeader(title: dealsCompleted.currency + ' ' + dealsCompleted.amount.toString()),
-                                        PipelineDealsHeader(title:  DateFormat('MMM d, yyyy').format(dealsCompleted.endDate)),
+                                        PipelineDealsHeader(title: dealsCompleted.currency! + ' ' + dealsCompleted.amount.toString()),
+                                        PipelineDealsHeader(title:  DateFormat('MMM d, yyyy').format(dealsCompleted.endDate!)),
                                         PipelineDealsHeader(title: dealsCompleted.turnAroundTime.toString()),
                                       ],
                                     ),
@@ -137,16 +139,16 @@ class _CompletedPageState extends State<CompletedPage> {
     );
   }
 
-  DealHistoryResponse dealHistory;
-  List<StatusHistory> historyDate = [];
-  HistoryResult dateCreated;
+  DealHistoryResponse? dealHistory;
+  List<StatusHistory>? historyDate = [];
+  HistoryResult? dateCreated;
 
   Future<dynamic> getDealTimeline(index) async {
-    var _dealTimeline = await apiService.getDealStatusHistory(completedStatus[index].pipelineId);
+    var _dealTimeline = await apiService.getDealStatusHistory(completedStatus[index].pipelineId!);
     setState(() {
       dealHistory = _dealTimeline;
-      historyDate = dealHistory.result.statusHistory;
-      dateCreated = dealHistory.result;
+      historyDate = dealHistory!.result!.statusHistory;
+      dateCreated = dealHistory!.result;
     });
   }
 
@@ -175,7 +177,7 @@ class _CompletedPageState extends State<CompletedPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(completedStatus[index].totalRevenue.toInt().toString(),
+                  Text(completedStatus[index].totalRevenue!.toInt().toString(),
                     style: kBlueBottomSheetName),
                   Text('TOTAL REVENUE',
                     style: kCompletedTextStyle.copyWith(fontSize: 13)),
@@ -184,7 +186,7 @@ class _CompletedPageState extends State<CompletedPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(completedStatus[index].grossRevenue.toInt().toString(),
+                  Text(completedStatus[index].grossRevenue!.toInt().toString(),
                     style: kBlueBottomSheetName),
                   Text('GROSS REVENUE',
                     style: kCompletedTextStyle.copyWith(fontSize: 13)),
@@ -199,7 +201,7 @@ class _CompletedPageState extends State<CompletedPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(completedStatus[index].feesRate.toInt().toString(),
+                  Text(completedStatus[index].feesRate!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('FEES RATE',
                     style: kCompletedTextStyle),
@@ -208,7 +210,7 @@ class _CompletedPageState extends State<CompletedPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(completedStatus[index].interestRate.toInt().toString(),
+                  Text(completedStatus[index].interestRate!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('INTEREST RATE',
                     style: kCompletedTextStyle),
@@ -217,7 +219,7 @@ class _CompletedPageState extends State<CompletedPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(completedStatus[index].netInterestMargin.toInt().toString(),
+                  Text(completedStatus[index].netInterestMargin!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('NET INTEREST MARGIN',
                     style: kCompletedTextStyle),
@@ -247,11 +249,11 @@ class _CompletedPageState extends State<CompletedPage> {
             height: 17.0,
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: historyDate.length,
+                itemCount: historyDate!.length,
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      Text(DateFormat('MMM d, yyyy').format(historyDate[index].timeIn),
+                      Text(DateFormat('MMM d, yyyy').format(historyDate![index].timeIn!),
                         style: kCompletedSubName),
                       Row(
                         children: [
@@ -260,7 +262,7 @@ class _CompletedPageState extends State<CompletedPage> {
                             child: Text('Updated status to ',
                               style: kBottomSheetSubName,),
                           ),
-                          Text(historyDate[index].dealStatus.toString(),
+                          Text(historyDate![index].dealStatus.toString(),
                             style: kBottomSheetSubName.copyWith(fontSize: 10),),
                         ],
                       ),
@@ -278,7 +280,7 @@ class _CompletedPageState extends State<CompletedPage> {
             height: 17.0,
             child: Row(
               children: [
-                Text(DateFormat('MMM d, yyyy').format(dateCreated.entryDate), style: kCompletedSubName),
+                Text(DateFormat('MMM d, yyyy').format(dateCreated!.entryDate!), style: kCompletedSubName),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
                   child: Text('Pipeline Created',

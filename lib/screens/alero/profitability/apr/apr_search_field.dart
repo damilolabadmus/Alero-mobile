@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/AprResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/profitability/apr/search_apr_page.dart';
@@ -9,7 +11,7 @@ import '../../../../style/theme.dart' as Style;
 class AprSearchField extends StatefulWidget {
   final Function(bool query) searchAprCallback;
 
-  AprSearchField({@required this.searchAprCallback});
+  AprSearchField({required this.searchAprCallback});
 
   @override
   State<AprSearchField> createState() => _AprSearchFieldState();

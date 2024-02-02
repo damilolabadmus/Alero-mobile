@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankPerformanceData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -6,9 +8,9 @@ import 'package:async/async.dart';
 
 class BankPerformanceItems extends StatefulWidget {
 
-  final String groupId;
+  final String? groupId;
 
-  const BankPerformanceItems({Key key, this.groupId})
+  const BankPerformanceItems({Key? key, this.groupId})
       : super(key: key);
 
   @override
@@ -53,10 +55,10 @@ class _BankPerformanceItemsState extends State<BankPerformanceItems> {
 
       setState(() {
         for (int i = 0; i < bData.length; i++) {
-          totalCustomers = totalCustomers + bData[i].customerCount;
-          ytdCustomers = ytdCustomers + bData[i].ytdCustomerCount;
-          totalAccounts = totalAccounts + bData[i].accountCount;
-          ytdAccounts = ytdAccounts + bData[i].ytdAccountCount;
+          totalCustomers = totalCustomers + bData[i].customerCount!;
+          ytdCustomers = ytdCustomers + bData[i].ytdCustomerCount!;
+          totalAccounts = totalAccounts + bData[i].accountCount!;
+          ytdAccounts = ytdAccounts + bData[i].ytdAccountCount!;
         }
       });
       return bankPerformance;

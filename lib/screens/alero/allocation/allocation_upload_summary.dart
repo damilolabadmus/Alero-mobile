@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/CostAllocationUploadResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/call_app_bar.dart';
@@ -7,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'allocation_upload_table_container.dart';
 
 class AllocationUploadSummary extends StatefulWidget {
-  final String userId;
+  final String? userId;
 
-  AllocationUploadSummary({@required this.userId});
+  AllocationUploadSummary({required this.userId});
 
   @override
   State<AllocationUploadSummary> createState() => _AllocationUploadSummaryState();
@@ -17,7 +19,7 @@ class AllocationUploadSummary extends StatefulWidget {
 
 class _AllocationUploadSummaryState extends State<AllocationUploadSummary> {
   List<CostAllocationUploadResponse> allocationUpload = [];
-  Function search;
+  Function? search;
   var apiService = AleroAPIService();
 
   @override
@@ -31,6 +33,7 @@ class _AllocationUploadSummaryState extends State<AllocationUploadSummary> {
     setState(() {
       allocationUpload = _upload;
     });
+    return _upload;
   }
 
   @override

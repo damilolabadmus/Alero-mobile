@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/CustomerDetailsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_list_item.dart';
@@ -8,10 +10,10 @@ import '../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
 class ViewAllAccounts extends StatefulWidget {
-  final String groupId;
-  final Function(String accountNo) setAccount;
+  final String? groupId;
+  final Function(String? accountNo) setAccount;
 
-  ViewAllAccounts(this.groupId, {@required this.setAccount});
+  ViewAllAccounts(this.groupId, {required this.setAccount});
 
   @override
   State<ViewAllAccounts> createState() => _ViewAllAccountsState();
@@ -20,18 +22,18 @@ class ViewAllAccounts extends StatefulWidget {
 class _ViewAllAccountsState extends State<ViewAllAccounts> {
   final AsyncMemoizer _memoizer = AsyncMemoizer();
   var apiService = AleroAPIService();
-  String customerName = " ", customerGender = " ", customerType = " ";
-  CustomerDetailsResponse customerDetailsResponse;
+  String? customerName = " ", customerGender = " ", customerType = " ";
+  CustomerDetailsResponse? customerDetailsResponse;
   List<Widget> accountsItem = [];
-  String selectedAccount;
-  String groupId;
+  String? selectedAccount;
+  String? groupId;
   int index = 0;
 
   @override
   void initState() {
     super.initState();
     getCustomerDetails(widget.groupId);
-    getBankingData(widget.groupId);
+    getBankingData(widget.groupId!);
   }
 
   Future getBankingData(String customerId) async {
@@ -110,10 +112,10 @@ class _ViewAllAccountsState extends State<ViewAllAccounts> {
     return accountData;
   }
 
-  Future getCustomerDetails(String groupId) async {
+  Future getCustomerDetails(String? groupId) async {
     print(groupId);
     return this._memoizer.runOnce(() async {
-      final customerDetails = await apiService.getCustomerDetails(groupId);
+      final customerDetails = await apiService.getCustomerDetails(groupId!);
       print(customerDetails);
       updateCustomerDetails(customerDetails);
       return customerDetails;
@@ -209,7 +211,7 @@ class _ViewAllAccountsState extends State<ViewAllAccounts> {
 
 class AccountListDialog extends StatefulWidget {
   final List accountsItem;
-  final String groupId;
+  final String? groupId;
 
   AccountListDialog(this.accountsItem, this.groupId);
 
@@ -218,7 +220,7 @@ class AccountListDialog extends StatefulWidget {
 }
 
 class _AccountListDialogState extends State<AccountListDialog> {
-  bool loaded;
+  bool? loaded;
   int index = 0;
 
   @override

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealHistoryResponse.dart';
 import 'package:alero/models/call/DealsStatusResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -20,21 +22,21 @@ class DisbursementPage extends StatefulWidget {
 }
 
 class _DisbursementPageState extends State<DisbursementPage> {
-  String customerName;
-  String prospectName;
+  String? customerName;
+  String? prospectName;
 
-  String pipelineId;
-  String status;
-  String subStatus;
-  String amount;
-  String transactionComment;
+  String? pipelineId;
+  String? status;
+  String? subStatus;
+  String? amount;
+  String? transactionComment;
   String disbursementType = '';
   double emptyAmount = 0.0;
 
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<DealsForDisbursement> disbursedStatus = [];
-  DealsStatusResponse disbursementDeals;
+  DealsStatusResponse? disbursementDeals;
 
   @override
   void initState() {
@@ -47,7 +49,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
       var _disbursement = await apiService.getAllDeals();
       setState(() {
         disbursementDeals = _disbursement;
-        disbursedStatus = disbursementDeals.result.dealsForDisbursement.toList();
+        disbursedStatus = disbursementDeals!.result!.dealsForDisbursement!.toList();
       });
     });
   }
@@ -125,15 +127,15 @@ class _DisbursementPageState extends State<DisbursementPage> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsForDisbursement.entryDate)),
+                                          PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsForDisbursement.entryDate!)),
                                           PipelineDealsHeader(title: dealsForDisbursement.customerName),
-                                          dealsForDisbursement.accountNo == null || dealsForDisbursement.accountNo.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: dealsForDisbursement.accountNo),
+                                          dealsForDisbursement.accountNo == null || dealsForDisbursement.accountNo!.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: dealsForDisbursement.accountNo),
                                           PipelineDealsHeader(title: dealsForDisbursement.customerType),
                                           PipelineDealsHeader(title: dealsForDisbursement.transactionType),
-                                          PipelineDealsHeader(title: dealsForDisbursement.currency + ' ' + dealsForDisbursement.amount.toString()),
-                                          PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsForDisbursement.expectedDealDate)),
-                                          PipelineDealsHeader(title: dealsForDisbursement.currency + ' ' + (dealsForDisbursement.disbursedAmount == null ? emptyAmount.toString() : dealsForDisbursement.disbursedAmount.toString())),
-                                          dealsForDisbursement.status== null || dealsForDisbursement.status.isEmpty ? DealsUnset(text: 'unset', color: Colors.amber.shade200, width: 47) :  PipelineDealsHeader(title: dealsForDisbursement.status),
+                                          PipelineDealsHeader(title: dealsForDisbursement.currency! + ' ' + dealsForDisbursement.amount.toString()),
+                                          PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(dealsForDisbursement.expectedDealDate!)),
+                                          PipelineDealsHeader(title: dealsForDisbursement.currency! + ' ' + (dealsForDisbursement.disbursedAmount == null ? emptyAmount.toString() : dealsForDisbursement.disbursedAmount.toString())),
+                                          dealsForDisbursement.status== null || dealsForDisbursement.status!.isEmpty ? DealsUnset(text: 'unset', color: Colors.amber.shade200, width: 47) :  PipelineDealsHeader(title: dealsForDisbursement.status),
                                           PipelineTabViewIcon(
                                             onPressed: () {
                                               showAlertDialogForDisburse(context, index);
@@ -158,18 +160,18 @@ class _DisbursementPageState extends State<DisbursementPage> {
     );
   }
 
-  DealHistoryResponse dealHistory;
-  List<StatusHistory> dealStatusHistory = [];
-  List<DisbursementHistory> disbursedHistory = [];
-  HistoryResult dateCreated;
+  DealHistoryResponse? dealHistory;
+  List<StatusHistory>? dealStatusHistory = [];
+  List<DisbursementHistory>? disbursedHistory = [];
+  HistoryResult? dateCreated;
 
   Future<dynamic> getDealTimeline(index) async {
-    var _dealTimeline = await apiService.getDealStatusHistory(disbursedStatus[index].pipelineId);
+    var _dealTimeline = await apiService.getDealStatusHistory(disbursedStatus[index].pipelineId!);
     setState(() {
       dealHistory = _dealTimeline;
-      dealStatusHistory = dealHistory.result.statusHistory;
-      disbursedHistory = dealHistory.result.disbursementHistory;
-      dateCreated = dealHistory.result;
+      dealStatusHistory = dealHistory!.result!.statusHistory;
+      disbursedHistory = dealHistory!.result!.disbursementHistory;
+      dateCreated = dealHistory!.result;
     });
   }
 
@@ -198,7 +200,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(disbursedStatus[index].totalRevenue.toInt().toString(),
+                  Text(disbursedStatus[index].totalRevenue!.toInt().toString(),
                     style: kBlueBottomSheetName),
                   Text('TOTAL REVENUE',
                     style: kDisburseTextStyle),
@@ -207,7 +209,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(disbursedStatus[index].grossRevenue.toInt().toString(),
+                  Text(disbursedStatus[index].grossRevenue!.toInt().toString(),
                     style: kBlueBottomSheetName),
                   Text('GROSS REVENUE',
                     style: kDisburseTextStyle),
@@ -222,7 +224,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(disbursedStatus[index].feesRate.toInt().toString(),
+                  Text(disbursedStatus[index].feesRate!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('FEES RATE',
                     style: kCompletedTextStyle),
@@ -231,7 +233,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(disbursedStatus[index].interestRate.toInt().toString(),
+                  Text(disbursedStatus[index].interestRate!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('INTEREST RATE',
                     style: kCompletedTextStyle),
@@ -240,7 +242,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(disbursedStatus[index].netInterestMargin.toInt().toString(),
+                  Text(disbursedStatus[index].netInterestMargin!.toInt().toString(),
                     style: KCompletedOtherStyle),
                   Text('NET INTEREST MARGIN',
                     style: TextStyle(fontSize: 11,
@@ -272,7 +274,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
             children: [
               Column(
                 children: [
-                  Text(DateFormat('MMM d, yyyy').format(disbursedHistory[index].timeIn),
+                  Text(DateFormat('MMM d, yyyy').format(disbursedHistory![index].timeIn!),
                     style: kDisburseBlueStyle),
                 ],
               ),
@@ -281,9 +283,9 @@ class _DisbursementPageState extends State<DisbursementPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Disbursed ' + disbursedHistory[index].disbursedAmount.toString(),
+                    Text('Disbursed ' + disbursedHistory![index].disbursedAmount.toString(),
                       style: kDisburseStyle),
-                    Text('Outstanding - ' + disbursedHistory[index].outstandingAmount.toString(),
+                    Text('Outstanding - ' + disbursedHistory![index].outstandingAmount.toString(),
                       style: kDisburseStyle),
                   ],
                 ),
@@ -303,11 +305,11 @@ class _DisbursementPageState extends State<DisbursementPage> {
             height: 17.0,
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: dealStatusHistory.length,
+                itemCount: dealStatusHistory!.length,
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      Text(DateFormat('MMM d, yyyy').format(disbursedHistory[index].timeIn), style: kCompletedSubName),
+                      Text(DateFormat('MMM d, yyyy').format(disbursedHistory![index].timeIn!), style: kCompletedSubName),
                       Row(
                         children: [
                           Padding(
@@ -315,7 +317,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
                             child: Text('Updated Disbursement to ',
                               style: kBottomSheetSubName,),
                           ),
-                          Text(disbursedHistory[index].disbursementStatus.toString(),
+                          Text(disbursedHistory![index].disbursementStatus.toString(),
                             style: kBottomSheetSubName.copyWith(fontSize: 10),),
                         ],
                       ),
@@ -333,7 +335,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
             height: 17.0,
             child: Row(
               children: [
-                Text(DateFormat('MMM d, yyyy').format(dateCreated.entryDate), style: kCompletedSubName),
+                Text(DateFormat('MMM d, yyyy').format(dateCreated!.entryDate!), style: kCompletedSubName),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
                   child: Text('Pipeline Created',
@@ -355,13 +357,13 @@ class _DisbursementPageState extends State<DisbursementPage> {
             height: 17.0,
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: dealStatusHistory.length,
+                itemCount: dealStatusHistory!.length,
                 itemBuilder: (context, index) {
                   return Container(
                     height: 20,
                     child: Row(
                       children: [
-                        Text(DateFormat('MMM d, yyyy').format(dealStatusHistory[index].timeIn), style: kCompletedSubName),
+                        Text(DateFormat('MMM d, yyyy').format(dealStatusHistory![index].timeIn!), style: kCompletedSubName),
                         Row(
                           children: [
                             Padding(
@@ -369,7 +371,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
                               child: Text('Updated status to ',
                                 style: kBottomSheetSubName,),
                             ),
-                            Text(dealStatusHistory[index].dealStatus.toString(),
+                            Text(dealStatusHistory![index].dealStatus.toString(),
                               style: kBottomSheetSubName.copyWith(fontSize: 10),),
                           ],
                         ),
@@ -388,7 +390,7 @@ class _DisbursementPageState extends State<DisbursementPage> {
             height: 17.0,
             child: Row(
               children: [
-                Text(DateFormat('MMM d, yyyy').format(dateCreated.entryDate), style: kCompletedSubName),
+                Text(DateFormat('MMM d, yyyy').format(dateCreated!.entryDate!), style: kCompletedSubName),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
                   child: Text('Pipeline Created',

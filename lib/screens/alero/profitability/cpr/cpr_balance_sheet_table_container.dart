@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/models/performance/CprResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -12,7 +14,7 @@ import 'package:flutter/widgets.dart';
 class CprBalanceSheetTableContainer extends StatefulWidget {
   final cprData;
 
-  CprBalanceSheetTableContainer({@required this.cprData});
+  CprBalanceSheetTableContainer({required this.cprData});
   @override
   State<CprBalanceSheetTableContainer> createState() => _CprBalanceSheetTableContainerState();
 }
@@ -21,14 +23,14 @@ class _CprBalanceSheetTableContainerState extends State<CprBalanceSheetTableCont
 
   bool isHover = false;
   bool visible = false;
-  int dateIndex;
+  int? dateIndex;
 
   List<ExcludedTab> balanceSheetData = [];
 
   Future<List<ExcludedTab>> getCprBalanceSheetData() async {
     List<CprResponse> _cprData = widget.cprData;
     setState(() {
-      balanceSheetData = _cprData[1]?.excludedTab;
+      balanceSheetData = _cprData[1].excludedTab;
 
       String balanceSheetIncomeType = balanceSheetData[1].incomeType.toString();
       String bsCurrentMonthBudgetKey = balanceSheetData[1].currentMonthBudget.keys.toString();
@@ -99,7 +101,7 @@ class _CprBalanceSheetTableContainerState extends State<CprBalanceSheetTableCont
                     rows: List.generate(balanceSheetData.length, (index) {
                       final customerData = balanceSheetData[index];
                       return DataRow(
-                        color: MaterialStateProperty.resolveWith<Color>(
+                        color: MaterialStateProperty.resolveWith<Color?>(
                                 (Set<MaterialState> states) {
                               if (states.contains(MaterialState.selected)) {
                                 return Theme.of(context).colorScheme.primary.withOpacity(0.08);

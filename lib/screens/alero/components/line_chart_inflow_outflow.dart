@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/TransactionFlow.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,7 @@ class LineChartInflowOutFlow extends StatefulWidget {
   final Color color;
 
   const LineChartInflowOutFlow(
-      {Key key, @required this.tfData, @required this.color})
+      {Key? key, required this.tfData, required this.color})
       : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class LineChartInflowOutFlow extends StatefulWidget {
 }
 
 class LineChartInflowOutFlowState extends State<LineChartInflowOutFlow> {
-  List<TransactionFlow> flowChart;
+  List<TransactionFlow>? flowChart;
 
   @override
   void initState() {

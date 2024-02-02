@@ -1,11 +1,13 @@
+
+
 import 'package:flutter/material.dart';
 
 class DealsUnset extends StatelessWidget {
   final String text;
-  final Color color;
-  final double width;
+  final Color? color;
+  final double? width;
 
-  DealsUnset({@required this.text, this.color, this.width});
+  DealsUnset({required this.text, this.color, this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class DealsUnset extends StatelessWidget {
             decoration: BoxDecoration(color: color,
                 borderRadius: BorderRadius.circular(10)),
             child: TextButton(
+              onPressed: () {  },
               child: Text(text,
                 style: TextStyle(
                   color: Colors.black45,

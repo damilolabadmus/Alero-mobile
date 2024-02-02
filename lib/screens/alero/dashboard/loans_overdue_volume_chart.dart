@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankLoanData.dart';
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -16,13 +18,13 @@ class LoansOverdueVolumeChart extends StatefulWidget {
 }
 
 class _LoansOverdueVolumeChartState extends State<LoansOverdueVolumeChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   var apiService = AleroAPIService();
   List<LoanClassificationStatus> loData = [];
   String loanStatus = '';
   int loanStatusCount = 0;
-  List<LoanClassificationStatus> loanOverdue;
+  List<LoanClassificationStatus?>? loanOverdue;
 
   @override
   void initState() {
@@ -33,7 +35,7 @@ class _LoansOverdueVolumeChartState extends State<LoansOverdueVolumeChart> {
 
   getLoansOverdueStatus() async {
     var test = await apiService.getLoanOverdue();
-    loanOverdue = test as List<LoanClassificationStatus>;
+    loanOverdue = test as List<LoanClassificationStatus?>;
     return loanOverdue;
   }
 
@@ -68,10 +70,10 @@ class _LoansOverdueVolumeChartState extends State<LoansOverdueVolumeChart> {
               tooltipBehavior: _tooltipBehavior,
               primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
               series: <CartesianSeries>[
-                StackedColumnSeries<LoanClassificationStatus, String>(
-                  dataSource: loanOverdue,
-                  xValueMapper: (LoanClassificationStatus data, _) => data.loanStatus,
-                  yValueMapper: (LoanClassificationStatus data, _) => data.loanStatusCount,
+                StackedColumnSeries<LoanClassificationStatus?, String>(
+                  dataSource: loanOverdue ?? [],
+                  xValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatus,
+                  yValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatusCount,
                   enableTooltip: yes,
                 ),],),
           ),);

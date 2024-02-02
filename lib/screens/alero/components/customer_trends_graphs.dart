@@ -1,13 +1,15 @@
+
+
 import 'package:alero/screens/alero/components/transaction_inflow_card.dart';
 import 'package:alero/screens/alero/components/transaction_outflow_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomerTrendsGraphs extends StatefulWidget {
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
   const CustomerTrendsGraphs(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,9 +7,9 @@ import 'package:flutter/material.dart';
 import '../../../../style/theme.dart' as Style;
 
 class CostAllocationTitleContainer extends StatelessWidget {
-  final String title;
-  String expensePeriod;
-  Function search;
+  final String? title;
+  String? expensePeriod;
+  Function? search;
 
   CostAllocationTitleContainer({this.title, this.expensePeriod, this.search});
 
@@ -19,7 +21,7 @@ class CostAllocationTitleContainer extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.topLeft,
-            child: Text(title,
+            child: Text(title!,
               style: TextStyle(
                 color: Colors.lightBlue,
                 fontSize: 18.0,
@@ -36,7 +38,7 @@ class CostAllocationTitleContainer extends StatelessWidget {
                 width: 155,
                 child: CallTextField(
                   fillColor: Colors.grey.shade200,
-                  validator: (String value) {
+                  validator: (String? value) {
                     if (value == null) {
                       return 'Nothing has been picked yet.';
                     }
@@ -57,7 +59,7 @@ class CostAllocationTitleContainer extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       icon: Icon(Icons.arrow_drop_down,
                           color: Style.Colors.buttonColor
-                      ),
+                      ), onPressed: () {  },
                   ),
                 ),
               ),
@@ -82,7 +84,7 @@ class CostAllocationTitleContainer extends StatelessWidget {
                           ),),
                       ),
                     ],),
-                  onPressed: search,
+                  onPressed: search as void Function()?,
                 ),
               )
             ],

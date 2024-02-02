@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/models/performance/AprResponse.dart';
 import 'package:alero/models/performance/CprResponse.dart';
@@ -13,7 +15,7 @@ import 'package:flutter/widgets.dart';
 class AprBalanceSheetTableContainer extends StatefulWidget {
   final aprData;
 
-  AprBalanceSheetTableContainer({@required this.aprData});
+  AprBalanceSheetTableContainer({required this.aprData});
   @override
   State<AprBalanceSheetTableContainer> createState() => _AprBalanceSheetTableContainerState();
 }
@@ -23,7 +25,7 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
   bool isHover = false;
   List<AprExcludedTab> balanceSheetData = [];
 
-  Future<List<AprExcludedTab>> getAprBalanceSheetData() async {
+  Future<List<AprExcludedTab>?> getAprBalanceSheetData() async {
     if (widget.aprData != null) {
       List<AprResponse> _aprData = widget.aprData;
       setState(() {
@@ -32,6 +34,7 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
       });
       return balanceSheetData;
     }
+    return null;
   }
 
   @override
@@ -76,7 +79,7 @@ class _AprBalanceSheetTableContainerState extends State<AprBalanceSheetTableCont
                 rows: List.generate(balanceSheetData.length, (index) {
                   final accountData = balanceSheetData[index];
                   return DataRow(
-                      color: MaterialStateProperty.resolveWith<Color>(
+                      color: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.selected)) {
                               return Theme.of(context).colorScheme.primary.withOpacity(0.08);

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealHistoryResponse.dart';
 import 'package:alero/models/call/DealsStatusResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -12,9 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class StatusUpdatePage extends StatefulWidget {
-  final String searchQuery;
+  final String? searchQuery;
 
-  StatusUpdatePage({Key key, @required this.searchQuery}) : super(key: key);
+  StatusUpdatePage({Key? key, this.searchQuery}) : super(key: key);
 
   @override
   _StatusUpdatePageState createState() => _StatusUpdatePageState();
@@ -23,8 +25,8 @@ class StatusUpdatePage extends StatefulWidget {
 class _StatusUpdatePageState extends State<StatusUpdatePage> {
 
   var apiService = AleroAPIService();
-  List<DealsForStatusUpdate> pendingStatus = [];
-  DealsStatusResponse pendingDeals;
+  List<DealsForStatusUpdate>? pendingStatus = [];
+  DealsStatusResponse? pendingDeals;
 
   @override
   void initState() {
@@ -36,7 +38,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
     var _statusUpdate = await apiService.getAllDeals();
     setState(() {
       pendingDeals = _statusUpdate;
-      pendingStatus = pendingDeals.result.dealsForStatusUpdate;
+      pendingStatus = pendingDeals!.result!.dealsForStatusUpdate;
     });
   }
 
@@ -48,7 +50,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               snapshot.hasData == null && snapshot.connectionState == ConnectionState.waiting) {
             return ShimmerLoadingWidget();
           }
-          return pendingStatus.isEmpty ?
+          return pendingStatus!.isEmpty ?
           Padding(
             padding: const EdgeInsets.only(top: 5.0, left: 5),
             child: Text("You have not added any pipeline deals yet. Click 'New Deal' to add a new pipeline deal",
@@ -85,9 +87,9 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
                   height: 200,
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: pendingStatus.length,
+                    itemCount: pendingStatus!.length,
                     itemBuilder: (context, index) {
-                      var pendingUpdate = pendingStatus[index];
+                      var pendingUpdate = pendingStatus![index];
                       return SingleChildScrollView(
                         physics: AlwaysScrollableScrollPhysics(),
                         scrollDirection: Axis.horizontal,
@@ -107,14 +109,14 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(pendingUpdate.startDate)),
+                                      PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(pendingUpdate.startDate!)),
                                       PipelineDealsHeader(title: pendingUpdate.customerName),
-                                      pendingUpdate.accountNo == null || pendingUpdate.accountNo.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: pendingUpdate.accountNo),
+                                      pendingUpdate.accountNo == null || pendingUpdate.accountNo!.isEmpty ? DealsUnset(text: 'prospect', color: Colors.blue.shade200, width: 67) : PipelineDealsHeader(title: pendingUpdate.accountNo),
                                       PipelineDealsHeader(title: pendingUpdate.customerType),
                                       PipelineDealsHeader(title: pendingUpdate.transactionType),
-                                      PipelineDealsHeader(title: pendingUpdate.currency + ' ' + pendingUpdate.amount.toString()),
-                                      PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(pendingUpdate.expectedDealDate)),
-                                      pendingUpdate.status == null || pendingUpdate.status.isEmpty ? DealsUnset(text: 'unset', color: Colors.amber.shade200, width: 47) :  PipelineDealsHeader(title: pendingUpdate.status),
+                                      PipelineDealsHeader(title: pendingUpdate.currency! + ' ' + pendingUpdate.amount.toString()),
+                                      PipelineDealsHeader(title: DateFormat('MMM d, yyyy').format(pendingUpdate.expectedDealDate!)),
+                                      pendingUpdate.status == null || pendingUpdate.status!.isEmpty ? DealsUnset(text: 'unset', color: Colors.amber.shade200, width: 47) :  PipelineDealsHeader(title: pendingUpdate.status),
                                       PipelineTabViewIcon(
                                         onPressed: () {
                                           showAlertDialog(context, index);
@@ -137,16 +139,16 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
     );
   }
 
-  DealHistoryResponse dealHistory;
-  List<StatusHistory> historyDate = [];
-  HistoryResult dateCreated;
+  DealHistoryResponse? dealHistory;
+  List<StatusHistory>? historyDate = [];
+  HistoryResult? dateCreated;
 
   Future<dynamic> getDealTimeline(index) async {
-    var _dealTimeline = await apiService.getDealStatusHistory(pendingStatus[index].pipelineId);
+    var _dealTimeline = await apiService.getDealStatusHistory(pendingStatus![index].pipelineId!);
     setState(() {
       dealHistory = _dealTimeline;
-      historyDate = dealHistory.result.statusHistory;
-      dateCreated = dealHistory.result;
+      historyDate = dealHistory!.result!.statusHistory;
+      dateCreated = dealHistory!.result;
     });
   }
 
@@ -166,7 +168,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
                 icon: Icon(Icons.close_outlined), iconSize: 25.0, color: Colors.white70,),
             ),),
           SizedBox(height: 10.0),
-          Text(pendingStatus[index].customerName.toString(),
+          Text(pendingStatus![index].customerName.toString(),
             style: kBottomSheetName.copyWith(fontSize: 20.0),),
           SizedBox(height: 10.0),
           Row(
@@ -175,7 +177,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].totalRevenue.toInt().toString(),
+                  Text(pendingStatus![index].totalRevenue!.toInt().toString(),
                       style: kBlueBottomSheetName),
                   Text('TOTAL REVENUE', style: kBottomSheetSubName,),
                 ],
@@ -183,7 +185,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].grossRevenue.toInt().toString(),
+                  Text(pendingStatus![index].grossRevenue!.toInt().toString(),
                     style: kBlueBottomSheetName,),
                   Text('GROSS REVENUE',
                     style: kBottomSheetSubName,),
@@ -198,7 +200,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].feesRate.toInt().toString(),
+                  Text(pendingStatus![index].feesRate!.toInt().toString(),
                     style: kBottomSheetName,),
                   Text('FEES RATE',
                     style: kBottomSheetSubName,),
@@ -207,7 +209,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].interestRate.toInt().toString(),
+                  Text(pendingStatus![index].interestRate!.toInt().toString(),
                     style: kBottomSheetName,),
                   Text('INTEREST RATE',
                     style: kBottomSheetSubName,),
@@ -216,7 +218,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].netInterestMargin.toInt().toString(),
+                  Text(pendingStatus![index].netInterestMargin!.toInt().toString(),
                     style: kBottomSheetName,),
                   Text('NET INTEREST MARGIN',
                     style: kBottomSheetSubName,),
@@ -225,7 +227,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(pendingStatus[index].tenor.toString() + ' months',
+                  Text(pendingStatus![index].tenor.toString() + ' months',
                     style: kBottomSheetName,),
                   Text('TENOR',
                     style: kBottomSheetSubName,),
@@ -246,15 +248,15 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
             height: 17.0,
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: historyDate.length,
+                itemCount: historyDate!.length,
                 itemBuilder: (context, index2) {
                   return Row(
                     children: [
-                      Text(DateFormat('MMM d, yyyy').format(historyDate[index].timeIn),
+                      Text(DateFormat('MMM d, yyyy').format(historyDate![index].timeIn!),
                         style: kBottomSheetSubName,),
                       Padding(
                         padding: const EdgeInsets.only(left: 30.0),
-                        child: Text('Updated status to ' + historyDate[index].dealStatus.toString() + '.',
+                        child: Text('Updated status to ' + historyDate![index].dealStatus.toString() + '.',
                           style: kBottomSheetSubName.copyWith(fontSize: 10),),
                       ),],);} ),),
           SizedBox(
@@ -269,7 +271,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
             height: 17.0,
             child: Row(
               children: [
-                Text(DateFormat('MMM d, yyyy').format(dateCreated.entryDate),
+                Text(DateFormat('MMM d, yyyy').format(dateCreated!.entryDate!),
                   style: kBottomSheetSubName,),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
@@ -299,7 +301,7 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
       useRootNavigator: false,
       context: context,
       builder: (BuildContext context) {
-        return UpdateDealForm(pendingStatus: pendingStatus[index]);
+        return UpdateDealForm(pendingStatus: pendingStatus![index]);
       },);
   }
 }

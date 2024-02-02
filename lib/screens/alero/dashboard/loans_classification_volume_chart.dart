@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -15,13 +17,13 @@ class LoansClassificationVolumeChart extends StatefulWidget {
 }
 
 class _LoansClassificationVolumeChartState extends State<LoansClassificationVolumeChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   var apiService = AleroAPIService();
   List<LoanClassificationStatus> lcData = [];
   String loanStatus = '';
   int loanStatusCount = 0;
-  List<LoanClassificationStatus> loanClassification;
+  List<LoanClassificationStatus?>? loanClassification;
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class _LoansClassificationVolumeChartState extends State<LoansClassificationVolu
 
   getLoansClassificationStatus() async {
     var test = await apiService.getLoanClassificationStatus();
-    loanClassification = test as List<LoanClassificationStatus>;
+    loanClassification = test as List<LoanClassificationStatus?>;
     return loanClassification;
   }
 
@@ -61,10 +63,10 @@ class _LoansClassificationVolumeChartState extends State<LoansClassificationVolu
             tooltipBehavior: _tooltipBehavior,
             primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
             series: <CartesianSeries>[
-              StackedColumnSeries<LoanClassificationStatus, String>(
-                dataSource: loanClassification,
-                xValueMapper: (LoanClassificationStatus data, _) => data.loanStatus,
-                yValueMapper: (LoanClassificationStatus data, _) => data.loanStatusCount,
+              StackedColumnSeries<LoanClassificationStatus?, String>(
+                dataSource: loanClassification ?? [],
+                xValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatus,
+                yValueMapper: (LoanClassificationStatus? data, _) => data!.loanStatusCount,
                 enableTooltip: yes,
               ),],),
         );

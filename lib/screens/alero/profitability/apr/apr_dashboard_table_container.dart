@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
@@ -17,7 +19,7 @@ class AprDashboardTableContainer extends StatefulWidget {
 }
 
 class _AprDashboardTableContainerState extends State<AprDashboardTableContainer> {
-  bool isColor;
+  bool? isColor;
   bool isDataLoaded = false;
 
   @override
@@ -102,7 +104,7 @@ class _AprDashboardTableContainerState extends State<AprDashboardTableContainer>
             rows: List.generate(widget.aprData.length, (index) {
               final accountData = widget.aprData[index];
               return DataRow(
-                color: MaterialStateProperty.resolveWith<Color>(
+                color: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.selected)) {
                         return Theme

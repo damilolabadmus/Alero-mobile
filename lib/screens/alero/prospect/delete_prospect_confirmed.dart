@@ -1,9 +1,11 @@
+
+
 import 'package:alero/screens/alero/call/call_management_page.dart';
 import 'package:flutter/material.dart';
 
 class DeleteProspectConfirmed extends StatefulWidget {
 
-  const DeleteProspectConfirmed({Key key}) : super(key: key);
+  const DeleteProspectConfirmed({Key? key}) : super(key: key);
 
   @override
   _DeleteProspectConfirmedState createState() => _DeleteProspectConfirmedState();

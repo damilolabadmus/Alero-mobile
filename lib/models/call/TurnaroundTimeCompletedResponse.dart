@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 TurnaroundTimeCompletedResponse turnaroundTimeCompletedResponseFromJson(String str) => TurnaroundTimeCompletedResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class TurnaroundTimeCompletedResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<TurnAroundTimeResponse> result;
+  String? responseCode;
+  String? responseDescription;
+  List<TurnAroundTimeResponse>? result;
 
   factory TurnaroundTimeCompletedResponse.fromJson(Map<String, dynamic> json) => TurnaroundTimeCompletedResponse(
     responseCode: json["responseCode"],
@@ -24,27 +26,27 @@ class TurnaroundTimeCompletedResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
 class TurnAroundTimeResponse {
-  int _count;
-  String _turnAroundTime;
+  int? _count;
+  String? _turnAroundTime;
 
 
   TurnAroundTimeResponse({
-    int count,
-    String turnAroundTime})
+    int? count,
+    String? turnAroundTime})
   {
     this._count = count;
     this._turnAroundTime = turnAroundTime;
   }
 
-  int get count => _count;
-  set count(int count) => _count = count;
-  String get turnAroundTime => _turnAroundTime;
-  set turnAroundTime(String turnAroundTime) => _turnAroundTime = turnAroundTime;
+  int? get count => _count;
+  set count(int? count) => _count = count;
+  String? get turnAroundTime => _turnAroundTime;
+  set turnAroundTime(String? turnAroundTime) => _turnAroundTime = turnAroundTime;
 
   TurnAroundTimeResponse.fromJson(Map<String, dynamic> json) {
     _count = json['count'];

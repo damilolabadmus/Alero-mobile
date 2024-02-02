@@ -8,32 +8,34 @@ import 'package:alero/screens/alero/performance/performance_bottom_navigation_ba
 import 'package:flutter/material.dart';
 
 class CostAllocationReport extends StatefulWidget {
-  final String userId;
+  final String? userId;
 
-  CostAllocationReport({@required this.userId});
+  CostAllocationReport({required this.userId});
 
   @override
   State<CostAllocationReport> createState() => _CostAllocationReportState();
 }
 
 class _CostAllocationReportState extends State<CostAllocationReport> {
-  Function search;
+  Function? search;
   List<CostAllocationTypeResponse> costAllocationReport = [];
   List<ExpenseList> expensePeriod = [];
   var apiService = AleroAPIService();
 
   Future<List<ExpenseList>> getExpensePeriod() async {
     List<ExpenseList> _expensePeriod = await apiService.getExpensePeriod();
-      setState(() {
-        expensePeriod = _expensePeriod;
-      });
+    setState(() {
+      expensePeriod = _expensePeriod;
+    });
+    return _expensePeriod;
   }
 
   Future<List<CostAllocationTypeResponse>> getCostAllocationReport(String expensePeriod) async {
     List<CostAllocationTypeResponse> _costReport = await apiService.getCostAllocationReportData(expensePeriod);
-      setState(() {
-        costAllocationReport = _costReport;
-      });
+    setState(() {
+      costAllocationReport = _costReport;
+    });
+    return _costReport;
   }
 
   @override
@@ -43,7 +45,7 @@ class _CostAllocationReportState extends State<CostAllocationReport> {
     getCostAllocationReport('202110');
   }
 
-  int index;
+  int? index;
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +66,8 @@ class _CostAllocationReportState extends State<CostAllocationReport> {
                 SizedBox(height: 20),
                 Container(
                     child: AllocationReportTableContainer(
-                      allocationReport: costAllocationReport,
-                    )
-                ),
+                  allocationReport: costAllocationReport,
+                )),
               ],
             ),
           ),

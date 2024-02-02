@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 DealsByCurrencyResponse dealsByCurrencyResponseFromJson(String str) => DealsByCurrencyResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class DealsByCurrencyResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<DealByCurrencyResponse> result;
+  String? responseCode;
+  String? responseDescription;
+  List<DealByCurrencyResponse>? result;
 
   factory DealsByCurrencyResponse.fromJson(Map<String, dynamic> json) => DealsByCurrencyResponse(
     responseCode: json["responseCode"],
@@ -24,25 +26,25 @@ class DealsByCurrencyResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
 class DealByCurrencyResponse {
-  String _currency;
-  int _count;
+  String? _currency;
+  int? _count;
 
   DealByCurrencyResponse({
-    String currency, int count,
+    String? currency, int? count,
   }) {
     this._currency = currency;
     this._count = count;
   }
 
-  String get currency => _currency;
-  set currency(String currency) => _currency = currency;
-  int get count => _count;
-  set count(int count) => _count = count;
+  String? get currency => _currency;
+  set currency(String? currency) => _currency = currency;
+  int? get count => _count;
+  set count(int? count) => _count = count;
 
   DealByCurrencyResponse.fromJson(Map<String, dynamic> json) {
     _currency = json['currency'];

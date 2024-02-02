@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<AreaByRegionIdList> areaByRegionIdListFromJson(String str) => List<AreaByRegionIdList>.from(json.decode(str).map((x) => AreaByRegionIdList.fromJson(x)));
@@ -7,7 +9,7 @@ String areaByRegionIdListToJson(List<AreaByRegionIdList> data) => json.encode(Li
 class AreaByRegionIdList {
   dynamic branchCode;
   dynamic branchName;
-  String areaName;
+  String? areaName;
   dynamic zoneCode;
   dynamic bmName;
   dynamic bmCode;
@@ -17,11 +19,11 @@ class AreaByRegionIdList {
   dynamic bsmEmail;
   dynamic branchType;
   dynamic status;
-  String areaCode;
-  String regionName;
-  String amName;
-  String amCode;
-  String amEmail;
+  String? areaCode;
+  String? regionName;
+  String? amName;
+  String? amCode;
+  String? amEmail;
   dynamic regionCode;
   dynamic reCode;
   dynamic reEmail;

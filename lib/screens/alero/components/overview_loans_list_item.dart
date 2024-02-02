@@ -1,3 +1,5 @@
+
+
 import '../../../style/theme.dart' as Style;
 import '../../../utils/Pandora.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class OverviewLoansListItem extends StatelessWidget {
-  final String loanReceiver,
+  final String? loanReceiver,
       loanAccountNumber,
       disbursedDate,
       nextRepaymentDate,
       loanTenor,
       expiryDate;
-  final bool performing;
-  final double nextRepaymentAmount, balance;
+  final bool? performing;
+  final double? nextRepaymentAmount, balance;
 
   const OverviewLoansListItem(
-      {Key key,
+      {Key? key,
         this.loanReceiver,
         this.loanAccountNumber,
         this.disbursedDate,
@@ -30,9 +32,9 @@ class OverviewLoansListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = new NumberFormat.currency(symbol: "");
-    var dDate = DateTime.parse(disbursedDate + 'Z');
-    var nDate = DateTime.parse(nextRepaymentDate ?? expiryDate + 'Z');
-    var eDate = DateTime.parse(expiryDate + 'Z');
+    var dDate = DateTime.parse(disbursedDate! + 'Z');
+    var nDate = DateTime.parse(nextRepaymentDate ?? expiryDate! + 'Z');
+    var eDate = DateTime.parse(expiryDate! + 'Z');
 
     return Card(
       color: Style.Colors.overviewCardBg,
@@ -49,7 +51,7 @@ class OverviewLoansListItem extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      Text(loanReceiver,
+                      Text(loanReceiver!,
                           style: TextStyle(
                             color: Style.Colors.overviewTextBlue,
                             fontSize: 9.0,
@@ -63,19 +65,19 @@ class OverviewLoansListItem extends StatelessWidget {
                   highlightColor: Style.Colors.mainColor,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: performing
+                        color: performing!
                             ? Style.Colors.overviewActiveBg
                             : Style.Colors.overviewInactiveBg,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: performing
+                          color: performing!
                               ? Style.Colors.overviewActiveBg
                               : Style.Colors.overviewInactiveBg,
                         )),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       child: Text(
-                        performing ? 'performing' : 'nonperforming',
+                        performing! ? 'performing' : 'nonperforming',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 7.0,
@@ -120,7 +122,7 @@ class OverviewLoansListItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(loanAccountNumber,
+                    Text(loanAccountNumber!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 12.0,

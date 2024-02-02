@@ -17,7 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class DealsAdd extends StatefulWidget {
-  final String searchQuery;
+  final String? searchQuery;
 
   DealsAdd({this.searchQuery});
 
@@ -26,38 +26,38 @@ class DealsAdd extends StatefulWidget {
 }
 
 class _DealsAddState extends State<DealsAdd> {
-  String pipelineId;
-  String prospectName;
-  String prospectType;
-  String customerName;
-  String customerType;
-  TransactionType transactionType;
-  String amount;
-  String currency;
+  String? pipelineId;
+  String? prospectName;
+  String? prospectType;
+  String? customerName;
+  String? customerType;
+  TransactionType? transactionType;
+  late String amount;
+  String? currency;
   DateTime startDate = DateTime.now();
-  String expectedDealDate;
-  String tenor;
-  String feesRate;
-  String interestRate;
-  String accountNo;
-  ProductDetails selectedProductType;
-  String netInterestMargin;
-  String transactionComment;
-  String dealProbability;
-  double totalRevenue;
-  double grossRevenue;
-  double feesRevenue;
-  double nrff;
+  String? expectedDealDate;
+  late String tenor;
+  late String feesRate;
+  late String interestRate;
+  String? accountNo;
+  ProductDetails? selectedProductType;
+  late String netInterestMargin;
+  String? transactionComment;
+  late String dealProbability;
+  double? totalRevenue;
+  double? grossRevenue;
+  double? feesRevenue;
+  double? nrff;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    bool isProspect = false;
-    bool visible = false;
+  bool isProspect = false;
+  bool visible = false;
 
   TextEditingController textController = new TextEditingController();
 
   var apiService = AleroAPIService();
   List prospectOnSearch = [];
-  ProspectDetailsResponse prospects;
+  ProspectDetailsResponse? prospects;
   List<SearchUserResponse> search = [];
   var searchResult;
 
@@ -69,15 +69,15 @@ class _DealsAddState extends State<DealsAdd> {
   }
 
   TextEditingController _filterController = new TextEditingController();
-  Map<String, dynamic> customerDetails = HashMap();
-  TextEditingController myController= new TextEditingController();
+  Map<String, dynamic>? customerDetails = HashMap();
+  TextEditingController myController = new TextEditingController();
   List<TransactionType> transactionType0 = [];
 
   DateTime dealDate = DateTime.now();
-  DateTime date;
+  late DateTime date;
 
   Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
+    DateTime? _datePicker = await showDatePicker(
       context: context,
       initialDate: dealDate,
       firstDate: DateTime(1990),
@@ -90,7 +90,6 @@ class _DealsAddState extends State<DealsAdd> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,35 +101,84 @@ class _DealsAddState extends State<DealsAdd> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("New Pipeline Deal",
+                Text(
+                  "New Pipeline Deal",
                   style: kDealsBlueHeading,
                 ),
                 SizedBox(height: 5.0),
                 Text(
                   "Enter customer's account number or prospect's name to add new deal",
                   style: kDealsHeading,
-                ), SizedBox(height: 8.0),
+                ),
+                SizedBox(height: 8.0),
                 Text(
                   "Create Pipeline Deal",
                   style: kDealsHeading.copyWith(color: Colors.black54, fontSize: 16.0),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: Text(
-                            "Customer\'s Account Name or Number",
-                            style: kDealsHeading,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5.0),
+                      child: Text(
+                        "Customer\'s Account Name or Number",
+                        style: kDealsHeading,
+                      ),
+                    ),
+                    TextField(
+                        controller: _filterController,
+                        decoration: InputDecoration(
+                          fillColor: Colors.grey.shade300,
+                          filled: true,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              borderSide: BorderSide.none),
+                          suffixIcon: IconButton(
+                            icon: Icon(EvaIcons.searchOutline),
+                            color: Style.Colors.buttonColor,
+                            onPressed: () async {
+                              customerDetails = await apiService.searchCustomer(_filterController.text);
+                              myController.value = TextEditingValue(text: customerDetails!["customerName"]);
+                              isProspect = true;
+                              setState(() {});
+                            },
                           ),
-                        ),
-                        TextField(
-                            controller: _filterController,
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 8.0),
+                      child: Text(
+                        "OR",
+                        style: kDealsBlueHeading,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: Text(
+                              "Prospect\'s Name",
+                              style: kDealsHeading,
+                            ),
+                          ),
+                          TextFormField(
+                            onTap: () async {
+                              var _prospects = await apiService.getProspects();
+                              visible = true;
+                              setState(() {
+                                prospects = _prospects;
+                                prospectOnSearch = prospects!.result!.userProspects!.toList();
+                              });
+                            },
+                            readOnly: true,
                             decoration: InputDecoration(
                               fillColor: Colors.grey.shade300,
                               filled: true,
+                              hintText: prospectName,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(10.0),
@@ -139,58 +187,20 @@ class _DealsAddState extends State<DealsAdd> {
                               suffixIcon: IconButton(
                                 icon: Icon(EvaIcons.searchOutline),
                                 color: Style.Colors.buttonColor,
-                                onPressed: () async {
-                                  customerDetails = await apiService.searchCustomer(_filterController.text);
-                                  myController.value = TextEditingValue(text: customerDetails["customerName"]);
-                                  isProspect = true;
-                                  setState(() {});
-                                },),)),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0, bottom: 8.0),
-                          child: Text(
-                            "OR",
-                            style: kDealsBlueHeading,
-                          ),),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 5.0),
-                                child: Text(
-                                  "Prospect\'s Name",
-                                  style: kDealsHeading,
-                                ),),
-                              TextFormField(
-                                onTap: () async {
-                                  var _prospects = await apiService.getProspects();
-                                  visible = true;
+                                onPressed: () {
                                   setState(() {
-                                    prospects = _prospects;
-                                    prospectOnSearch = prospects.result.userProspects.toList();
-                                  });},
-                                readOnly: true,
-                                decoration: InputDecoration(
-                                  fillColor: Colors.grey.shade300,
-                                  filled: true,
-                                  hintText: prospectName,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0),
-                                      ),
-                                      borderSide: BorderSide.none
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(EvaIcons.searchOutline),
-                                    color: Style.Colors.buttonColor,
-                                    onPressed: () {
-                                      setState(() {
-                                        visible = false;
-                                        isProspect = true;
-                                      });},
-                                  ),),),
-                            ],),),]),),
+                                    visible = false;
+                                    isProspect = true;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ),
                 // Below gives the list of prospects
                 if (visible)
                   Card(
@@ -211,12 +221,8 @@ class _DealsAddState extends State<DealsAdd> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   GestureDetector(
-                                    child: Text(textController.text.isNotEmpty
-                                        ? prospectOnSearch[index]
-                                        : prospect.prospectName,
-                                        style: TextStyle(color: Colors.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14.0)),
+                                    child: Text(textController.text.isNotEmpty ? prospectOnSearch[index] : prospect.prospectName,
+                                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 14.0)),
                                     onTap: () {
                                       setState(() {
                                         prospectName = prospect.prospectName;
@@ -225,8 +231,14 @@ class _DealsAddState extends State<DealsAdd> {
                                       });
                                       visible = false;
                                       isProspect = true;
-                                    },),],),
-                            ),);},),
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                       padding: EdgeInsets.only(bottom: 5.0),
                     ),
                   ),
@@ -235,10 +247,7 @@ class _DealsAddState extends State<DealsAdd> {
                 ),
                 if (isProspect == true)
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blueGrey.shade50,
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(15))
-                    ),
+                    decoration: BoxDecoration(color: Colors.blueGrey.shade50, borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
                     child: Form(
                       key: _formKey,
                       child: Container(
@@ -250,7 +259,7 @@ class _DealsAddState extends State<DealsAdd> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left:10.0, top: 7.0),
+                                padding: const EdgeInsets.only(left: 10.0, top: 7.0),
                                 child: Text(
                                   "Customer Found",
                                   style: kDealsBlueHeading,
@@ -274,19 +283,22 @@ class _DealsAddState extends State<DealsAdd> {
                                     CallTextField(
                                       fillColor: Colors.white,
                                       prospectController: myController,
-                                      hintText: customerDetails["customerName"] ?? prospectName,
+                                      hintText: customerDetails!["customerName"] ?? prospectName,
                                       textInputAction: TextInputAction.next,
                                       readOnly: true,
+                                      onChanged: () {},
                                     )
                                   ],
                                 ),
                               ),
-                              myController.value == null ? Text("")
-                                  : myController == null ? Text("")
-                                  : getProductTypeDropDownComponent(context,productTypes),
+                              myController.value == null
+                                  ? Text("")
+                                  : myController == null
+                                      ? Text("")
+                                      : getProductTypeDropDownComponent(context, productTypes),
                               selectedProductType?.transactionTypes == null
                                   ? getTransactionTypeDropDownComponent(context, transactionType0)
-                                  : getTransactionTypeDropDownComponent(context,selectedProductType.transactionTypes),
+                                  : getTransactionTypeDropDownComponent(context, selectedProductType!.transactionTypes),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -297,23 +309,28 @@ class _DealsAddState extends State<DealsAdd> {
                                       child: Text(
                                         "Amount",
                                         style: kDealsDetailsTextStyle,
-                                      ),),
+                                      ),
+                                    ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, enter amount.';
                                         } else if (num.tryParse(value) == null) {
                                           return 'Please enter a valid amount.';
                                         }
-                                        return null; },
+                                        return null;
+                                      },
                                       onChanged: (value) {
                                         amount = value;
                                       },
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       readOnly: false,
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -330,6 +347,7 @@ class _DealsAddState extends State<DealsAdd> {
                                     CallTextField(
                                       fillColor: Colors.white,
                                       validator: (value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, fill out this field.';
                                         } else if (num.tryParse(value) == null) {
@@ -343,7 +361,9 @@ class _DealsAddState extends State<DealsAdd> {
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       readOnly: false,
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -359,7 +379,8 @@ class _DealsAddState extends State<DealsAdd> {
                                     ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, fill out this field.';
                                         } else if (num.tryParse(value) == null) {
@@ -373,7 +394,9 @@ class _DealsAddState extends State<DealsAdd> {
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       readOnly: false,
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -389,7 +412,7 @@ class _DealsAddState extends State<DealsAdd> {
                                     ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
                                         if (value == null) {
                                           return 'Nothing has been picked yet.';
                                         }
@@ -397,14 +420,13 @@ class _DealsAddState extends State<DealsAdd> {
                                       },
                                       onChanged: (value) {
                                         List<String> dateValues = value.split('/');
-                                        date = DateTime(int.parse(dateValues[2]),
-                                            int.parse(dateValues[1]), int.parse(dateValues[0]));
+                                        date = DateTime(int.parse(dateValues[2]), int.parse(dateValues[1]), int.parse(dateValues[0]));
                                         expectedDealDate = date.toIso8601String();
                                       },
                                       textInputAction: TextInputAction.next,
                                       readOnly: false,
-                                      hintText: expectedDealDate == null ? 'DD/MM/YYY'
-                                          : DateFormat('dd/MM/yyy').format(DateTime.parse(expectedDealDate)),
+                                      hintText:
+                                          expectedDealDate == null ? 'DD/MM/YYY' : DateFormat('dd/MM/yyy').format(DateTime.parse(expectedDealDate!)),
                                       hintStyle: TextStyle(
                                         color: Colors.black54,
                                         fontSize: 16.0,
@@ -418,7 +440,11 @@ class _DealsAddState extends State<DealsAdd> {
                                           setState(() {
                                             _selectDate(context);
                                           });
-                                        },),),],),
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -434,7 +460,8 @@ class _DealsAddState extends State<DealsAdd> {
                                     ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, fill out this field.';
                                         } else if (num.tryParse(value) == null) {
@@ -448,28 +475,32 @@ class _DealsAddState extends State<DealsAdd> {
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       readOnly: false,
-                                    ),],),
-                              ),
-                              prospectType != null ?
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Customer Type",
-                                      style: kDealsDetailsTextStyle,
                                     ),
-                                    CallTextField(
-                                      fillColor: Colors.white,
-                                      keyboardType: TextInputType.none,
-                                      hintText: prospectType,
-                                      readOnly: false,
-                                    ),],
+                                  ],
                                 ),
-                              ) : currencyDropDownComponent(context, customerTypes, true),
-                              currencies == null ? Text('')
-                                  : currencyDropDownComponent(context, currencies, false),
+                              ),
+                              prospectType != null
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Customer Type",
+                                            style: kDealsDetailsTextStyle,
+                                          ),
+                                          CallTextField(
+                                            fillColor: Colors.white,
+                                            keyboardType: TextInputType.none,
+                                            hintText: prospectType,
+                                            readOnly: false,
+                                            onChanged: () {},
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : currencyDropDownComponent(context, customerTypes, true),
+                              currencies == null ? Text('') : currencyDropDownComponent(context, currencies, false),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -490,7 +521,8 @@ class _DealsAddState extends State<DealsAdd> {
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
                                       readOnly: false,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, fill out this field.';
                                         } else if (num.tryParse(value) == null) {
@@ -498,7 +530,9 @@ class _DealsAddState extends State<DealsAdd> {
                                         }
                                         return null;
                                       },
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -514,7 +548,8 @@ class _DealsAddState extends State<DealsAdd> {
                                     ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, fill out this field.';
                                         } else if (num.tryParse(value) == null) {
@@ -528,7 +563,9 @@ class _DealsAddState extends State<DealsAdd> {
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       readOnly: false,
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -544,7 +581,8 @@ class _DealsAddState extends State<DealsAdd> {
                                     ),
                                     CallTextField(
                                       fillColor: Colors.white,
-                                      validator: (String value) {
+                                      validator: (String? value) {
+                                        if (value == null) return null;
                                         if (value.isEmpty) {
                                           return 'Pls, enter comment.';
                                         }
@@ -554,11 +592,12 @@ class _DealsAddState extends State<DealsAdd> {
                                         transactionComment = value;
                                       },
                                       readOnly: false,
-                                    ),],),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 15.0, bottom: 14.0, top: 10.0),
+                                padding: const EdgeInsets.only(right: 15.0, bottom: 14.0, top: 10.0),
                                 child: Align(
                                   alignment: Alignment.bottomRight,
                                   child: ElevatedButton(
@@ -567,7 +606,7 @@ class _DealsAddState extends State<DealsAdd> {
                                         style: TextStyle(color: Colors.white),
                                       ),
                                       onPressed: () async {
-                                        if (_formKey.currentState.validate()) {
+                                        if (_formKey.currentState!.validate()) {
                                           await getAllRevenueValues();
                                           var info = addDealDetails();
                                           await apiService.addNewPipelineDeal(info);
@@ -575,16 +614,26 @@ class _DealsAddState extends State<DealsAdd> {
                                         } else {
                                           print('Unsuccessful.');
                                         }
-                                      }),),
-                              ),],),),
-                      ),),),],),),),),
+                                      }),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
       bottomNavigationBar: CallBottomNavigationBar(),
     );
   }
 
-
   /// Get feesRevenue, grossRevenue, totalRevenue, and nrff.
-  ResultRev revenueValue;
+  ResultRev? revenueValue;
   Future<void> getAllRevenueValues() async {
     var _revenue = await apiService.getRevenueValues(amount, feesRate, interestRate, netInterestMargin);
     setState(() {
@@ -593,10 +642,10 @@ class _DealsAddState extends State<DealsAdd> {
   }
 
   addDealDetails() {
-    return{
+    return {
       'customerName': prospectName ?? customerName,
       'customerType': prospectType ?? customerType,
-      'transactionType': transactionType.transaction,
+      'transactionType': transactionType!.transaction,
       'amount': double.parse(amount),
       'currency': currency,
       'startDate': startDate.toIso8601String(),
@@ -604,14 +653,14 @@ class _DealsAddState extends State<DealsAdd> {
       'tenor': int.parse(tenor),
       'feesRate': double.parse(feesRate),
       'interestRate': double.parse(interestRate),
-      'productType': selectedProductType.product,
+      'productType': selectedProductType!.product,
       'netInterestMargin': double.parse(netInterestMargin),
       'transactionComment': transactionComment,
       'dealProbability': double.parse(dealProbability),
-      'totalRevenue': revenueValue.totalRevenue,
-      'feesRevenue': revenueValue.feesRevenue,
-      'grossRevenue': revenueValue.grossRevenue,
-      'nrff': revenueValue.nrff,
+      'totalRevenue': revenueValue!.totalRevenue,
+      'feesRevenue': revenueValue!.feesRevenue,
+      'grossRevenue': revenueValue!.grossRevenue,
+      'nrff': revenueValue!.nrff,
     };
   }
 
@@ -626,10 +675,13 @@ class _DealsAddState extends State<DealsAdd> {
           ),
         ),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) => PipelinePage(groupId: ''),),
-          );}
-    );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PipelinePage(groupId: ''),
+            ),
+          );
+        });
 
     AlertDialog alert = AlertDialog(
       insetPadding: EdgeInsets.symmetric(
@@ -637,69 +689,67 @@ class _DealsAddState extends State<DealsAdd> {
         vertical: 200.0,
       ),
       elevation: 5.0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
-            child: Center(child: Icon(Icons.thumb_up_alt_sharp,
-                size: 35, color: Colors.lightBlueAccent)),
+            child: Center(child: Icon(Icons.thumb_up_alt_sharp, size: 35, color: Colors.lightBlueAccent)),
           ),
           SizedBox(height: 20.0),
-          Text('You have successfully added a deal.',
+          Text(
+            'You have successfully added a deal.',
             style: TextStyle(
               fontSize: 18,
               color: Colors.black54,
               fontWeight: FontWeight.w600,
               fontFamily: 'Poppins-Regular',
             ),
-          ),],),
-      actions: [
-        closeButton
-      ],
+          ),
+        ],
+      ),
+      actions: [closeButton],
     );
 
     showDialog(
-      useRootNavigator:false,
+      useRootNavigator: false,
       context: context,
       builder: (BuildContext context) {
         return alert;
-      },);
+      },
+    );
   }
 
   AppBar appBar() => AppBar(
-    leading: IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      icon: Icon(
-        Icons.arrow_back_ios,
-        color: Style.Colors.blackTextColor,
-        size: 24,
-      ),
-    ),
-    backgroundColor: Colors.lightBlue.shade100,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.only(right: 16.0),
-        child: IconButton(
-            icon: Icon(Icons.home),
-            iconSize: 30.0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
             color: Style.Colors.blackTextColor,
-            onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/landing',
-                      (Route<dynamic> route) => false);
-            }),),],
-  );
+            size: 24,
+          ),
+        ),
+        backgroundColor: Colors.lightBlue.shade100,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+                icon: Icon(Icons.home),
+                iconSize: 30.0,
+                color: Style.Colors.blackTextColor,
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
+                }),
+          ),
+        ],
+      );
 
-
-  List<ProductDetails> productTypes;
+  List<ProductDetails>? productTypes;
   getProductType() async {
-    List<ProductDetails> _productType = await apiService.getPipelineProductType();
+    List<ProductDetails>? _productType = await apiService.getPipelineProductType();
     setState(() {
       productTypes = _productType;
     });
@@ -720,8 +770,12 @@ class _DealsAddState extends State<DealsAdd> {
         onChanged: (value) {
           setState(() {
             selectedProductType = value;
-          });},),);
+          });
+        },
+      ),
+    );
   }
+
   CupertinoPicker productTypeIOSPicker(List<ProductDetails> dropDownList) {
     return CupertinoPicker(
       looping: true,
@@ -731,20 +785,22 @@ class _DealsAddState extends State<DealsAdd> {
       children: dropDownList.map(buildProductTypeItem).toList(),
       onSelectedItemChanged: (value) {
         setState(() {
-          selectedProductType = productTypes[value];
+          selectedProductType = productTypes![value];
         });
-        final item = productTypes[value];
+        final item = productTypes![value];
       },
       magnification: 0.7,
     );
   }
-  Widget getProductTypeDropDownComponent(BuildContext context, List<ProductDetails> dropDownList) {
+
+  Widget getProductTypeDropDownComponent(BuildContext context, List<ProductDetails>? dropDownList) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10.0),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
         ),
       ),
       child: Column(
@@ -752,19 +808,15 @@ class _DealsAddState extends State<DealsAdd> {
         children: [
           Text(
             'Product Type',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.w700,
-                fontSize: 15),
+            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w700, fontSize: 15),
           ),
           SizedBox(height: 5),
-          Platform.isIOS ?
-          productTypeIOSPicker(dropDownList):
-          productTypeAndroidDropDown(dropDownList),
+          Platform.isIOS ? productTypeIOSPicker(dropDownList!) : productTypeAndroidDropDown(dropDownList!),
         ],
       ),
     );
   }
+
   DropdownMenuItem<ProductDetails> buildProductTypeItem(ProductDetails item) {
     if (Platform.isIOS) {
       return DropdownMenuItem(
@@ -773,36 +825,32 @@ class _DealsAddState extends State<DealsAdd> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              item.product,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 5,
-                  fontFamily: 'Poppins-Regular',
-                  fontStyle: FontStyle.italic),
-            ),],),);
-    }
-    if (Platform.isAndroid){
-      return DropdownMenuItem(
-        value: item,
-        child: Text(
-          item.product,
-          style: TextStyle(height: 0.2,
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
-              fontFamily: 'Poppins-Regular',
-              fontStyle: FontStyle.italic),
+              item.product!,
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 5, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+            ),
+          ],
         ),
       );
     }
+    if (Platform.isAndroid) {
+      return DropdownMenuItem(
+        value: item,
+        child: Text(
+          item.product!,
+          style: TextStyle(height: 0.2, fontWeight: FontWeight.w400, fontSize: 20, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+        ),
+      );
+    }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 
-  Text getValue(String value) {
+  Text getValue(String? value) {
     if (value == null || value.isEmpty) {
-      return Text('Select One',
-          style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text('Select One', style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     } else {
-      return Text(
-          value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text(value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     }
   }
 
@@ -821,8 +869,11 @@ class _DealsAddState extends State<DealsAdd> {
           setState(() {
             transactionType = value;
           });
-        },),);
+        },
+      ),
+    );
   }
+
   CupertinoPicker transactionTypeIOSPicker(List<TransactionType> dropDownList) {
     return CupertinoPicker(
       looping: true,
@@ -832,21 +883,22 @@ class _DealsAddState extends State<DealsAdd> {
       children: dropDownList.map(buildTransactionTypeItem).toList(),
       onSelectedItemChanged: (value) {
         setState(() {
-          transactionType = selectedProductType.transactionTypes[value];
+          transactionType = selectedProductType!.transactionTypes![value];
         });
-        final item = selectedProductType.transactionTypes[value];
+        final item = selectedProductType!.transactionTypes![value];
       },
       magnification: 0.7,
     );
   }
 
-  Widget getTransactionTypeDropDownComponent(BuildContext context, List<TransactionType> dropDownList) {
+  Widget getTransactionTypeDropDownComponent(BuildContext context, List<TransactionType>? dropDownList) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10.0),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
         ),
       ),
       child: Column(
@@ -854,17 +906,15 @@ class _DealsAddState extends State<DealsAdd> {
         children: [
           Text(
             'Transaction Type',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.w700,
-                fontSize: 15),
+            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w700, fontSize: 15),
           ),
           SizedBox(height: 5),
-          Platform.isIOS ?
-          transactionTypeIOSPicker(dropDownList):
-          transactionTypeAndroidDropDown(dropDownList),
-        ],),);
+          Platform.isIOS ? transactionTypeIOSPicker(dropDownList!) : transactionTypeAndroidDropDown(dropDownList!),
+        ],
+      ),
+    );
   }
+
   DropdownMenuItem<TransactionType> buildTransactionTypeItem(TransactionType item) {
     if (Platform.isIOS) {
       return DropdownMenuItem(
@@ -873,36 +923,36 @@ class _DealsAddState extends State<DealsAdd> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              item.transaction,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 5,
-                  fontFamily: 'Poppins-Regular',
-                  fontStyle: FontStyle.italic),
-            ),],),);
+              item.transaction!,
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 5, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+            ),
+          ],
+        ),
+      );
     }
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       return DropdownMenuItem(
         value: item,
         onTap: () {},
         child: Text(
-          item.transaction,
-          style: TextStyle(height: 0.2,
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
-              fontFamily: 'Poppins-Regular',
-              fontStyle: FontStyle.italic),
-        ),);}}
-
+          item.transaction!,
+          style: TextStyle(height: 0.2, fontWeight: FontWeight.w400, fontSize: 20, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+        ),
+      );
+    }
+    return DropdownMenuItem(
+      child: Container(),
+    );
+  }
 
   List<String> customerTypes = [
     'INDIVIDUAL',
     'NON-INDIVIDUAL',
   ];
 
-  List<String> currencies;
+  List<String>? currencies;
   getPipelineCurrency() async {
-    List<String> _currency = await apiService.getPipelineCurrencies();
+    List<String>? _currency = await apiService.getPipelineCurrencies();
     setState(() {
       currencies = _currency;
     });
@@ -925,9 +975,13 @@ class _DealsAddState extends State<DealsAdd> {
               customerType = value;
             } else {
               currency = value;
-            }});
-        },),);
+            }
+          });
+        },
+      ),
+    );
   }
+
   CupertinoPicker currencyIOSPicker(List<String> dropDownList, bool isCurrency) {
     return CupertinoPicker(
       looping: true,
@@ -940,8 +994,9 @@ class _DealsAddState extends State<DealsAdd> {
           if (isCurrency) {
             customerType = customerTypes[value];
           } else {
-            currency = currencies[value];
-          }});
+            currency = currencies![value];
+          }
+        });
         final item = customerTypes[value];
         print("Selected Item = $item");
       },
@@ -949,13 +1004,14 @@ class _DealsAddState extends State<DealsAdd> {
     );
   }
 
-  Widget currencyDropDownComponent(BuildContext context, List dropDownList, bool isCurrency) {
+  Widget currencyDropDownComponent(BuildContext context, List? dropDownList, bool isCurrency) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10.0),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
         ),
       ),
       child: Column(
@@ -963,19 +1019,17 @@ class _DealsAddState extends State<DealsAdd> {
         children: [
           Text(
             isCurrency ? 'Customer Type' : 'Currency',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.w700,
-                fontSize: 15),
+            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w700, fontSize: 15),
           ),
           SizedBox(height: 5),
-          Platform.isIOS ?
-          currencyIOSPicker(dropDownList,isCurrency):
-          currencyAndroidDropDown(dropDownList,isCurrency),
+          Platform.isIOS
+              ? currencyIOSPicker(dropDownList as List<String>, isCurrency)
+              : currencyAndroidDropDown(dropDownList as List<String>, isCurrency),
         ],
       ),
     );
   }
+
   DropdownMenuItem<String> buildCurrencyItem(String item) {
     if (Platform.isIOS) {
       return DropdownMenuItem(
@@ -985,29 +1039,23 @@ class _DealsAddState extends State<DealsAdd> {
           children: [
             Text(
               item,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 5,
-                  fontFamily: 'Poppins-Regular',
-                  fontStyle: FontStyle.italic),
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 5, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
             ),
           ],
         ),
       );
     }
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       return DropdownMenuItem(
         value: item,
         child: Text(
           item,
-          style: TextStyle(height: 0.2,
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
-              fontFamily: 'Poppins-Regular',
-              fontStyle: FontStyle.italic),
+          style: TextStyle(height: 0.2, fontWeight: FontWeight.w400, fontSize: 20, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
         ),
       );
     }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 }
-

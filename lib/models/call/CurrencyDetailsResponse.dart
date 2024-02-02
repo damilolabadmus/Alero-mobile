@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 CurrencyDetailsResponse currencyDetailsResponseFromJson(String str) => CurrencyDetailsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class CurrencyDetailsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<Result> result;
+  String? responseCode;
+  String? responseDescription;
+  List<Result>? result;
 
   factory CurrencyDetailsResponse.fromJson(Map<String, dynamic> json) => CurrencyDetailsResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class CurrencyDetailsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
@@ -34,8 +36,8 @@ class Result {
     this.currencyCode,
   });
 
-  String currencyName;
-  String currencyCode;
+  String? currencyName;
+  String? currencyCode;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
     currencyName: json["currencyName"],

@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -7,9 +9,9 @@ import 'package:flutter/rendering.dart';
 import '../../../../style/theme.dart' as Style;
 
 class PmTitleContainer extends StatelessWidget {
-  String measure, subTitle, subText, selectedDate/*, selectedState*/;
-  final Function selectDate;
-  final Function updateSelectedDate;
+  String? measure, subTitle, subText, selectedDate/*, selectedState*/;
+  final Function? selectDate;
+  final Function? updateSelectedDate;
 
   PmTitleContainer ({this.measure, this.subTitle, this.subText, this.selectedDate, /*this.selectedState,*/ this.selectDate, this.updateSelectedDate});
 
@@ -36,14 +38,14 @@ class PmTitleContainer extends StatelessWidget {
                     width: 220,
                     child: Row(
                       children: [
-                        Text(measure,
+                        Text(measure!,
                           style: TextStyle(
                             color: Colors.black45,
                             fontSize: 10.0,
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Poppins-Regular',
                           )),
-                        Text(subText == null ? '' : '-' + subText,
+                        Text(subText == null ? '' : '-' + subText!,
                           style: TextStyle(
                             color: Colors.black45,
                             fontSize: 10.0,
@@ -52,7 +54,7 @@ class PmTitleContainer extends StatelessWidget {
                           )),
                         Container(
                           width: 50,
-                          child: subTitle == null ? Text('') : Text(' (' + subTitle + ')',
+                          child: subTitle == null ? Text('') : Text(' (' + subTitle! + ')',
                             style: TextStyle(
                               color: Colors.black45,
                               fontSize: 10.0,
@@ -70,7 +72,7 @@ class PmTitleContainer extends StatelessWidget {
                 height: 50,
                 width: 160,
                 child: CallTextField(
-                  validator: (String value) {
+                  validator: (String? value) {
                     if (value == null) {
                       return 'Nothing has been picked yet.';
                     }
@@ -86,8 +88,8 @@ class PmTitleContainer extends StatelessWidget {
                         size: 25,
                       ),
                       color: Style.Colors.buttonColor,
-                      onPressed: selectDate
-                  ),
+                      onPressed: selectDate as void Function()?
+                  ), onChanged: () {},
                 ),
               ),
             ],

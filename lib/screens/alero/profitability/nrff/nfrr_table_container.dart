@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 class NrffTableContainer extends StatefulWidget {
   List<NrffResponse> nrffData = [];
 
-  NrffTableContainer({@required this.nrffData});
+  NrffTableContainer({required this.nrffData});
 
   @override
   State<NrffTableContainer> createState() => _NrffTableContainerState();
 }
 
 class _NrffTableContainerState extends State<NrffTableContainer> {
-  double sumColumn(List<NrffResponse> products, double Function(NrffResponse) getValue) {
+  double sumColumn(List<NrffResponse> products, double? Function(NrffResponse) getValue) {
     double sum = 0.0;
     for (var product in products) {
-      sum += getValue(product).toDouble() ?? 0.0;
+      sum += getValue(product)?.toDouble() ?? 0.0;
     }
     return sum;
   }
@@ -176,7 +176,7 @@ class _NrffTableContainerState extends State<NrffTableContainer> {
                   rows: [
                     ...depositProducts.map((data) {
                       return DataRow(cells: [
-                        DataCell(Text(Pandora.replaceHyphenFormat(data.product ?? ''), style: kDealsHeaderStyle)),
+                        DataCell(Text(Pandora.replaceHyphenFormat(data.product ?? '')!, style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.actualValue).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.averageValue).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.interestExpense).toString(), style: kDealsHeaderStyle)),
@@ -198,7 +198,7 @@ class _NrffTableContainerState extends State<NrffTableContainer> {
                     ]),
                     ...liabilityProducts.map((data) {
                       return DataRow(cells: [
-                        DataCell(Text(Pandora.replaceHyphenFormat(data.product), style: kDealsHeaderStyle)),
+                        DataCell(Text(Pandora.replaceHyphenFormat(data.product)!, style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.actualValue).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.averageValue).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.dynamicMoneyFormat(data.interestExpense).toString(), style: kDealsHeaderStyle)),
@@ -221,7 +221,7 @@ class _NrffTableContainerState extends State<NrffTableContainer> {
                     ...loanProducts.map((data) {
                       return DataRow(
                           cells: [
-                            DataCell(Text(Pandora.replaceHyphenFormat(data.product), style: kDealsHeaderStyle)),
+                            DataCell(Text(Pandora.replaceHyphenFormat(data.product)!, style: kDealsHeaderStyle)),
                             DataCell(Text(Pandora.dynamicMoneyFormat(data.actualValue).toString(), style: kDealsHeaderStyle)),
                             DataCell(Text(Pandora.dynamicMoneyFormat(data.averageValue).toString(), style: kDealsHeaderStyle)),
                             DataCell(Text(Pandora.dynamicMoneyFormat(data.interestExpense).toString(), style: kDealsHeaderStyle)),

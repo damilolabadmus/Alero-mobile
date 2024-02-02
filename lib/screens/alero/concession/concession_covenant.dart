@@ -5,7 +5,7 @@ import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
 import 'package:flutter/material.dart';
 
 class ConcessionCovenant extends StatefulWidget {
-  const ConcessionCovenant({Key key}) : super(key: key);
+  const ConcessionCovenant({Key? key}) : super(key: key);
 
   @override
   State<ConcessionCovenant> createState() => _ConcessionCovenantState();
@@ -23,7 +23,7 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left:8.0, top: 8),
+                padding: const EdgeInsets.only(left: 8.0, top: 8),
                 child: Text(
                   "Concession Covenant",
                   style: TextStyle(
@@ -38,8 +38,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, enter covenant type.';
                     }
                     return null;
@@ -56,7 +56,7 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 child: CallTextField(
                   fillColor: Colors.white,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -71,7 +71,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
+                  validator: (String? value) {
+                    if (value == null) return null;
                     if (value.isEmpty) {
                       return 'Pls, enter the frequency.';
                     }
@@ -92,8 +93,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -105,12 +106,13 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                   keyboardType: TextInputType.datetime,
                   readOnly: false,
                 ),
-              ),Padding(
+              ),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -127,8 +129,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -144,8 +146,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -161,8 +163,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, enter concession details.';
                     }
                     return null;
@@ -179,8 +181,8 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Please, drop a message.';
                     }
                     return null;
@@ -191,12 +193,13 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                   textInputAction: TextInputAction.next,
                   readOnly: false,
                 ),
-              ),Padding(
+              ),
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, drop a message.';
                     }
                     return null;
@@ -217,8 +220,7 @@ class _ConcessionCovenantState extends State<ConcessionCovenant> {
                     ),
                     onPressed: () async {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ConcessionUpload()));
-                    }
-                ),
+                    }),
               ),
             ],
           ),

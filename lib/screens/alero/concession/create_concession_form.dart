@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/concession/concession_product.dart';
 import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
@@ -18,19 +20,19 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
   var apiService = AleroAPIService();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  String customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  String? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
   String contactPersonAddress = "";
   bool prospectConverted = false;
-  String accountNo;
+  String? accountNo;
   String introducerStaffCode = "";
 
   /*@override
@@ -107,7 +109,7 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           child: CallTextField(
                             fillColor: Colors.white,
                             validator: (value) {
-                              if (value.isEmpty) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;
@@ -122,8 +124,8 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           padding: const EdgeInsets.all(8.0),
                           child: CallTextField(
                             fillColor: Colors.white,
-                            validator: (String value) {
-                              if (value.isEmpty) {
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, enter account name.';
                               }
                               return null;
@@ -140,7 +142,7 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           child: CallTextField(
                             fillColor: Colors.white,
                             validator: (value) {
-                              if (value.isEmpty) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;
@@ -155,8 +157,8 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           padding: const EdgeInsets.all(8.0),
                           child: CallTextField(
                             fillColor: Colors.white,
-                            validator: (String value) {
-                              if (value.isEmpty) {
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;
@@ -171,8 +173,8 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           padding: const EdgeInsets.all(8.0),
                           child: CallTextField(
                             fillColor: Colors.white,
-                            validator: (String value) {
-                              if (value.isEmpty) {
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;
@@ -188,8 +190,8 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           padding: const EdgeInsets.all(8.0),
                           child: CallTextField(
                             fillColor: Colors.white,
-                            validator: (String value) {
-                              if (value.isEmpty) {
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;
@@ -205,8 +207,8 @@ class _CreateConcessionFormState extends State<CreateConcessionForm> {
                           padding: const EdgeInsets.all(8.0),
                           child: CallTextField(
                             fillColor: Colors.white,
-                            validator: (String value) {
-                              if (value.isEmpty) {
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
                                 return 'Pls, fill out this field.';
                               }
                               return null;

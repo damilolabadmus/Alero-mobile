@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankDepositsData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/dashboard/deposits_chart.dart';
@@ -23,7 +25,7 @@ class _DepositsTrendChartState extends State<DepositsTrendChart> {
   double actualDepositsChange = 0.0;
   double averageDeposits = 0.0;
   double averageDepositsChange = 0.0;
-  List<BankDepositsData> bankDeposit;
+  List<BankDepositsData>? bankDeposit;
 
   @override
   void initState() {
@@ -57,12 +59,12 @@ class _DepositsTrendChartState extends State<DepositsTrendChart> {
       }
       setState(() {
         for (int i = 0; i < dtData.length; i++) {
-          actualDeposits= actualDeposits + dtData[i].actualDeposits;
-          averageDeposits = averageDeposits + dtData[i].averageDeposits;
-          actualDepositsChange = actualDepositsChange + dtData[i].actualDepositsChange;
-          averageDepositsChange = averageDepositsChange + dtData[i].averageDepositsChange;
+          actualDeposits= actualDeposits + dtData[i].actualDeposits!;
+          averageDeposits = averageDeposits + dtData[i].averageDeposits!;
+          actualDepositsChange = actualDepositsChange + dtData[i].actualDepositsChange!;
+          averageDepositsChange = averageDepositsChange + dtData[i].averageDepositsChange!;
         }
-        return deposits;
+        // return deposits;
       });
     });
   }
@@ -130,28 +132,28 @@ class _DepositsTrendChartState extends State<DepositsTrendChart> {
 class DepositsItem extends StatelessWidget {
   DepositsItem({this.depositLine1, this.depositLine2, this.value});
 
-  final String depositLine1;
-  final String depositLine2;
-  final String value;
+  final String? depositLine1;
+  final String? depositLine2;
+  final String? value;
 
   @override
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Text(depositLine1,
+          Text(depositLine1!,
             style: TextStyle(
               color: Colors.blueGrey,
               fontSize: 12.0,
               fontFamily: 'Poppins-Regular',
             ),),
-          Text(depositLine2,
+          Text(depositLine2!,
             style: TextStyle(
               fontSize: 12.0,
               color: Colors.blueGrey,
               fontFamily: 'Poppins-Regular',
             ),),
           SizedBox(height: 5.0),
-          Text(value, style: TextStyle(
+          Text(value!, style: TextStyle(
               color: Colors.blueGrey.shade700
           ),),
         ]

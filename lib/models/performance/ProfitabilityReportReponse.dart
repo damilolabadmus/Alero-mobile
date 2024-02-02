@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 ProfitabilityReportResponse profitabilityReportResponseFromJson(String str) => ProfitabilityReportResponse.fromJson(json.decode(str));
@@ -12,10 +14,10 @@ class ProfitabilityReportResponse {
     this.nrffScorecards,
   });
 
-  List<dynamic> plScorecards;
-  List<BsAScorecard> bsActualScorecards;
-  List<BsAScorecard> bsAverageScorecards;
-  List<dynamic> nrffScorecards;
+  List<dynamic>? plScorecards;
+  List<BsAScorecard>? bsActualScorecards;
+  List<BsAScorecard>? bsAverageScorecards;
+  List<dynamic>? nrffScorecards;
 
   factory ProfitabilityReportResponse.fromJson(Map<String, dynamic> json) => ProfitabilityReportResponse(
     plScorecards: List<dynamic>.from(json["plScorecards"].map((x) => x)),
@@ -25,10 +27,10 @@ class ProfitabilityReportResponse {
   );
 
   Map<String, dynamic> toJson() => {
-    "plScorecards": List<dynamic>.from(plScorecards.map((x) => x)),
-    "bsActualScorecards": List<dynamic>.from(bsActualScorecards.map((x) => x.toJson())),
-    "bsAverageScorecards": List<dynamic>.from(bsAverageScorecards.map((x) => x.toJson())),
-    "nrffScorecards": List<dynamic>.from(nrffScorecards.map((x) => x)),
+    "plScorecards": List<dynamic>.from(plScorecards!.map((x) => x)),
+    "bsActualScorecards": List<dynamic>.from(bsActualScorecards!.map((x) => x.toJson())),
+    "bsAverageScorecards": List<dynamic>.from(bsAverageScorecards!.map((x) => x.toJson())),
+    "nrffScorecards": List<dynamic>.from(nrffScorecards!.map((x) => x)),
   };
 }
 
@@ -51,21 +53,21 @@ class BsAScorecard {
     this.productGroupPosition,
   });
 
-  CategoryCode categoryCode;
-  CategoryDescription categoryDescription;
-  ParentCategoryCode parentCategoryCode;
-  ParentCategoryDescription parentCategoryDescription;
-  SegmentCode segmentCode;
-  BusinessSegment businessSegment;
-  double amount;
-  String period;
-  ReportType reportType;
-  String product;
-  int productPosition;
-  ProductType productType;
-  int productTypePosition;
-  ProductGroup productGroup;
-  int productGroupPosition;
+  CategoryCode? categoryCode;
+  CategoryDescription? categoryDescription;
+  ParentCategoryCode? parentCategoryCode;
+  ParentCategoryDescription? parentCategoryDescription;
+  SegmentCode? segmentCode;
+  BusinessSegment? businessSegment;
+  double? amount;
+  String? period;
+  ReportType? reportType;
+  String? product;
+  int? productPosition;
+  ProductType? productType;
+  int? productTypePosition;
+  ProductGroup? productGroup;
+  int? productGroupPosition;
 
   factory BsAScorecard.fromJson(Map<String, dynamic> json) => BsAScorecard(
     categoryCode: categoryCodeValues.map[json["categoryCode"]],
@@ -170,7 +172,7 @@ final segmentCodeValues = EnumValues({
 
 class EnumValues<T> {
   Map<String, T> map;
-  /*late*/ Map<T, String> reverseMap;
+  late Map<T, String> reverseMap;
 
   EnumValues(this.map);
 

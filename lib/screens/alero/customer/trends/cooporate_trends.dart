@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/CustomerDetailsResponse.dart';
 import 'package:alero/screens/alero/components/customer_touchpoint_body.dart';
 import 'package:alero/screens/alero/components/customer_trends_graphs.dart';
@@ -15,10 +17,10 @@ import 'package:flutter_svg/svg.dart';
 import '../../components/trends_grid_item.dart';
 
 class CooporateTrends extends StatefulWidget {
-  final CustomerDetailsResponse customerDetails;
-  final String customerAccountNo;
+  final CustomerDetailsResponse? customerDetails;
+  final String? customerAccountNo;
 
-  const CooporateTrends({Key key, @required this.customerDetails, this.customerAccountNo})
+  const CooporateTrends({Key? key, required this.customerDetails, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class CooporateTrends extends StatefulWidget {
 
 class _CooporateTrendsState extends State<CooporateTrends> {
   bool loading = true;
-  String customerId = "", groupId = "";
+  String? customerId = "", groupId = "";
   var data;
 
   void getCustomerDetails() {

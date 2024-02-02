@@ -1,3 +1,5 @@
+
+
 import 'package:alero/dummy/dummy.dart';
 import 'package:alero/screens/alero/components/dashboard_item.dart';
 import 'package:alero/utils/Pandora.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PerformanceManagementDashboard extends StatefulWidget {
-  const PerformanceManagementDashboard({Key key}) : super(key: key);
+  const PerformanceManagementDashboard({Key? key}) : super(key: key);
 
   @override
   State<PerformanceManagementDashboard> createState() => _PerformanceManagementDashboardState();
@@ -79,11 +81,11 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
     int i = 0;
     dashboardItems.forEach((element) {
       _dashboardItem.add(DashboardItemAlign(
-        message: element['name'],
-        image: element['image'],
+        message: element['name'] as String?,
+        image: element['image'] as String?,
         color: randomColors[i].withOpacity(0.5),
         press: () {
-          onMenuClick(element['position']);
+          onMenuClick(element['position'] as int?);
         },
       ));
       i++;
@@ -93,7 +95,7 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
     });
   }
 
-  onMenuClick(int element) {
+  onMenuClick(int? element) {
     switch (element) {
       case 0:
         Navigator.of(context).pushNamed('/my-balance-sheet-page', arguments: firstName);

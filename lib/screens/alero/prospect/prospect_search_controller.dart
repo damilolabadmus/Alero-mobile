@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/models/call/ProspectDetailsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -21,7 +23,7 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List prospectOnSearch = [];
-  ProspectDetailsResponse prospects;
+  ProspectDetailsResponse? prospects;
 
   @override
   void initState() {
@@ -35,7 +37,7 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
       var _prospects = await apiService.getProspects();
       setState(() {
         prospects = _prospects;
-        prospectOnSearch = prospects.result.userProspects.toList();
+        prospectOnSearch = prospects!.result!.userProspects!.toList();
       });
       OneContext().hideProgressIndicator();
     });
@@ -68,8 +70,8 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
                     setState(() {
                       if (value.isNotEmpty) {
                         prospectOnSearch =
-                            (prospects.result.userProspects).where((element) =>
-                                element.prospectName.toLowerCase().contains(value.toLowerCase())).toList();
+                            prospects!.result!.userProspects!.where((element) =>
+                                element.prospectName!.toLowerCase().contains(value.toLowerCase())).toList();
                       }
                     });
                   },

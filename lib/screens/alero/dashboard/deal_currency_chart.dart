@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsByCurrencyResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -13,14 +15,14 @@ class DealCurrencyChart extends StatefulWidget {
 }
 
 class _DealCurrencyChartState extends State<DealCurrencyChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<DealByCurrencyResponse> dcChart = [];
   String currency = '';
   int count = 0;
-  List<DealByCurrencyResponse> currencies;
+  List<DealByCurrencyResponse?>? currencies;
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class _DealCurrencyChartState extends State<DealCurrencyChart> {
   getDealCurrency() async {
     return this._asyncMemoizer.runOnce(() async {
       var test = await apiService.getDealsByCurrencyChart();
-      currencies = test as List<DealByCurrencyResponse>;
+      currencies = test as List<DealByCurrencyResponse?>;
       return currencies;
     });
   }
@@ -77,15 +79,15 @@ class _DealCurrencyChartState extends State<DealCurrencyChart> {
               ),
               tooltipBehavior: _tooltipBehavior,
               series: <CircularSeries>[
-                DoughnutSeries<DealByCurrencyResponse, String>(
+                DoughnutSeries<DealByCurrencyResponse?, String>(
                   strokeColor: Colors.white,
                   strokeWidth: kPadding1,
                   legendIconType: LegendIconType.verticalLine,
                   radius: kAngle,
                   dataSource: currencies,
-                  xValueMapper: (DealByCurrencyResponse data, _) => data.currency,
-                  yValueMapper: (DealByCurrencyResponse data, _) =>
-                  data.count,
+                  xValueMapper: (DealByCurrencyResponse? data, _) => data!.currency,
+                  yValueMapper: (DealByCurrencyResponse? data, _) =>
+                  data!.count,
                   enableTooltip: yes,
                 ),],),
           ),

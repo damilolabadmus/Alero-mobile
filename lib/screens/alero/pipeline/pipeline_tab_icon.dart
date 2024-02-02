@@ -1,7 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 
 class PipelineTabViewIcon extends StatelessWidget {
-  Function onPressed;
+  Function? onPressed;
 
   PipelineTabViewIcon({this.onPressed});
 
@@ -21,7 +23,7 @@ class PipelineTabViewIcon extends StatelessWidget {
               child: IconButton(
                 iconSize: 22.0,
                 color: Colors.lightBlueAccent,
-                onPressed: onPressed,
+                onPressed: onPressed as void Function()?,
                 icon: Icon(Icons.drive_file_rename_outline_sharp),
               ),
             ),

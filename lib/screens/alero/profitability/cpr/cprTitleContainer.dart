@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
 
 class CprTitleContainer extends StatelessWidget {
-  final String subTitle;
-  final String subText;
+  final String? subTitle;
+  final String? subText;
 
   CprTitleContainer({this.subTitle, this.subText});
 
@@ -28,7 +30,7 @@ class CprTitleContainer extends StatelessWidget {
           Positioned(
             top: 22,
             left: 5,
-            child: Text(subTitle == null ? '' : subTitle,
+            child: Text(subTitle == null ? '' : subTitle!,
               style: TextStyle(
                 color: Colors.black45,
                 fontSize: 10.0,
@@ -39,7 +41,7 @@ class CprTitleContainer extends StatelessWidget {
           Positioned(
             top: 22,
             left: 72,
-            child: Text(subText == null ? '' : '- ' + subText,
+            child: Text(subText == null ? '' : '- ' + subText!,
               style: TextStyle(
                   fontSize: 10.0,
                   color: Style.Colors.greyTextColor,

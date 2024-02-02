@@ -1,16 +1,18 @@
+
+
 class RevenueChartData {
-  String _periodCode;
-  String _periodName;
-  double _revenueData;
-  double _depositsData;
-  double _loansData;
+  String? _periodCode;
+  String? _periodName;
+  double? _revenueData;
+  double? _depositsData;
+  double? _loansData;
 
   RevenueChartData(
-      {String periodCode,
-        String periodName,
-        double revenueData,
-        double depositsData,
-        double loansData,
+      {String? periodCode,
+        String? periodName,
+        double? revenueData,
+        double? depositsData,
+        double? loansData,
       }) {
     this._periodCode = periodCode;
     this._periodName = periodName;
@@ -19,16 +21,16 @@ class RevenueChartData {
     this._loansData = loansData;
   }
 
-  String get periodCode => _periodCode;
-  set periodCode(String periodCode) => _periodCode = periodCode;
-  String get periodName => _periodName;
-  set periodName(String periodName) => _periodName = periodName;
-  double get revenueData => _revenueData;
-  set revenueData(double revenueData) => _revenueData = revenueData;
-  double get depositsData => _depositsData;
-  set depositsData(double depositsData) => _depositsData = depositsData;
-  double get loansData => _loansData;
-  set loansData(double loansData) => _loansData = loansData;
+  String? get periodCode => _periodCode;
+  set periodCode(String? periodCode) => _periodCode = periodCode;
+  String? get periodName => _periodName;
+  set periodName(String? periodName) => _periodName = periodName;
+  double? get revenueData => _revenueData;
+  set revenueData(double? revenueData) => _revenueData = revenueData;
+  double? get depositsData => _depositsData;
+  set depositsData(double? depositsData) => _depositsData = depositsData;
+  double? get loansData => _loansData;
+  set loansData(double? loansData) => _loansData = loansData;
 
 
 

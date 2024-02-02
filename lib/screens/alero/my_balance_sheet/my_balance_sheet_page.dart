@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/models/performance/MyBalanceSheetReponse.dart';
 import 'package:alero/models/performance/MyBalanceSheetRmResponse.dart';
@@ -21,7 +23,7 @@ import 'my_balance_sheet_rm_container.dart';
 import 'my_balance_sheet_type_container.dart';
 
 class MyBalanceSheetPage extends StatefulWidget {
-  final String regionId;
+  final String? regionId;
 
   const MyBalanceSheetPage({this.regionId});
 
@@ -30,61 +32,61 @@ class MyBalanceSheetPage extends StatefulWidget {
 }
 
 class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProviderStateMixin {
-  String selectedDate;
+  String? selectedDate;
 
-  String regionId;
-  String regCode;
-  String arCode;
-  String brCode;
-  String rCode;
-  String regionItem;
+  String? regionId;
+  String? regCode;
+  String? arCode;
+  String? brCode;
+  String? rCode;
+  String? regionItem;
 
-  String areaItem;
-  String branchItem;
-  String rmItem;
-  String segmentItem;
+  String? areaItem;
+  String? branchItem;
+  String? rmItem;
+  String? segmentItem;
 
-  List<String> areaByRegion;
+  List<String>? areaByRegion;
 
   var apiService = AleroAPIService();
 
-  String selectedStartDate;
-  DateTime pickedDate;
-  DateTime twoDaysAgoSelectedDate;
-  String formattedDateStr;
-  DateTime currentSelectedDate;
-  DateTime yesterdayDate;
-  DateTime twoDaysAgo;
-  String previousDate;
-  String previousSelectedDate;
-  DateTime lastDayOfCurrentMonth;
-  DateTime selectedLastDayOfLastMonth;
-  DateTime lastDayOfLastMonth;
-  String selectedLastDayOfLastMonthString;
-  String lastDayOfLastMonthString;
-  String yesterdayDateString;
-  String yesterDayDateString;
+  String? selectedStartDate;
+  late DateTime pickedDate;
+  late DateTime twoDaysAgoSelectedDate;
+  String? formattedDateStr;
+  DateTime? currentSelectedDate;
+  late DateTime yesterdayDate;
+  late DateTime twoDaysAgo;
+  String? previousDate;
+  String? previousSelectedDate;
+  DateTime? lastDayOfCurrentMonth;
+  late DateTime selectedLastDayOfLastMonth;
+  late DateTime lastDayOfLastMonth;
+  String? selectedLastDayOfLastMonthString;
+  String? lastDayOfLastMonthString;
+  String? yesterdayDateString;
+  String? yesterDayDateString;
 
   String selectedState = '';
 
-  String areaId;
-  String zoneId;
-  String areaCode;
-  String branchCode;
-  String rmCode;
-  String date;
-  String regionName;
-  String areaName;
-  String branchName;
-  String rmName;
-  String segment;
+  String? areaId;
+  String? zoneId;
+  String? areaCode;
+  String? branchCode;
+  String? rmCode;
+  String? date;
+  String? regionName;
+  String? areaName;
+  String? branchName;
+  String? rmName;
+  String? segment;
 
-  String appDate;
-  String regionType;
-  String segmentType;
-  String areaType;
-  String branchType;
-  String rmType;
+  String? appDate;
+  String? regionType;
+  String? segmentType;
+  String? areaType;
+  String? branchType;
+  String? rmType;
 
   List<MyBalanceSheetResponse> balanceSheet = [];
   List<MyBalanceSheetResponse> bankDepActual = [];
@@ -112,12 +114,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
   List<MyBalanceSheetRmResponse> avgSegmentArea = [];
   List<MyBalanceSheetRmResponse> avgSegmentBranch = [];
 
-  AnimationController controller;
-  Animation animation1;
-  Animation animation2;
+  late AnimationController controller;
+  late Animation animation1;
+  late Animation animation2;
 
-  Future<List<String>> getAreaListByRegionId(String regionId) async {
-    List<String> _listOfAreas = await apiService.getAreaList(regionId);
+  Future<List<String>?> getAreaListByRegionId(String regionId) async {
+    List<String>? _listOfAreas = await apiService.getAreaList(regionId);
     setState(() {
       areaByRegion = _listOfAreas;
     });
@@ -125,8 +127,8 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
   }
 
   final Pandora pandora = new Pandora();
-  String _code;
-  Future<String> getRegionCode() async {
+  String? _code;
+  Future<String?> getRegionCode() async {
     String reg = await pandora.getFromSharedPreferences('regionItem');
     setState(() async {
       // Future<String> rgCode = pandora.saveToSharedPreferences('regCode', regCode);
@@ -136,30 +138,30 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
     return regCode;
   }
 
-  Future<String> getAreaCode() async {
+  Future<String?> getAreaCode() async {
     var reg = await pandora.getFromSharedPreferences('regionItem');
     var area = await pandora.getFromSharedPreferences('areaItem');
-    String _code = await apiService.getAreaCode(reg, area);
+    String? _code = await apiService.getAreaCode(reg, area);
     setState(() {
       arCode = _code;
     });
     return _code;
   }
 
-  Future<String> getBranchCode(String arCode) async {
+  Future<String?> getBranchCode(String arCode) async {
     var reg = await pandora.getFromSharedPreferences('regionItem');
     var branc = await pandora.getFromSharedPreferences('branchItem');
-    String _code = await apiService.getBranchCode(reg, arCode, branc);
+    String? _code = await apiService.getBranchCode(reg, arCode, branc);
     setState(() {
       brCode = _code;
     });
     return _code;
   }
 
-  Future<String> getRmCode(String arCode, String branchCode) async {
+  Future<String?> getRmCode(String arCode, String branchCode) async {
     var reg = await pandora.getFromSharedPreferences('regionItem');
     var rmIte = await pandora.getFromSharedPreferences('rmItem');
-    String _code = await apiService.getRmCode(reg, arCode, branchCode, rmIte);
+    String? _code = await apiService.getRmCode(reg, arCode, branchCode, rmIte);
     setState(() {
       rCode = _code;
     });
@@ -174,7 +176,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
   String bankDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
+    DateTime? _datePicker = await showDatePicker(
         context: context,
         initialDate: startDate,
         firstDate: DateTime(1950),
@@ -190,7 +192,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
 
   void getDate() {
     if (selectedDate != null) {
-      pickedDate = DateTime.parse(selectedDate);
+      pickedDate = DateTime.parse(selectedDate!);
       selectedStartDate = DateFormat('yyyy-MMM-dd').format(pickedDate);
 
       twoDaysAgoSelectedDate = pickedDate.subtract(Duration(days: 2));
@@ -214,9 +216,9 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
     });
   }
 
-  List<String> regionList;
-  Future<List<String>> getRegionList() async {
-    List<String> _listOfRegions = await apiService.getRegionList();
+  List<String>? regionList;
+  Future<List<String>?> getRegionList() async {
+    List<String>? _listOfRegions = await apiService.getRegionList();
     setState(() {
       regionList = _listOfRegions;
     });
@@ -243,18 +245,18 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
       'UNTAGGED',
   ];
 
-  List<String> branchByArea;
-  Future<List<String>> getBranchListByAreaCode(String areaCode) async {
-      List<String> _branchArea = await apiService.getBranchList(areaCode);
+  List<String>? branchByArea;
+  Future<List<String>?> getBranchListByAreaCode(String areaCode) async {
+      List<String>? _branchArea = await apiService.getBranchList(areaCode);
       setState(() {
         branchByArea = _branchArea;
       });
       return branchByArea;
     }
 
-  List<String> rmByBranch;
-  Future<List<String>> getRmListByAreaCode(String branchCode) async {
-    List<String> _rmBranch = await apiService.getRmList(branchCode);
+  List<String>? rmByBranch;
+  Future<List<String>?> getRmListByAreaCode(String branchCode) async {
+    List<String>? _rmBranch = await apiService.getRmList(branchCode);
     setState(() {
       rmByBranch = _rmBranch;
     });
@@ -276,31 +278,31 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
     getBranchListByAreaCode('IMO001');
     getRmListByAreaCode('010');
 
-    getBankWideDepositActualData(selectedDate == null ? yesterdayDateString : selectedDate);
-    getBankWideLoanActualData(selectedDate == null ? yesterdayDateString : selectedDate);
+    getBankWideDepositActualData(selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getBankWideLoanActualData(selectedDate == null ? yesterdayDateString! : selectedDate!);
 
-    getRegionActualData(selectedDate == null ? yesterdayDateString : selectedDate, 'SOUTH');
-    getAreaActualData('SO001', 'DELTA', selectedDate == null ? yesterdayDateString : selectedDate);
-    getBranchActualData('IMO001', 'ORLU', selectedDate == null ? yesterdayDateString : selectedDate);
-    getRmData('WFG10289', selectedDate == null ? yesterdayDateString : selectedDate);
+    getRegionActualData(selectedDate == null ? yesterdayDateString! : selectedDate!, 'SOUTH');
+    getAreaActualData('SO001', 'DELTA', selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getBranchActualData('IMO001', 'ORLU', selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getRmData('WFG10289', selectedDate == null ? yesterdayDateString! : selectedDate!);
 
 
-    getBankWideDepositAvgData(selectedDate == null ? yesterdayDateString : selectedDate);
-    getBankWideLoanAvgData(selectedDate == null ? yesterdayDateString : selectedDate);
+    getBankWideDepositAvgData(selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getBankWideLoanAvgData(selectedDate == null ? yesterdayDateString! : selectedDate!);
     getRegionAvgData('SO001');
-    getAreaAvgData('SO001', 'DELTA', selectedDate == null ? yesterdayDateString : selectedDate);
-    getBranchAvgData('IMO001', '010', selectedDate == null ? yesterdayDateString : selectedDate);
+    getAreaAvgData('SO001', 'DELTA', selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getBranchAvgData('IMO001', '010', selectedDate == null ? yesterdayDateString! : selectedDate!);
 
 
     getActualSegmentBankWideData('2023-07-24', 'SME'); // DON'T USE ANOTHER DATE and api response is very slow
-    getActualSegmentRegionData('SME', selectedDate == null ? yesterdayDateString : selectedDate, 'SO001');
-    getActualSegmentAreaData('SO001', 'SME', 'IMO001', selectedDate == null ? yesterdayDateString : selectedDate); // OR
+    getActualSegmentRegionData('SME', selectedDate == null ? yesterdayDateString! : selectedDate!, 'SO001');
+    getActualSegmentAreaData('SO001', 'SME', 'IMO001', selectedDate == null ? yesterdayDateString! : selectedDate!); // OR
     getActualSegmentBranchData('IMO001', 'SME', '010', selectedDate == null ? yesterdayDateString : selectedDate);
 
-    getAvgSegmentBankWideData(selectedDate == null ? yesterdayDateString : selectedDate, 'Sme'); // Make Sure you use camel case for segment e.g. Sme, Corporate, etc
-    getAvgSegmentRegionData('SME', selectedDate == null ? yesterdayDateString : selectedDate, 'SO001');
-    getAvgSegmentAreaData('SO001', 'SME', selectedDate == null ? yesterdayDateString : selectedDate);
-    getAvgSegmentBranchData('IMO001', 'SME', selectedDate == null ? yesterdayDateString : selectedDate);
+    getAvgSegmentBankWideData(selectedDate == null ? yesterdayDateString! : selectedDate!, 'Sme'); // Make Sure you use camel case for segment e.g. Sme, Corporate, etc
+    getAvgSegmentRegionData('SME', selectedDate == null ? yesterdayDateString! : selectedDate!, 'SO001');
+    getAvgSegmentAreaData('SO001', 'SME', selectedDate == null ? yesterdayDateString! : selectedDate!);
+    getAvgSegmentBranchData('IMO001', 'SME', selectedDate == null ? yesterdayDateString! : selectedDate!);
 
 
     controller = AnimationController(vsync: this, duration: Duration(seconds: 1),);
@@ -611,7 +613,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             fontFamily: 'Poppins-Regular',
                           ),),
                         SizedBox(width: 2),
-                        Text(isActive == true ? '(ACTUAL)' : '(AVERAGE)' ?? measureType,
+                        Text(isActive == true ? '(ACTUAL)' : '(AVERAGE)',
                           style: TextStyle(
                             color: Colors.lightBlue,
                             fontSize: 18.0,
@@ -621,12 +623,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         areaType != null && branchType == null && rmType == null ? Padding(
                             padding: const EdgeInsets.only(left: 3.0),
                             child: Container(
-                              width: areaType != null ? areaType.length > 12 ? 100.0 : null : null,
+                              width: areaType != null ? areaType!.length > 12 ? 100.0 : null : null,
                               padding: EdgeInsets.all(7.0),
                               decoration: BoxDecoration(
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(8.0)),
-                              child: Text(areaType,
+                              child: Text(areaType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -639,12 +641,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         areaType != null && branchType != null && rmType == null ? Padding(
                             padding: const EdgeInsets.only(left: 3.0),
                             child: Container(
-                              width: branchType != null ? branchType.length > 12 ? 100.0 : null : null,
+                              width: branchType != null ? branchType!.length > 12 ? 100.0 : null : null,
                               padding: EdgeInsets.all(7.0),
                               decoration: BoxDecoration(
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(8.0)),
-                              child: Text(branchType,
+                              child: Text(branchType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -656,12 +658,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         areaType != null && branchType != null && rmType != null  ? Padding(
                             padding: const EdgeInsets.only(left: 3.0),
                             child: Container(
-                              width: rmType != null ? rmType.length > 12 ? 100.0 : null : null,
+                              width: rmType != null ? rmType!.length > 12 ? 100.0 : null : null,
                               padding: EdgeInsets.all(7.0),
                               decoration: BoxDecoration(
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(8.0)),
-                              child: Text(rmType,
+                              child: Text(rmType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -673,12 +675,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         segmentType != null && rmType != null && branchType != null ? Padding(
                             padding: const EdgeInsets.only(left: 3.0),
                             child: Container(
-                              width: segmentType != null ? segmentType.length > 12 ? 100.0 : null : null,
+                              width: segmentType != null ? segmentType!.length > 12 ? 100.0 : null : null,
                               padding: EdgeInsets.all(7.0),
                               decoration: BoxDecoration(
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(8.0)),
-                              child: Text(segmentType,
+                              child: Text(segmentType!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12.0,
@@ -690,12 +692,12 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         : Padding(
                               padding: const EdgeInsets.only(left: 3.0),
                               child: Container(
-                                width: regionType != null ? regionType.length > 12 ? 100.0 : null : null,
+                                width: regionType != null ? regionType!.length > 12 ? 100.0 : null : null,
                                 padding: EdgeInsets.all(7.0),
                                 decoration: BoxDecoration(
                                   color: Colors.black38,
                                   borderRadius: BorderRadius.circular(8.0)),
-                                child: Text(regionType == null ? 'Bank' : regionType,
+                                child: Text(regionType == null ? 'Bank' : regionType!,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12.0,
@@ -718,7 +720,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                                 value: item,
                                 child: Text(item),
                               );
-                            }).toList() : regionList.map((item) {
+                            }).toList() : regionList!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -726,7 +728,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           } : regionType != null && areaType == null && branchType == null && rmType == null ?
                               (context) {
-                            return areaByRegion == null ? [] : areaByRegion.map((item) {
+                            return areaByRegion == null ? [] : areaByRegion!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -734,7 +736,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           } : regionType != null && areaType != null && branchType == null && rmType == null ?
                               (context) {
-                            return branchByArea == null ? [] : branchByArea.map((item) {
+                            return branchByArea == null ? [] : branchByArea!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -742,14 +744,14 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           }
                           : regionType != null && areaType != null && branchType != null && rmType == null ? (context) {
-                            return rmByBranch == null ? [] : rmByBranch.map((item) {
+                            return rmByBranch == null ? [] : rmByBranch!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
                               );
                             }).toList();
                           } : (context) {
-                            return rmByBranch == null ? [] : rmByBranch.map((item) {
+                            return rmByBranch == null ? [] : rmByBranch!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -790,10 +792,10 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                               branchItem = branchType;
                               rmItem = rmType;
 
-                              pandora.saveToSharedPreferences('regionItem', regionItem);
-                              pandora.saveToSharedPreferences('areaItem', areaItem);
-                              pandora.saveToSharedPreferences('branchItem', branchItem);
-                              pandora.saveToSharedPreferences('rmItem', rmItem);
+                              pandora.saveToSharedPreferences('regionItem', regionItem!);
+                              pandora.saveToSharedPreferences('areaItem', areaItem!);
+                              pandora.saveToSharedPreferences('branchItem', branchItem!);
+                              pandora.saveToSharedPreferences('rmItem', rmItem!);
 
                             });
                           },
@@ -810,7 +812,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           } : regionType != null ?
                             (context) {
-                            return regionList.map((item) {
+                            return regionList!.map((item) {
                              return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -819,7 +821,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }
                            : areaType != null ?
                               (context) {
-                            return areaByRegion.map((item) {
+                            return areaByRegion!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -827,7 +829,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           } : branchType != null ?
                               (context) {
-                            return branchByArea.map((item) {
+                            return branchByArea!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -835,7 +837,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             }).toList();
                           } : rmType != null ?
                               (context) {
-                            return rmByBranch.map((item) {
+                            return rmByBranch!.map((item) {
                               return PopupMenuItem(
                                 value: item,
                                 child: Text(item),
@@ -899,7 +901,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                       subText: segmentType == null ?
                         regionType != null && areaType == null && branchType == null && rmType == null ? 'Region' : regionType != null && areaType != null && branchType == null && rmType == null ? 'Area' : regionType != null && areaType != null && branchType != null && rmType == null ? 'Branch' : regionType != null && areaType != null && branchType != null && rmType != null ? 'Rm' : 'Bank'
                           : regionType != null && areaType == null && branchType == null && rmType == null ? 'Region' : regionType != null && areaType != null && branchType == null && rmType == null ? 'Area' : regionType != null && areaType != null && branchType != null && rmType == null ? 'Branch' : regionType != null && areaType != null && branchType != null && rmType != null ? 'Rm' : 'Segment',
-                      selectedDate: selectedDate == null ? yesterdayDateString : DateFormat('yyyy-MM-dd').format(DateTime.parse(selectedDate)),
+                      selectedDate: selectedDate == null ? yesterdayDateString : DateFormat('yyyy-MM-dd').format(DateTime.parse(selectedDate!)),
                       selectDate: () {
                         setState(() {
                           _selectDate(context);
@@ -921,66 +923,66 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             MyBalanceSheetTableContainer(
                               balanceSheetDepData: bankDepActual,
                               balanceSheetLoanData: bankLoanActual,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             )
                               : regionType != null && areaType == null && branchType == null && rmType == null ?
                             MyBalanceSheetTypeContainer(
                               balanceSheetData: regionActual,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             ) : regionType != null && areaType != null && branchType == null && rmType == null ?
                             MyBalanceSheetTypeContainer(
                               balanceSheetData: areaActual,  // date = June 5
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             ) : regionType != null && areaType != null && branchType != null && rmType == null ?
                             MyBalanceSheetTypeContainer(
                               balanceSheetData: branchActual,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             ) : MyBalanceSheetRmContainer(
                               balanceSheetData: rmData,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             )
                           :
                             regionType == null && areaType == null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: segmentBankWide,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) : // date = 2023-07-24
                             regionType != null && areaType == null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: actualSegmentRegion,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) :
                             regionType != null && areaType != null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: actualSegmentArea,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) :
                             regionType != null && areaType != null && branchType != null && rmType == null ?
                              MyBalanceSheetRmContainer(
                               balanceSheetData: actualSegmentBranch,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             ) : MyBalanceSheetRmContainer(
                               balanceSheetData: rmData,
-                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                              selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                              previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                               monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                             )
                          :
@@ -989,8 +991,8 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                                 MyBalanceSheetTableContainer(
                                   balanceSheetDepData: bankWideDepAvg,
                                   balanceSheetLoanData: bankWideLoanAvg,
-                                  selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                  previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                  selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                  previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                   monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                                 ) :
                                regionType != null && areaType == null && branchType == null && rmType == null ?
@@ -1010,14 +1012,14 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                                regionType != null && areaType != null && branchType != null && rmType == null ?
                                 MyBalanceSheetTypeContainer(
                                  balanceSheetData: branchAvg,
-                                 selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                 previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                 selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                 previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                  monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                                 ) :
                                 MyBalanceSheetRmContainer(
                                   balanceSheetData: rmData,
-                                  selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                  previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                  selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                  previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                   monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                                 )
                           :
@@ -1025,35 +1027,35 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                             regionType == null && areaType == null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: avgSegmentBankWide,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) : // date = 2023-07-24
                             regionType != null && areaType == null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                balanceSheetData: avgSegmentRegion,
-                               selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                               previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                               selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                               previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) :
                             regionType != null && areaType != null && branchType == null && rmType == null ?
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: avgSegmentArea,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) :
                             regionType != null && areaType != null && branchType != null && rmType == null ?
                               MyBalanceSheetTypeContainer(
                                 balanceSheetData: avgSegmentBranch,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               ) :
                               MyBalanceSheetRmContainer(
                                 balanceSheetData: rmData,
-                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate)),
-                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate).subtract(Duration(days: 1))),
+                                selectedStartDate: selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
+                                previousDate: selectedDate == null ? previousDate : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
                                 monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
                               )
                         : SingleChildScrollView(

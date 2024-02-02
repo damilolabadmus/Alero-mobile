@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/directors_list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +9,10 @@ import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'empty_list_item.dart';
 
 class CustomerDirectorsList extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
   const CustomerDirectorsList(
-      {Key key, @required this.customerId, @required this.groupId})
+      {Key? key, required this.customerId, required this.groupId})
       : super(key: key);
 
   @override
@@ -61,9 +63,9 @@ class _CustomerDirectorsListState extends State<CustomerDirectorsList> {
     );
   }
 
-  Future getcustomerDirectors(String groupId) async {
+  Future getcustomerDirectors(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      final directors = await apiService.getCustomerDirectors(groupId);
+      final directors = await apiService.getCustomerDirectors(groupId!);
       List<Widget> _customerDirectorsItem = [];
       if (directors.length == 0) {
         _customerDirectorsItem

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/response/login_response.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +25,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final Pandora pandora = new Pandora();
   var apiService = AleroAPIService();
-  String userId;
+  String? userId;
   TextEditingController usernameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
@@ -50,8 +52,8 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    if (userId != null && userId.isNotEmpty) {
-      usernameController.text = userId;
+    if (userId != null && userId!.isNotEmpty) {
+      usernameController.text = userId!;
     }
     return Stack(
       children: [
@@ -315,7 +317,7 @@ class _BodyState extends State<Body> {
     Global.PREF_TOKEN2 = responseBody.token2;
     /*print('The token for pm is: ');
     print(responseBody.token2);*/
-    pandora.saveToSharedPreferences('API_TOKEN2', Global.API_TOKEN2);
+    pandora.saveToSharedPreferences('API_TOKEN2', Global.API_TOKEN2!);
   }
 }
 

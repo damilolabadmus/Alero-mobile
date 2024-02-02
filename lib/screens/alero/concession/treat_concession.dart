@@ -1,7 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 
 class TreatConcession extends StatefulWidget {
-  const TreatConcession({Key key}) : super(key: key);
+  const TreatConcession({Key? key}) : super(key: key);
 
   @override
   State<TreatConcession> createState() => _TreatConcessionState();

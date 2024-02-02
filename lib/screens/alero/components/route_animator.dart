@@ -1,12 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 
 class RouteAnimator extends PageRouteBuilder {
-  final Widget page;
+  final Widget? page;
   RouteAnimator({this.page})
       : super(
     pageBuilder: (BuildContext context, Animation<double> animation,
         Animation<double> secondaryAnimation) {
-      return page;
+      return page!;
     },
     transitionsBuilder: (BuildContext context,
         Animation<double> animation,

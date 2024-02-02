@@ -1,21 +1,23 @@
+
+
 import 'package:flutter/material.dart';
 
 class ProspectEditContainer extends StatelessWidget {
 
-  const ProspectEditContainer({Key key,
+  const ProspectEditContainer({Key? key,
     this.titleText,
     this.icon,
     this.keyboardType,
-    @required this.value,
-    @required this.textFormFieldController
+    required this.value,
+    required this.textFormFieldController
 
   }) : super(key: key);
 
-  final String titleText;
-  final String value;
-  final IconData icon;
-  final TextInputType keyboardType;
-  final TextEditingController textFormFieldController;
+  final String? titleText;
+  final String? value;
+  final IconData? icon;
+  final TextInputType? keyboardType;
+  final TextEditingController? textFormFieldController;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProspectEditContainer extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      titleText,
+                      titleText!,
                       style: TextStyle(
                         color: Colors.lightBlue,
                         fontSize: 15.0,

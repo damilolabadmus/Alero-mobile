@@ -1,18 +1,20 @@
+
+
 class BankRevenueData{
-  double _ytdRevenue;
-  double _loansRevenue;
-  double _depositsRevenue;
-  double _commFeesRevenue;
-  double _revenueData;
-  String _periodName;
+  double? _ytdRevenue;
+  double? _loansRevenue;
+  double? _depositsRevenue;
+  double? _commFeesRevenue;
+  double? _revenueData;
+  String? _periodName;
 
   BankRevenueData(
-      {double ytdRevenue,
-        double loansRevenue,
-        double depositsRevenue,
-        double commFeesRevenue,
-        double revenueData,
-        String periodName,
+      {double? ytdRevenue,
+        double? loansRevenue,
+        double? depositsRevenue,
+        double? commFeesRevenue,
+        double? revenueData,
+        String? periodName,
       }) {
     this._ytdRevenue = ytdRevenue;
     this._loansRevenue = loansRevenue;
@@ -22,18 +24,18 @@ class BankRevenueData{
     this._periodName = periodName;
   }
 
-  double get ytdRevenue => _ytdRevenue;
-  set ytdRevenue(double ytdRevenue) => _ytdRevenue = ytdRevenue;
-  double get loansRevenue => _loansRevenue;
-  set loansRevenue(double loansRevenue) => _loansRevenue = loansRevenue;
-  double get depositsRevenue => _depositsRevenue;
-  set depositsRevenue(double depositsRevenue) => _depositsRevenue = depositsRevenue;
-  double get commFeesRevenue => _commFeesRevenue;
-  set commFeesRevenue(double commFeesRevenue) => _commFeesRevenue = commFeesRevenue;
-  double get revenueData => _revenueData;
-  set revenueData(double revenueData) => _revenueData = revenueData;
-  String get periodName => _periodName;
-  set periodName(String periodName) => _periodName = periodName;
+  double? get ytdRevenue => _ytdRevenue;
+  set ytdRevenue(double? ytdRevenue) => _ytdRevenue = ytdRevenue;
+  double? get loansRevenue => _loansRevenue;
+  set loansRevenue(double? loansRevenue) => _loansRevenue = loansRevenue;
+  double? get depositsRevenue => _depositsRevenue;
+  set depositsRevenue(double? depositsRevenue) => _depositsRevenue = depositsRevenue;
+  double? get commFeesRevenue => _commFeesRevenue;
+  set commFeesRevenue(double? commFeesRevenue) => _commFeesRevenue = commFeesRevenue;
+  double? get revenueData => _revenueData;
+  set revenueData(double? revenueData) => _revenueData = revenueData;
+  String? get periodName => _periodName;
+  set periodName(String? periodName) => _periodName = periodName;
 
   BankRevenueData.fromJson(Map<String, dynamic> json) {
     _ytdRevenue = json['ytdRevenue'];

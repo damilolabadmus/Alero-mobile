@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<CprSearchResponse> cprSearchResponseFromJson(String str) => List<CprSearchResponse>.from(json.decode(str).map((x) => CprSearchResponse.fromJson(x)));
@@ -5,25 +7,25 @@ List<CprSearchResponse> cprSearchResponseFromJson(String str) => List<CprSearchR
 String cprSearchResponseToJson(List<CprSearchResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CprSearchResponse {
-  String customerNo;
-  CustomerName customerName;
-  int accountCount;
-  String customerType;
-  String activeStatus;
-  String region;
-  String area;
-  String branchName;
-  double actualBalance;
-  double averageBalance;
-  double ftpIncome;
-  int interestExpense;
-  int interestIncome;
-  double totalExpense;
-  double profitability;
-  double totalIncome;
+  String? customerNo;
+  CustomerName? customerName;
+  int? accountCount;
+  String? customerType;
+  String? activeStatus;
+  String? region;
+  String? area;
+  String? branchName;
+  double? actualBalance;
+  double? averageBalance;
+  double? ftpIncome;
+  int? interestExpense;
+  int? interestIncome;
+  double? totalExpense;
+  double? profitability;
+  double? totalIncome;
   dynamic customerCategory;
-  List<ExcludedTab> mainReport;
-  List<ExcludedTab> excludedTab;
+  List<ExcludedTab>? mainReport;
+  List<ExcludedTab>? excludedTab;
 
   CprSearchResponse({
     this.customerNo,
@@ -71,7 +73,7 @@ class CprSearchResponse {
 
   Map<String, dynamic> toJson() => {
     "customerNo": customerNo,
-    "customerName": customerNameValues.reverse[customerName],
+    "customerName": customerNameValues.reverse![customerName],
     "accountCount": accountCount,
     "customerType": customerType,
     "activeStatus": activeStatus,
@@ -87,8 +89,8 @@ class CprSearchResponse {
     "profitability": profitability,
     "totalIncome": totalIncome,
     "customerCategory": customerCategory,
-    "mainReport": List<dynamic>.from(mainReport.map((x) => x.toJson())),
-    "excludedTab": List<dynamic>.from(excludedTab.map((x) => x.toJson())),
+    "mainReport": List<dynamic>.from(mainReport!.map((x) => x.toJson())),
+    "excludedTab": List<dynamic>.from(excludedTab!.map((x) => x.toJson())),
   };
 }
 
@@ -101,20 +103,20 @@ final customerNameValues = EnumValues({
 });
 
 class ExcludedTab {
-  CustomerName customerName;
-  String customerNo;
-  String incomeType;
-  Map<String, double> monthsData;
-  CurrentMonthBudget currentMonthBudget;
-  CurrentMonthVariance currentMonthVariance;
-  CurrentMonthAchieved currentMonthAchieved;
-  double ytDActualValue;
-  int ytDBudgetValue;
-  double variance;
-  double ytDAchieved;
-  int fullYearBudget;
-  double runRate;
-  List<ExcludedTab> dropdown;
+  CustomerName? customerName;
+  String? customerNo;
+  String? incomeType;
+  Map<String, double?>? monthsData;
+  CurrentMonthBudget? currentMonthBudget;
+  CurrentMonthVariance? currentMonthVariance;
+  CurrentMonthAchieved? currentMonthAchieved;
+  double? ytDActualValue;
+  int? ytDBudgetValue;
+  double? variance;
+  double? ytDAchieved;
+  int? fullYearBudget;
+  double? runRate;
+  List<ExcludedTab>? dropdown;
 
   ExcludedTab({
     this.customerName,
@@ -137,7 +139,7 @@ class ExcludedTab {
     customerName: customerNameValues.map[json["customerName"]],
     customerNo: json["customerNo"],
     incomeType: json["incomeType"],
-    monthsData: Map.from(json["monthsData"]).map((k, v) => MapEntry<String, double>(k, v.toDouble())),
+    monthsData: Map.from(json["monthsData"]).map((k, v) => MapEntry<String, double?>(k, v.toDouble())),
     currentMonthBudget: CurrentMonthBudget.fromJson(json["currentMonthBudget"]),
     currentMonthVariance: CurrentMonthVariance.fromJson(json["currentMonthVariance"]),
     currentMonthAchieved: CurrentMonthAchieved.fromJson(json["currentMonthAchieved"]),
@@ -151,25 +153,25 @@ class ExcludedTab {
   );
 
   Map<String, dynamic> toJson() => {
-    "customerName": customerNameValues.reverse[customerName],
+    "customerName": customerNameValues.reverse![customerName],
     "customerNo": customerNo,
     "incomeType": incomeType,
-    "monthsData": Map.from(monthsData).map((k, v) => MapEntry<String, dynamic>(k, v)),
-    "currentMonthBudget": currentMonthBudget.toJson(),
-    "currentMonthVariance": currentMonthVariance.toJson(),
-    "currentMonthAchieved": currentMonthAchieved.toJson(),
+    "monthsData": Map.from(monthsData!).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "currentMonthBudget": currentMonthBudget!.toJson(),
+    "currentMonthVariance": currentMonthVariance!.toJson(),
+    "currentMonthAchieved": currentMonthAchieved!.toJson(),
     "ytD_ACTUAL_VALUE": ytDActualValue,
     "ytD_BUDGET_VALUE": ytDBudgetValue,
     "variance": variance,
     "ytD_ACHIEVED": ytDAchieved,
     "full_Year_Budget": fullYearBudget,
     "runRate": runRate,
-    "dropdown": List<dynamic>.from(dropdown.map((x) => x.toJson())),
+    "dropdown": List<dynamic>.from(dropdown!.map((x) => x.toJson())),
   };
 }
 
 class CurrentMonthAchieved {
-  double sep2023Achieved;
+  double? sep2023Achieved;
 
   CurrentMonthAchieved({
     this.sep2023Achieved,
@@ -185,7 +187,7 @@ class CurrentMonthAchieved {
 }
 
 class CurrentMonthBudget {
-  int sep2023BudgetValue;
+  int? sep2023BudgetValue;
 
   CurrentMonthBudget({
     this.sep2023BudgetValue,
@@ -201,7 +203,7 @@ class CurrentMonthBudget {
 }
 
 class CurrentMonthVariance {
-  double sep2023Variance;
+  double? sep2023Variance;
 
   CurrentMonthVariance({
     this.sep2023Variance,
@@ -218,11 +220,11 @@ class CurrentMonthVariance {
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }

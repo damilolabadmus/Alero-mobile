@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/call/call_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/components/back_logout_header.dart';
 import 'package:alero/screens/alero/call/call_management_dashboard.dart';
@@ -6,9 +8,9 @@ import '../../../../style/theme.dart' as Style;
 
 class CallManagementPage extends StatelessWidget {
 
-  final String userId;
+  final String? userId;
 
-  CallManagementPage({@required this.userId});
+  CallManagementPage({this.userId});
 
   @override
   Widget build(BuildContext context) {

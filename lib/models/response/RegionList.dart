@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<RegionList> regionListFromJson(String str) => List<RegionList>.from(json.decode(str).map((x) => RegionList.fromJson(x)));
@@ -5,9 +7,9 @@ List<RegionList> regionListFromJson(String str) => List<RegionList>.from(json.de
 String regionListToJson(List<RegionList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class RegionList {
-  int indexId;
-  String location;
-  String locationCode;
+  int? indexId;
+  String? location;
+  String? locationCode;
 
   RegionList({
     this.indexId,

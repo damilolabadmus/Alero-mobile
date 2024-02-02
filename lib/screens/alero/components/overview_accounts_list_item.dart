@@ -1,3 +1,5 @@
+
+
 import 'package:alero/utils/constants.dart';
 import '../../../style/theme.dart' as Style;
 import 'package:flutter/cupertino.dart';
@@ -6,16 +8,16 @@ import 'package:intl/intl.dart';
 import '../../../utils/Pandora.dart';
 
 class OverviewAccountsListItem extends StatelessWidget {
-  final String accountType,
+  final String? accountType,
       accountNumber,
       createdAddress,
       createdDate,
       currency;
-  final bool active;
-  final double balance;
+  final bool? active;
+  final double? balance;
 
   const OverviewAccountsListItem(
-      {Key key,
+      {Key? key,
         this.accountType,
         this.accountNumber,
         this.createdAddress,
@@ -27,7 +29,7 @@ class OverviewAccountsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = DateTime.parse(createdDate + 'Z');
+    var date = DateTime.parse(createdDate! + 'Z');
     final formatCurrency = new NumberFormat.currency(symbol: "");
     return Card(
       color: Style.Colors.overviewCardBg,
@@ -58,19 +60,19 @@ class OverviewAccountsListItem extends StatelessWidget {
                   highlightColor: Style.Colors.mainColor,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: active
+                        color: active!
                             ? Style.Colors.overviewActiveBg
                             : Style.Colors.overviewInactiveBg,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: active
+                          color: active!
                               ? Style.Colors.overviewActiveBg
                               : Style.Colors.overviewInactiveBg,
                         )),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       child: Text(
-                        active ? 'active' : 'inactive',
+                        active! ? 'active' : 'inactive',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 7.0,
@@ -88,7 +90,7 @@ class OverviewAccountsListItem extends StatelessWidget {
             ),
             Row(
               children: [
-                Text(accountNumber,
+                Text(accountNumber!,
                     style: TextStyle(
                       color: Style.Colors.blackTextColor,
                       fontSize: 12.0,
@@ -103,7 +105,7 @@ class OverviewAccountsListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(createdAddress,
+                Text(createdAddress!,
                     style: TextStyle(
                       color: Style.Colors.overviewTextLightGrey,
                       fontSize: 9.0,
@@ -125,20 +127,20 @@ class OverviewAccountsListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                currency.toUpperCase() == 'NGN'
+                currency!.toUpperCase() == 'NGN'
                     ? Text("₦ " + formatCurrency.format(balance),
                     style: kAccountCurrency)
-                    : currency.toUpperCase() == 'USD'
+                    : currency!.toUpperCase() == 'USD'
                     ? Text("\$ " + formatCurrency.format(balance),
-                    style: kAccountCurrency) : currency.toUpperCase() == 'EUR'
+                    style: kAccountCurrency) : currency!.toUpperCase() == 'EUR'
                     ? Text("\€ " + formatCurrency.format(balance),
-                    style: kAccountCurrency) : currency.toUpperCase() == 'CNY'
+                    style: kAccountCurrency) : currency!.toUpperCase() == 'CNY'
                     ? Text("\¥ " + formatCurrency.format(balance),
-                    style: kAccountCurrency) : currency.toUpperCase() == 'CHF'
+                    style: kAccountCurrency) : currency!.toUpperCase() == 'CHF'
                     ? Text("CHF " + formatCurrency.format(balance),
-                    style: kAccountCurrency) : currency.toUpperCase() == 'GBP'
+                    style: kAccountCurrency) : currency!.toUpperCase() == 'GBP'
                     ? Text("\£ " + formatCurrency.format(balance),
-                    style: kAccountCurrency) : currency.toUpperCase() == 'ZAR'
+                    style: kAccountCurrency) : currency!.toUpperCase() == 'ZAR'
                     ? Text("R " + formatCurrency.format(balance),
                     style: kAccountCurrency) :
                 Text("\$ " + formatCurrency.format(balance),

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/ComplaintCategoryFlow.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -10,9 +12,9 @@ import 'package:async/async.dart';
 import 'indicator.dart';
 
 class ComplaintsCartegoriesCard extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
-  const ComplaintsCartegoriesCard({Key key, this.customerId, this.groupId})
+  const ComplaintsCartegoriesCard({Key? key, this.customerId, this.groupId})
       : super(key: key);
 
   @override
@@ -24,10 +26,10 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<ComplaintCategory> cfData = [];
   int complaintsTotal = 0;
-  int touchedIndex;
+  int? touchedIndex;
   List<Color> randomColors = [];
   List<Widget> indicators = [];
-  bool hasdata;
+  bool? hasdata;
 
   @override
   void initState() {
@@ -35,9 +37,9 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
     getComplaintCategories(widget.groupId);
   }
 
-  Future getComplaintCategories(String groupId) async {
+  Future getComplaintCategories(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      var flow = await apiService.getComplaintCategories(groupId);
+      var flow = await apiService.getComplaintCategories(groupId!);
       cfData = [];
       List<Widget> _indicators = [];
 
@@ -85,7 +87,7 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
       }
 
       for (int i = 0; i < cfData.length; i++) {
-        complaintsTotal = complaintsTotal + cfData[i].complaintCategoryCount;
+        complaintsTotal = complaintsTotal + cfData[i].complaintCategoryCount!;
       }
       return flow;
     });
@@ -171,7 +173,7 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
                                     touchedIndex = -1;
                                   } else {
                                     touchedIndex =
-                                        pieTouchResponse.touchedSection.touchedSectionIndex;
+                                        pieTouchResponse!.touchedSection!.touchedSectionIndex;
                                   }
                                 });
                               }
@@ -201,7 +203,7 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
     );
   }
 
-  List<PieChartSectionData> showingTouchPointSections() {
+  List<PieChartSectionData>? showingTouchPointSections() {
     if (cfData.isNotEmpty)
       return List.generate(cfData.length, (i) {
         final isTouched = i == touchedIndex;
@@ -209,7 +211,7 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
         final double radius = isTouched ? 35 : 30;
         return PieChartSectionData(
             color: randomColors[i],
-            value: cfData[i].complaintCategoryCount.toDouble(),
+            value: cfData[i].complaintCategoryCount!.toDouble(),
             title: '',
             radius: radius,
             titleStyle: TextStyle(
@@ -218,6 +220,7 @@ class ComplaintsCartegoriesCardState extends State<ComplaintsCartegoriesCard> {
               color: randomColors[i],
             ));
       });
+    return null;
   }
 
   void generateColors(int length) {

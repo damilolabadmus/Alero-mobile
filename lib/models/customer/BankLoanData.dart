@@ -1,18 +1,20 @@
+
+
 class BankLoanData{
-  double _actualLoans;
-  double _actualLoansChange;
-  double _averageLoans;
-  double _averageLoansChange;
-  double _loansData;
-  String _periodName;
+  double? _actualLoans;
+  double? _actualLoansChange;
+  double? _averageLoans;
+  double? _averageLoansChange;
+  double? _loansData;
+  String? _periodName;
 
   BankLoanData(
-      {double actualLoans,
-        double actualLoansChange,
-        double averageLoans,
-        double averageLoansChange,
-        double loansData,
-        String periodName,
+      {double? actualLoans,
+        double? actualLoansChange,
+        double? averageLoans,
+        double? averageLoansChange,
+        double? loansData,
+        String? periodName,
       }) {
     this._actualLoans = actualLoans;
     this._actualLoansChange = actualLoansChange;
@@ -22,18 +24,18 @@ class BankLoanData{
     this._periodName = periodName;
   }
 
-  double get actualLoans => _actualLoans;
-  set actualLoans(double actualLoans) => _actualLoans = actualLoans;
-  double get actualLoansChange => _actualLoansChange;
-  set actualLoansChange(double actualLoansChange) => _actualLoansChange = actualLoansChange;
-  double get averageLoans => _averageLoans;
-  set averageLoans(double averageLoans) => _averageLoans = averageLoans;
-  double get averageLoansChange => _averageLoansChange;
-  set averageLoansChange(double averageLoansChange) => _averageLoansChange = averageLoansChange;
-  double get loansData => _loansData;
-  set loansData(double loansData) => _loansData = loansData;
-  String get periodName => _periodName;
-  set periodName(String periodName) => _periodName = periodName;
+  double? get actualLoans => _actualLoans;
+  set actualLoans(double? actualLoans) => _actualLoans = actualLoans;
+  double? get actualLoansChange => _actualLoansChange;
+  set actualLoansChange(double? actualLoansChange) => _actualLoansChange = actualLoansChange;
+  double? get averageLoans => _averageLoans;
+  set averageLoans(double? averageLoans) => _averageLoans = averageLoans;
+  double? get averageLoansChange => _averageLoansChange;
+  set averageLoansChange(double? averageLoansChange) => _averageLoansChange = averageLoansChange;
+  double? get loansData => _loansData;
+  set loansData(double? loansData) => _loansData = loansData;
+  String? get periodName => _periodName;
+  set periodName(String? periodName) => _periodName = periodName;
 
   BankLoanData.fromJson(Map<String, dynamic> json) {
     _actualLoans = json['actualLoans'];

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsByProductsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/pipeline/pipeline_deals_header.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 
 class PendingDealsByProduct extends StatefulWidget {
-  const PendingDealsByProduct({Key key}) : super(key: key);
+  const PendingDealsByProduct({Key? key}) : super(key: key);
 
   @override
   _PendingDealsByProductState createState() => _PendingDealsByProductState();
@@ -16,7 +18,7 @@ class _PendingDealsByProductState extends State<PendingDealsByProduct> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List dealsByProducts = [];
-  DealsByProductsResponse productItems;
+  DealsByProductsResponse? productItems;
 
   @override
   void initState() {
@@ -29,7 +31,7 @@ class _PendingDealsByProductState extends State<PendingDealsByProduct> {
       var _productItem = await apiService.getPendingDealsByProduct();
       setState(() {
         productItems = _productItem;
-        dealsByProducts = productItems.result.toList();
+        dealsByProducts = productItems!.result!.toList();
       });
     });
   }

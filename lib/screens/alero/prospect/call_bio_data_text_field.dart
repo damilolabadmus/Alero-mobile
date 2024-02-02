@@ -1,12 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 
 class CallTextField extends StatelessWidget {
-  const CallTextField({Key key,
-    @required this.prospectController,
+  const CallTextField({Key? key,
+    this.prospectController,
     this.validator,
     this.hintText,
     this.labelText,
-    @required this.onChanged,
+    required this.onChanged,
     this.textInputAction,
     this.keyboardType,
     this.readOnly,
@@ -18,26 +20,26 @@ class CallTextField extends StatelessWidget {
 
   }) : super(key: key);
 
-  final TextEditingController prospectController;
-  final Function validator;
-  final String hintText;
-  final String labelText;
+  final TextEditingController? prospectController;
+  final String? Function(String?)? validator;
+  final String? hintText;
+  final String? labelText;
   final Function onChanged;
-  final TextInputAction textInputAction;
-  final TextInputType keyboardType;
-  final bool readOnly;
-  final TextStyle hintStyle;
-  final IconButton suffixIcon;
-  final String errorText;
-  final IconButton prefixIcon;
-  final Color fillColor;
+  final TextInputAction? textInputAction;
+  final TextInputType? keyboardType;
+  final bool? readOnly;
+  final TextStyle? hintStyle;
+  final IconButton? suffixIcon;
+  final String? errorText;
+  final IconButton? prefixIcon;
+  final Color? fillColor;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      readOnly: readOnly,
+      readOnly: readOnly!,
       validator: validator,
-      onChanged: onChanged,
+      onChanged: onChanged as void Function(String)?,
       controller: prospectController,
       decoration: InputDecoration(
         hintText: hintText,

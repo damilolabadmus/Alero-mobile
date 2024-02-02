@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/call/call_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/call/call_management_page.dart';
 import 'package:alero/screens/alero/prospect/prospect_edit_container.dart';
@@ -12,22 +14,22 @@ import 'dart:io' show Platform;
 
 class ProspectEdit extends StatefulWidget {
 
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress = "";
-  bool prospectConverted;
-  String accountNo;
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress = "";
+  bool? prospectConverted;
+  String? accountNo;
   bool edit = true;
-  String introducerStaffCode = "";
+  String? introducerStaffCode = "";
 
   ProspectEdit(
       this.prospectId,
@@ -58,34 +60,34 @@ class ProspectEdit extends StatefulWidget {
 
 class _ProspectEditState extends State<ProspectEdit> {
 
-  String keyPromoterName;
-  String prospectId;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress = '';
-  bool prospectConverted;
-  String accountNo;
-  String introducerStaffCode = "";
+  String? keyPromoterName;
+  String? prospectId;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress = '';
+  bool? prospectConverted;
+  String? accountNo;
+  String? introducerStaffCode = "";
 
-  TextEditingController keyPromoterController;
-  TextEditingController prospectNameController;
-  TextEditingController prospectAddressController;
-  TextEditingController prospectTypeController;
-  TextEditingController businessSegmentController;
-  TextEditingController productOfferedController;
-  TextEditingController customerWalletSizeController;
-  TextEditingController contactPersonNameController;
-  TextEditingController contactPersonEmailController;
-  TextEditingController contactPersonPhoneNoController;
-  TextEditingController contactPersonAddressController;
-  TextEditingController accountNoController;
+  TextEditingController? keyPromoterController;
+  TextEditingController? prospectNameController;
+  TextEditingController? prospectAddressController;
+  late TextEditingController prospectTypeController;
+  late TextEditingController businessSegmentController;
+  TextEditingController? productOfferedController;
+  TextEditingController? customerWalletSizeController;
+  TextEditingController? contactPersonNameController;
+  TextEditingController? contactPersonEmailController;
+  TextEditingController? contactPersonPhoneNoController;
+  late TextEditingController contactPersonAddressController;
+  TextEditingController? accountNoController;
 
   _ProspectEditState(
       this.prospectId,
@@ -270,18 +272,18 @@ class _ProspectEditState extends State<ProspectEdit> {
   Map updateProspectDetails() {
     return{
       'prospectId': prospectId,
-      'keyPromoterName': keyPromoterController.text.toString(),
-      'prospectName': prospectNameController.text.toString(),
-      'prospectAddress': prospectAddressController.text.toString(),
+      'keyPromoterName': keyPromoterController!.text.toString(),
+      'prospectName': prospectNameController!.text.toString(),
+      'prospectAddress': prospectAddressController!.text.toString(),
       'prospectType':prospectTypeController.text,
       'businessSegment': businessSegmentController.text,
-      'productOffered': productOfferedController.text.toString(),
-      'customerWalletSize': customerWalletSizeController.text.toString(),
-      'contactPersonName': contactPersonNameController.text.toString(),
-      'contactPersonEmail': contactPersonEmailController.text.toString(),
-      'contactPersonPhoneNo': contactPersonPhoneNoController.text.toString(),
+      'productOffered': productOfferedController!.text.toString(),
+      'customerWalletSize': customerWalletSizeController!.text.toString(),
+      'contactPersonName': contactPersonNameController!.text.toString(),
+      'contactPersonEmail': contactPersonEmailController!.text.toString(),
+      'contactPersonPhoneNo': contactPersonPhoneNoController!.text.toString(),
       'contactPersonAddress': contactPersonAddressController.text.toString(),
-      'prospectConverted': accountNoController?.text == null ? false : accountNoController.text.isEmpty ? false : true,
+      'prospectConverted': accountNoController?.text == null ? false : accountNoController!.text.isEmpty ? false : true,
       'accountNo': accountNoController?.text.toString(),
       'edit': "true",
       'introducerStaffCode': '',
@@ -294,15 +296,15 @@ class _ProspectEditState extends State<ProspectEdit> {
     'Non individual',
   ];
 
-  List<String> businessSegments;
+  List<String>? businessSegments;
   getBusinessSegment() async {
-    List<String> _businessSegments = await apiService.getProspectBusinessSegments();
+    List<String>? _businessSegments = await apiService.getProspectBusinessSegments();
     setState(() {
       businessSegments = _businessSegments;
     });
   }
 
-  Text getValue(String value) {
+  Text getValue(String? value) {
     if (value == null || value.isEmpty) {
       return Text('Select One',
           style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
@@ -328,11 +330,11 @@ class _ProspectEditState extends State<ProspectEdit> {
         onChanged: (value) {
           setState(() {
             if(isBusinessSeg) {
-              businessSegmentController.text = value;
+              businessSegmentController.text = value!;
               businessSegment = value;
             }else{
               prospectType = value;
-              prospectTypeController.text = value;
+              prospectTypeController.text = value!;
             }
           });
         },
@@ -350,12 +352,12 @@ class _ProspectEditState extends State<ProspectEdit> {
       onSelectedItemChanged: (value) {
         setState(() {
           if(isBusinessSeg) {
-            businessSegment = businessSegments[value];
+            businessSegment = businessSegments![value];
           }else{
-            prospectType = businessSegments[value];
+            prospectType = businessSegments![value];
           }
         });
-        final item = businessSegments[value];
+        final item = businessSegments![value];
         print("Selected Item = $item");
       },
       magnification: 0.7,
@@ -363,7 +365,7 @@ class _ProspectEditState extends State<ProspectEdit> {
   }
 
   @override
-  Widget getDropDownComponent(BuildContext context, List dropDownList, bool isBusinessSeg) {
+  Widget getDropDownComponent(BuildContext context, List? dropDownList, bool isBusinessSeg) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
@@ -376,8 +378,8 @@ class _ProspectEditState extends State<ProspectEdit> {
             ),
           ),
           Platform.isIOS ?
-          iOSPicker(dropDownList,isBusinessSeg):
-          androidDropDown(dropDownList,isBusinessSeg),
+          iOSPicker(dropDownList as List<String>,isBusinessSeg):
+          androidDropDown(dropDownList as List<String>,isBusinessSeg),
         ],
       ),
     );
@@ -417,6 +419,9 @@ class _ProspectEditState extends State<ProspectEdit> {
         ),
       );
     }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 
   Widget prospectPhoneNo() {

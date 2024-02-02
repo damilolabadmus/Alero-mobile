@@ -1,22 +1,24 @@
+
+
 class TrendTouchPointData {
   dynamic _custAccountNo;
   dynamic _customerGroupNo;
   dynamic _branchCode;
   dynamic _period;
-  String _debitCreditIndicator;
-  String _transactionChannel;
-  String _touchPointCount;
-  String _transactionVolume;
+  String? _debitCreditIndicator;
+  String? _transactionChannel;
+  String? _touchPointCount;
+  String? _transactionVolume;
 
   TrendTouchPointData(
       {dynamic custAccountNo,
         dynamic customerGroupNo,
         dynamic branchCode,
         dynamic period,
-        String debitCreditIndicator,
-        String transactionChannel,
-        String touchPointCount,
-        String transactionVolume}) {
+        String? debitCreditIndicator,
+        String? transactionChannel,
+        String? touchPointCount,
+        String? transactionVolume}) {
     this._custAccountNo = custAccountNo;
     this._customerGroupNo = customerGroupNo;
     this._branchCode = branchCode;
@@ -35,14 +37,14 @@ class TrendTouchPointData {
   set branchCode(dynamic branchCode) => _branchCode = branchCode;
   dynamic get period => _period;
   set period(dynamic period) => _period = period;
-  String get debitCreditIndicator => _debitCreditIndicator;
-  set debitCreditIndicator(String debitCreditIndicator) => _debitCreditIndicator = debitCreditIndicator;
-  String get transactionChannel => _transactionChannel;
-  set transactionChannel(String transactionChannel) => _transactionChannel = transactionChannel;
-  String get touchPointCount => _touchPointCount;
-  set touchPointCount(String touchPointCount) => _touchPointCount = touchPointCount;
-  String get transactionVolume => _transactionVolume;
-  set transactionVolume(String transactionVolume) => _transactionVolume = transactionVolume;
+  String? get debitCreditIndicator => _debitCreditIndicator;
+  set debitCreditIndicator(String? debitCreditIndicator) => _debitCreditIndicator = debitCreditIndicator;
+  String? get transactionChannel => _transactionChannel;
+  set transactionChannel(String? transactionChannel) => _transactionChannel = transactionChannel;
+  String? get touchPointCount => _touchPointCount;
+  set touchPointCount(String? touchPointCount) => _touchPointCount = touchPointCount;
+  String? get transactionVolume => _transactionVolume;
+  set transactionVolume(String? transactionVolume) => _transactionVolume = transactionVolume;
 
   TrendTouchPointData.fromJson(Map<String, dynamic> json) {
     _custAccountNo = json['custAccountNo'];

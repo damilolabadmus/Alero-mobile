@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
@@ -8,9 +10,9 @@ import 'package:flutter/widgets.dart';
 class MyBalanceSheetTableContainer extends StatelessWidget {
   final balanceSheetDepData;
   final balanceSheetLoanData;
-  final String selectedStartDate;
-  String previousDate;
-  String monthEndDate;
+  final String? selectedStartDate;
+  String? previousDate;
+  String? monthEndDate;
 
   MyBalanceSheetTableContainer({this.balanceSheetDepData, this.balanceSheetLoanData, this.selectedStartDate, this.previousDate, this.monthEndDate});
 
@@ -40,10 +42,10 @@ class MyBalanceSheetTableContainer extends StatelessWidget {
                       headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade50),
                       columns: [
                         DataColumn(label: Text('Category')),
-                        DataColumn(label: Text(selectedStartDate == null ? '(₦\'m)' : selectedStartDate + '(₦\'m)')),
-                        DataColumn(label: Text(previousDate == null ? '(₦\'m)' : previousDate + ' (₦\'m)')),
+                        DataColumn(label: Text(selectedStartDate == null ? '(₦\'m)' : selectedStartDate! + '(₦\'m)')),
+                        DataColumn(label: Text(previousDate == null ? '(₦\'m)' : previousDate! + ' (₦\'m)')),
                         DataColumn(label: Text('DTD Variance (₦\'m)')),
-                        DataColumn(label: Text(monthEndDate == null ? '(₦\'m)' : monthEndDate + '(₦\'m)')),
+                        DataColumn(label: Text(monthEndDate == null ? '(₦\'m)' : monthEndDate! + '(₦\'m)')),
                         DataColumn(label: Text('MTD Variance (₦\'m)')),
                         DataColumn(label: Text('Budget (₦\'m)')),
                         DataColumn(label: Text('Variance From Budget (₦\'m)')),
@@ -51,7 +53,7 @@ class MyBalanceSheetTableContainer extends StatelessWidget {
                         // ], rows: [],
                       ], rows: List.generate(balanceSheetDepData.length, (index) {
                       return DataRow(
-                        color:  MaterialStateProperty.resolveWith<Color>(
+                        color:  MaterialStateProperty.resolveWith<Color?>(
                                 (Set<MaterialState> states) {
                               if (states.contains(MaterialState.selected)) {
                                 return Theme.of(context).colorScheme.primary.withOpacity(0.08);
@@ -105,10 +107,10 @@ class MyBalanceSheetTableContainer extends StatelessWidget {
                         headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade50),
                         columns: [
                           DataColumn(label: Text('Category')),
-                          DataColumn(label: Text(selectedStartDate == null ? '(₦\'m)' : selectedStartDate + '(₦\'m)')),
-                          DataColumn(label: Text(previousDate == null ? '(₦\'m)' : previousDate + ' (₦\'m)')),
+                          DataColumn(label: Text(selectedStartDate == null ? '(₦\'m)' : selectedStartDate! + '(₦\'m)')),
+                          DataColumn(label: Text(previousDate == null ? '(₦\'m)' : previousDate! + ' (₦\'m)')),
                           DataColumn(label: Text('DTD Variance (₦\'m)')),
-                          DataColumn(label: Text(monthEndDate == null ? '(₦\'m)' : monthEndDate + '(₦\'m)')),
+                          DataColumn(label: Text(monthEndDate == null ? '(₦\'m)' : monthEndDate! + '(₦\'m)')),
                           DataColumn(label: Text('MTD Variance (₦\'m)')),
                           DataColumn(label: Text('Budget (₦\'m)')),
                           DataColumn(label: Text('Variance From Budget (₦\'m)')),
@@ -116,7 +118,7 @@ class MyBalanceSheetTableContainer extends StatelessWidget {
                           // ], rows: [],
                         ], rows: List.generate(balanceSheetLoanData.length, (index) {
                         return DataRow(
-                            color:  MaterialStateProperty.resolveWith<Color>(
+                            color:  MaterialStateProperty.resolveWith<Color?>(
                                     (Set<MaterialState> states) {
                                   if (states.contains(MaterialState.selected)) {
                                     return Theme.of(context).colorScheme.primary.withOpacity(0.08);

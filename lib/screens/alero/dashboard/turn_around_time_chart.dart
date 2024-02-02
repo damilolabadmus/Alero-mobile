@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/TurnaroundTimeCompletedResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -8,19 +10,19 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../../style/theme.dart' as Style;
 
 class TurnAroundTimeChart extends StatefulWidget {
-  const TurnAroundTimeChart({Key key}) : super(key: key);
+  const TurnAroundTimeChart({Key? key}) : super(key: key);
 
   @override
   _TurnAroundTimeChartState createState() => _TurnAroundTimeChartState();
 }
 
 class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   int count = 0;
   String turnAroundTime = '';
-  List<TurnAroundTimeResponse> tat;
+  List<TurnAroundTimeResponse?>? tat;
 
   @override
   void initState() {
@@ -31,7 +33,7 @@ class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
 
   getTurnAroundTime() async {
     var test = await apiService.getTurnAroundTimeChart();
-    tat = test as List<TurnAroundTimeResponse>;
+    tat = test as List<TurnAroundTimeResponse?>;
     return tat;
   }
 
@@ -68,10 +70,10 @@ class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
                       fontWeight: FontWeight.w600)),
               tooltipBehavior: _tooltipBehavior,
               series: <CartesianSeries>[
-                StackedColumnSeries<TurnAroundTimeResponse, String>(
-                  dataSource: tat,
-                  xValueMapper: (TurnAroundTimeResponse data, _) => data.turnAroundTime,
-                  yValueMapper: (TurnAroundTimeResponse data, _) => data.count,
+                StackedColumnSeries<TurnAroundTimeResponse?, String>(
+                  dataSource: tat ?? [],
+                  xValueMapper: (TurnAroundTimeResponse? data, _) => data!.turnAroundTime,
+                  yValueMapper: (TurnAroundTimeResponse? data, _) => data!.count,
                   enableTooltip: yes,
                 ),],),
           ),);

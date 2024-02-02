@@ -1,28 +1,30 @@
+
+
 class ComplaintCategory {
-  String _customerGroupId;
-  String _customerId;
-  String _accountNumber;
-  int _ytdComplaintCount;
-  int _mtdComplaintCount;
-  String _complaintCategory;
-  String _complaintDescription;
-  String _complaintCreatedDate;
-  String _complaintReslvedDate;
-  String _complaintStatus;
-  int _complaintCategoryCount;
+  String? _customerGroupId;
+  String? _customerId;
+  String? _accountNumber;
+  int? _ytdComplaintCount;
+  int? _mtdComplaintCount;
+  String? _complaintCategory;
+  String? _complaintDescription;
+  String? _complaintCreatedDate;
+  String? _complaintReslvedDate;
+  String? _complaintStatus;
+  int? _complaintCategoryCount;
 
   ComplaintCategory(
-      {String customerGroupId,
-        String customerId,
-        String accountNumber,
-        int ytdComplaintCount,
-        int mtdComplaintCount,
-        String complaintCategory,
-        String complaintDescription,
-        String complaintCreatedDate,
-        String complaintReslvedDate,
-        String complaintStatus,
-        int complaintCategoryCount}) {
+      {String? customerGroupId,
+        String? customerId,
+        String? accountNumber,
+        int? ytdComplaintCount,
+        int? mtdComplaintCount,
+        String? complaintCategory,
+        String? complaintDescription,
+        String? complaintCreatedDate,
+        String? complaintReslvedDate,
+        String? complaintStatus,
+        int? complaintCategoryCount}) {
     this._customerGroupId = customerGroupId;
     this._customerId = customerId;
     this._accountNumber = accountNumber;
@@ -36,36 +38,36 @@ class ComplaintCategory {
     this._complaintCategoryCount = complaintCategoryCount;
   }
 
-  String get customerGroupId => _customerGroupId;
-  set customerGroupId(String customerGroupId) =>
+  String? get customerGroupId => _customerGroupId;
+  set customerGroupId(String? customerGroupId) =>
       _customerGroupId = customerGroupId;
-  String get customerId => _customerId;
-  set customerId(String customerId) => _customerId = customerId;
-  String get accountNumber => _accountNumber;
-  set accountNumber(String accountNumber) => _accountNumber = accountNumber;
-  int get ytdComplaintCount => _ytdComplaintCount;
-  set ytdComplaintCount(int ytdComplaintCount) =>
+  String? get customerId => _customerId;
+  set customerId(String? customerId) => _customerId = customerId;
+  String? get accountNumber => _accountNumber;
+  set accountNumber(String? accountNumber) => _accountNumber = accountNumber;
+  int? get ytdComplaintCount => _ytdComplaintCount;
+  set ytdComplaintCount(int? ytdComplaintCount) =>
       _ytdComplaintCount = ytdComplaintCount;
-  int get mtdComplaintCount => _mtdComplaintCount;
-  set mtdComplaintCount(int mtdComplaintCount) =>
+  int? get mtdComplaintCount => _mtdComplaintCount;
+  set mtdComplaintCount(int? mtdComplaintCount) =>
       _mtdComplaintCount = mtdComplaintCount;
-  String get complaintCategory => _complaintCategory;
-  set complaintCategory(String complaintCategory) =>
+  String? get complaintCategory => _complaintCategory;
+  set complaintCategory(String? complaintCategory) =>
       _complaintCategory = complaintCategory;
-  String get complaintDescription => _complaintDescription;
-  set complaintDescription(String complaintDescription) =>
+  String? get complaintDescription => _complaintDescription;
+  set complaintDescription(String? complaintDescription) =>
       _complaintDescription = complaintDescription;
-  String get complaintCreatedDate => _complaintCreatedDate;
-  set complaintCreatedDate(String complaintCreatedDate) =>
+  String? get complaintCreatedDate => _complaintCreatedDate;
+  set complaintCreatedDate(String? complaintCreatedDate) =>
       _complaintCreatedDate = complaintCreatedDate;
-  String get complaintReslvedDate => _complaintReslvedDate;
-  set complaintReslvedDate(String complaintReslvedDate) =>
+  String? get complaintReslvedDate => _complaintReslvedDate;
+  set complaintReslvedDate(String? complaintReslvedDate) =>
       _complaintReslvedDate = complaintReslvedDate;
-  String get complaintStatus => _complaintStatus;
-  set complaintStatus(String complaintStatus) =>
+  String? get complaintStatus => _complaintStatus;
+  set complaintStatus(String? complaintStatus) =>
       _complaintStatus = complaintStatus;
-  int get complaintCategoryCount => _complaintCategoryCount;
-  set complaintCategoryCount(int complaintCategoryCount) =>
+  int? get complaintCategoryCount => _complaintCategoryCount;
+  set complaintCategoryCount(int? complaintCategoryCount) =>
       _complaintCategoryCount = complaintCategoryCount;
 
   ComplaintCategory.fromJson(Map<String, dynamic> json) {

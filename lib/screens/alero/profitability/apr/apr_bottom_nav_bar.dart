@@ -1,11 +1,13 @@
+
+
 import 'package:alero/utils/Pandora.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AprBottomNavigationBar extends StatefulWidget {
-  final bool aprDataNotNull;
-  final bool isFirstPage;
+  final bool? aprDataNotNull;
+  final bool? isFirstPage;
 
   AprBottomNavigationBar({this.aprDataNotNull, this.isFirstPage});
 

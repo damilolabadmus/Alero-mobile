@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/performance/CprResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/profitability/cpr/search_cpr_page.dart';
@@ -9,7 +11,7 @@ import '../../../../style/theme.dart' as Style;
 class CprSearchField extends StatefulWidget {
   final Function(bool query) searchCprCallback;
 
-  CprSearchField({@required this.searchCprCallback});
+  CprSearchField({required this.searchCprCallback});
 
   @override
   State<CprSearchField> createState() => _CprSearchFieldState();

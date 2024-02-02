@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/ComplaintFLow.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/line_chart_complaints.dart';
@@ -8,9 +10,9 @@ import '../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
 class ComplaintsTrendCard extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
-  const ComplaintsTrendCard({Key key, this.customerId, this.groupId})
+  const ComplaintsTrendCard({Key? key, this.customerId, this.groupId})
       : super(key: key);
 
   @override
@@ -29,9 +31,9 @@ class ComplaintsTrendCardState extends State<ComplaintsTrendCard> {
     getComplaintTrend(widget.groupId);
   }
 
-  Future getComplaintTrend(String groupId) async {
+  Future getComplaintTrend(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      var flow = await apiService.getCustomerComplaintTrend(groupId);
+      var flow = await apiService.getCustomerComplaintTrend(groupId!);
       cfData = [];
 
       if (flow.length == 0) {
@@ -46,7 +48,7 @@ class ComplaintsTrendCardState extends State<ComplaintsTrendCard> {
       }
 
       for (int i = 0; i < cfData.length; i++) {
-        totalComplaints = totalComplaints + cfData[i].complaintCount;
+        totalComplaints = totalComplaints + cfData[i].complaintCount!;
       }
       return flow;
     });

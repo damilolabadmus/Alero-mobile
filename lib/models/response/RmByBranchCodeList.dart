@@ -2,6 +2,8 @@
 //
 //     final rmByBranchCodeList = rmByBranchCodeListFromJson(jsonString);
 
+
+
 import 'dart:convert';
 
 List<RmByBranchCodeList> rmByBranchCodeListFromJson(String str) => List<RmByBranchCodeList>.from(json.decode(str).map((x) => RmByBranchCodeList.fromJson(x)));
@@ -9,16 +11,16 @@ List<RmByBranchCodeList> rmByBranchCodeListFromJson(String str) => List<RmByBran
 String rmByBranchCodeListToJson(List<RmByBranchCodeList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class RmByBranchCodeList {
-  String rmCode;
-  String rmName;
-  String rmEmail;
-  RmHub rmHub;
-  SendScorecard sendScorecard;
-  RmRole rmRole;
-  RecordStatus recordStatus;
-  RmSegment rmSegment;
-  BranchName branchName;
-  String branchCode;
+  String? rmCode;
+  String? rmName;
+  String? rmEmail;
+  RmHub? rmHub;
+  SendScorecard? sendScorecard;
+  RmRole? rmRole;
+  RecordStatus? recordStatus;
+  RmSegment? rmSegment;
+  BranchName? branchName;
+  String? branchCode;
 
   RmByBranchCodeList({
     this.rmCode,
@@ -50,12 +52,12 @@ class RmByBranchCodeList {
     "rmCode": rmCode,
     "rmName": rmName,
     "rmEmail": rmEmail,
-    "rmHub": rmHubValues.reverse[rmHub],
-    "sendScorecard": sendScorecardValues.reverse[sendScorecard],
-    "rmRole": rmRoleValues.reverse[rmRole],
-    "recordStatus": recordStatusValues.reverse[recordStatus],
-    "rmSegment": rmSegmentValues.reverse[rmSegment],
-    "branchName": branchNameValues.reverse[branchName],
+    "rmHub": rmHubValues.reverse![rmHub],
+    "sendScorecard": sendScorecardValues.reverse![sendScorecard],
+    "rmRole": rmRoleValues.reverse![rmRole],
+    "recordStatus": recordStatusValues.reverse![recordStatus],
+    "rmSegment": rmSegmentValues.reverse![rmSegment],
+    "branchName": branchNameValues.reverse![branchName],
     "branchCode": branchCode,
   };
 }
@@ -118,11 +120,11 @@ final sendScorecardValues = EnumValues({
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }

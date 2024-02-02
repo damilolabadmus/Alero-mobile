@@ -1,15 +1,17 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DashboardItem extends StatelessWidget {
-  final String message;
-  final Function press;
-  final Color color;
-  final String image;
+  final String? message;
+  final Function? press;
+  final Color? color;
+  final String? image;
 
   const DashboardItem(
-      {Key key, this.message, this.press, this.color, this.image})
+      {Key? key, this.message, this.press, this.color, this.image})
       : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class DashboardItem extends StatelessWidget {
     return Stack(
       children: [
         InkWell(
-            onTap: press,
+            onTap: press as void Function()?,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               decoration: BoxDecoration(
@@ -31,7 +33,7 @@ class DashboardItem extends StatelessWidget {
                     SizedBox(height: 10),
                     Center(
                       child: SvgPicture.asset(
-                        image,
+                        image!,
                         width: 60,
                         height: 60,
                       ),
@@ -39,7 +41,7 @@ class DashboardItem extends StatelessWidget {
                     Flexible(
                       child: Align(
                           alignment: Alignment.bottomLeft,
-                          child: Text(message,
+                          child: Text(message!,
                               softWrap: true,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -61,13 +63,13 @@ class DashboardItem extends StatelessWidget {
 
 
 class DashboardItemAlign extends StatelessWidget {
-  final String message;
-  final Function press;
-  final Color color;
-  final String image;
+  final String? message;
+  final Function? press;
+  final Color? color;
+  final String? image;
 
   const DashboardItemAlign(
-      {Key key, this.message, this.press, this.color, this.image})
+      {Key? key, this.message, this.press, this.color, this.image})
       : super(key: key);
 
   @override
@@ -75,7 +77,7 @@ class DashboardItemAlign extends StatelessWidget {
     return Stack(
       children: [
         InkWell(
-            onTap: press,
+            onTap: press as void Function()?,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 3.5, vertical: 5),
               decoration: BoxDecoration(
@@ -89,7 +91,7 @@ class DashboardItemAlign extends StatelessWidget {
                     SizedBox(height: 5),
                     Center(
                       child: SvgPicture.asset(
-                        image,
+                        image!,
                         width: 45,
                         height: 50,
                       ),
@@ -97,7 +99,7 @@ class DashboardItemAlign extends StatelessWidget {
                     Flexible(
                       child: Align(
                           alignment: Alignment.bottomLeft,
-                          child: Text(message,
+                          child: Text(message!,
                               softWrap: true,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,

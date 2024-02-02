@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/trends_transactions_list_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +9,10 @@ import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'empty_list_item.dart';
 
 class RecentTransactionsList extends StatefulWidget {
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
   const RecentTransactionsList(
-      {Key key, @required this.customerId, @required this.groupId, this.customerAccountNo})
+      {Key? key, required this.customerId, required this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -64,10 +66,10 @@ class _RecentTransactionsListState extends State<RecentTransactionsList> {
     );
   }
 
-  Future getRecentTransactions(String groupId) async {
+  Future getRecentTransactions(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      final recentTrans = widget.customerAccountNo == null ? await apiService.getRecentTransactions(groupId)
-          : await apiService.getRecentTransactionsWithAccountNo(widget.customerAccountNo);
+      final recentTrans = widget.customerAccountNo == null ? await apiService.getRecentTransactions(groupId!)
+          : await apiService.getRecentTransactionsWithAccountNo(widget.customerAccountNo!);
       List<Widget> _recentTransactionsItem = [];
       if (recentTrans.length == 0) {
         _recentTransactionsItem

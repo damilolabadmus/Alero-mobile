@@ -1,15 +1,17 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
 class TrendsGrid extends StatelessWidget {
-  final String text, image, customerAccountNo;
-  final Function press;
-  final double leftMargin, rightMargin;
+  final String? text, image, customerAccountNo;
+  final Function? press;
+  final double? leftMargin, rightMargin;
 
   const TrendsGrid(
-      {Key key,
+      {Key? key,
         this.text,
         this.image,
         this.press,
@@ -21,11 +23,11 @@ class TrendsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: press,
+      onTap: press as void Function()?,
       child: Container(
         width: 130,
         height: 120,
-        margin: EdgeInsets.only(right: rightMargin, left: leftMargin),
+        margin: EdgeInsets.only(right: rightMargin!, left: leftMargin!),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -52,14 +54,14 @@ class TrendsGrid extends StatelessWidget {
               child: Column(
                 children: [
                   SvgPicture.asset(
-                    image,
+                    image!,
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Text(text,
+                    child: Text(text!,
                         softWrap: true,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,

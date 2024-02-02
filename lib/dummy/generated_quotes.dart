@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 
 class Quote {
@@ -5,8 +7,8 @@ class Quote {
   final String description;
 
   const Quote({
-    @required this.title,
-    @required this.description,
+    required this.title,
+    required this.description,
   });
 }
 

@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<BranchByAreaCodeList> branchByAreaListFromJson(String str) => List<BranchByAreaCodeList>.from(json.decode(str).map((x) => BranchByAreaCodeList.fromJson(x)));
@@ -5,18 +7,18 @@ List<BranchByAreaCodeList> branchByAreaListFromJson(String str) => List<BranchBy
 String branchByAreaListToJson(List<BranchByAreaCodeList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class BranchByAreaCodeList {
-  String branchCode;
-  String branchName;
-  AreaName areaName;
+  String? branchCode;
+  String? branchName;
+  AreaName? areaName;
   dynamic zoneCode;
-  String bmName;
-  String bmCode;
-  String bmEmail;
-  String bsmCode;
-  String bsmName;
-  String bsmEmail;
-  BranchType branchType;
-  Status status;
+  String? bmName;
+  String? bmCode;
+  String? bmEmail;
+  String? bsmCode;
+  String? bsmName;
+  String? bsmEmail;
+  BranchType? branchType;
+  Status? status;
   dynamic areaCode;
   dynamic regionName;
   dynamic amName;
@@ -78,7 +80,7 @@ class BranchByAreaCodeList {
   Map<String, dynamic> toJson() => {
     "branchCode": branchCode,
     "branchName": branchName,
-    "areaName": areaNameValues.reverse[areaName],
+    "areaName": areaNameValues.reverse![areaName],
     "zoneCode": zoneCode,
     "bmName": bmName,
     "bmCode": bmCode,
@@ -86,8 +88,8 @@ class BranchByAreaCodeList {
     "bsmCode": bsmCode,
     "bsmName": bsmName,
     "bsmEmail": bsmEmail,
-    "branchType": branchTypeValues.reverse[branchType],
-    "status": statusValues.reverse[status],
+    "branchType": branchTypeValues.reverse![branchType],
+    "status": statusValues.reverse![status],
     "areaCode": areaCode,
     "regionName": regionName,
     "amName": amName,
@@ -132,11 +134,11 @@ final statusValues = EnumValues({
 
 class EnumValues<T> {
   Map<String, T> map;
-  Map<T, String> reverseMap;
+  Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
-  Map<T, String> get reverse {
+  Map<T, String>? get reverse {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }

@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankRevenueData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -16,10 +18,10 @@ class RevenueTrendChart extends StatefulWidget {
 class _RevenueTrendChartState extends State<RevenueTrendChart> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  List<BankRevenueData> rtcData = [];
+  List<BankRevenueData?> rtcData = [];
   String periodName = '';
   double revenueData = 0.0;
-  List<BankRevenueData> bankRevenue;
+  List<BankRevenueData?>? bankRevenue;
   final List<Color> gradientColors = [
     Style.Colors.fourthColor,
     Style.Colors.fourthColor,
@@ -35,21 +37,21 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
     return this._asyncMemoizer.runOnce(() async {
       var test = await apiService.getBankRevenueChart();
       setState(() {
-        bankRevenue = test;
+        bankRevenue = test as List<BankRevenueData?>?;
         rtcData = [];
-        if (bankRevenue.length == 0) {
+        if (bankRevenue!.length == 0) {
           rtcData.add(BankRevenueData(
             periodName: '',
             revenueData: 0.0,
           ));
         } else {
-          bankRevenue.forEach((revenueTrend) {
+          bankRevenue!.forEach((revenueTrend) {
             rtcData.add(revenueTrend);
           });
         }
         for (int i = 0; i < rtcData.length; i++) {
-          periodName = periodName + rtcData[i].periodName;
-          revenueData = revenueData + rtcData[i].revenueData;
+          periodName = periodName + rtcData[i]!.periodName!;
+          revenueData = revenueData + rtcData[i]!.revenueData!;
         }
       });
       return bankRevenue;
@@ -90,7 +92,7 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                     getTitlesWidget: (value, meta) => SideTitleWidget(
                       angle: kRotateAngle,
                       child: Text(
-                        bankRevenue[value.toInt()].periodName.toString(),
+                        bankRevenue![value.toInt()]!.periodName.toString(),
                         style: kRevTitlesTextStyle,
                       ),
                       axisSide: AxisSide.bottom,
@@ -132,9 +134,9 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankRevenue
+                  spots: bankRevenue!
                       .map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
-                          bankRev.revenueData >= 100000000000 ? bankRev.revenueData / kDepositsDivisor : bankRev.revenueData / kRevenueChartDivisor))
+                          bankRev!.revenueData! >= 100000000000 ? bankRev.revenueData! / kDepositsDivisor : bankRev.revenueData! / kRevenueChartDivisor))
                       .toList(),
                   /*spots: bankRevenue.map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
                       bankRev.revenueData/kRevenueChartDivisor)).toList(),*/

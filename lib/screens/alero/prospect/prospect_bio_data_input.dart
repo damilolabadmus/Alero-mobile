@@ -10,10 +10,9 @@ import '../../../utils/Pandora.dart';
 import 'package:alero/style/theme.dart' as Style;
 
 class ProspectBioDataInput extends StatefulWidget {
+  final String? prospectId;
 
-  final String prospectId;
-
-  ProspectBioDataInput({Key key, @required this.prospectId}) : super(key: key);
+  ProspectBioDataInput({Key? key, this.prospectId}) : super(key: key);
 
   @override
   _ProspectBioDataInputState createState() => _ProspectBioDataInputState();
@@ -23,19 +22,19 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
   final Pandora pandora = new Pandora();
   var apiService = AleroAPIService();
 
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  String customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  String? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
   String contactPersonAddress = "";
   bool prospectConverted = false;
-  String accountNo;
+  String? accountNo;
   String introducerStaffCode = "";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -96,8 +95,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       padding: const EdgeInsets.all(8.0),
                       child: CallTextField(
                         fillColor: Colors.white,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, enter prospect\'s name.';
                           }
                           return null;
@@ -122,8 +121,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                         hintText: 'Enter Address',
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.streetAddress,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, enter prospect\'s address.';
                           }
                           return null;
@@ -135,8 +134,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       padding: const EdgeInsets.all(8.0),
                       child: CallTextField(
                         fillColor: Colors.white,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
                           }
                           return null;
@@ -154,7 +153,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       child: CallTextField(
                         fillColor: Colors.white,
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
                           }
                           return null;
@@ -168,14 +167,13 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     getDropDownComponent(context, prospectTypes, false),
-                    businessSegments == null ? Text('') :
-                    getDropDownComponent(context,businessSegments,true),
+                    businessSegments == null ? Text('') : getDropDownComponent(context, businessSegments, true),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CallTextField(
                         fillColor: Colors.white,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
                           }
                           return null;
@@ -193,7 +191,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       padding: const EdgeInsets.all(8.0),
                       child: CallTextField(
                         fillColor: Colors.white,
-                        validator: (String value) {
+                        validator: (String? value) {
+                          if (value == null) return null;
                           if (value.isEmpty) {
                             return 'Pls, enter phone number.';
                           }
@@ -217,7 +216,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       padding: const EdgeInsets.all(8.0),
                       child: CallTextField(
                         fillColor: Colors.white,
-                        validator: (String value) {
+                        validator: (String? value) {
+                          if (value == null) return null;
                           if (value.isEmpty) {
                             return 'Pls, enter email address.';
                           }
@@ -244,8 +244,8 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                         },
                         labelText: 'Introducer\'s Name',
                         textInputAction: TextInputAction.next,
-                        validator: (String value) {
-                          if (value.isEmpty) {
+                        validator: (String? value) {
+                          if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
                           }
                           return null;
@@ -261,15 +261,14 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () async {
-                            if (_formKey.currentState.validate()) {
+                            if (_formKey.currentState!.validate()) {
                               var info = toAddProspectDetails();
                               apiService.addProspect(info);
                               showAlertDialog(context);
                             } else {
                               print('Unsuccessful.');
                             }
-                          }
-                      ),
+                          }),
                     ),
                   ],
                 ),
@@ -283,39 +282,37 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
   }
 
   AppBar appBar() => AppBar(
-    leading: IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      icon: Icon(
-        Icons.arrow_back_ios,
-        color: Style.Colors.blackTextColor,
-        size: 24,
-      ),
-    ),
-    backgroundColor: Colors.lightBlue.shade100,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.only(right: 16.0),
-        child: IconButton(
-            icon: Icon(Icons.home),
-            iconSize: 30.0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
             color: Style.Colors.blackTextColor,
-            onPressed: () {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
-            }
+            size: 24,
+          ),
         ),
-      ),
-    ],
-  );
+        backgroundColor: Colors.lightBlue.shade100,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+                icon: Icon(Icons.home),
+                iconSize: 30.0,
+                color: Style.Colors.blackTextColor,
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
+                }),
+          ),
+        ],
+      );
 
   toAddProspectDetails() {
-    return{
+    return {
       'keyPromoterName': keyPromoterName,
       'prospectName': prospectName,
       'prospectAddress': prospectAddress,
-      'prospectType':prospectType,
+      'prospectType': prospectType,
       'businessSegment': businessSegment,
       'productOffered': productOffered,
       'customerWalletSize': customerWalletSize.toString(),
@@ -329,9 +326,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
   }
 
 // From here: Business Segment Dropdown reuse
-  List<String> businessSegments;
+  List<String>? businessSegments;
   getBusinessSegment() async {
-    List<String> _businessSegments = await apiService.getProspectBusinessSegments();
+    List<String>? _businessSegments = await apiService.getProspectBusinessSegments();
     setState(() {
       businessSegments = _businessSegments;
     });
@@ -342,13 +339,11 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
     'Non individual',
   ];
 
-  Text getValue(String value) {
+  Text getValue(String? value) {
     if (value == null || value.isEmpty) {
-      return Text('Select One',
-          style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text('Select One', style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     } else {
-      return Text(
-          value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text(value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
     }
   }
 
@@ -364,9 +359,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
         items: dropDownList.map(buildBusinessSegmentItem).toList(),
         onChanged: (value) {
           setState(() {
-            if(isBuissnessSeg) {
+            if (isBuissnessSeg) {
               businessSegment = value;
-            }else{
+            } else {
               prospectType = value;
             }
           });
@@ -384,42 +379,38 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
       children: dropDownList.map(buildBusinessSegmentItem).toList(),
       onSelectedItemChanged: (value) {
         setState(() {
-          if(isBuissnessSeg) {
-            businessSegment = businessSegments[value];
-          }else{
+          if (isBuissnessSeg) {
+            businessSegment = businessSegments![value];
+          } else {
             prospectType = prospectTypes[value];
           }
         });
-        final item = businessSegments[value];
+        final item = businessSegments![value];
         print("Selected Item = $item");
       },
       magnification: 0.7,
     );
   }
 
-  Widget getDropDownComponent(BuildContext context, List dropDownList, bool isBuissnessSeg) {
+  Widget getDropDownComponent(BuildContext context, List? dropDownList, bool isBuissnessSeg) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10.0),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            isBuissnessSeg ?'Business Segment' : 'Prospect Type',
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.w700,
-                fontSize: 15),
+            isBuissnessSeg ? 'Business Segment' : 'Prospect Type',
+            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w700, fontSize: 15),
           ),
           SizedBox(height: 5),
-          Platform.isIOS ?
-          iOSPicker(dropDownList,isBuissnessSeg):
-          androidDropDown(dropDownList,isBuissnessSeg),
+          Platform.isIOS ? iOSPicker(dropDownList as List<String>, isBuissnessSeg) : androidDropDown(dropDownList as List<String>, isBuissnessSeg),
         ],
       ),
     );
@@ -434,29 +425,24 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
           children: [
             Text(
               item,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 5,
-                  fontFamily: 'Poppins-Regular',
-                  fontStyle: FontStyle.italic),
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 5, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
             ),
           ],
         ),
       );
     }
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       return DropdownMenuItem(
         value: item,
         child: Text(
           item,
-          style: TextStyle(height: 0.2,
-              fontWeight: FontWeight.w400,
-              fontSize: 20,
-              fontFamily: 'Poppins-Regular',
-              fontStyle: FontStyle.italic),
+          style: TextStyle(height: 0.2, fontWeight: FontWeight.w400, fontSize: 20, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
         ),
       );
     }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 
   showAlertDialog(BuildContext context) {
@@ -470,11 +456,13 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
           ),
         ),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) => CallManagementPage(),),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CallManagementPage(),
+            ),
           );
-        }
-    );
+        });
 
     AlertDialog alert = AlertDialog(
       insetPadding: EdgeInsets.symmetric(
@@ -482,34 +470,31 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
         vertical: 200.0,
       ),
       elevation: 5.0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
-            child: Center(
-                child: Icon(Icons.thumb_up_alt_sharp,
-                    size: 35, color: Colors.lightBlueAccent)),
+            child: Center(child: Icon(Icons.thumb_up_alt_sharp, size: 35, color: Colors.lightBlueAccent)),
           ),
           SizedBox(height: 20.0),
-          Text('Prospect Added Successfully.',
+          Text(
+            'Prospect Added Successfully.',
             style: TextStyle(
               fontSize: 18,
               color: Colors.black54,
               fontWeight: FontWeight.w600,
               fontFamily: 'Poppins-Regular',
             ),
-          ),],),
-      actions: [
-        closeButton
-      ],
+          ),
+        ],
+      ),
+      actions: [closeButton],
     );
 
     showDialog(
-      useRootNavigator:false,
+      useRootNavigator: false,
       context: context,
       builder: (BuildContext context) {
         return alert;

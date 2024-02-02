@@ -1,20 +1,22 @@
+
+
 class AccountList {
-  String _accountType;
-  String _accountNumber;
-  String _createdAddress;
-  String _createdDate;
-  double _balance;
-  String _active;
-  String _currency;
+  String? _accountType;
+  String? _accountNumber;
+  String? _createdAddress;
+  String? _createdDate;
+  double? _balance;
+  String? _active;
+  String? _currency;
 
   AccountList(
-      {String accountType,
-        String accountNumber,
-        String createdAddress,
-        String createdDate,
-        double balance,
-        String active,
-        String currency}) {
+      {String? accountType,
+        String? accountNumber,
+        String? createdAddress,
+        String? createdDate,
+        double? balance,
+        String? active,
+        String? currency}) {
     this._accountType = accountType;
     this._accountNumber = accountNumber;
     this._createdAddress = createdAddress;
@@ -24,20 +26,20 @@ class AccountList {
     this._currency = currency;
   }
 
-  String get accountType => _accountType;
-  set accountType(String accountType) => _accountType = accountType;
-  String get accountNumber => _accountNumber;
-  set accountNumber(String accountNumber) => _accountNumber = accountNumber;
-  String get createdAddress => _createdAddress;
-  set createdAddress(String createdAddress) => _createdAddress = createdAddress;
-  String get createdDate => _createdDate;
-  set createdDate(String createdDate) => _createdDate = createdDate;
-  double get balance => _balance;
-  set balance(double balance) => _balance = balance;
-  String get active => _active;
-  set active(String active) => _active = active;
-  String get currency => _currency;
-  set currency(String currency) => _currency = currency;
+  String? get accountType => _accountType;
+  set accountType(String? accountType) => _accountType = accountType;
+  String? get accountNumber => _accountNumber;
+  set accountNumber(String? accountNumber) => _accountNumber = accountNumber;
+  String? get createdAddress => _createdAddress;
+  set createdAddress(String? createdAddress) => _createdAddress = createdAddress;
+  String? get createdDate => _createdDate;
+  set createdDate(String? createdDate) => _createdDate = createdDate;
+  double? get balance => _balance;
+  set balance(double? balance) => _balance = balance;
+  String? get active => _active;
+  set active(String? active) => _active = active;
+  String? get currency => _currency;
+  set currency(String? currency) => _currency = currency;
 
   AccountList.fromJson(Map<String, dynamic> json) {
     _accountType = json['accountType'];

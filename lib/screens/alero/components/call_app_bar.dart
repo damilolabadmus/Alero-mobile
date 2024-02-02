@@ -1,9 +1,11 @@
+
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 
 class CallAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const CallAppBar({Key key}) : super(key: key);
+  const CallAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

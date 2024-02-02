@@ -5,7 +5,7 @@ import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfitabilityReportsDashboard extends StatefulWidget {
-  const ProfitabilityReportsDashboard({Key key}) : super(key: key);
+  const ProfitabilityReportsDashboard({Key? key}) : super(key: key);
 
   @override
   State<ProfitabilityReportsDashboard> createState() => _ProfitabilityReportsDashboardState();
@@ -80,11 +80,11 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
     dashboardItems.forEach((element) {
       _dashboardItem.add(
           DashboardItemAlign(
-        message: element['name'],
-        image: element['image'],
+        message: element['name'] as String?,
+        image: element['image'] as String?,
         color: randomColors[i].withOpacity(0.5),
         press: () {
-          onMenuClick(element['position']);
+          onMenuClick(element['position'] as int?);
         },
       ));
       i++;
@@ -94,7 +94,7 @@ class _ProfitabilityReportsDashboardState extends State<ProfitabilityReportsDash
     });
   }
 
-  onMenuClick(int element) {
+  onMenuClick(int? element) {
     switch (element) {
       case 0:
         Navigator.of(context)

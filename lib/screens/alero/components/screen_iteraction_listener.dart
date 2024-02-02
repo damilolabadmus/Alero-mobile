@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/Global.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,9 +14,9 @@ class ScreenInteractionListener extends StatefulWidget {
   final String route;
 
   const ScreenInteractionListener(
-      {Key key,
-        @required this.child,
-        @required this.timeout,
+      {Key? key,
+        required this.child,
+        required this.timeout,
         this.route = '/login'})
       : super(key: key);
 
@@ -26,7 +28,7 @@ class ScreenInteractionListener extends StatefulWidget {
 
 class _ScreenInteractionListenerState extends State<ScreenInteractionListener>
     with WidgetsBindingObserver {
-  CountdownTimer countdownTimer;
+  late CountdownTimer countdownTimer;
 
   @override
   void initState() {
@@ -45,7 +47,7 @@ class _ScreenInteractionListenerState extends State<ScreenInteractionListener>
     print('state = $state');
     if (state == AppLifecycleState.paused) {
       countdownTimer = CountdownTimer(
-          Duration(minutes: Global.APP_TIMEOUT), Duration(seconds: 1));
+          Duration(minutes: Global.APP_TIMEOUT!), Duration(seconds: 1));
     } else if (state == AppLifecycleState.resumed) {
       if (countdownTimer.remaining > Duration(seconds: 0)) {
         print(countdownTimer.remaining);

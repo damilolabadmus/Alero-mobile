@@ -1,3 +1,5 @@
+
+
 import 'package:alero/dummy/dummy.dart';
 import 'package:alero/screens/alero/components/call_app_bar.dart';
 import 'package:alero/screens/alero/components/dashboard_item.dart';
@@ -9,7 +11,7 @@ import 'package:alero/style/theme.dart' as Style;
 import 'concession_bottom_nav_bar.dart';
 
 class ConcessionDashboard extends StatefulWidget {
-  const ConcessionDashboard({Key key}) : super(key: key);
+  const ConcessionDashboard({Key? key}) : super(key: key);
 
   @override
   State<ConcessionDashboard> createState() => _ConcessionDashboardState();
@@ -86,11 +88,11 @@ class _ConcessionDashboardState extends State<ConcessionDashboard> {
     int i = 0;
     dashboardItems.forEach((element) {
       _dashboardItem.add(DashboardItem(
-        message: element['name'],
-        image: element['image'],
+        message: element['name'] as String?,
+        image: element['image'] as String?,
         color: randomColors[i].withOpacity(0.5),
         press: () {
-          onMenuClick(element['position']);
+          onMenuClick(element['position'] as int?);
         },
       ));
       i++;
@@ -100,7 +102,7 @@ class _ConcessionDashboardState extends State<ConcessionDashboard> {
     });
   }
 
-  onMenuClick(int element) {
+  onMenuClick(int? element) {
     switch (element) {
       case 0:
         Navigator.of(context).pushNamed('/create-concession');

@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/models/performance/MprResponse.dart';
 import 'package:alero/utils/Pandora.dart';
@@ -302,7 +304,7 @@ class _MprTableContainerState extends State<MprTableContainer> {
         cells: [
           DataCell(Text(rowData.categoryName ?? '', style: kDealsHeaderStyle)),
           if (rowData.rowMonthsItem != null)
-            for (var value in rowData.rowMonthsItem.values)
+            for (var value in rowData.rowMonthsItem!.values)
               DataCell(Text(Pandora.dynamicMoneyFormat(value).toString(), style: kDealsHeaderStyle)),
           DataCell(Text(Pandora.dynamicMoneyFormat(rowData.currentBudgetValue).toString(), style: kDealsHeaderStyle)),
           DataCell(Text(Pandora.dynamicMoneyFormat(rowData.currentActualValue).toString(), style: kDealsHeaderStyle)),
@@ -319,21 +321,21 @@ class _MprTableContainerState extends State<MprTableContainer> {
     );
 
     if (rowData.rowObjectSubList != null) {
-      for (var subCategory in rowData.rowObjectSubList) {
+      for (var subCategory in rowData.rowObjectSubList!) {
         rows.add(
           DataRow(
             cells: [
               DataCell(InkWell(
                   onTap: () {
                       showSubCategoryDropdownMenu(context, subCategory.rowObjectSubClass);
-                  }, child: Text(Pandora.replaceUnderscoreFormat(subCategory.categoryName) ?? '', style: underlineText == true
+                  }, child: Text(Pandora.replaceUnderscoreFormat(subCategory.categoryName!), style: underlineText == true
                         ? kCprHeadingText.copyWith(color: Colors.blue.shade300, decoration: TextDecoration.underline)
                         : kCprHeadingText.copyWith(color: Colors.blue.shade300),
                   ),
                 ),
               ),
               if (subCategory.rowMonthsItem != null)
-                for (var value in subCategory.rowMonthsItem.values)
+                for (var value in subCategory.rowMonthsItem!.values)
                   DataCell(Text(Pandora.dynamicMoneyFormat(value).toString(), style: kDealsHeaderStyle)),
               DataCell(Text(Pandora.dynamicMoneyFormat(subCategory.currentBudgetValue).toString(), style: kDealsHeaderStyle)),
               DataCell(Text(Pandora.dynamicMoneyFormat(subCategory.currentActualValue).toString(), style: kDealsHeaderStyle)),
@@ -361,7 +363,7 @@ class _MprTableContainerState extends State<MprTableContainer> {
           cells: [
             DataCell(Text(subClass.categoryName ?? '', style: kDealsHeaderStyle)),
             if (subClass.rowMonthsItem != null)
-              for (var value in subClass.rowMonthsItem.values)
+              for (var value in subClass.rowMonthsItem!.values)
                 DataCell(Text(Pandora.dynamicMoneyFormat(value).toString(), style: kDealsHeaderStyle)),
             DataCell(Text(subClass.currentBudgetValue.toString(), style: kDealsHeaderStyle)),
             DataCell(Text(subClass.currentActualValue.toString(), style: kDealsHeaderStyle)),
@@ -380,7 +382,7 @@ class _MprTableContainerState extends State<MprTableContainer> {
     return rows;
   }
 
-  void showSubCategoryDropdownMenu(BuildContext context, List<SubClass> subClassList) {
+  void showSubCategoryDropdownMenu(BuildContext context, List<SubClass>? subClassList) {
     showDialog(
       context: context,
       barrierColor: Colors.transparent,
@@ -401,8 +403,8 @@ class _MprTableContainerState extends State<MprTableContainer> {
                       Colors.blueGrey.shade50),
                   columns: [
                     DataColumn(label: Text('\nCategory', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
-                    if (subClassList.isNotEmpty)
-                      for (var key in subClassList.first.rowMonthsItem.keys)
+                    if (subClassList!.isNotEmpty)
+                      for (var key in subClassList.first.rowMonthsItem!.keys)
                         DataColumn(label: Text(formatMonthKey(key), style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
                     DataColumn(label: Text('Current \nBudget', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),
                     DataColumn(label: Text('Current \nActual', style: kCprHeadingText.copyWith(color: Colors.lightBlue.shade600))),

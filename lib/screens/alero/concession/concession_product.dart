@@ -1,3 +1,5 @@
+
+
 import 'package:alero/screens/alero/components/call_app_bar.dart';
 import 'package:alero/screens/alero/concession/concession_covenant.dart';
 import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
@@ -8,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'concession_bottom_nav_bar.dart';
 
 class ConcessionProduct extends StatefulWidget {
-  const ConcessionProduct({Key key}) : super(key: key);
+  const ConcessionProduct({Key? key}) : super(key: key);
 
   @override
   State<ConcessionProduct> createState() => _ConcessionProductState();
@@ -43,8 +45,8 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, enter product type.';
                     }
                     return null;
@@ -60,8 +62,8 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, enter concession type.';
                     }
                     return null;
@@ -77,8 +79,8 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 padding: const EdgeInsets.all(8.0),
                 child: CallTextField(
                   fillColor: Colors.white,
-                  validator: (String value) {
-                    if (value.isEmpty) {
+                  validator: (String? value) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -94,7 +96,7 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 child: CallTextField(
                   fillColor: Colors.white,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -110,7 +112,7 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 child: CallTextField(
                   fillColor: Colors.white,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -126,7 +128,7 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 child: CallTextField(
                   fillColor: Colors.white,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;
@@ -142,7 +144,7 @@ class _ConcessionProductState extends State<ConcessionProduct> {
                 child: CallTextField(
                   fillColor: Colors.white,
                   validator: (value) {
-                    if (value.isEmpty) {
+                    if (value != null && value.isEmpty) {
                       return 'Pls, fill out this field.';
                     }
                     return null;

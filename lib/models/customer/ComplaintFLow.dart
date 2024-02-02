@@ -1,9 +1,11 @@
+
+
 class ComplaintFlow {
-  String customerGroupId;
-  String customerId;
-  String periodCode;
-  String periodName;
-  int complaintCount;
+  String? customerGroupId;
+  String? customerId;
+  String? periodCode;
+  String? periodName;
+  int? complaintCount;
 
   ComplaintFlow(
       {this.customerGroupId,

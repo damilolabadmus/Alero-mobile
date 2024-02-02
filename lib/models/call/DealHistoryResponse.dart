@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 DealHistoryResponse dealHistoryResponseFromJson(String str) => DealHistoryResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class DealHistoryResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  HistoryResult result;
+  String? responseCode;
+  String? responseDescription;
+  HistoryResult? result;
 
   factory DealHistoryResponse.fromJson(Map<String, dynamic> json) => DealHistoryResponse(
     responseCode: json["responseCode"],
@@ -24,7 +26,7 @@ class DealHistoryResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 
@@ -64,38 +66,38 @@ class HistoryResult {
     this.disbursementHistory,
   });
 
-  String pipelineId;
-  String customerName;
-  String customerType;
-  String transactionType;
-  double amount;
-  String currency;
-  DateTime startDate;
-  DateTime expectedDealDate;
-  int tenor;
-  double feesRate;
-  double interestRate;
-  String accountNo;
-  String productType;
-  double netInterestMargin;
-  double feesRevenue;
-  double grossRevenue;
-  double nrff;
-  double totalRevenue;
-  String isProspect;
-  String subStatus;
-  String transactionComment;
-  String statusComment;
-  String status;
-  double disbursedAmount;
-  String disbursementType;
-  DateTime endDate;
-  DateTime entryDate;
-  String statusId;
-  DateTime lastUpate;
-  int turnAroundTime;
-  List<StatusHistory> statusHistory;
-  List<DisbursementHistory> disbursementHistory;
+  String? pipelineId;
+  String? customerName;
+  String? customerType;
+  String? transactionType;
+  double? amount;
+  String? currency;
+  DateTime? startDate;
+  DateTime? expectedDealDate;
+  int? tenor;
+  double? feesRate;
+  double? interestRate;
+  String? accountNo;
+  String? productType;
+  double? netInterestMargin;
+  double? feesRevenue;
+  double? grossRevenue;
+  double? nrff;
+  double? totalRevenue;
+  String? isProspect;
+  String? subStatus;
+  String? transactionComment;
+  String? statusComment;
+  String? status;
+  double? disbursedAmount;
+  String? disbursementType;
+  DateTime? endDate;
+  DateTime? entryDate;
+  String? statusId;
+  DateTime? lastUpate;
+  int? turnAroundTime;
+  List<StatusHistory>? statusHistory;
+  List<DisbursementHistory>? disbursementHistory;
 
   factory HistoryResult.fromJson(Map<String, dynamic> json) => HistoryResult(
     pipelineId: json["pipelineId"],
@@ -139,8 +141,8 @@ class HistoryResult {
     "transactionType": transactionType,
     "amount": amount,
     "currency": currency,
-    "startDate": startDate.toIso8601String(),
-    "expectedDealDate": expectedDealDate.toIso8601String(),
+    "startDate": startDate!.toIso8601String(),
+    "expectedDealDate": expectedDealDate!.toIso8601String(),
     "tenor": tenor,
     "feesRate": feesRate,
     "interestRate": interestRate,
@@ -159,12 +161,12 @@ class HistoryResult {
     "disbursedAmount": disbursedAmount,
     "disbursementType": disbursementType,
     "endDate": endDate,
-    "entryDate": entryDate.toIso8601String(),
+    "entryDate": entryDate!.toIso8601String(),
     "statusId": statusId,
-    "lastUpate": lastUpate.toIso8601String(),
+    "lastUpate": lastUpate!.toIso8601String(),
     "turnAroundTime": turnAroundTime,
-    "statusHistory": List<dynamic>.from(statusHistory.map((x) => x.toJson())),
-    "disbursementHistory": List<dynamic>.from(disbursementHistory.map((x) => x.toJson())),
+    "statusHistory": List<dynamic>.from(statusHistory!.map((x) => x.toJson())),
+    "disbursementHistory": List<dynamic>.from(disbursementHistory!.map((x) => x.toJson())),
   };
 
   @override
@@ -184,13 +186,13 @@ class DisbursementHistory {
     this.timeIn,
   });
 
-  String pipelineId;
-  String disbursementStatus;
-  double disbursedAmount;
-  String disbursementType;
-  double outstandingAmount;
-  String rmCode;
-  DateTime timeIn;
+  String? pipelineId;
+  String? disbursementStatus;
+  double? disbursedAmount;
+  String? disbursementType;
+  double? outstandingAmount;
+  String? rmCode;
+  DateTime? timeIn;
 
   factory DisbursementHistory.fromJson(Map<String, dynamic> json) => DisbursementHistory(
     pipelineId: json["pipelineId"],
@@ -209,7 +211,7 @@ class DisbursementHistory {
     "disbursementType": disbursementType,
     "outstandingAmount": outstandingAmount,
     "rmCode": rmCode,
-    "timeIn": timeIn.toIso8601String(),
+    "timeIn": timeIn!.toIso8601String(),
   };
 
   @override
@@ -228,12 +230,12 @@ class StatusHistory {
     this.timeIn,
   });
 
-  String pipelineId;
-  String dealStatus;
-  String subStatus;
-  String comment;
-  String rmCode;
-  DateTime timeIn;
+  String? pipelineId;
+  String? dealStatus;
+  String? subStatus;
+  String? comment;
+  String? rmCode;
+  DateTime? timeIn;
 
   factory StatusHistory.fromJson(Map<String, dynamic> json) => StatusHistory(
     pipelineId: json["pipelineId"],
@@ -250,7 +252,7 @@ class StatusHistory {
     "subStatus": subStatus,
     "comment": comment,
     "rmCode": rmCode,
-    "timeIn": timeIn.toIso8601String(),
+    "timeIn": timeIn!.toIso8601String(),
   };
 
   @override

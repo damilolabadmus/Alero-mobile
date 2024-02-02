@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<CostAllocationUploadResponse> costAllocationUploadResponseFromJson(String str) => List<CostAllocationUploadResponse>.from(json.decode(str).map((x) => CostAllocationUploadResponse.fromJson(x)));
@@ -5,12 +7,12 @@ List<CostAllocationUploadResponse> costAllocationUploadResponseFromJson(String s
 String costAllocationUploadResponseToJson(List<CostAllocationUploadResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CostAllocationUploadResponse {
-  int serialNumber;
-  String batchId;
-  int adjustmentCount;
-  double adjustmentValue;
-  DateTime uploadDate;
-  DateTime runDate;
+  int? serialNumber;
+  String? batchId;
+  int? adjustmentCount;
+  double? adjustmentValue;
+  DateTime? uploadDate;
+  DateTime? runDate;
   dynamic runDateString;
   dynamic branchCode;
   dynamic deptCode;
@@ -50,8 +52,8 @@ class CostAllocationUploadResponse {
     "batchId": batchId,
     "adjustmentCount": adjustmentCount,
     "adjustmentValue": adjustmentValue,
-    "uploadDate": uploadDate.toIso8601String(),
-    "runDate": runDate.toIso8601String(),
+    "uploadDate": uploadDate!.toIso8601String(),
+    "runDate": runDate!.toIso8601String(),
     "runDateString": runDateString,
     "branchCode": branchCode,
     "deptCode": deptCode,

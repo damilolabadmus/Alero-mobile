@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/TransactionFlow.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/line_chart_inflow_outflow.dart';
@@ -9,9 +11,9 @@ import 'package:async/async.dart';
 import 'package:intl/intl.dart';
 
 class TransactionInflowCard extends StatefulWidget {
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
-  const TransactionInflowCard({Key key, this.customerId, this.groupId, this.customerAccountNo})
+  const TransactionInflowCard({Key? key, this.customerId, this.groupId, this.customerAccountNo})
       : super(key: key);
 
   @override
@@ -25,8 +27,8 @@ class TransactionInflowCardState extends State<TransactionInflowCard> {
   double inflowAmount = 0.0;
   int transactionCount = 0;
   final formatCurrency = new NumberFormat.currency(symbol: "");
-  String startDate;
-  String endDate;
+  String? startDate;
+  String? endDate;
 
   DateTime initialDate = DateTime.now();
 
@@ -42,11 +44,11 @@ class TransactionInflowCardState extends State<TransactionInflowCard> {
     getInflowData(widget.groupId, startDate, endDate);
   }
 
-  Future getInflowData(String groupId, String startDate, String endDate) async {
+  Future getInflowData(String? groupId, String? startDate, String? endDate) async {
     return this._asyncMemoizer.runOnce(() async {
       var flow = widget.customerAccountNo == null
-          ? await apiService.getTransactionInflow(widget.groupId, startDate, endDate)
-          : await apiService.getTransactionInflowWithAccountNo(widget.customerAccountNo, startDate, endDate);
+          ? await apiService.getTransactionInflow(widget.groupId!, startDate!, endDate!)
+          : await apiService.getTransactionInflowWithAccountNo(widget.customerAccountNo!, startDate!, endDate!);
       tfData = [];
 
       if (flow.length == 0) {
@@ -66,8 +68,8 @@ class TransactionInflowCardState extends State<TransactionInflowCard> {
       }
 
       for (int i = 0; i < tfData.length; i++) {
-        inflowAmount = inflowAmount + tfData[i].totalSpend;
-        transactionCount = transactionCount + tfData[i].transactionCount;
+        inflowAmount = inflowAmount + tfData[i].totalSpend!;
+        transactionCount = transactionCount + tfData[i].transactionCount!;
       }
       return flow;
     });

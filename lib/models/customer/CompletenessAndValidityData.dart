@@ -1,23 +1,25 @@
+
+
 class CompletenessAndValidityData {
-  String _workflowStatus;
-  int _incompleteDataCount;
-  int _invalidDataCount;
+  String? _workflowStatus;
+  int? _incompleteDataCount;
+  int? _invalidDataCount;
 
   CompletenessAndValidityData (
-      {String workflowStatus,
-        int incompleteDataCount,
-        int invalidDataCount,}) {
+      {String? workflowStatus,
+        int? incompleteDataCount,
+        int? invalidDataCount,}) {
     this._workflowStatus = workflowStatus;
     this._incompleteDataCount = incompleteDataCount;
     this._invalidDataCount = invalidDataCount;
   }
 
-  String get workflowStatus => _workflowStatus;
-  set workflowStatus(String workflowStatus) => _workflowStatus = workflowStatus;
-  int get incompleteDataCount => _incompleteDataCount;
-  set incompleteDataCount(int incompleteDataCount) => _incompleteDataCount = incompleteDataCount;
-  int get invalidDataCount => _invalidDataCount;
-  set invalidDataCount(int invalidDataCount) => _invalidDataCount = invalidDataCount;
+  String? get workflowStatus => _workflowStatus;
+  set workflowStatus(String? workflowStatus) => _workflowStatus = workflowStatus;
+  int? get incompleteDataCount => _incompleteDataCount;
+  set incompleteDataCount(int? incompleteDataCount) => _incompleteDataCount = incompleteDataCount;
+  int? get invalidDataCount => _invalidDataCount;
+  set invalidDataCount(int? invalidDataCount) => _invalidDataCount = invalidDataCount;
 
   CompletenessAndValidityData.fromJson(Map<String, dynamic> json) {
     _workflowStatus = json['workflowStatus'];

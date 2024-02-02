@@ -1,12 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../components/back_app_bar.dart';
 import 'search_body.dart';
 
 class SearchPage extends StatelessWidget {
-  final String searchQuery;
+  final String? searchQuery;
 
-  SearchPage({Key key, @required this.searchQuery}) : super(key: key);
+  SearchPage({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

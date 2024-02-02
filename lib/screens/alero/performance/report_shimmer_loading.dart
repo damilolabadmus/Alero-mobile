@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'package:flutter_shimmer_widget/templates_shimmer_widget.dart';
 import '../../../style/theme.dart' as Style;
 
 class ReportsLoadingContainer extends StatelessWidget {
-  const ReportsLoadingContainer({Key key}) : super(key: key);
+  const ReportsLoadingContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

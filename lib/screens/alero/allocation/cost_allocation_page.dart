@@ -1,12 +1,14 @@
+
+
 import 'package:alero/screens/alero/performance/performance_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../../../../style/theme.dart' as Style;
 import 'cost-allocation_dashboard.dart';
 
 class CostAllocationPage extends StatelessWidget {
-  final String userId;
+  final String? userId;
 
-  CostAllocationPage({@required this.userId});
+  CostAllocationPage({required this.userId});
 
   @override
   Widget build(BuildContext context) {

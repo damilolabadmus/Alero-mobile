@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/nbo_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +9,10 @@ import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'empty_list_item.dart';
 
 class NextBestOfferingBodyList extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
   const NextBestOfferingBodyList(
-      {Key key, @required this.customerId, @required this.groupId})
+      {Key? key, required this.customerId, required this.groupId})
       : super(key: key);
 
   @override
@@ -63,9 +65,9 @@ class _NextBestOfferingBodyListState extends State<NextBestOfferingBodyList> {
     );
   }
 
-  Future getNextBestOffering(String groupId) async {
+  Future getNextBestOffering(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      final nboData = await apiService.getNBOData(groupId);
+      final nboData = await apiService.getNBOData(groupId!);
       List<Widget> _nboItem = [];
       if (nboData.length == 0) {
         _nboItem.add(

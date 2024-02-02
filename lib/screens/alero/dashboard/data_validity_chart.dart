@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/CompletenessAndValidityData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -15,7 +17,7 @@ class DataValidity extends StatefulWidget {
 
 class _DataValidityState extends State<DataValidity> {
 
-  TooltipBehavior _tooltipBehavior;
+  TooltipBehavior? _tooltipBehavior;
 
   @override
   void initState() {
@@ -26,32 +28,32 @@ class _DataValidityState extends State<DataValidity> {
 
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  List<CompletenessAndValidityData> dvData = [];
+  List<CompletenessAndValidityData?> dvData = [];
   String workflowStatus = '';
   int invalidDataCount = 0;
-  List<CompletenessAndValidityData> dataValid;
+  List<CompletenessAndValidityData?>? dataValid;
 
 
   getDataValidity() async {
     return this._asyncMemoizer.runOnce(() async {
       var test = await apiService.getDataCompletenessAndValidity();
       setState(() {
-        dataValid = test;
+        dataValid = test as List<CompletenessAndValidityData?>?;
         dvData = [];
-        if (dataValid.length == 0) {
+        if (dataValid!.length == 0) {
           dvData.add(CompletenessAndValidityData(
             workflowStatus: '',
             incompleteDataCount: 0,
           ));
         } else {
-          dataValid.forEach((status) {
+          dataValid!.forEach((status) {
             dvData.add(status);
           });
         }
 
         for (int i = 0; i < dvData.length; i++) {
-          workflowStatus = workflowStatus + dvData[i].workflowStatus;
-          invalidDataCount = invalidDataCount + dvData[i].invalidDataCount;
+          workflowStatus = workflowStatus + dvData[i]!.workflowStatus!;
+          invalidDataCount = invalidDataCount + dvData[i]!.invalidDataCount!;
         }
       });
       return dataValid;
@@ -100,14 +102,14 @@ class _DataValidityState extends State<DataValidity> {
                 ),
                 tooltipBehavior: _tooltipBehavior,
                 series: <CircularSeries>[
-                  DoughnutSeries<CompletenessAndValidityData, String>(
+                  DoughnutSeries<CompletenessAndValidityData?, String>(
                     legendIconType: LegendIconType.verticalLine,
                     radius: kAngle,
                     dataSource: dataValid,
-                    xValueMapper: (CompletenessAndValidityData data, _) =>
-                    data.workflowStatus,
-                    yValueMapper: (CompletenessAndValidityData data, _) =>
-                    data.invalidDataCount,
+                    xValueMapper: (CompletenessAndValidityData? data, _) =>
+                    data!.workflowStatus,
+                    yValueMapper: (CompletenessAndValidityData? data, _) =>
+                    data!.invalidDataCount,
                     strokeColor: Colors.white,
                     strokeWidth: 2.0,
                     enableTooltip: yes,

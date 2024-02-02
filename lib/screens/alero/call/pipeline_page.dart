@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsItemsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/call/call_bottom_navigation_bar.dart';
@@ -17,9 +19,9 @@ import 'package:async/async.dart';
 
 class PipelinePage extends StatefulWidget {
 
-  final String groupId;
+  final String? groupId;
 
-  PipelinePage({Key key, @required this.groupId}) : super(key: key);
+  PipelinePage({Key? key, required this.groupId}) : super(key: key);
 
   @override
   _PipelinePageState createState() => _PipelinePageState();
@@ -30,26 +32,26 @@ class _PipelinePageState extends State<PipelinePage> {
 
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  DealsItemsResponse items;
+  DealsItemsResponse? items;
   var dataItem;
 
-  int allDeals;
-  int convertedDeals;
-  int completedDeals;
-  int declinedDeals;
-  double conversionRate;
-  double allDealsValue;
-  double convertedDealsValue;
-  double completedDealsValue;
-  double declinedDealsValue;
+  int? allDeals;
+  int? convertedDeals;
+  int? completedDeals;
+  int? declinedDeals;
+  double? conversionRate;
+  double? allDealsValue;
+  double? convertedDealsValue;
+  double? completedDealsValue;
+  double? declinedDealsValue;
 
   Future<dynamic> getPipelineItems() async {
     return this._asyncMemoizer.runOnce(() async {
       OneContext().showProgressIndicator();
       var _items = await apiService.getPipelineDealsItems();
       setState(() {
-        items = _items as DealsItemsResponse;
-        dataItem = items.result;
+        items = _items as DealsItemsResponse?;
+        dataItem = items!.result;
         allDeals = dataItem.allDeals;
         convertedDeals = dataItem.convertedDeals;
         completedDeals = dataItem.completedDeals;
@@ -65,7 +67,7 @@ class _PipelinePageState extends State<PipelinePage> {
   }
 
   String allDealsText() {
-    if (allDeals <= 1) {
+    if (allDeals! <= 1) {
       return 'deal in total';
     } else {
       return 'deals in total';
@@ -83,7 +85,7 @@ class _PipelinePageState extends State<PipelinePage> {
           }
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: appBar(),
+            appBar: appBar() as PreferredSizeWidget?,
             body: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,15 +127,15 @@ class _PipelinePageState extends State<PipelinePage> {
                         child: Row(
                           children: [
                             DealsItem(
-                              value: allDealsValue.toInt().toString().length < 7 ?
-                              "₦ " + double.parse((allDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              allDealsValue.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((allDealsValue/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              allDealsValue.toInt().toString().length <  12 ?
-                              "₦ " + "${double.parse((allDealsValue/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              allDealsValue.toInt().toString().length < 30 ?
-                              "₦ " + "${double.parse((allDealsValue/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse((allDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: allDealsValue!.toInt().toString().length < 7 ?
+                              "₦ " + double.parse(allDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
+                              allDealsValue!.toInt().toString().length < 9 ?
+                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
+                              allDealsValue!.toInt().toString().length <  12 ?
+                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
+                              allDealsValue!.toInt().toString().length < 30 ?
+                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
+                              "₦ " + double.parse(allDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                               count: allDeals,
                               text: allDealsText(),
                             ),
@@ -141,15 +143,15 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: completedDealsValue.toInt().toString().length < 7 ?
-                              "₦ " + double.parse((completedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              completedDealsValue.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((completedDealsValue/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              completedDealsValue.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((completedDealsValue/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              completedDealsValue.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((completedDealsValue/kDealsValueForTr).toStringAsFixed(2)).toString()}tr" :
-                              "₦ " + double.parse((completedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: completedDealsValue!.toInt().toString().length < 7 ?
+                              "₦ " + double.parse(completedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
+                              completedDealsValue!.toInt().toString().length < 9 ?
+                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
+                              completedDealsValue!.toInt().toString().length < 12 ?
+                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
+                              completedDealsValue!.toInt().toString().length > 30 ?
+                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()}tr" :
+                              "₦ " + double.parse(completedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                               count: completedDeals,
                               text: 'Completed',
                             ),
@@ -157,15 +159,15 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: convertedDealsValue.toInt().toString().length < 7 ?
-                              "₦ " + double.parse((convertedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              convertedDealsValue.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((convertedDealsValue/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              convertedDealsValue.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((convertedDealsValue/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              convertedDealsValue.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((convertedDealsValue/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse((convertedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: convertedDealsValue!.toInt().toString().length < 7 ?
+                              "₦ " + double.parse(convertedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
+                              convertedDealsValue!.toInt().toString().length < 9 ?
+                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
+                              convertedDealsValue!.toInt().toString().length < 12 ?
+                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
+                              convertedDealsValue!.toInt().toString().length > 30 ?
+                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
+                              "₦ " + double.parse(convertedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                               count: convertedDeals,
                               text: 'Converted',
                             ),
@@ -173,15 +175,15 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: declinedDealsValue.toInt().toString().length < 7 ?
-                              "₦ " + double.parse((declinedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              declinedDealsValue.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((declinedDealsValue/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              declinedDealsValue.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((declinedDealsValue/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              declinedDealsValue.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((declinedDealsValue/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse((declinedDealsValue).toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: declinedDealsValue!.toInt().toString().length < 7 ?
+                              "₦ " + double.parse(declinedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
+                              declinedDealsValue!.toInt().toString().length < 9 ?
+                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
+                              declinedDealsValue!.toInt().toString().length < 12 ?
+                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
+                              declinedDealsValue!.toInt().toString().length > 30 ?
+                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
+                              "₦ " + double.parse(declinedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
                               count: declinedDeals,
                               text: 'Declined',
                             ),
@@ -189,7 +191,7 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: '${conversionRate.round().toString()}%',
+                              value: '${conversionRate!.round().toString()}%',
                               text: 'Conversion Rate',
                             ),
                             SizedBox(
@@ -261,7 +263,7 @@ class _PipelinePageState extends State<PipelinePage> {
         child: TextButton(
           child: IconButton(
             icon: Icon(Icons.home),
-            iconSize: 30.0,
+            iconSize: 30.0, onPressed: () {  },
           ),
           onPressed: () {
             Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);

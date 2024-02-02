@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
@@ -13,9 +15,9 @@ class DealsByProductTypeResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<DealByProductTypeResponse> result;
+  String? responseCode;
+  String? responseDescription;
+  List<DealByProductTypeResponse>? result;
 
   factory DealsByProductTypeResponse.fromJson(Map<String, dynamic> json) => DealsByProductTypeResponse(
     responseCode: json["responseCode"],
@@ -26,25 +28,25 @@ class DealsByProductTypeResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
 class DealByProductTypeResponse {
-  int _count;
-  String _product;
+  int? _count;
+  String? _product;
 
   DealByProductTypeResponse(
-      {int count,
-        String product}) {
+      {int? count,
+        String? product}) {
     this._count = count;
     this._product = product;
   }
 
-  int get count => _count;
-  set count(int count) => _count = count;
-  String get product => _product;
-  set product(String product) => _product = product;
+  int? get count => _count;
+  set count(int? count) => _count = count;
+  String? get product => _product;
+  set product(String? product) => _product = product;
 
   DealByProductTypeResponse.fromJson(Map<String, dynamic> json) {
     _count = json['count'];

@@ -1,18 +1,20 @@
+
+
 class BankDepositsData {
-  double _actualDeposits;
-  double _actualDepositsChange;
-  double _averageDepositsChange;
-  double _averageDeposits;
-  double _depositsData;
-  String _periodName;
+  double? _actualDeposits;
+  double? _actualDepositsChange;
+  double? _averageDepositsChange;
+  double? _averageDeposits;
+  double? _depositsData;
+  String? _periodName;
 
   BankDepositsData(
-      {double actualDeposits,
-        double actualDepositsChange,
-        double averageDepositsChange,
-        double averageDeposits,
-        double depositsData,
-        String periodName,
+      {double? actualDeposits,
+        double? actualDepositsChange,
+        double? averageDepositsChange,
+        double? averageDeposits,
+        double? depositsData,
+        String? periodName,
       }) {
     this._actualDeposits = actualDeposits;
     this._actualDepositsChange = actualDepositsChange;
@@ -22,20 +24,20 @@ class BankDepositsData {
     this._periodName = periodName;
   }
 
-  double get actualDeposits => _actualDeposits;
-  set actualDeposits(double actualDeposits) => _actualDeposits = actualDeposits;
-  double get actualDepositsChange => _actualDepositsChange;
-  set actualDepositsChange(double actualDepositsChange) =>
+  double? get actualDeposits => _actualDeposits;
+  set actualDeposits(double? actualDeposits) => _actualDeposits = actualDeposits;
+  double? get actualDepositsChange => _actualDepositsChange;
+  set actualDepositsChange(double? actualDepositsChange) =>
       _actualDepositsChange = actualDepositsChange;
-  double get averageDepositsChange => _averageDepositsChange;
-  set averageDepositsChange(double averageDepositsChange) =>
+  double? get averageDepositsChange => _averageDepositsChange;
+  set averageDepositsChange(double? averageDepositsChange) =>
       _averageDepositsChange = averageDepositsChange;
-  double get averageDeposits => _averageDeposits;
-  set averageDeposits(double averageDeposits) => _averageDeposits = averageDeposits;
-  double get depositsData => _depositsData;
-  set depositsData(double depositsData) => _depositsData = depositsData;
-  String get periodName => _periodName;
-  set periodName(String periodName) => _periodName = periodName;
+  double? get averageDeposits => _averageDeposits;
+  set averageDeposits(double? averageDeposits) => _averageDeposits = averageDeposits;
+  double? get depositsData => _depositsData;
+  set depositsData(double? depositsData) => _depositsData = depositsData;
+  String? get periodName => _periodName;
+  set periodName(String? periodName) => _periodName = periodName;
 
   BankDepositsData.fromJson(Map<String, dynamic> json) {
     _actualDeposits = json['actualDeposits'];

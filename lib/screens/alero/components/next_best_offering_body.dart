@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +9,14 @@ import '../../../style/theme.dart' as Style;
 class NextBestOfferingBody extends StatefulWidget {
   final String title;
   final Widget listBody;
-  final String customerId, groupId, customerAccountNo;
+  final String? customerId, groupId, customerAccountNo;
 
   const NextBestOfferingBody(
-      {Key key,
-        @required this.title,
-        @required this.listBody,
-        @required this.customerId,
-        @required this.groupId,
+      {Key? key,
+        required this.title,
+        required this.listBody,
+        required this.customerId,
+        required this.groupId,
         this.customerAccountNo})
       : super(key: key);
 

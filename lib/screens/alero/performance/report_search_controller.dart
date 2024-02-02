@@ -1,3 +1,5 @@
+
+
 import 'package:alero/utils/constants.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,7 @@ import '../../../style/theme.dart' as Style;
 
 class ReportSearchController extends StatelessWidget {
 
-    final Function search;
+    final Function? search;
 
     ReportSearchController({this.search});
 
@@ -33,7 +35,7 @@ class ReportSearchController extends StatelessWidget {
                             ),
                             borderSide: BorderSide.none),
                     ),
-                    onChanged: search,
+                    onChanged: search as void Function(String)?,
                     /*onChanged: (value) {
                 setState(() {
                   if (value.isNotEmpty) {

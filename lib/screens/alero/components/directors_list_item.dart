@@ -1,3 +1,5 @@
+
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +7,13 @@ import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
 class DirectorsListItem extends StatelessWidget {
-  final String name, phoneNumber, gender;
+  final String? name, phoneNumber, gender;
 
   const DirectorsListItem(
-      {Key key,
-        @required this.name,
-        @required this.phoneNumber,
-        @required this.gender})
+      {Key? key,
+        required this.name,
+        required this.phoneNumber,
+        required this.gender})
       : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class DirectorsListItem extends StatelessWidget {
                           ),
                         ),
                         Flexible(
-                          child: Text(name,
+                          child: Text(name!,
                               softWrap: true,
                               style: TextStyle(
                                 color: Style.Colors.blackTextColor,
@@ -69,7 +71,7 @@ class DirectorsListItem extends StatelessWidget {
                             'assets/customer/biodata/biodata_call.svg',
                           ),
                         ),
-                        Text(phoneNumber,
+                        Text(phoneNumber!,
                             style: TextStyle(
                               color: Style.Colors.blackTextColor,
                               fontSize: 12.0,
@@ -92,7 +94,7 @@ class DirectorsListItem extends StatelessWidget {
                       'assets/customer/biodata/biodata_gender.svg',
                     ),
                   ),
-                  Text(gender,
+                  Text(gender!,
                       style: TextStyle(
                         color: Style.Colors.blackTextColor,
                         fontSize: 12.0,

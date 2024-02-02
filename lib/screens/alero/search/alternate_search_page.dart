@@ -1,10 +1,12 @@
+
+
 import 'package:alero/screens/alero/landing/landing_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
 class AlternateSearchPage extends StatefulWidget {
-  AlternateSearchPage({Key key}) : super(key: key);
+  AlternateSearchPage({Key? key}) : super(key: key);
 
   @override
   _AlternateSearchPageState createState() => _AlternateSearchPageState();

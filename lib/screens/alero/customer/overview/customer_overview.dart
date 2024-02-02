@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/ComplaintFLow.dart';
 import 'package:alero/screens/alero/components/accounts_body_list.dart';
 import 'package:alero/screens/alero/components/complaints_caregories_card.dart';
@@ -33,11 +35,11 @@ import '../../components/overview_grid_item.dart';
 import '../../search/shimmer_loading_widget.dart';
 
 class CustomerOverview extends StatefulWidget {
-  final CustomerDetailsResponse customerDetails;
-  final String customerAccountNo;
-  final int index;
+  final CustomerDetailsResponse? customerDetails;
+  final String? customerAccountNo;
+  final int? index;
 
-  CustomerOverview({Key key, @required this.customerDetails, this.customerAccountNo, this.index})
+  CustomerOverview({Key? key, required this.customerDetails, this.customerAccountNo, this.index})
       : super(key: key);
 
   @override
@@ -56,8 +58,8 @@ class _CustomerOverviewState extends State<CustomerOverview> {
   bool loading = true;
   bool hasComplaints = false;
 
-  String customerId = "", groupId = "";
-  double ytdRevenue = 0;
+  String? customerId = "", groupId = "";
+  double? ytdRevenue = 0;
 
   int _current = 0;
   final AsyncMemoizer _accountMem = AsyncMemoizer();
@@ -103,9 +105,9 @@ class _CustomerOverviewState extends State<CustomerOverview> {
     }
   }
 
-  Future getCustomerBankingData(String groupId) async {
+  Future getCustomerBankingData(String? groupId) async {
     return this._accountMem.runOnce(() async {
-      final bankingData = await apiService.getBankingData(groupId);
+      final bankingData = await apiService.getBankingData(groupId!);
       if (bankingData.isEmpty) {
         if (mounted) {
           setState(() {
@@ -134,11 +136,11 @@ class _CustomerOverviewState extends State<CustomerOverview> {
     });
   }
 
-  Future getCustomerRevenueData(String groupId) async {
+  Future getCustomerRevenueData(String? groupId) async {
     return this._revenue.runOnce(() async {
       final revenueData = widget.customerAccountNo == null
-          ? await apiService.getRevenueData(groupId)
-          : await apiService.getRevenueAccountData(widget.customerAccountNo);
+          ? await apiService.getRevenueData(groupId!)
+          : await apiService.getRevenueAccountData(widget.customerAccountNo!);
       if (mounted) {
         setState(() {
           ytdRevenue = revenueData.ytdRevenue;
@@ -148,11 +150,11 @@ class _CustomerOverviewState extends State<CustomerOverview> {
     });
   }
 
-  Future getChannelData(String groupId) async {
+  Future getChannelData(String? groupId) async {
     return this._channels.runOnce(() async {
       final channelsData = widget.customerAccountNo == null
-          ? await apiService.getChannelsData(groupId)
-          : await apiService.getChannelsDataWithAccountNo(widget.customerAccountNo);
+          ? await apiService.getChannelsData(groupId!)
+          : await apiService.getChannelsDataWithAccountNo(widget.customerAccountNo!);
       List<Widget> channelItem = [];
       if (channelsData.length == 0) {
         channelItem.add(EmptyListItem(message: 'No Channels Data Found'));
@@ -176,9 +178,9 @@ class _CustomerOverviewState extends State<CustomerOverview> {
     });
   }
 
-  Future getDebitCardData(String groupId) async {
+  Future getDebitCardData(String? groupId) async {
     return this._cards.runOnce(() async {
-      final cardData = await apiService.getDebitCardData(groupId);
+      final cardData = await apiService.getDebitCardData(groupId!);
       cardsList = [];
       if (cardData.length == 0) {
         if (mounted) {
@@ -534,9 +536,9 @@ class _CustomerOverviewState extends State<CustomerOverview> {
     );
   }
 
-  Future getComplaintTrend(String groupId) async {
+  Future getComplaintTrend(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      var flow = await apiService.getCustomerComplaints(groupId);
+      var flow = await apiService.getCustomerComplaints(groupId!);
       if (flow.length > 0) {
         if (mounted) {
           setState(() {

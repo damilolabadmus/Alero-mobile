@@ -1,7 +1,9 @@
+
+
 class MprResponse {
-  String categoryName;
-  List<SubCategory> rowObjectSubList;
-  Map<String, double> rowMonthsItem;
+  String? categoryName;
+  List<SubCategory>? rowObjectSubList;
+  Map<String, double?>? rowMonthsItem;
   dynamic currentBudgetValue;
   dynamic ytdBudgetValue;
   dynamic currentActualValue;
@@ -37,7 +39,7 @@ class MprResponse {
         rowObjectSubList: json["rowObjectSubList"] != null
             ? List<SubCategory>.from(json["rowObjectSubList"].map((x) => SubCategory.fromJson(x)))
             : [],
-        rowMonthsItem: Map.from(json["RowMonthsItem"])?.map((k, v) => MapEntry<String, double>(k, v.toDouble())),
+        rowMonthsItem: Map.from(json["RowMonthsItem"] ?? {}).map((k, v) => MapEntry<String, double>(k, v.toDouble())),
         currentBudgetValue: json["CurrentBudgetValue"] == null ? 0.0 : json["CurrentBudgetValue"],
         ytdBudgetValue: json["YtdBudgetValue"] == null ? 0.0 : json["YtdBudgetValue"],
         currentActualValue: json["CurrentActualValue"] == null ? 0.0 : json["CurrentActualValue"],
@@ -56,9 +58,9 @@ class MprResponse {
   Map<String, dynamic> toJson() => {
     "CategoryName": categoryName,
     "rowObjectSubList": rowObjectSubList != null
-        ? List<dynamic>.from(rowObjectSubList.map((x) => x.toJson()))
+        ? List<dynamic>.from(rowObjectSubList!.map((x) => x.toJson()))
         : [],
-    "RowMonthsItem": Map.from(rowMonthsItem).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "RowMonthsItem": Map.from(rowMonthsItem!).map((k, v) => MapEntry<String, dynamic>(k, v)),
     "CurrentBudgetValue": currentBudgetValue,
     "YtdBudgetValue": ytdBudgetValue,
     "CurrentActualValue": currentActualValue,
@@ -73,9 +75,9 @@ class MprResponse {
   };
 }
 class SubCategory {
-  String categoryName;
-  List<SubClass> rowObjectSubClass;
-  Map<String, double> rowMonthsItem;
+  String? categoryName;
+  List<SubClass>? rowObjectSubClass;
+  Map<String, double?>? rowMonthsItem;
   dynamic currentBudgetValue;
   dynamic ytdBudgetValue;
   dynamic currentActualValue;
@@ -117,7 +119,7 @@ class SubCategory {
       rowObjectSubClass: json["rowObjectSubClass"] != null
           ? List<SubClass>.from(json["rowObjectSubClass"].map((x) => SubClass.fromJson(x)))
           : [],
-      rowMonthsItem: Map.from(json["RowMonthsItem"])?.map((k, v) => MapEntry<String, double>(k, v.toDouble())),
+      rowMonthsItem: Map.from(json["RowMonthsItem"] ?? {}).map((k, v) => MapEntry<String, double?>(k, v.toDouble())),
       currentBudgetValue: json["CurrentBudgetValue"] == null ? 0.0 : json["CurrentBudgetValue"],
       ytdBudgetValue: json["YtdBudgetValue"] == null ? 0.0 : json["YtdBudgetValue"],
       currentActualValue: json["CurrentActualValue"] == null ? 0.0 : json["CurrentActualValue"],
@@ -135,9 +137,9 @@ class SubCategory {
   Map<String, dynamic> toJson() => {
     "CategoryName": categoryName,
     "rowObjectSubClass": rowObjectSubClass != null
-        ? List<dynamic>.from(rowObjectSubClass.map((x) => x.toJson()))
+        ? List<dynamic>.from(rowObjectSubClass!.map((x) => x.toJson()))
         : [],
-    "RowMonthsItem": Map.from(rowMonthsItem).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "RowMonthsItem": Map.from(rowMonthsItem!).map((k, v) => MapEntry<String, dynamic>(k, v)),
     "CurrentBudgetValue": currentBudgetValue,
     "YtdBudgetValue": ytdBudgetValue,
     "CurrentActualValue": currentActualValue,
@@ -151,8 +153,8 @@ class SubCategory {
   };
 }
 class SubClass {
-  String categoryName;
-  Map<String, double> rowMonthsItem;
+  String? categoryName;
+  Map<String, double?>? rowMonthsItem;
   dynamic currentBudgetValue;
   dynamic ytdBudgetValue;
   dynamic currentActualValue;
@@ -182,7 +184,7 @@ class SubClass {
   factory SubClass.fromJson(Map<String, dynamic> json) {
     return SubClass(
       categoryName: json["CategoryName"] == null ? '' : json["CategoryName"],
-      rowMonthsItem: Map.from(json["RowMonthsItem"])?.map((k, v) => MapEntry<String, double>(k, v.toDouble())),
+      rowMonthsItem: Map.from(json["RowMonthsItem"] ?? {}).map((k, v) => MapEntry<String, double?>(k, v.toDouble())),
       currentBudgetValue: json["CurrentBudgetValue"] == null ? 0.0 : json["CurrentBudgetValue"],
       ytdBudgetValue: json["YtdBudgetValue"] == null ? 0.0 : json["YtdBudgetValue"],
       currentActualValue: json["CurrentActualValue"] == null ? 0 : json["CurrentActualValue"],
@@ -199,7 +201,7 @@ class SubClass {
 
   Map<String, dynamic> toJson() => {
     "CategoryName": categoryName,
-    "RowMonthsItem": Map.from(rowMonthsItem).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "RowMonthsItem": Map.from(rowMonthsItem!).map((k, v) => MapEntry<String, dynamic>(k, v)),
     "CurrentBudgetValue": currentBudgetValue,
     "YtdBudgetValue": ytdBudgetValue,
     "CurrentActualValue": currentActualValue,

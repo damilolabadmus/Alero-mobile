@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsStatusResponse.dart';
 import 'package:alero/models/call/UpdateStatusDetailsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
@@ -9,41 +11,41 @@ import 'dart:io' show Platform;
 class UpdateStatusForm extends StatefulWidget {
   final DealsForDisbursement disbursedStatus;
 
-  const UpdateStatusForm({Key key, @required this.disbursedStatus}) : super(key: key);
+  const UpdateStatusForm({Key? key, required this.disbursedStatus}) : super(key: key);
 
   @override
   _UpdateStatusFormState createState() => _UpdateStatusFormState();
 }
 
 class _UpdateStatusFormState extends State<UpdateStatusForm> {
-  DealsStatusUpdate selectedStatus;
-  DealsListOfSubstatus subStatus;
-  StatusResult statusResult;
-  String pipelineId;
-  String statusId;
-  String subStatusId;
-  String comment;
+  DealsStatusUpdate? selectedStatus;
+  DealsListOfSubstatus? subStatus;
+  StatusResult? statusResult;
+  String? pipelineId;
+  String? statusId;
+  String? subStatusId;
+  String? comment;
 
-  TextEditingController commentController;
-  DealsStatusUpdate statusIdController;
-  DealsListOfSubstatus subStatusIdController;
+  TextEditingController? commentController;
+  DealsStatusUpdate? statusIdController;
+  DealsListOfSubstatus? subStatusIdController;
 
   final _formKey = GlobalKey<FormState>();
   var apiService = AleroAPIService();
 
   getStatusList() async {
-    StatusResult _statusOptions = await apiService.getListOfStatusOptions();
+    StatusResult? _statusOptions = await apiService.getListOfStatusOptions();
     print('The status = $_statusOptions');
     setState(() {
       statusResult = _statusOptions;
     });
   }
 
-  List<DealsStatusUpdate> getStatusUpdateCategory(int category) {
+  List<DealsStatusUpdate>? getStatusUpdateCategory(int? category) {
     if (category == 1) {
-      return statusResult.statusUpdate1;
+      return statusResult!.statusUpdate1;
     } else {
-      return statusResult.statusUpdate2;
+      return statusResult!.statusUpdate2;
     }
   }
 
@@ -71,9 +73,9 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
     Map getDealStatusDetails() {
       return {
         'pipelineId': widget.disbursedStatus.pipelineId,
-        'dealStatus': statusIdController.statusId,
+        'dealStatus': statusIdController!.statusId,
         'subStatus': subStatusIdController?.statusId,
-        'comment': commentController.text.toString(),
+        'comment': commentController!.text.toString(),
       };
     }
 
@@ -134,10 +136,10 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
                     statusResult == null ? Text('') :
                     statusDropDownComponent(context, getStatusUpdateCategory(
                         widget.disbursedStatus.category)),
-                    selectedStatus == null ? Text('') : selectedStatus
-                        .listOfSubstatus.isEmpty ? Text('') :
+                    selectedStatus == null ? Text('') : selectedStatus!
+                        .listOfSubstatus!.isEmpty ? Text('') :
                     subStatusDropDownComponent(
-                        context, selectedStatus.listOfSubstatus),
+                        context, selectedStatus!.listOfSubstatus),
                     SizedBox(height: 5.0),
                     Padding(
                       padding: const EdgeInsets.only(
@@ -228,7 +230,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
   }
 
   Widget statusDropDownComponent(BuildContext context,
-      List<DealsStatusUpdate> dropDownList) {
+      List<DealsStatusUpdate>? dropDownList) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
@@ -248,9 +250,9 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
           ),
           SizedBox(height: 5),
           Platform.isIOS ?
-          statusIOSPicker(dropDownList) :
+          statusIOSPicker(dropDownList!) :
           Container(color: Colors.grey.shade300,
-              child: statusAndroidDropDown(dropDownList)),
+              child: statusAndroidDropDown(dropDownList!)),
         ],),);
   }
 
@@ -262,7 +264,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              item.status,
+              item.status!,
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 5,
@@ -276,7 +278,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
       return DropdownMenuItem(
         value: item,
         child: Text(
-          item.status,
+          item.status!,
           style: TextStyle(height: 0.2,
               fontWeight: FontWeight.bold,
               fontSize: 12,
@@ -285,6 +287,9 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
               fontStyle: FontStyle.italic),
         ),);
     }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 
   // SubStatus
@@ -325,7 +330,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
     );
   }
 
-  Widget subStatusDropDownComponent(BuildContext context, List<DealsListOfSubstatus> dropDownList) {
+  Widget subStatusDropDownComponent(BuildContext context, List<DealsListOfSubstatus>? dropDownList) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
@@ -345,9 +350,9 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
           ),
           SizedBox(height: 5),
           Platform.isIOS ?
-          subStatusIOSPicker(dropDownList) :
+          subStatusIOSPicker(dropDownList!) :
           Container(color: Colors.grey.shade300,
-              child: subStatusAndroidDropDown(dropDownList)),
+              child: subStatusAndroidDropDown(dropDownList!)),
         ],),);
   }
 
@@ -360,7 +365,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              item.status,
+              item.status!,
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 5,
@@ -373,7 +378,7 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
       return DropdownMenuItem(
         value: item,
         child: Text(
-          item.status,
+          item.status!,
           style: TextStyle(height: 0.2,
               fontWeight: FontWeight.bold,
               fontSize: 12,
@@ -382,9 +387,12 @@ class _UpdateStatusFormState extends State<UpdateStatusForm> {
               fontStyle: FontStyle.italic),
         ),);
     }
+    return DropdownMenuItem(
+      child: Container(),
+    );
   }
 
-  Text getValue(String value) {
+  Text getValue(String? value) {
     if (value == null || value.isEmpty) {
       return Text('Select One',
           style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));

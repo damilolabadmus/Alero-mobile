@@ -44,18 +44,18 @@ import '../utils/Global.dart';
 class AleroAPIService {
   final ioc = new HttpClient();
   final Pandora pandora = new Pandora();
-  Map<String, dynamic> responseMap;
-  String tokenValue;
+  Map<String, dynamic>? responseMap;
+  String? tokenValue;
 
   var preAuthHeaders = {
     "content-type": "application/json",
     "accept": "application/json",
-    "AppId": Global.AppId,
-    "DeviceIp": Global.DeviceIp,
-    "DeviceManufacturer": Global.DeviceManufacturer,
-    "DeviceName": Global.DeviceName,
-    "DeviceModel": Global.DeviceModel,
-    "DeviceType": Global.DeviceType
+    "AppId": Global.AppId!,
+    "DeviceIp": Global.DeviceIp!,
+    "DeviceManufacturer": Global.DeviceManufacturer!,
+    "DeviceName": Global.DeviceName!,
+    "DeviceModel": Global.DeviceModel!,
+    "DeviceType": Global.DeviceType!
   };
 
   Map<String, String> postAuthHeaders(String token) {
@@ -64,12 +64,12 @@ class AleroAPIService {
       "accept": "application/json",
       // "Authorization": "Bearer " + Global.API_TOKEN,
       'Authorization': 'Bearer $token',
-      "AppId": Global.AppId,
-      "DeviceIp": Global.DeviceIp,
-      "DeviceManufacturer": Global.DeviceManufacturer,
-      "DeviceModel": Global.DeviceModel,
-      "DeviceName": Global.DeviceName,
-      "DeviceType": Global.DeviceType
+      "AppId": Global.AppId!,
+      "DeviceIp": Global.DeviceIp!,
+      "DeviceManufacturer": Global.DeviceManufacturer!,
+      "DeviceModel": Global.DeviceModel!,
+      "DeviceName": Global.DeviceName!,
+      "DeviceType": Global.DeviceType!
       // Add other headers if needed
     };
     return headers;
@@ -77,7 +77,7 @@ class AleroAPIService {
 
 
   /// Login user with email and password
-  Future<LoginResponse> loginUser(String email, String password) async {
+  Future<LoginResponse?> loginUser(String email, String password) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
@@ -100,10 +100,11 @@ class AleroAPIService {
       pandora.logFirebaseEvent('LOGIN', '/token', error.toString());
       throw Exception(error);
     }
+    return null;
   }
 
   /// Present login User with email and password
-  Future<LoginResponseForPm> presentLoginUser(String email, String password) async {
+  Future<LoginResponseForPm?> presentLoginUser(String email, String password) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
@@ -112,9 +113,9 @@ class AleroAPIService {
           headers: preAuthHeaders,
           body: json.encode({"username": email, "password": password}));
       responseMap = json.decode(response.body);
-      tokenValue = responseMap['token'];
+      tokenValue = responseMap!['token'];
       print('ARE YOU SURE THERES PANDORA PM TOKEN $tokenValue');
-      pandora.saveToSharedPreferences('token', tokenValue);
+      pandora.saveToSharedPreferences('token', tokenValue!);
       if (response.statusCode == 200) {
         return LoginResponseForPm.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
@@ -130,10 +131,11 @@ class AleroAPIService {
       pandora.logFirebaseEvent('LOGIN', '/token', error.toString());
       throw Exception(error);
     }
+    return null;
   }
 
 /// Login user to generate token for Performance management
- Future<LoginResponseForPm> loginUserForPm(String email, String password) async {
+ Future<LoginResponseForPm?> loginUserForPm(String email, String password) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
@@ -142,8 +144,8 @@ class AleroAPIService {
           headers: preAuthHeaders,
           body: json.encode({"username": email, "password": password}));
       responseMap = json.decode(response.body);
-      tokenValue = responseMap['token'];
-      pandora.saveToSharedPreferences('token', tokenValue);
+      tokenValue = responseMap!['token'];
+      pandora.saveToSharedPreferences('token', tokenValue!);
       if (response.statusCode == 200) {
         return LoginResponseForPm.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
@@ -159,6 +161,7 @@ class AleroAPIService {
       pandora.logFirebaseEvent('LOGIN', '/token', error.toString());
       throw Exception(error);
     }
+    return null;
   }
 
   Future<dynamic> logoutUser() async {
@@ -167,13 +170,13 @@ class AleroAPIService {
     var logOutHeaders = {
       "content-type": "application/json",
       "accept": "application/json",
-      "Authorization": 'Bearer ' + Global.PREF_TOKEN,
-      "AppId": Global.AppId,
-      "DeviceIp": Global.DeviceIp,
-      "DeviceManufacturer": Global.DeviceManufacturer,
-      "DeviceName": Global.DeviceName,
-      "DeviceModel": Global.DeviceModel,
-      "DeviceType": Global.DeviceType
+      "Authorization": 'Bearer ' + Global.PREF_TOKEN!,
+      "AppId": Global.AppId!,
+      "DeviceIp": Global.DeviceIp!,
+      "DeviceManufacturer": Global.DeviceManufacturer!,
+      "DeviceName": Global.DeviceName!,
+      "DeviceModel": Global.DeviceModel!,
+      "DeviceType": Global.DeviceType!
     };
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -212,7 +215,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/view-status-val'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         return ViewStatusResponse.fromJson(jsonDecode(response.body));
       } else {
@@ -238,7 +241,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/aleroUserMgt/getUserPlatformRights'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         return ViewModulesResponse.fromJson(jsonDecode(response.body));
       } else {
@@ -265,7 +268,7 @@ class AleroAPIService {
 
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/userName'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         return GetStaffInformation.fromJson(jsonDecode(response.body));
       } else {
@@ -285,15 +288,15 @@ class AleroAPIService {
   }
 
   /// Search for Customer
-  Future<List<dynamic>> searchForUser(String searchQuery) async {
+  Future<List<dynamic>?> searchForUser(String searchQuery) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
-    print(Global.API_TOKEN);
+    print(Global.API_TOKEN!);
     final http = new IOClient(ioc);
     try {
       var response = await http.get(
           Uri.parse(Global.InitialBaseUrl + '/customer-details/$searchQuery'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         if (jsonDecode(response.body) is List) {
           return jsonDecode(response.body);
@@ -333,6 +336,7 @@ class AleroAPIService {
           '/customer-details/$searchQuery', error.toString());
       return [];
     }
+    return null;
   }
 
   /// Get customer details
@@ -342,7 +346,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/customer-data/$groupId'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         return CustomerDetailsResponse.fromJson(jsonDecode(response.body));
       } else {
@@ -369,7 +373,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getProspects/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         ProspectDetailsResponse prospect = ProspectDetailsResponse.fromJson(jsonDecode(response.body));
         print("The prospect =  $prospect");
@@ -397,14 +401,14 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getBankSegments/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         print("Bank Segments");
         BankSegmentDetailsResponse bankSegments = BankSegmentDetailsResponse.fromJson(jsonDecode(response.body));
         print('The bank segments =  ${bankSegments.result}');
         List<String> result = [];
-        for(var item in bankSegments.result){
-          result.add(item.segment);
+        for(var item in bankSegments.result!){
+          result.add(item.segment!);
         }
         return result;
       } else if (response.statusCode == 404) {
@@ -424,13 +428,13 @@ class AleroAPIService {
   }
 
   /// Add a Prospect
-  Future<ProspectDetailsResponse> addProspect(dynamic prospectData) async {
+  Future<ProspectDetailsResponse?> addProspect(dynamic prospectData) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     try {
       var response = await http.post(Uri.parse(Global.InitialBaseUrl + '/callManagement/addProspect'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(prospectData));
       if (response.statusCode == 200) {
         return ProspectDetailsResponse.fromJson(jsonDecode(response.body));
@@ -445,16 +449,17 @@ class AleroAPIService {
       pandora.logFirebaseEvent('ADD_PROSPECT', '/callManagement/addProspect', error.toString());
       throw error;
     }
+    return null;
   }
 
   /// Edit prospect
-  Future<ProspectDetailsResponse> updateProspect(Map prospectData) async {
+  Future<ProspectDetailsResponse?> updateProspect(Map prospectData) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     try {
       var response = await http.put(Uri.parse(Global.InitialBaseUrl + '/callManagement/editProspect/'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(prospectData));
       if (response.statusCode == 200) {
         return ProspectDetailsResponse.fromJson(jsonDecode(response.body));
@@ -474,6 +479,7 @@ class AleroAPIService {
       pandora.logFirebaseEvent('EDIT_PROSPECT', '/callManagement/editProspect', error.toString());
       throw Exception(error);
     }
+    return null;
   }
 
 
@@ -485,7 +491,7 @@ class AleroAPIService {
     try {
       var response = await http.put(
           Uri.parse(Global.InitialBaseUrl + '/callManagement/editProspect/'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(prospectData));
       if (response.statusCode == 200) {
         return ProspectDetailsResponse.fromJson(jsonDecode(response.body));
@@ -516,7 +522,7 @@ class AleroAPIService {
     try {
       var response = await http.get(
           Uri.parse(Global.InitialBaseUrl + '/customer-data-exceptions/$groupId'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         return DataExceptionResponse.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 404) {
@@ -546,7 +552,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-banking-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -576,7 +582,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-revenue-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       return RevenueDataResponse.fromJson(jsonDecode(response.body));
     } else {
@@ -593,7 +599,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/account-revenue-data-with-accno/$accountNo'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       return RevenueDataResponse.fromJson(jsonDecode(response.body));
     } else {
@@ -610,7 +616,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-investment-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -637,7 +643,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-investment-data-with-accno/$customerAccountNo'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -664,7 +670,7 @@ class AleroAPIService {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-pnd-details/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -691,7 +697,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-pnd-details-with-accno/$accountNumber'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -718,7 +724,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-debitcard-details/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -745,7 +751,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-channel-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -772,7 +778,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-channel-enrolments-with-accno/$accountNo'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -799,7 +805,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-value-chain/$customerId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -826,7 +832,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-loan-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -846,13 +852,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-  Future<List<dynamic>> getCustomerLoansDataWithAccountNo(String accountNumber) async {
+  Future<List<dynamic>?> getCustomerLoansDataWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
       Uri.parse(Global.InitialBaseUrl + '/customer-loan-data-with-accno/$accountNumber'),
-      headers: postAuthHeaders(Global.API_TOKEN));
+      headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -864,6 +870,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       pandora.logFirebaseEvent('GET_CUSTOMER_LOANS_WITH_ACCOUNTNO', '/customer-loan-data-with-accno/$accountNumber', response.body);
        return [];
     }
+    return null;
   }
 
   /// Get customer trade transactions data
@@ -873,7 +880,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/foreign-transaction-history/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -900,7 +907,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/foreign-transaction-history-with-acc/$accountNumber'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -927,7 +934,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-lifestyle-count-data/$customerId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -954,7 +961,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-lifestyle-value-data/$customerId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -981,7 +988,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/get-customerGrp-touch-point/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1008,7 +1015,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/get-account-touch-point/$customerAccountNo'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1035,7 +1042,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-nbo-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1064,7 +1071,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl +
             '/cust-grp-chan-credit-trend/$groupId/$startDate/$endDate'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1096,7 +1103,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl +
             '/account-credit-trend/$accountNo/$startDate/$endDate'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1130,7 +1137,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/cust-grp-chan-debit-trend/$groupId/$startDate/$endDate'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1159,7 +1166,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/account-chan-debit-trend/$accountNo/$startDate/$endDate'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1186,7 +1193,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-recent-transactions/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1213,7 +1220,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-recent-transactions-with-accno/$accountNo'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1242,7 +1249,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     try {
       var response = await http.get(
           Uri.parse(Global.InitialBaseUrl + '/rm-performance-data/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         var test = jsonDecode(response.body);
         List<dynamic> myResponse = [];
@@ -1283,7 +1290,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-performance-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       var test = jsonDecode(response.body);
       List<dynamic> myResponse = [];
@@ -1314,7 +1321,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-deposits-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1346,7 +1353,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-revenue-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1376,7 +1383,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-loans-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1406,7 +1413,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-performance-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       var test = jsonDecode(response.body);
       List<dynamic> myResponse = [];
@@ -1437,7 +1444,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-touch-point/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1467,7 +1474,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-performance-data/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       var test = jsonDecode(response.body);
       List<dynamic> myResponse = [];
@@ -1499,7 +1506,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-loan-classification-status/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1530,7 +1537,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-loan-dpd-status/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1561,7 +1568,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/rm-data-exceptions-chart/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         var returnData = jsonDecode(response.body);
@@ -1591,7 +1598,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-signatories-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1618,7 +1625,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-directors-data/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1645,7 +1652,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-complaints/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1672,7 +1679,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-complaint-categories/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1699,7 +1706,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/customer-complaint-trend/$groupId'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
@@ -1726,7 +1733,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmDealsSummary/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       DealsItemsResponse deals = DealsItemsResponse.fromJson(jsonDecode(response.body));
       return deals;
@@ -1749,7 +1756,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmDeals/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         DealsStatusResponse deals = DealsStatusResponse.fromJson(jsonDecode(response.body));
         return deals;
@@ -1776,7 +1783,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getDealDetails/$pipelineId'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         DealHistoryResponse timeline = DealHistoryResponse.fromJson(jsonDecode(response.body));
         return timeline;
@@ -1803,7 +1810,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/calculateDealRevenue/$amount/$feesRate/$interestRate/$netInterestMargin/'),
-        headers: postAuthHeaders(Global.API_TOKEN),
+        headers: postAuthHeaders(Global.API_TOKEN!),
       );
       if (response.statusCode == 200) {
         return RevenueDetailsResponse.fromJson(jsonDecode(response.body));
@@ -1826,13 +1833,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
   /// Add a Pipeline Deal
-  Future<DealsStatusResponse> addNewPipelineDeal(dynamic dealData) async {
+  Future<DealsStatusResponse?> addNewPipelineDeal(dynamic dealData) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     try {
       var response = await http.post(Uri.parse(Global.InitialBaseUrl + '/callManagement/AddPipelineDeal'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(dealData));
       if (response.statusCode == 200) {
         DealsStatusResponse deals = DealsStatusResponse.fromJson(jsonDecode(response.body));
@@ -1847,6 +1854,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       pandora.logFirebaseEvent('ADD_PIPELINE_DEAL', '/callManagement/AddPipelineDeal', error.toString());
       throw error;
     }
+    return null;
   }
 
   /// Get pipeline deal Product Type
@@ -1856,7 +1864,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getProductTypes/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         ProductTypeDetailsResponse productTypes = ProductTypeDetailsResponse.fromJson(jsonDecode(response.body));
         return productTypes.result;
@@ -1888,12 +1896,12 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getCurrencies/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         CurrencyDetailsResponse currencies = CurrencyDetailsResponse.fromJson(jsonDecode(response.body));
         List<String> result = [];
-        for(var item in currencies.result){
-          result.add(item.currencyCode);
+        for(var item in currencies.result!){
+          result.add(item.currencyCode!);
         }
         return result;
       } else if (response.statusCode == 404) {
@@ -1919,7 +1927,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getListOfStatus/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         UpdateStatusDetailsResponse status = UpdateStatusDetailsResponse.fromJson(jsonDecode(response.body));
         return status.result;
@@ -1946,7 +1954,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.put(Uri.parse(Global.InitialBaseUrl + '/callManagement/updatePipelineDealStatus/'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(dealStatusData));
       if (response.statusCode == 200) {
         return DealsStatusResponse.fromJson(jsonDecode(response.body));
@@ -1968,13 +1976,13 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
   /// Update Pipeline Disbursement Disburse
-  Future<DealsStatusResponse> updateDisbursementDisburse(Map disburseData) async {
+  Future<DealsStatusResponse?> updateDisbursementDisburse(Map disburseData) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     try {
       var response = await http.put(Uri.parse(Global.InitialBaseUrl + '/callManagement/updatePipelineDisbursement/'),
-          headers: postAuthHeaders(Global.API_TOKEN),
+          headers: postAuthHeaders(Global.API_TOKEN!),
           body: jsonEncode(disburseData));
       if (response.statusCode == 200) {
         return DealsStatusResponse.fromJson(jsonDecode(response.body));
@@ -1993,6 +2001,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       pandora.logFirebaseEvent('UPDATE_DISBURSEMENT_DEAL', '/callManagement/updatePipelineDisbursement/', error.toString());
       throw Exception(error);
     }
+    return null;
   }
 
 
@@ -2003,7 +2012,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/customer-details/$searchQuery'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         var customerInfo =
         SearchUserResponse.fromJson(jsonDecode(response.body));
@@ -2048,7 +2057,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/callManagement/getTatForCompletedRmDeals/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['result'] is List) {
         var returnData = jsonDecode(response.body)['result'];
@@ -2080,7 +2089,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmDealsGroupedByProduct/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['result'] is List) {
         var returnData = jsonDecode(response.body)['result'];
@@ -2112,7 +2121,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var response = await http.get(
         Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmDealsGroupedByCurrency/'),
-        headers: postAuthHeaders(Global.API_TOKEN));
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body)['result'] is List) {
         var returnData = jsonDecode(response.body)['result'];
@@ -2142,7 +2151,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmDealsByProduct/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         DealsByProductsResponse completedDeals = DealsByProductsResponse.fromJson(jsonDecode(response.body));
         return completedDeals;
@@ -2169,7 +2178,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     try {
       var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/callManagement/getRmPndnDealsByProduct/'),
-          headers: postAuthHeaders(Global.API_TOKEN));
+          headers: postAuthHeaders(Global.API_TOKEN!));
       if (response.statusCode == 200) {
         DealsByProductsResponse pendingDeals = DealsByProductsResponse.fromJson(jsonDecode(response.body));
         return pendingDeals;
@@ -2450,7 +2459,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
-    var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/aleroUserMgt/getRegions'), headers: postAuthHeaders(Global.API_TOKEN));
+    var response = await http.get(Uri.parse(Global.InitialBaseUrl + '/aleroUserMgt/getRegions'), headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       print('Region list =');
       print(response.body);
@@ -2504,7 +2513,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
   /// Get Branch List
-  List<String> branchList;
+  List<String>? branchList;
   getBranchList(String areaCode) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2530,7 +2539,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
   /// Get RM List
-  List<String> rmList;
+  List<String>? rmList;
   getRmList(String branchCode) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2560,7 +2569,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
-    var response = await http.get(Uri.parse(Global.PresentBaseUrl + '/aleroUserMgt/getRegions'), headers: postAuthHeaders(Global.API_TOKEN));
+    var response = await http.get(Uri.parse(Global.PresentBaseUrl + '/aleroUserMgt/getRegions'), headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       print(response.body);
         List<dynamic> regionCode = json.decode(response.body);

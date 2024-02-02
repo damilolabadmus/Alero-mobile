@@ -1,9 +1,11 @@
+
+
 import 'package:flutter/cupertino.dart';
 
 class AprResponse {
-  final String customerId;
-  final String accountNumber;
-  final String accountName;
+  final String? customerId;
+  final String? accountNumber;
+  final String? accountName;
   final dynamic nrff;
   final dynamic accountMaintenanceFee;
   final dynamic loanRelatedFees;
@@ -14,27 +16,27 @@ class AprResponse {
   final dynamic loanRecoveries;
   final dynamic commFees;
   final dynamic totalIncome;
-  final String accountCategory;
+  final String? accountCategory;
   final List<AprMainReport> mainReport;
   final List<AprExcludedTab> excludedTab;
 
   AprResponse({
-    @required this.customerId,
-    @required this.accountNumber,
-    @required this.accountName,
-    @required this.nrff,
-    @required this.accountMaintenanceFee,
-    @required this.loanRelatedFees,
-    @required this.eBusinessFees,
-    @required this.tradeFees,
-    @required this.fxIncome,
-    @required this.otherCommFees,
-    @required this.loanRecoveries,
-    @required this.commFees,
-    @required this.totalIncome,
-    @required this.accountCategory,
-    @required this.mainReport,
-    @required this.excludedTab,
+    required this.customerId,
+    required this.accountNumber,
+    required this.accountName,
+    required this.nrff,
+    required this.accountMaintenanceFee,
+    required this.loanRelatedFees,
+    required this.eBusinessFees,
+    required this.tradeFees,
+    required this.fxIncome,
+    required this.otherCommFees,
+    required this.loanRecoveries,
+    required this.commFees,
+    required this.totalIncome,
+    required this.accountCategory,
+    required this.mainReport,
+    required this.excludedTab,
   });
 
   factory AprResponse.fromJson(Map<String, dynamic> json) {
@@ -64,10 +66,10 @@ class AprResponse {
 }
 
 class AprMainReport {
-  final String customerNo;
-  final String accountNo;
-  final String customerName;
-  final String incomeType;
+  final String? customerNo;
+  final String? accountNo;
+  final String? customerName;
+  final String? incomeType;
   final Map<String, dynamic> monthsData;
   final Map<String, dynamic> currentMonthBudget;
   final Map<String, dynamic> currentMonthVariance;
@@ -78,24 +80,24 @@ class AprMainReport {
   final dynamic ytDAchieved;
   final dynamic fullYearBudget;
   final dynamic runRate;
-  final List<dynamic> dropdown;
+  final List<dynamic>? dropdown;
 
   AprMainReport({
-    @required this.customerNo,
-    @required this.accountNo,
-    @required this.customerName,
-    @required this.incomeType,
-    @required this.monthsData,
-    @required this.currentMonthBudget,
-    @required this.currentMonthVariance,
-    @required this.currentMonthAchieved,
-    @required this.ytDActualValue,
-    @required this.ytDBudgetValue,
-    @required this.variance,
-    @required this.ytDAchieved,
-    @required this.fullYearBudget,
-    @required this.runRate,
-    @required this.dropdown,
+    required this.customerNo,
+    required this.accountNo,
+    required this.customerName,
+    required this.incomeType,
+    required this.monthsData,
+    required this.currentMonthBudget,
+    required this.currentMonthVariance,
+    required this.currentMonthAchieved,
+    required this.ytDActualValue,
+    required this.ytDBudgetValue,
+    required this.variance,
+    required this.ytDAchieved,
+    required this.fullYearBudget,
+    required this.runRate,
+    required this.dropdown,
   });
 
   factory AprMainReport.fromJson(Map<String, dynamic> json) {
@@ -122,10 +124,10 @@ class AprMainReport {
 }
 
 class AprExcludedTab {
-  final String customerNo;
-  final String accountNo;
-  final String customerName;
-  final String incomeType;
+  final String? customerNo;
+  final String? accountNo;
+  final String? customerName;
+  final String? incomeType;
   final Map<String, dynamic> monthsData;
   final Map<String, dynamic> currentMonthBudget;
   final Map<String, dynamic> currentMonthVariance;
@@ -138,20 +140,20 @@ class AprExcludedTab {
   final dynamic runRate;
 
   AprExcludedTab({
-    @required this.customerNo,
-    @required this.accountNo,
-    @required this.customerName,
-    @required this.incomeType,
-    @required this.monthsData,
-    @required this.currentMonthBudget,
-    @required this.currentMonthVariance,
-    @required this.currentMonthAchieved,
-    @required this.ytDActualValue,
-    @required this.ytDBudgetValue,
-    @required this.variance,
-    @required this.ytDAchieved,
-    @required this.fullYearBudget,
-    @required this.runRate,
+    required this.customerNo,
+    required this.accountNo,
+    required this.customerName,
+    required this.incomeType,
+    required this.monthsData,
+    required this.currentMonthBudget,
+    required this.currentMonthVariance,
+    required this.currentMonthAchieved,
+    required this.ytDActualValue,
+    required this.ytDBudgetValue,
+    required this.variance,
+    required this.ytDAchieved,
+    required this.fullYearBudget,
+    required this.runRate,
   });
 
   factory AprExcludedTab.fromJson(Map<String, dynamic> json) {

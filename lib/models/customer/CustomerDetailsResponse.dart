@@ -1,122 +1,124 @@
+
+
 class CustomerDetailsResponse {
-  String _groupId = " ";
-  String _customerId;
-  String _customerTitle;
-  String _customerName;
-  String _customerType;
-  String _customerDob;
-  int _customerAge;
-  int _customerRelationshipAge;
-  String _customerGender;
-  String _isMinor;
-  String _mobileNumber;
-  String _mobileNumber2;
-  String _customerEmail;
-  String _bvn;
-  String _tin;
-  String _rcNumber;
-  String _occupation;
-  String _businessType;
-  String _customerAddress;
-  String _customerCity;
-  String _customerState;
-  String _customerLga;
-  String _bankRegion;
-  String _country;
-  String _nationality;
-  String _exposureCountry;
-  String _isDeceased;
-  String _branchCode;
-  String _branchName;
-  String _introducer;
-  String _introducerName;
-  String _rmCode;
-  String _rmName;
-  String _employmentStatus;
-  String _employer;
-  String _maritalStatus;
-  String _motherMaidenName;
-  String _nextOfKinName;
-  String _nextOfKinRelationship;
-  String _nextOfKinAddress;
-  String _nextOfKinMobileNumber;
-  String _identificationType;
-  String _identificationNo;
-  String _identificationIssueDate;
-  String _identificationExpiryDate;
-  String _haveActiveAccount;
-  String _isPepCustomer;
-  String _customerStatus;
-  String _recordStat;
-  String _authStat;
-  String _isStaff;
-  String _bankingProfile;
-  String _businessSegmentCode;
-  String _businessSegment;
-  String _subBusinessSegment;
-  String _retailSubBusSegment;
-  String _alpherCode;
-  String _alpherName;
+  String? _groupId = " ";
+  String? _customerId;
+  String? _customerTitle;
+  String? _customerName;
+  String? _customerType;
+  String? _customerDob;
+  int? _customerAge;
+  int? _customerRelationshipAge;
+  String? _customerGender;
+  String? _isMinor;
+  String? _mobileNumber;
+  String? _mobileNumber2;
+  String? _customerEmail;
+  String? _bvn;
+  String? _tin;
+  String? _rcNumber;
+  String? _occupation;
+  String? _businessType;
+  String? _customerAddress;
+  String? _customerCity;
+  String? _customerState;
+  String? _customerLga;
+  String? _bankRegion;
+  String? _country;
+  String? _nationality;
+  String? _exposureCountry;
+  String? _isDeceased;
+  String? _branchCode;
+  String? _branchName;
+  String? _introducer;
+  String? _introducerName;
+  String? _rmCode;
+  String? _rmName;
+  String? _employmentStatus;
+  String? _employer;
+  String? _maritalStatus;
+  String? _motherMaidenName;
+  String? _nextOfKinName;
+  String? _nextOfKinRelationship;
+  String? _nextOfKinAddress;
+  String? _nextOfKinMobileNumber;
+  String? _identificationType;
+  String? _identificationNo;
+  String? _identificationIssueDate;
+  String? _identificationExpiryDate;
+  String? _haveActiveAccount;
+  String? _isPepCustomer;
+  String? _customerStatus;
+  String? _recordStat;
+  String? _authStat;
+  String? _isStaff;
+  String? _bankingProfile;
+  String? _businessSegmentCode;
+  String? _businessSegment;
+  String? _subBusinessSegment;
+  String? _retailSubBusSegment;
+  String? _alpherCode;
+  String? _alpherName;
 
   CustomerDetailsResponse(
-      {String groupId,
-        String customerId,
-        String customerTitle,
-        String customerName,
-        String customerType,
-        String customerDob,
-        int customerAge,
-        int customerRelationshipAge,
-        String customerGender,
-        String isMinor,
-        String mobileNumber,
-        String mobileNumber2,
-        String customerEmail,
-        String bvn,
-        String tin,
-        String rcNumber,
-        String occupation,
-        String businessType,
-        String customerAddress,
-        String customerCity,
-        String customerState,
-        String customerLga,
-        String bankRegion,
-        String country,
-        String nationality,
-        String exposureCountry,
-        String isDeceased,
-        String branchCode,
-        String branchName,
-        String introducer,
-        String introducerName,
-        String rmCode,
-        String rmName,
-        String employmentStatus,
-        String employer,
-        String maritalStatus,
-        String motherMaidenName,
-        String nextOfKinName,
-        String nextOfKinRelationship,
-        String nextOfKinAddress,
-        String nextOfKinMobileNumber,
-        String identificationType,
-        String identificationNo,
-        String identificationIssueDate,
-        String identificationExpiryDate,
-        String haveActiveAccount,
-        String isPepCustomer,
-        String customerStatus,
-        String recordStat,
-        String authStat,
-        String isStaff,
-        String bankingProfile,
-        String businessSegmentCode,
-        String businessSegment,
-        String subBusinessSegment,
-        String retailSubBusSegment,
-        String alpherCode,
-        String alpherName}) {
+      {String? groupId,
+        String? customerId,
+        String? customerTitle,
+        String? customerName,
+        String? customerType,
+        String? customerDob,
+        int? customerAge,
+        int? customerRelationshipAge,
+        String? customerGender,
+        String? isMinor,
+        String? mobileNumber,
+        String? mobileNumber2,
+        String? customerEmail,
+        String? bvn,
+        String? tin,
+        String? rcNumber,
+        String? occupation,
+        String? businessType,
+        String? customerAddress,
+        String? customerCity,
+        String? customerState,
+        String? customerLga,
+        String? bankRegion,
+        String? country,
+        String? nationality,
+        String? exposureCountry,
+        String? isDeceased,
+        String? branchCode,
+        String? branchName,
+        String? introducer,
+        String? introducerName,
+        String? rmCode,
+        String? rmName,
+        String? employmentStatus,
+        String? employer,
+        String? maritalStatus,
+        String? motherMaidenName,
+        String? nextOfKinName,
+        String? nextOfKinRelationship,
+        String? nextOfKinAddress,
+        String? nextOfKinMobileNumber,
+        String? identificationType,
+        String? identificationNo,
+        String? identificationIssueDate,
+        String? identificationExpiryDate,
+        String? haveActiveAccount,
+        String? isPepCustomer,
+        String? customerStatus,
+        String? recordStat,
+        String? authStat,
+        String? isStaff,
+        String? bankingProfile,
+        String? businessSegmentCode,
+        String? businessSegment,
+        String? subBusinessSegment,
+        String? retailSubBusSegment,
+        String? alpherCode,
+        String? alpherName}) {
     this._groupId = groupId;
     this._customerId = customerId;
     this._customerTitle = customerTitle;
@@ -177,139 +179,139 @@ class CustomerDetailsResponse {
     this._alpherName = alpherName;
   }
 
-  String get groupId => _groupId;
-  set groupId(String groupId) => _groupId = groupId;
-  String get customerId => _customerId;
-  set customerId(String customerId) => _customerId = customerId;
-  String get customerTitle => _customerTitle;
-  set customerTitle(String customerTitle) => _customerTitle = customerTitle;
-  String get customerName => _customerName;
-  set customerName(String customerName) => _customerName = customerName;
-  String get customerType => _customerType;
-  set customerType(String customerType) => _customerType = customerType;
-  String get customerDob => _customerDob;
-  set customerDob(String customerDob) => _customerDob = customerDob;
-  int get customerAge => _customerAge;
-  set customerAge(int customerAge) => _customerAge = customerAge;
-  int get customerRelationshipAge => _customerRelationshipAge;
-  set customerRelationshipAge(int customerRelationshipAge) =>
+  String? get groupId => _groupId;
+  set groupId(String? groupId) => _groupId = groupId;
+  String? get customerId => _customerId;
+  set customerId(String? customerId) => _customerId = customerId;
+  String? get customerTitle => _customerTitle;
+  set customerTitle(String? customerTitle) => _customerTitle = customerTitle;
+  String? get customerName => _customerName;
+  set customerName(String? customerName) => _customerName = customerName;
+  String? get customerType => _customerType;
+  set customerType(String? customerType) => _customerType = customerType;
+  String? get customerDob => _customerDob;
+  set customerDob(String? customerDob) => _customerDob = customerDob;
+  int? get customerAge => _customerAge;
+  set customerAge(int? customerAge) => _customerAge = customerAge;
+  int? get customerRelationshipAge => _customerRelationshipAge;
+  set customerRelationshipAge(int? customerRelationshipAge) =>
       _customerRelationshipAge = customerRelationshipAge;
-  String get customerGender => _customerGender;
-  set customerGender(String customerGender) => _customerGender = customerGender;
-  String get isMinor => _isMinor;
-  set isMinor(String isMinor) => _isMinor = isMinor;
-  String get mobileNumber => _mobileNumber;
-  set mobileNumber(String mobileNumber) => _mobileNumber = mobileNumber;
-  String get mobileNumber2 => _mobileNumber2;
-  set mobileNumber2(String mobileNumber2) => _mobileNumber2 = mobileNumber2;
-  String get customerEmail => _customerEmail;
-  set customerEmail(String customerEmail) => _customerEmail = customerEmail;
-  String get bvn => _bvn;
-  set bvn(String bvn) => _bvn = bvn;
-  String get tin => _tin;
-  set tin(String tin) => _tin = tin;
-  String get rcNumber => _rcNumber;
-  set rcNumber(String rcNumber) => _rcNumber = rcNumber;
-  String get occupation => _occupation;
-  set occupation(String occupation) => _occupation = occupation;
-  String get businessType => _businessType;
-  set businessType(String businessType) => _businessType = businessType;
-  String get customerAddress => _customerAddress;
-  set customerAddress(String customerAddress) =>
+  String? get customerGender => _customerGender;
+  set customerGender(String? customerGender) => _customerGender = customerGender;
+  String? get isMinor => _isMinor;
+  set isMinor(String? isMinor) => _isMinor = isMinor;
+  String? get mobileNumber => _mobileNumber;
+  set mobileNumber(String? mobileNumber) => _mobileNumber = mobileNumber;
+  String? get mobileNumber2 => _mobileNumber2;
+  set mobileNumber2(String? mobileNumber2) => _mobileNumber2 = mobileNumber2;
+  String? get customerEmail => _customerEmail;
+  set customerEmail(String? customerEmail) => _customerEmail = customerEmail;
+  String? get bvn => _bvn;
+  set bvn(String? bvn) => _bvn = bvn;
+  String? get tin => _tin;
+  set tin(String? tin) => _tin = tin;
+  String? get rcNumber => _rcNumber;
+  set rcNumber(String? rcNumber) => _rcNumber = rcNumber;
+  String? get occupation => _occupation;
+  set occupation(String? occupation) => _occupation = occupation;
+  String? get businessType => _businessType;
+  set businessType(String? businessType) => _businessType = businessType;
+  String? get customerAddress => _customerAddress;
+  set customerAddress(String? customerAddress) =>
       _customerAddress = customerAddress;
-  String get customerCity => _customerCity;
-  set customerCity(String customerCity) => _customerCity = customerCity;
-  String get customerState => _customerState;
-  set customerState(String customerState) => _customerState = customerState;
-  String get customerLga => _customerLga;
-  set customerLga(String customerLga) => _customerLga = customerLga;
-  String get bankRegion => _bankRegion;
-  set bankRegion(String bankRegion) => _bankRegion = bankRegion;
-  String get country => _country;
-  set country(String country) => _country = country;
-  String get nationality => _nationality;
-  set nationality(String nationality) => _nationality = nationality;
-  String get exposureCountry => _exposureCountry;
-  set exposureCountry(String exposureCountry) =>
+  String? get customerCity => _customerCity;
+  set customerCity(String? customerCity) => _customerCity = customerCity;
+  String? get customerState => _customerState;
+  set customerState(String? customerState) => _customerState = customerState;
+  String? get customerLga => _customerLga;
+  set customerLga(String? customerLga) => _customerLga = customerLga;
+  String? get bankRegion => _bankRegion;
+  set bankRegion(String? bankRegion) => _bankRegion = bankRegion;
+  String? get country => _country;
+  set country(String? country) => _country = country;
+  String? get nationality => _nationality;
+  set nationality(String? nationality) => _nationality = nationality;
+  String? get exposureCountry => _exposureCountry;
+  set exposureCountry(String? exposureCountry) =>
       _exposureCountry = exposureCountry;
-  String get isDeceased => _isDeceased;
-  set isDeceased(String isDeceased) => _isDeceased = isDeceased;
-  String get branchCode => _branchCode;
-  set branchCode(String branchCode) => _branchCode = branchCode;
-  String get branchName => _branchName;
-  set branchName(String branchName) => _branchName = branchName;
-  String get introducer => _introducer;
-  set introducer(String introducer) => _introducer = introducer;
-  String get introducerName => _introducerName;
-  set introducerName(String introducerName) => _introducerName = introducerName;
-  String get rmCode => _rmCode;
-  set rmCode(String rmCode) => _rmCode = rmCode;
-  String get rmName => _rmName;
-  set rmName(String rmName) => _rmName = rmName;
-  String get employmentStatus => _employmentStatus;
-  set employmentStatus(String employmentStatus) =>
+  String? get isDeceased => _isDeceased;
+  set isDeceased(String? isDeceased) => _isDeceased = isDeceased;
+  String? get branchCode => _branchCode;
+  set branchCode(String? branchCode) => _branchCode = branchCode;
+  String? get branchName => _branchName;
+  set branchName(String? branchName) => _branchName = branchName;
+  String? get introducer => _introducer;
+  set introducer(String? introducer) => _introducer = introducer;
+  String? get introducerName => _introducerName;
+  set introducerName(String? introducerName) => _introducerName = introducerName;
+  String? get rmCode => _rmCode;
+  set rmCode(String? rmCode) => _rmCode = rmCode;
+  String? get rmName => _rmName;
+  set rmName(String? rmName) => _rmName = rmName;
+  String? get employmentStatus => _employmentStatus;
+  set employmentStatus(String? employmentStatus) =>
       _employmentStatus = employmentStatus;
-  String get employer => _employer;
-  set employer(String employer) => _employer = employer;
-  String get maritalStatus => _maritalStatus;
-  set maritalStatus(String maritalStatus) => _maritalStatus = maritalStatus;
-  String get motherMaidenName => _motherMaidenName;
-  set motherMaidenName(String motherMaidenName) =>
+  String? get employer => _employer;
+  set employer(String? employer) => _employer = employer;
+  String? get maritalStatus => _maritalStatus;
+  set maritalStatus(String? maritalStatus) => _maritalStatus = maritalStatus;
+  String? get motherMaidenName => _motherMaidenName;
+  set motherMaidenName(String? motherMaidenName) =>
       _motherMaidenName = motherMaidenName;
-  String get nextOfKinName => _nextOfKinName;
-  set nextOfKinName(String nextOfKinName) => _nextOfKinName = nextOfKinName;
-  String get nextOfKinRelationship => _nextOfKinRelationship;
-  set nextOfKinRelationship(String nextOfKinRelationship) =>
+  String? get nextOfKinName => _nextOfKinName;
+  set nextOfKinName(String? nextOfKinName) => _nextOfKinName = nextOfKinName;
+  String? get nextOfKinRelationship => _nextOfKinRelationship;
+  set nextOfKinRelationship(String? nextOfKinRelationship) =>
       _nextOfKinRelationship = nextOfKinRelationship;
-  String get nextOfKinAddress => _nextOfKinAddress;
-  set nextOfKinAddress(String nextOfKinAddress) =>
+  String? get nextOfKinAddress => _nextOfKinAddress;
+  set nextOfKinAddress(String? nextOfKinAddress) =>
       _nextOfKinAddress = nextOfKinAddress;
-  String get nextOfKinMobileNumber => _nextOfKinMobileNumber;
-  set nextOfKinMobileNumber(String nextOfKinMobileNumber) =>
+  String? get nextOfKinMobileNumber => _nextOfKinMobileNumber;
+  set nextOfKinMobileNumber(String? nextOfKinMobileNumber) =>
       _nextOfKinMobileNumber = nextOfKinMobileNumber;
-  String get identificationType => _identificationType;
-  set identificationType(String identificationType) =>
+  String? get identificationType => _identificationType;
+  set identificationType(String? identificationType) =>
       _identificationType = identificationType;
-  String get identificationNo => _identificationNo;
-  set identificationNo(String identificationNo) =>
+  String? get identificationNo => _identificationNo;
+  set identificationNo(String? identificationNo) =>
       _identificationNo = identificationNo;
-  String get identificationIssueDate => _identificationIssueDate;
-  set identificationIssueDate(String identificationIssueDate) =>
+  String? get identificationIssueDate => _identificationIssueDate;
+  set identificationIssueDate(String? identificationIssueDate) =>
       _identificationIssueDate = identificationIssueDate;
-  String get identificationExpiryDate => _identificationExpiryDate;
-  set identificationExpiryDate(String identificationExpiryDate) =>
+  String? get identificationExpiryDate => _identificationExpiryDate;
+  set identificationExpiryDate(String? identificationExpiryDate) =>
       _identificationExpiryDate = identificationExpiryDate;
-  String get haveActiveAccount => _haveActiveAccount;
-  set haveActiveAccount(String haveActiveAccount) =>
+  String? get haveActiveAccount => _haveActiveAccount;
+  set haveActiveAccount(String? haveActiveAccount) =>
       _haveActiveAccount = haveActiveAccount;
-  String get isPepCustomer => _isPepCustomer;
-  set isPepCustomer(String isPepCustomer) => _isPepCustomer = isPepCustomer;
-  String get customerStatus => _customerStatus;
-  set customerStatus(String customerStatus) => _customerStatus = customerStatus;
-  String get recordStat => _recordStat;
-  set recordStat(String recordStat) => _recordStat = recordStat;
-  String get authStat => _authStat;
-  set authStat(String authStat) => _authStat = authStat;
-  String get isStaff => _isStaff;
-  set isStaff(String isStaff) => _isStaff = isStaff;
-  String get bankingProfile => _bankingProfile;
-  set bankingProfile(String bankingProfile) => _bankingProfile = bankingProfile;
-  String get businessSegmentCode => _businessSegmentCode;
-  set businessSegmentCode(String businessSegmentCode) =>
+  String? get isPepCustomer => _isPepCustomer;
+  set isPepCustomer(String? isPepCustomer) => _isPepCustomer = isPepCustomer;
+  String? get customerStatus => _customerStatus;
+  set customerStatus(String? customerStatus) => _customerStatus = customerStatus;
+  String? get recordStat => _recordStat;
+  set recordStat(String? recordStat) => _recordStat = recordStat;
+  String? get authStat => _authStat;
+  set authStat(String? authStat) => _authStat = authStat;
+  String? get isStaff => _isStaff;
+  set isStaff(String? isStaff) => _isStaff = isStaff;
+  String? get bankingProfile => _bankingProfile;
+  set bankingProfile(String? bankingProfile) => _bankingProfile = bankingProfile;
+  String? get businessSegmentCode => _businessSegmentCode;
+  set businessSegmentCode(String? businessSegmentCode) =>
       _businessSegmentCode = businessSegmentCode;
-  String get businessSegment => _businessSegment;
-  set businessSegment(String businessSegment) =>
+  String? get businessSegment => _businessSegment;
+  set businessSegment(String? businessSegment) =>
       _businessSegment = businessSegment;
-  String get subBusinessSegment => _subBusinessSegment;
-  set subBusinessSegment(String subBusinessSegment) =>
+  String? get subBusinessSegment => _subBusinessSegment;
+  set subBusinessSegment(String? subBusinessSegment) =>
       _subBusinessSegment = subBusinessSegment;
-  String get retailSubBusSegment => _retailSubBusSegment;
-  set retailSubBusSegment(String retailSubBusSegment) =>
+  String? get retailSubBusSegment => _retailSubBusSegment;
+  set retailSubBusSegment(String? retailSubBusSegment) =>
       _retailSubBusSegment = retailSubBusSegment;
-  String get alpherCode => _alpherCode;
-  set alpherCode(String alpherCode) => _alpherCode = alpherCode;
-  String get alpherName => _alpherName;
-  set alpherName(String alpherName) => _alpherName = alpherName;
+  String? get alpherCode => _alpherCode;
+  set alpherCode(String? alpherCode) => _alpherCode = alpherCode;
+  String? get alpherName => _alpherName;
+  set alpherName(String? alpherName) => _alpherName = alpherName;
 
   CustomerDetailsResponse.fromJson(Map<String, dynamic> json) {
     _groupId = json['groupId'];

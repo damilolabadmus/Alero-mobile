@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/call/DealsByProductsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/pipeline/pipeline_deals_header.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 
 class CompletedDealsByProduct extends StatefulWidget {
-  const CompletedDealsByProduct({Key key}) : super(key: key);
+  const CompletedDealsByProduct({Key? key}) : super(key: key);
 
   @override
   _CompletedDealsByProductState createState() => _CompletedDealsByProductState();
@@ -15,8 +17,8 @@ class CompletedDealsByProduct extends StatefulWidget {
 class _CompletedDealsByProductState extends State<CompletedDealsByProduct> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  List dealsByProducts = [];
-  DealsByProductsResponse productItems;
+  List? dealsByProducts = [];
+  DealsByProductsResponse? productItems;
 
   @override
   void initState() {
@@ -29,7 +31,7 @@ class _CompletedDealsByProductState extends State<CompletedDealsByProduct> {
       var _productItem = await apiService.getCompletedDealsByProduct();
       setState(() {
         productItems = _productItem;
-        dealsByProducts = productItems.result;
+        dealsByProducts = productItems!.result;
       });
     });
   }
@@ -59,9 +61,9 @@ class _CompletedDealsByProductState extends State<CompletedDealsByProduct> {
               Container(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: dealsByProducts.length,
+                  itemCount: dealsByProducts!.length,
                   itemBuilder: (context, index) {
-                    var completedProducts = dealsByProducts[index];
+                    var completedProducts = dealsByProducts![index];
                     return Container(
                       padding: EdgeInsets.only(left: 3.0, right: 3.0),
                       decoration: BoxDecoration(

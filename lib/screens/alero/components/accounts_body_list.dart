@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:async/async.dart';
@@ -7,10 +9,10 @@ import 'empty_list_item.dart';
 import 'overview_accounts_list_item.dart';
 
 class AccountsBodyList extends StatefulWidget {
-  final String customerId, groupId;
+  final String? customerId, groupId;
 
   const AccountsBodyList(
-      {Key key, @required this.customerId, @required this.groupId})
+      {Key? key, required this.customerId, required this.groupId})
       : super(key: key);
 
   @override
@@ -62,9 +64,9 @@ class _AccountsBodyListState extends State<AccountsBodyList> {
     );
   }
 
-  Future getBankingData(String groupId) async {
+  Future getBankingData(String? groupId) async {
     return this._asyncMemoizer.runOnce(() async {
-      final accountData = await apiService.getBankingData(groupId);
+      final accountData = await apiService.getBankingData(groupId!);
       List<Widget> _accountsItem = [];
       if (accountData.length == 0) {
         _accountsItem.add(EmptyListItem(message: 'No Customer Accounts'));

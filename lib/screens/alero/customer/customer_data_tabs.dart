@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/CustomerDetailsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/customer/trends/cooporate_trends.dart';
@@ -12,8 +14,8 @@ import 'biodata/customer_bio_data.dart';
 import 'overview/customer_overview.dart';
 
 class CustomerDataTabs extends StatefulWidget {
-  final String groupId;
-  final String customerAccountNo;
+  final String? groupId;
+  final String? customerAccountNo;
 
   CustomerDataTabs({this.groupId, this.customerAccountNo});
 
@@ -23,15 +25,15 @@ class CustomerDataTabs extends StatefulWidget {
 
 class _CustomerDataTabsState extends State<CustomerDataTabs> {
   var apiService = AleroAPIService();
-  String customerName = " ", customerGender = " ", customerType = " ";
-  CustomerDetailsResponse customerDetailsResponse;
+  String? customerName = " ", customerGender = " ", customerType = " ";
+  CustomerDetailsResponse? customerDetailsResponse;
   final AsyncMemoizer _memoizer = AsyncMemoizer();
   List<String> tabTitles = ["Biodata", "Overview", "Trends"];
 
-  Future getCustomerDetails(String groupId) async {
+  Future getCustomerDetails(String? groupId) async {
     print(groupId);
     return this._memoizer.runOnce(() async {
-      final customerDetails = await apiService.getCustomerDetails(groupId);
+      final customerDetails = await apiService.getCustomerDetails(groupId!);
       print(customerDetails);
       updateCustomerDetails(customerDetails);
       print('Account number in CustomerDataTabs class = $widget.customerAccountNo');

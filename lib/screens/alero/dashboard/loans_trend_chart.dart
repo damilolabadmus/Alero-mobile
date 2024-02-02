@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankLoanData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
@@ -15,10 +17,10 @@ class LoansTrendChart extends StatefulWidget {
 class _LoansTrendChartState extends State<LoansTrendChart> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
-  List<BankLoanData> ltcData = [];
+  List<BankLoanData?> ltcData = [];
   String periodName = '';
   double loansData = 0.0;
-  List<BankLoanData> bankLoan;
+  List<BankLoanData?>? bankLoan;
 
   @override
   initState() {
@@ -30,21 +32,21 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
     return this._asyncMemoizer.runOnce(() async {
       var test = await apiService.getBankLoanChart();
       setState(() {
-        bankLoan = test;
+        bankLoan = test as List<BankLoanData?>?;
         ltcData = [];
-        if (bankLoan.length == 0) {
+        if (bankLoan!.length == 0) {
           ltcData.add(BankLoanData(
             periodName: '',
             loansData: 0.0,
           ));
         } else {
-          bankLoan.forEach((revenueTrend) {
+          bankLoan!.forEach((revenueTrend) {
             ltcData.add(revenueTrend);
           });
         }
         for (int i = 0; i < ltcData.length; i++) {
-          periodName = periodName + ltcData[i].periodName;
-          loansData = loansData + ltcData[i].loansData;
+          periodName = periodName + ltcData[i]!.periodName!;
+          loansData = loansData + ltcData[i]!.loansData!;
         }
       });
       return bankLoan;
@@ -90,7 +92,7 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
                     getTitlesWidget: (value, meta) => SideTitleWidget(
                       angle: kRotateAngle,
                       child: Text(
-                        bankLoan[value.toInt()].periodName.toString(),
+                        bankLoan![value.toInt()]!.periodName.toString(),
                         style: TextStyle(
                           color: Colors.black45,
                           fontWeight: FontWeight.bold,
@@ -136,7 +138,7 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankLoan.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), bankLn.loansData / kLoansChartDivisor)).toList(),
+                  spots: bankLoan!.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), bankLn!.loansData! / kLoansChartDivisor)).toList(),
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

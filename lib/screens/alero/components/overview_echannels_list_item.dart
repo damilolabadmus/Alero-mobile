@@ -1,3 +1,5 @@
+
+
 import '../../../style/theme.dart' as Style;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,19 +8,19 @@ import 'package:flutter_svg/svg.dart';
 import '../../../utils/Pandora.dart';
 
 class OverviewEchannelsListItem extends StatelessWidget {
-  final String channelName, dateEnrolled;
-  final bool active;
+  final String? channelName, dateEnrolled;
+  final bool? active;
 
   const OverviewEchannelsListItem(
-      {Key key, this.channelName, this.dateEnrolled, this.active})
+      {Key? key, this.channelName, this.dateEnrolled, this.active})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var eDate = DateTime.parse(dateEnrolled + 'Z');
+    var eDate = DateTime.parse(dateEnrolled! + 'Z');
 
     return Card(
-      color: active ? Style.Colors.biodataGreen : Style.Colors.biodataRed,
+      color: active! ? Style.Colors.biodataGreen : Style.Colors.biodataRed,
       elevation: 0,
       margin: EdgeInsets.only(bottom: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -49,12 +51,12 @@ class OverviewEchannelsListItem extends StatelessWidget {
                         highlightColor: Style.Colors.mainColor,
                         child: Container(
                           decoration: BoxDecoration(
-                              color: active
+                              color: active!
                                   ? Style.Colors.overviewActiveBg
                                   : Style.Colors.overviewInactiveBg,
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                color: active
+                                color: active!
                                     ? Style.Colors.overviewActiveBg
                                     : Style.Colors.overviewInactiveBg,
                               )),
@@ -62,7 +64,7 @@ class OverviewEchannelsListItem extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 4),
                             child: Text(
-                              active ? 'active' : 'inactive',
+                              active! ? 'active' : 'inactive',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 7.0,

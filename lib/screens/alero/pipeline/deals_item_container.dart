@@ -1,12 +1,14 @@
+
+
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../../../style/theme.dart' as Style;
 
 class DealsItem extends StatelessWidget {
-  @required String value;
-  int count;
-  @required String text;
+  @required String? value;
+  int? count;
+  @required String? text;
 
   DealsItem({this.value, this.count, this.text});
 

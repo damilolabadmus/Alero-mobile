@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
 import 'package:alero/network/AleroAPIService.dart';
 
 class PerformanceBottomNavigationBar extends StatefulWidget {
-  bool isPl;
+  bool? isPl;
 
   PerformanceBottomNavigationBar({this.isPl});
 
@@ -71,7 +73,7 @@ class _PerformanceBottomNavigationBarState extends State<PerformanceBottomNaviga
     );
   }
 
-  void switchPage(int index, BuildContext context, bool isPl) {
+  void switchPage(int index, BuildContext context, bool? isPl) {
     print(index);
     switch (index) {
       case 0:
@@ -86,7 +88,7 @@ class _PerformanceBottomNavigationBarState extends State<PerformanceBottomNaviga
     }
   }
 
-  void returnPerformanceManagement(BuildContext context, bool isPl) {
+  void returnPerformanceManagement(BuildContext context, bool? isPl) {
     isPl == false ?
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/performance-management', (Route<dynamic> route) => false) :

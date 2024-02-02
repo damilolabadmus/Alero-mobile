@@ -1,3 +1,5 @@
+
+
 import 'package:alero/models/customer/BankLoanData.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/dashboard/loans_trend_chart.dart';
@@ -52,12 +54,12 @@ class _LoansTrendState extends State<LoansTrend> {
 
       setState(() {
         for (int i = 0; i < ltData.length; i++) {
-          actualLoans = actualLoans + ltData[i].actualLoans;
-          actualLoansChange = actualLoansChange + ltData[i].actualLoansChange;
-          averageLoans = averageLoans + ltData[i].averageLoans;
-          averageLoansChange = averageLoansChange + ltData[i].averageLoansChange;
+          actualLoans = actualLoans + ltData[i].actualLoans!;
+          actualLoansChange = actualLoansChange + ltData[i].actualLoansChange!;
+          averageLoans = averageLoans + ltData[i].averageLoans!;
+          averageLoansChange = averageLoansChange + ltData[i].averageLoansChange!;
         }
-        return loans;
+        // return loans;
       });
     });
   }
@@ -116,28 +118,28 @@ class _LoansTrendState extends State<LoansTrend> {
 class LoansItem extends StatelessWidget {
   LoansItem({this.loansLine1, this.loansLine2, this.value});
 
-  final String loansLine1;
-  final String loansLine2;
-  final String value;
+  final String? loansLine1;
+  final String? loansLine2;
+  final String? value;
 
   @override
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Text(loansLine1,
+          Text(loansLine1!,
             style: TextStyle(
               color: Colors.blueGrey,
               fontSize: 12.0,
               fontFamily: 'Poppins-Regular',
             ),),
-          Text(loansLine2,
+          Text(loansLine2!,
             style: TextStyle(
               color: Colors.blueGrey,
               fontSize: 12.0,
               fontFamily: 'Poppins-Regular',
             ),),
           SizedBox(height: 5.0),
-          Text(value, style: TextStyle(
+          Text(value!, style: TextStyle(
               color: Colors.blueGrey.shade700
           ),),
         ]

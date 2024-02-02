@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 class ProfitabilityReportsPage extends StatelessWidget {
 
-  final String userId;
+  final String? userId;
 
-  ProfitabilityReportsPage({@required this.userId});
+  ProfitabilityReportsPage({required this.userId});
 
   @override
   Widget build(BuildContext context) {

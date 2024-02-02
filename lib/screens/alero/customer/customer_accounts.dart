@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 import 'package:alero/screens/alero/customer/view_accounts.dart';
 import 'package:alero/screens/alero/search/alternate_search_page.dart';
@@ -15,9 +17,9 @@ import 'package:flutter_svg/svg.dart';
 import 'customer_data_tabs.dart';
 
 class CustomerAccounts extends StatefulWidget {
-  final String groupId;
+  final String? groupId;
 
-  CustomerAccounts({Key key, @required this.groupId}) : super(key: key);
+  CustomerAccounts({Key? key, required this.groupId}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -28,19 +30,19 @@ class CustomerAccounts extends StatefulWidget {
 
 class _CustomerAccountsState extends State<CustomerAccounts> {
   var apiService = AleroAPIService();
-  String customerName = " ", customerGender = " ", customerType = " ";
-  CustomerDetailsResponse customerDetailsResponse;
+  String? customerName = " ", customerGender = " ", customerType = " ";
+  CustomerDetailsResponse? customerDetailsResponse;
   final AsyncMemoizer _memoizer = AsyncMemoizer();
   List<Widget> accountsItem = [];
   var data;
-  String customerAccountNo;
-  int index;
+  String? customerAccountNo;
+  int? index;
 
 
-  Future getCustomerDetails(String groupId) async {
+  Future getCustomerDetails(String? groupId) async {
     print(groupId);
     return this._memoizer.runOnce(() async {
-      final customerDetails = await apiService.getCustomerDetails(groupId);
+      final customerDetails = await apiService.getCustomerDetails(groupId!);
       updateCustomerDetails(customerDetails);
       return customerDetails;
     });
@@ -75,8 +77,8 @@ class _CustomerAccountsState extends State<CustomerAccounts> {
                   width: 10,
                 ),
                 Expanded(
-                    child: Text(customerName,
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    child: Text(customerName!,
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: Style.Colors.blackTextColor,
                           fontFamily: 'Poppins-Bold',
                           fontWeight: FontWeight.bold),
@@ -135,7 +137,7 @@ class _CustomerAccountsState extends State<CustomerAccounts> {
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context, false);
-          return Future.value(false);
+          // return Future.value(false);
           //returnLanding(context);
         },
         child: Padding(

@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 List<CostAllocationTypeResponse> costAllocationTypeResponseFromJson(String str) => List<CostAllocationTypeResponse>.from(json.decode(str).map((x) => CostAllocationTypeResponse.fromJson(x)));
@@ -5,26 +7,26 @@ List<CostAllocationTypeResponse> costAllocationTypeResponseFromJson(String str) 
 String costAllocationTypeResponseToJson(List<CostAllocationTypeResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CostAllocationTypeResponse {
-    String expenseGroup;
-    double commercial;
-    double corporate;
-    double retail;
-    double sme;
-    double treasury;
-    int corporateFunctions;
-    int finance;
-    int riskMgt;
-    int serviceTechnology;
-    double entrprise;
-    int mdPool;
-    String expenseType;
-    int expensePosition;
-    String expensePeriod;
+    String? expenseGroup;
+    double? commercial;
+    double? corporate;
+    double? retail;
+    double? sme;
+    double? treasury;
+    int? corporateFunctions;
+    int? finance;
+    int? riskMgt;
+    int? serviceTechnology;
+    double? entrprise;
+    int? mdPool;
+    String? expenseType;
+    int? expensePosition;
+    String? expensePeriod;
     dynamic deptCode;
     dynamic deptName;
     dynamic criteriaCode;
     dynamic criteriaCodeName;
-    int criteriaSum;
+    int? criteriaSum;
 
     CostAllocationTypeResponse({
         this.expenseGroup,

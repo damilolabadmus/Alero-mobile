@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
@@ -135,7 +134,7 @@ static String moneyFormat2(double price) {
 
       return formattedValue;
     } else {
-      return value;
+      return value ?? "";
       // return 'Invalid Input;
     }
   }
@@ -170,7 +169,7 @@ static String moneyFormat2(double price) {
     return processedDate = processedDate.substring(0, processedDate.length - 8);
   }
 
-  static String keyItemFormat(String value) {
+  static String? keyItemFormat(String value) {
     String modifiedString;
     int firstSpaceIndex = value.indexOf(' ');
     int secondSpaceIndex = value.indexOf(' ', firstSpaceIndex + 1);
@@ -188,7 +187,7 @@ static String moneyFormat2(double price) {
     return combinedValue;
   }
 
-  static String replaceHyphenFormat(String input) {
+  static String? replaceHyphenFormat(String? input) {
     String modifiedString;
     if (input != null) {
       modifiedString = input.replaceAll('-', '');
@@ -225,7 +224,7 @@ static String moneyFormat2(double price) {
 
   logFirebaseEvent(String action, String endpoint, String event) {
     GetIt.I<FirebaseAnalytics>().logEvent(
-      name: Global.USER_NAME,
+      name: Global.USER_NAME!,
       parameters: <String, dynamic>{
         // 'device_name': Global.DeviceName,
         'action': action,

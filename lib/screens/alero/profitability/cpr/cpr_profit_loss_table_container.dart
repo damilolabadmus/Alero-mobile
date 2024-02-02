@@ -1,3 +1,5 @@
+
+
 import 'dart:ui';
 import 'package:alero/screens/alero/components/empty_details_item.dart';
 import 'package:alero/utils/constants.dart';
@@ -93,7 +95,7 @@ class _CprProfitAndLossTableContainerState extends State<CprProfitAndLossTableCo
                 ],
                 rows: List.generate(widget.cprData.length, (index) {
                   return DataRow(
-                    color: MaterialStateProperty.resolveWith<Color>(
+                    color: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.selected)) {
                         return Theme.of(context).colorScheme.primary.withOpacity(0.08);

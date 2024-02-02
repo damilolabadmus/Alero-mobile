@@ -1,9 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
 class ProspectBioDataCard extends StatelessWidget {
-  const ProspectBioDataCard({Key key,
+  const ProspectBioDataCard({Key? key,
 
     this.productOfferedValue,
     this.customerWalletSizeValue,
@@ -18,17 +20,17 @@ class ProspectBioDataCard extends StatelessWidget {
     this.accountNo,
   }) : super(key: key);
 
-  final String productOfferedValue;
-  final String customerWalletSizeValue;
-  final String businessSegmentValue;
-  final String contactPersonNameValue;
-  final String contactPersonEmailValue;
-  final String keyPromoterNameValue;
-  final String prospectAddressValue;
-  final String prospectTypeValue;
-  final String contactPersonPhoneNoValue;
-  final bool prospectConverted;
-  final String accountNo;
+  final String? productOfferedValue;
+  final String? customerWalletSizeValue;
+  final String? businessSegmentValue;
+  final String? contactPersonNameValue;
+  final String? contactPersonEmailValue;
+  final String? keyPromoterNameValue;
+  final String? prospectAddressValue;
+  final String? prospectTypeValue;
+  final String? contactPersonPhoneNoValue;
+  final bool? prospectConverted;
+  final String? accountNo;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 6, vertical: 2),
                                     child: Text(
-                                      productOfferedValue,
+                                      productOfferedValue!,
                                       style: TextStyle(
                                         color:
                                         Style.Colors.searchActiveBgText,
@@ -112,7 +114,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                   EdgeInsets.only(right: 10),
                                                   child: Icon(Icons.attach_money, size: 15, color: Colors.blueGrey.shade400),
                                                 ),
-                                                Text(businessSegmentValue,
+                                                Text(businessSegmentValue!,
                                                     style: TextStyle(
                                                       color: Style
                                                           .Colors.blackTextColor,
@@ -143,7 +145,7 @@ class ProspectBioDataCard extends StatelessWidget {
 
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 25.0),
-                                                child: Text(customerWalletSizeValue,
+                                                child: Text(customerWalletSizeValue!,
                                                     style: TextStyle(
                                                       color: Style.Colors
                                                           .blackTextColor,
@@ -170,7 +172,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                             'assets/customer/biodata/biodata_call.svg',
                                           ),
                                         ),
-                                        Text(contactPersonPhoneNoValue,
+                                        Text(contactPersonPhoneNoValue!,
                                             style: TextStyle(
                                               color:
                                               Style.Colors.blackTextColor,
@@ -213,7 +215,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                 fontFamily: 'Poppins-Regular',
                                               )),
                                         ),
-                                        Text(contactPersonNameValue,
+                                        Text(contactPersonNameValue!,
                                             style: TextStyle(
                                               color:
                                               Style.Colors.blackTextColor,
@@ -242,7 +244,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                 fontFamily: 'Poppins-Regular',
                                               )),
                                         ),
-                                        Text(keyPromoterNameValue,
+                                        Text(keyPromoterNameValue!,
                                             style: TextStyle(
                                               color:
                                               Style.Colors.blackTextColor,
@@ -263,7 +265,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                             'assets/customer/biodata/biodata_mail.svg',
                                           ),
                                         ),
-                                        Text(contactPersonEmailValue,
+                                        Text(contactPersonEmailValue!,
                                             style: TextStyle(
                                               color:
                                               Style.Colors.blackTextColor,
@@ -299,7 +301,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                     EdgeInsets.only(right: 10),
                                                     child: Icon(Icons.add_location, size: 15, color: Colors.blueGrey.shade400)
                                                 ),
-                                                Text(prospectAddressValue,
+                                                Text(prospectAddressValue!,
                                                     style: TextStyle(
                                                       color: Style
                                                           .Colors.blackTextColor,
@@ -329,7 +331,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                   'assets/customer/biodata/biodata_profession.svg',
                                                 ),
                                               ),
-                                              Text(prospectTypeValue,
+                                              Text(prospectTypeValue!,
                                                   style: TextStyle(
                                                     color: Style.Colors
                                                         .blackTextColor,
@@ -342,7 +344,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        accountNo == null ? Text('') : accountNo.isEmpty ? Text('') :
+                                        accountNo == null ? Text('') : accountNo!.isEmpty ? Text('') :
                                         Expanded(
                                           child: Row(
                                             children: [
@@ -363,7 +365,7 @@ class ProspectBioDataCard extends StatelessWidget {
                                                   )),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 5.0),
-                                                child: Text(accountNo,
+                                                child: Text(accountNo!,
                                                     style: TextStyle(
                                                       color: Style.Colors
                                                           .blackTextColor,

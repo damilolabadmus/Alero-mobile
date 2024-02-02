@@ -1,17 +1,19 @@
+
+
 class SearchUserResponse {
-  String groupId;
-  String customerId;
-  String customerName;
-  double depositBalance;
-  double loanBalance;
-  double ytdRevenue;
-  double prevMonthRevenue;
-  int customerRelationshipAge;
-  String businessSegment;
-  String subBusinessSegment;
-  String rmCode;
-  String rmName;
-  String activeStat;
+  String? groupId;
+  String? customerId;
+  String? customerName;
+  double? depositBalance;
+  double? loanBalance;
+  double? ytdRevenue;
+  double? prevMonthRevenue;
+  int? customerRelationshipAge;
+  String? businessSegment;
+  String? subBusinessSegment;
+  String? rmCode;
+  String? rmName;
+  String? activeStat;
 
 
   SearchUserResponse(

@@ -1,6 +1,8 @@
+
+
 class LoginResponse {
-  String token;
-  int slideTimeout;
+  String? token;
+  int? slideTimeout;
 
   LoginResponse({this.token, this.slideTimeout});
 
@@ -18,8 +20,8 @@ class LoginResponse {
 }
 
 class LoginResponseForPm {
-  String token2;
-  int slideTimeout;
+  String? token2;
+  int? slideTimeout;
 
   LoginResponseForPm({this.token2, this.slideTimeout});
 

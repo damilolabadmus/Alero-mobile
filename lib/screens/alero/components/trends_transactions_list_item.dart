@@ -1,3 +1,5 @@
+
+
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +8,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 class TrendsTransactionListItem extends StatelessWidget {
-  final String transactionDescription, transactionDate;
-  final bool inflow;
-  final double amount;
+  final String? transactionDescription, transactionDate;
+  final bool? inflow;
+  final double? amount;
 
   const TrendsTransactionListItem(
-      {Key key,
+      {Key? key,
         this.transactionDescription,
         this.transactionDate,
         this.inflow,
@@ -21,7 +23,7 @@ class TrendsTransactionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatCurrency = new NumberFormat.currency(symbol: "");
-    var dDate = DateTime.parse(transactionDate + 'Z');
+    var dDate = DateTime.parse(transactionDate! + 'Z');
 
     return Card(
       elevation: 0,
@@ -33,7 +35,7 @@ class TrendsTransactionListItem extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(right: 15),
-              child: inflow
+              child: inflow!
                   ? SvgPicture.asset(
                 'assets/customer/trends/trends_history_down.svg',
               )
@@ -48,7 +50,7 @@ class TrendsTransactionListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                          child: Text(transactionDescription,
+                          child: Text(transactionDescription!,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: TextStyle(

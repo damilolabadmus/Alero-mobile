@@ -1,27 +1,29 @@
+
+
 import '../../../style/theme.dart' as Style;
 import '../../../utils/Pandora.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomerComplaintsListItem extends StatelessWidget {
-  final String loggedDate, description, category, resolvedDate;
+  final String? loggedDate, description, category, resolvedDate;
   final bool status;
 
   const CustomerComplaintsListItem(
-      {Key key,
-        @required this.loggedDate,
-        @required this.description,
-        @required this.resolvedDate,
-        @required this.status,
-        @required this.category})
+      {Key? key,
+        required this.loggedDate,
+        required this.description,
+        required this.resolvedDate,
+        required this.status,
+        required this.category})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var lDate = Pandora.reverse(
-        Pandora.getStringsAfter(Pandora.reverse(loggedDate), 12));
+        Pandora.getStringsAfter(Pandora.reverse(loggedDate!), 12));
     var rDate = Pandora.reverse(
-        Pandora.getStringsAfter(Pandora.reverse(resolvedDate), 12));
+        Pandora.getStringsAfter(Pandora.reverse(resolvedDate!), 12));
 
     return Card(
       color: status
@@ -87,7 +89,7 @@ class CustomerComplaintsListItem extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(description,
+                  child: Text(description!,
                       style: TextStyle(
                         color: Style.Colors.blackTextColor,
                         fontSize: 12.0,
@@ -160,7 +162,7 @@ class CustomerComplaintsListItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(category,
+                Text(category!,
                     style: TextStyle(
                       color: Style.Colors.blackTextColor,
                       fontSize: 9.0,

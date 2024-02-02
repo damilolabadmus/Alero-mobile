@@ -1,3 +1,5 @@
+
+
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/prospect/prospect_bio_data.dart';
 import 'package:alero/screens/alero/prospect/prospect_icon_menu.dart';
@@ -6,21 +8,21 @@ import 'package:flutter/material.dart';
 import 'delete_prospect_confirmed.dart';
 
 class ViewProspectButton extends StatefulWidget {
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress;
-  bool prospectConverted;
-  String accountNo;
-  String introducerStaffCode;
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress;
+  bool? prospectConverted;
+  String? accountNo;
+  String? introducerStaffCode;
 
   ViewProspectButton(
       this.prospectId,
@@ -46,21 +48,21 @@ class ViewProspectButton extends StatefulWidget {
 }
 
 class _ViewProspectButtonState extends State<ViewProspectButton> {
-  String prospectId;
-  String keyPromoterName;
-  String prospectName;
-  String prospectAddress;
-  String prospectType;
-  String businessSegment;
-  String productOffered;
-  double customerWalletSize;
-  String contactPersonName;
-  String contactPersonEmail;
-  String contactPersonPhoneNo;
-  String contactPersonAddress = "";
-  bool prospectConverted;
-  String accountNo;
-  String introducerStaffCode = "";
+  String? prospectId;
+  String? keyPromoterName;
+  String? prospectName;
+  String? prospectAddress;
+  String? prospectType;
+  String? businessSegment;
+  String? productOffered;
+  double? customerWalletSize;
+  String? contactPersonName;
+  String? contactPersonEmail;
+  String? contactPersonPhoneNo;
+  String? contactPersonAddress = "";
+  bool? prospectConverted;
+  String? accountNo;
+  String? introducerStaffCode = "";
 
 
   _ViewProspectButtonState(
@@ -85,7 +87,7 @@ class _ViewProspectButtonState extends State<ViewProspectButton> {
 
   @override
   Widget build(BuildContext context) {
-    return accountNo.isEmpty ?
+    return accountNo!.isEmpty ?
     Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: PopupMenuButton<IconMenu>(
@@ -177,7 +179,7 @@ class _ViewProspectButtonState extends State<ViewProspectButton> {
         'contactPersonEmail': contactPersonEmail,
         'contactPersonPhoneNo': contactPersonPhoneNo,
         'contactPersonAddress': contactPersonAddress,
-        'prospectConverted': accountNo.isEmpty ? false : accountNo == null ? false : true,
+        'prospectConverted': accountNo!.isEmpty ? false : accountNo == null ? false : true,
         'accountNo': accountNo ,
         'edit': false,
       };

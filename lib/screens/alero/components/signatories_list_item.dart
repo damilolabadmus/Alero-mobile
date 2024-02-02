@@ -1,3 +1,5 @@
+
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +7,10 @@ import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
 
 class SignatoriesListItem extends StatelessWidget {
-  final String name, phoneNumber;
+  final String? name, phoneNumber;
 
   const SignatoriesListItem(
-      {Key key, @required this.name, @required this.phoneNumber})
+      {Key? key, required this.name, required this.phoneNumber})
       : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class SignatoriesListItem extends StatelessWidget {
                           ),
                         ),
                         Flexible(
-                          child: Text(name,
+                          child: Text(name!,
                               softWrap: true,
                               style: TextStyle(
                                 color: Style.Colors.blackTextColor,
@@ -66,7 +68,7 @@ class SignatoriesListItem extends StatelessWidget {
                             'assets/customer/biodata/biodata_call.svg',
                           ),
                         ),
-                        Text(phoneNumber,
+                        Text(phoneNumber!,
                             style: TextStyle(
                               color: Style.Colors.blackTextColor,
                               fontSize: 12.0,

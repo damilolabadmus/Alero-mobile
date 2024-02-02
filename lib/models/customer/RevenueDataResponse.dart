@@ -1,18 +1,20 @@
+
+
 class RevenueDataResponse {
-  String _groupId;
-  String _customerId;
-  double _depositBalance;
-  double _loanBalance;
-  double _ytdRevenue;
-  double _prevMonthRevenue;
+  String? _groupId;
+  String? _customerId;
+  double? _depositBalance;
+  double? _loanBalance;
+  double? _ytdRevenue;
+  double? _prevMonthRevenue;
 
   RevenueDataResponse(
-      {String groupId,
-        String customerId,
-        double depositBalance,
-        double loanBalance,
-        double ytdRevenue,
-        double prevMonthRevenue}) {
+      {String? groupId,
+        String? customerId,
+        double? depositBalance,
+        double? loanBalance,
+        double? ytdRevenue,
+        double? prevMonthRevenue}) {
     this._groupId = groupId;
     this._customerId = customerId;
     this._depositBalance = depositBalance;
@@ -21,18 +23,18 @@ class RevenueDataResponse {
     this._prevMonthRevenue = prevMonthRevenue;
   }
 
-  String get groupId => _groupId;
-  set groupId(String groupId) => _groupId = groupId;
-  String get customerId => _customerId;
-  set customerId(String customerId) => _customerId = customerId;
-  double get depositBalance => _depositBalance;
-  set depositBalance(double depositBalance) => _depositBalance = depositBalance;
-  double get loanBalance => _loanBalance;
-  set loanBalance(double loanBalance) => _loanBalance = loanBalance;
-  double get ytdRevenue => _ytdRevenue;
-  set ytdRevenue(double ytdRevenue) => _ytdRevenue = ytdRevenue;
-  double get prevMonthRevenue => _prevMonthRevenue;
-  set prevMonthRevenue(double prevMonthRevenue) =>
+  String? get groupId => _groupId;
+  set groupId(String? groupId) => _groupId = groupId;
+  String? get customerId => _customerId;
+  set customerId(String? customerId) => _customerId = customerId;
+  double? get depositBalance => _depositBalance;
+  set depositBalance(double? depositBalance) => _depositBalance = depositBalance;
+  double? get loanBalance => _loanBalance;
+  set loanBalance(double? loanBalance) => _loanBalance = loanBalance;
+  double? get ytdRevenue => _ytdRevenue;
+  set ytdRevenue(double? ytdRevenue) => _ytdRevenue = ytdRevenue;
+  double? get prevMonthRevenue => _prevMonthRevenue;
+  set prevMonthRevenue(double? prevMonthRevenue) =>
       _prevMonthRevenue = prevMonthRevenue;
 
   RevenueDataResponse.fromJson(Map<String, dynamic> json) {

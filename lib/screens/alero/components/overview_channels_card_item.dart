@@ -1,17 +1,19 @@
+
+
 import 'package:alero/utils/Pandora.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../style/theme.dart' as Style;
 
 class OverviewChannelsCardItem extends StatelessWidget {
-  final String cardPan, cardType;
+  final String? cardPan, cardType;
 
-  const OverviewChannelsCardItem({Key key, this.cardPan, this.cardType})
+  const OverviewChannelsCardItem({Key? key, this.cardPan, this.cardType})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var dDate = DateTime.parse(cardPan + 'Z');
+    var dDate = DateTime.parse(cardPan! + 'Z');
 
     return Container(
         width: MediaQuery.of(context).size.width,
@@ -32,7 +34,7 @@ class OverviewChannelsCardItem extends StatelessWidget {
                 ),
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(cardType,
+                    child: Text(cardType!,
                         style: TextStyle(
                           color: Style.Colors.white,
                           fontSize: 16.0,
@@ -57,11 +59,11 @@ class OverviewChannelsCardItem extends StatelessWidget {
         ));
   }
 
-  String hashPanDigits(String PAN) {
+  String? hashPanDigits(String PAN) {
     return StringUtils.hidePartial(PAN, begin: 4, end: PAN.length - 4);
   }
 
-  String splitPan(String hashedPan) {
+  String? splitPan(String hashedPan) {
     // return hashed.replace(/^(.{4})(.{4})(.{4})(.*)$/, "   ";
   }
 }

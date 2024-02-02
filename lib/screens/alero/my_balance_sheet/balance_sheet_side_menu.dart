@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -7,10 +9,10 @@ import 'package:flutter_svg/svg.dart';
 
 
 class BalanceSheetSideMenu extends StatelessWidget {
-  bool isActive;
-  bool active;
-  Function ontap;
-  Function tap;
+  bool? isActive;
+  bool? active;
+  Function? ontap;
+  Function? tap;
 
   BalanceSheetSideMenu({this.isActive, this.active, this.ontap, this.tap});
 
@@ -56,7 +58,7 @@ class BalanceSheetSideMenu extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(top: 10),
                               child: ListTile(
-                                onTap: ontap,
+                                onTap: ontap as void Function()?,
                                 leading: Icon(Icons.view_day_outlined),
                                 title: Text('Actual Balance Sheet', style: TextStyle(
                                   color: Colors.lightBlueAccent.shade700,
@@ -91,7 +93,7 @@ class BalanceSheetSideMenu extends StatelessWidget {
                                 ),
                               ),),
                             ListTile(
-                              onTap: tap,
+                              onTap: tap as void Function()?,
                               leading: Icon(Icons.view_day_rounded),
                               title: Text('Average Balance Sheet',
                                 style: TextStyle(

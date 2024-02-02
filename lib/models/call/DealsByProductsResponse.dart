@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 DealsByProductsResponse dealsByProductsResponseFromJson(String str) => DealsByProductsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class DealsByProductsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  List<Result> result;
+  String? responseCode;
+  String? responseDescription;
+  List<Result>? result;
 
   factory DealsByProductsResponse.fromJson(Map<String, dynamic> json) => DealsByProductsResponse(
     responseCode: json["responseCode"],
@@ -24,21 +26,21 @@ class DealsByProductsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": List<dynamic>.from(result.map((x) => x.toJson())),
+    "result": List<dynamic>.from(result!.map((x) => x.toJson())),
   };
 }
 
 class Result {
-  String _currency;
-  int _count;
-  double _value;
-  String _product;
+  String? _currency;
+  int? _count;
+  double? _value;
+  String? _product;
 
   Result({
-    String currency,
-    int count,
-    double value,
-    String product,
+    String? currency,
+    int? count,
+    double? value,
+    String? product,
   }) {
     this._currency = currency;
     this._count = count;
@@ -46,14 +48,14 @@ class Result {
     this._product = product;
   }
 
-  String get currency => _currency;
-  set currency(String currency) => _currency = currency;
-  int get count => _count;
-  set count(int count) => _count = count;
-  double get value => _value;
-  set value(double value) => _value = value;
-  String get product => _product;
-  set product(String product) => _product = product;
+  String? get currency => _currency;
+  set currency(String? currency) => _currency = currency;
+  int? get count => _count;
+  set count(int? count) => _count = count;
+  double? get value => _value;
+  set value(double? value) => _value = value;
+  String? get product => _product;
+  set product(String? product) => _product = product;
 
   Result.fromJson(Map<String, dynamic> json) {
     _currency = json['currency'];

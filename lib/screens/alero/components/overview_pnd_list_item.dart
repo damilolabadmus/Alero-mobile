@@ -1,3 +1,5 @@
+
+
 import '../../../style/theme.dart' as Style;
 import '../../../utils/Pandora.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class OverviewPNDListItem extends StatelessWidget {
-  final String accountNumber, addedDate, reason;
+  final String? accountNumber, addedDate, reason;
 
   const OverviewPNDListItem(
-      {Key key, this.accountNumber, this.addedDate, this.reason})
+      {Key? key, this.accountNumber, this.addedDate, this.reason})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var aDate = DateTime.parse(addedDate + 'Z');
+    var aDate = DateTime.parse(addedDate! + 'Z');
 
     return Card(
       color: Style.Colors.overviewCardBg,
@@ -36,7 +38,7 @@ class OverviewPNDListItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(accountNumber,
+                      Text(accountNumber!,
                           style: TextStyle(
                             color: Style.Colors.blackTextColor,
                             fontSize: 12.0,
@@ -67,7 +69,7 @@ class OverviewPNDListItem extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(reason,
+                    child: Text(reason!,
                         style: TextStyle(
                           color: Style.Colors.blackTextColor,
                           fontSize: 12.0,

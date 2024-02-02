@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 DealsItemsResponse dealsItemsResponseFromJson(String str) => DealsItemsResponse.fromJson(json.decode(str));
@@ -11,9 +13,9 @@ class DealsItemsResponse {
     this.result,
   });
 
-  String responseCode;
-  String responseDescription;
-  Result result;
+  String? responseCode;
+  String? responseDescription;
+  Result? result;
 
   factory DealsItemsResponse.fromJson(Map<String, dynamic> json) => DealsItemsResponse(
     responseCode: json["responseCode"],
@@ -24,31 +26,31 @@ class DealsItemsResponse {
   Map<String, dynamic> toJson() => {
     "responseCode": responseCode,
     "responseDescription": responseDescription,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 
 class Result {
-  int _allDeals;
-  int _convertedDeals;
-  int _completedDeals;
-  int _declinedDeals;
-  double _conversionRate;
-  double _allDealsValue;
-  double _convertedDealsValue;
-  double _completedDealsValue;
-  double _declinedDealsValue;
+  int? _allDeals;
+  int? _convertedDeals;
+  int? _completedDeals;
+  int? _declinedDeals;
+  double? _conversionRate;
+  double? _allDealsValue;
+  double? _convertedDealsValue;
+  double? _completedDealsValue;
+  double? _declinedDealsValue;
 
   Result({
-    int allDeals,
-    int convertedDeals,
-    int completedDeals,
-    int declinedDeals,
-    double conversionRate,
-    double allDealsValue,
-    double convertedDealsValue,
-    double completedDealsValue,
-    double declinedDealsValue,
+    int? allDeals,
+    int? convertedDeals,
+    int? completedDeals,
+    int? declinedDeals,
+    double? conversionRate,
+    double? allDealsValue,
+    double? convertedDealsValue,
+    double? completedDealsValue,
+    double? declinedDealsValue,
   }) {
     this._allDeals = allDeals;
     this._convertedDeals = convertedDeals;
@@ -61,24 +63,24 @@ class Result {
     this._declinedDealsValue = declinedDealsValue;
   }
 
-  int get allDeals => _allDeals;
-  set allDeals(int allDeals) => _allDeals = allDeals;
-  int get convertedDeals => _convertedDeals;
-  set convertedDeals(int convertedDeals) => _convertedDeals = convertedDeals;
-  int get completedDeals => _completedDeals;
-  set completedDeals(int completedDeals) => _completedDeals = completedDeals;
-  int get declinedDeals => _declinedDeals;
-  set declinedDeals(int declinedDeals) => _declinedDeals = declinedDeals;
-  double get conversionRate => _conversionRate;
-  set conversionRate(double conversionRate) => _conversionRate = conversionRate;
-  double get allDealsValue => _allDealsValue;
-  set allDealsValue(double allDealsValue) => _allDealsValue = allDealsValue;
-  double get convertedDealsValue => _completedDealsValue;
-  set convertedDealsValue(double convertedDealsValue) => _convertedDealsValue = convertedDealsValue;
-  double get completedDealsValue => _completedDealsValue;
-  set completedDealsValue(double completedDealsValue) => _completedDealsValue = completedDealsValue;
-  double get declinedDealsValue => _declinedDealsValue;
-  set declinedDealsValue(double declinedDealsValue) => _declinedDealsValue = declinedDealsValue;
+  int? get allDeals => _allDeals;
+  set allDeals(int? allDeals) => _allDeals = allDeals;
+  int? get convertedDeals => _convertedDeals;
+  set convertedDeals(int? convertedDeals) => _convertedDeals = convertedDeals;
+  int? get completedDeals => _completedDeals;
+  set completedDeals(int? completedDeals) => _completedDeals = completedDeals;
+  int? get declinedDeals => _declinedDeals;
+  set declinedDeals(int? declinedDeals) => _declinedDeals = declinedDeals;
+  double? get conversionRate => _conversionRate;
+  set conversionRate(double? conversionRate) => _conversionRate = conversionRate;
+  double? get allDealsValue => _allDealsValue;
+  set allDealsValue(double? allDealsValue) => _allDealsValue = allDealsValue;
+  double? get convertedDealsValue => _completedDealsValue;
+  set convertedDealsValue(double? convertedDealsValue) => _convertedDealsValue = convertedDealsValue;
+  double? get completedDealsValue => _completedDealsValue;
+  set completedDealsValue(double? completedDealsValue) => _completedDealsValue = completedDealsValue;
+  double? get declinedDealsValue => _declinedDealsValue;
+  set declinedDealsValue(double? declinedDealsValue) => _declinedDealsValue = declinedDealsValue;
 
   Result.fromJson(Map<String, dynamic> json) {
     _allDeals = json["allDeals"];
