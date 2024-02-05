@@ -6,8 +6,10 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:one_context/one_context.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../network/AleroAPIService.dart';
 import 'Global.dart';
 
 class Pandora {
@@ -62,6 +64,25 @@ class Pandora {
         backgroundColor: Colors.transparent,
       ),
     );
+  }
+
+  /// logout user
+  static Future<void> logoutUser(BuildContext context) async {
+    var apiService = AleroAPIService();
+    var response;
+    try {
+      OneContext().showProgressIndicator();
+      response = await apiService.logoutUser();
+      OneContext().hideProgressIndicator();
+      if (response != null) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        OneContext().hideProgressIndicator();
+      }
+    } catch (error) {
+      print(error);
+      OneContext().hideProgressIndicator();
+    }
   }
 
   //Internet Connection manager
@@ -195,6 +216,15 @@ static String moneyFormat2(double price) {
     } else {
       return input;
     }
+  }
+
+  /// Format month
+  static String formatMonthKey(String monthKey) {
+    DateTime date = DateTime.parse(monthKey.substring(0, 4) +
+        '-' +
+        monthKey.substring(4, 6) +
+        '-01');
+    return '\n${DateFormat.MMM().format(date)} ${DateFormat('y').format(date)}';
   }
 
   Future<void> saveToSharedPreferences(String key, String value) async {
