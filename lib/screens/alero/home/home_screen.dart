@@ -9,7 +9,6 @@ import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
-import 'package:alero/screens/alero/home/home_header.dart';
 import '/utils/Strings.dart' as Strings;
 
 class HomeScreen extends StatefulWidget {
@@ -71,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
     HasAccessTo callManagementAccess = userAccess.hasAccessToProspect;
     isCallManagement = callManagementAccess.canCreate;
   }
-
 
   @override
   void initState() {
@@ -148,7 +146,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   onMenuClick(int element, bool isAccess) {
     switch (element) {
       case 0:
@@ -177,7 +174,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-
   void generateColors(int length) {
     var list = [
       0xFF99C9D9,
@@ -194,9 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
   }
+
 }
-
-
 
 
 /* // Initial code; without having call management authorization.
