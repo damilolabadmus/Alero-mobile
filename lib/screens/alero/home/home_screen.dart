@@ -72,13 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
     isCallManagement = callManagementAccess.canCreate!;
   }
 
-
   @override
   void initState() {
     super.initState();
+    getModulesAuthorization();
     getDashboardItems(isCallManagement);
     getUserDetails();
-    getModulesAuthorization();
   }
 
   @override
