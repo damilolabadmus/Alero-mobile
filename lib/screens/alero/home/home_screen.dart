@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     OneContext().hideProgressIndicator();
   }
 
-  late bool isCallManagement;
+  bool? isCallManagement;
   getModulesAuthorization() async {
     final userAuthorisation = await apiService.getUserAuthorization();
     HasAccessToCallManagement userAccess = userAuthorisation.result!.hasAccessToCallManagement!;
