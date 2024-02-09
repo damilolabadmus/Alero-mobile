@@ -147,8 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
-  onMenuClick(int element, bool isAccess) {
+  onMenuClick(int element, bool? isAccess) {
+    if (isAccess == null) return;
     switch (element) {
       case 0:
         Navigator.of(context)
