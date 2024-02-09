@@ -38,8 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       try {
         Global.isRM = userStatusResponse.canView;
       } catch (ex) {
-        pandora.showToast(
-            ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
+        pandora.showToast(ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
       }
 
       /// Get Staff Information
@@ -48,18 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
         Global.STAFF_INFORMATION = jsonEncode(staffInformationResponse);
         if (mounted) {
           setState(() {
-            firstName = GetStaffInformation.fromJson(
-                jsonDecode(Global.STAFF_INFORMATION!))
-                .firstName!;
+            firstName = GetStaffInformation.fromJson(jsonDecode(Global.STAFF_INFORMATION!)).firstName!;
           });
         }
       } catch (ex) {
-        pandora.showToast(
-            ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
+        pandora.showToast(ex.toString(), context, MessageTypes.WARNING.toString().split('.').last);
       }
     } else {
-      pandora.showToast(Strings.Errors.connectionError, context,
-          MessageTypes.WARNING.toString().split('.').last);
+      pandora.showToast(Strings.Errors.connectionError, context, MessageTypes.WARNING.toString().split('.').last);
     }
     OneContext().hideProgressIndicator();
   }
@@ -94,8 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Hey $firstName!,", style: kHeadingextStyle),
-                  Text("What would you like to do today?",
-                      style: kSubheadingextStyle),
+                  Text("What would you like to do today?", style: kSubheadingextStyle),
                   SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,42 +145,28 @@ class _HomeScreenState extends State<HomeScreen> {
     if (isAccess == null) return;
     switch (element) {
       case 0:
-        Navigator.of(context)
-            .pushNamed('/single-customer-view', arguments: firstName);
+        Navigator.of(context).pushNamed('/single-customer-view', arguments: firstName);
         break;
       case 1:
-        Navigator.of(context)
-            .pushNamed('/performance-management', arguments: firstName);
+        Navigator.of(context).pushNamed('/performance-management', arguments: firstName);
         break;
       case 2:
-        isCallManagement == true ?
-        Navigator.of(context)
-            .pushNamed('/call-management', arguments: firstName) :
-        pandora.showToast('Coming Soon', context,
-            MessageTypes.INFO.toString().split('.').last);
+        isCallManagement == true
+            ? Navigator.of(context).pushNamed('/call-management', arguments: firstName)
+            : pandora.showToast('Coming Soon', context, MessageTypes.INFO.toString().split('.').last);
         break;
-        /*case 3:
+      /*case 3:
         Navigator.of(context)
             .pushNamed('/concession-dashboard', arguments: firstName);
         break;*/
       default:
-        pandora.showToast('Coming Soon', context,
-            MessageTypes.INFO.toString().split('.').last);
+        pandora.showToast('Coming Soon', context, MessageTypes.INFO.toString().split('.').last);
         break;
     }
   }
 
-
   void generateColors(int length) {
-    var list = [
-      0xFF99C9D9,
-      0xFF008EC4,
-      0xFFBBBBBB,
-      0xFFFFDAA6,
-      0xFFB3A369,
-      0xFFF4B459,
-      0xFF7AC369
-    ];
+    var list = [0xFF99C9D9, 0xFF008EC4, 0xFFBBBBBB, 0xFFFFDAA6, 0xFFB3A369, 0xFFF4B459, 0xFF7AC369];
     for (int i = 0; i < length; i++) {
       if (!randomColors.contains(list[i])) {
         randomColors.add(Color(list[i]));
