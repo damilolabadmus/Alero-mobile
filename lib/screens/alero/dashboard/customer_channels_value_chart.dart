@@ -56,9 +56,9 @@ class _CustomerChannelsUsageValueChartState extends State<CustomerChannelsUsageV
     );
   }
 
-  _buildChart(List<TouchPointData?>? channels) {
+  Widget _buildChart(List<TouchPointData?>? channels) {
     if (channels?.isEmpty ?? true) {
-      _buildLoadingOrEmpty();
+      return _buildLoadingOrEmpty();
     }
     return Container(
       height: 300,
