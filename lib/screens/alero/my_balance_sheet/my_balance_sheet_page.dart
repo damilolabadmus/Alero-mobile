@@ -603,18 +603,16 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                           fontFamily: 'Poppins-Regular',
                         ),
                       ),
-                      areaType != null && branchType == null && rmType == null
-                          ? Padding(
+                      Builder(
+                        builder: (BuildContext context) {
+                          Widget _buildContainer(String text) {
+                            return Padding(
                               padding: const EdgeInsets.only(left: 3.0),
                               child: Container(
-                                width: areaType != null
-                                    ? areaType!.length > 12
-                                        ? 100.0
-                                        : null
-                                    : null,
+                                width: text.length > 12 ? 100.0 : null,
                                 padding: EdgeInsets.all(7.0),
                                 decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(8.0)),
-                                child: Text(areaType!,
+                                child: Text(text,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12.0,
@@ -623,91 +621,25 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                                     ),
                                     softWrap: false,
                                     overflow: TextOverflow.ellipsis),
-                              ))
-                          : areaType != null && branchType != null && rmType == null
-                              ? Padding(
-                                  padding: const EdgeInsets.only(left: 3.0),
-                                  child: Container(
-                                    width: branchType != null
-                                        ? branchType!.length > 12
-                                            ? 100.0
-                                            : null
-                                        : null,
-                                    padding: EdgeInsets.all(7.0),
-                                    decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(8.0)),
-                                    child: Text(branchType!,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Poppins-Regular',
-                                        ),
-                                        softWrap: false,
-                                        overflow: TextOverflow.ellipsis),
-                                  ))
-                              : areaType != null && branchType != null && rmType != null
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(left: 3.0),
-                                      child: Container(
-                                        width: rmType != null
-                                            ? rmType!.length > 12
-                                                ? 100.0
-                                                : null
-                                            : null,
-                                        padding: EdgeInsets.all(7.0),
-                                        decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(8.0)),
-                                        child: Text(rmType!,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Poppins-Regular',
-                                            ),
-                                            softWrap: false,
-                                            overflow: TextOverflow.ellipsis),
-                                      ))
-                                  : segmentType != null && rmType != null && branchType != null
-                                      ? Padding(
-                                          padding: const EdgeInsets.only(left: 3.0),
-                                          child: Container(
-                                            width: segmentType != null
-                                                ? segmentType!.length > 12
-                                                    ? 100.0
-                                                    : null
-                                                : null,
-                                            padding: EdgeInsets.all(7.0),
-                                            decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(8.0)),
-                                            child: Text(segmentType!,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Poppins-Regular',
-                                                ),
-                                                softWrap: false,
-                                                overflow: TextOverflow.ellipsis),
-                                          ))
-                                      : Padding(
-                                          padding: const EdgeInsets.only(left: 3.0),
-                                          child: Container(
-                                            width: regionType != null
-                                                ? regionType!.length > 12
-                                                    ? 100.0
-                                                    : null
-                                                : null,
-                                            padding: EdgeInsets.all(7.0),
-                                            decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(8.0)),
-                                            child: Text(regionType == null ? 'Bank' : regionType!,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Poppins-Regular',
-                                                ),
-                                                softWrap: false,
-                                                overflow: TextOverflow.ellipsis),
-                                          ),
-                                        ),
+                              ),
+                            );
+                          }
+
+                          Widget child;
+                          if (areaType != null && branchType == null && rmType == null) {
+                            child = _buildContainer(areaType!);
+                          } else if (areaType != null && branchType != null && rmType == null) {
+                            child = _buildContainer(branchType!);
+                          } else if (areaType != null && branchType != null && rmType != null) {
+                            child = _buildContainer(rmType!);
+                          } else if (segmentType != null && rmType != null && branchType != null) {
+                            child = _buildContainer(segmentType!);
+                          } else {
+                            child = _buildContainer(regionType == null ? 'Bank' : regionType!);
+                          }
+                          return child;
+                        },
+                      )
                     ],
                   ),
                   SizedBox(height: 15),
@@ -715,65 +647,31 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       PopupMenuButton<String>(
-                        itemBuilder: regionType == null && areaType == null && branchType == null && rmType == null
-                            ? (context) {
-                                return regionList == null
-                                    ? regionLis.map((item) {
-                                        return PopupMenuItem(
-                                          value: item,
-                                          child: Text(item),
-                                        );
-                                      }).toList()
-                                    : regionList!.map((item) {
-                                        return PopupMenuItem(
-                                          value: item,
-                                          child: Text(item),
-                                        );
-                                      }).toList();
-                              }
-                            : regionType != null && areaType == null && branchType == null && rmType == null
-                                ? (context) {
-                                    return areaByRegion == null
-                                        ? []
-                                        : areaByRegion!.map((item) {
-                                            return PopupMenuItem(
-                                              value: item,
-                                              child: Text(item),
-                                            );
-                                          }).toList();
-                                  }
-                                : regionType != null && areaType != null && branchType == null && rmType == null
-                                    ? (context) {
-                                        return branchByArea == null
-                                            ? []
-                                            : branchByArea!.map((item) {
-                                                return PopupMenuItem(
-                                                  value: item,
-                                                  child: Text(item),
-                                                );
-                                              }).toList();
-                                      }
-                                    : regionType != null && areaType != null && branchType != null && rmType == null
-                                        ? (context) {
-                                            return rmByBranch == null
-                                                ? []
-                                                : rmByBranch!.map((item) {
-                                                    return PopupMenuItem(
-                                                      value: item,
-                                                      child: Text(item),
-                                                    );
-                                                  }).toList();
-                                          }
-                                        : (context) {
-                                            return rmByBranch == null
-                                                ? []
-                                                : rmByBranch!.map((item) {
-                                                    return PopupMenuItem(
-                                                      value: item,
-                                                      child: Text(item),
-                                                    );
-                                                  }).toList();
-                                          },
+                        itemBuilder: (BuildContext context) {
+                          List<String>? items;
+                          if (regionType == null && areaType == null && branchType == null && rmType == null) {
+                            items = regionList ?? regionLis;
+                          } else if (regionType != null && areaType == null && branchType == null && rmType == null) {
+                            items = areaByRegion;
+                          } else if (regionType != null && areaType != null && branchType == null && rmType == null) {
+                            items = branchByArea;
+                          } else if (regionType != null && areaType != null && branchType != null && rmType == null) {
+                            items = rmByBranch;
+                          } else {
+                            items = rmByBranch;
+                          }
+
+                          if (items == null) {
+                            return [];
+                          } else {
+                            return items.map((item) {
+                              return PopupMenuItem(
+                                value: item,
+                                child: Text(item),
+                              );
+                            }).toList();
+                          }
+                        },
                         child: Container(
                           padding: EdgeInsets.all(10),
                           height: 35,
@@ -796,13 +694,15 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         ),
                         onSelected: (item) {
                           setState(() {
-                            regionType == null && areaType == null && branchType == null
-                                ? regionType = item
-                                : regionType != null && areaType == null && branchType == null
-                                    ? areaType = item
-                                    : regionType != null && areaType != null && branchType == null
-                                        ? branchType = item
-                                        : rmType = item;
+                            if (regionType == null && areaType == null && branchType == null) {
+                              regionType = item;
+                            } else if (regionType != null && areaType == null && branchType == null) {
+                              areaType = item;
+                            } else if (regionType != null && areaType != null && branchType == null) {
+                              branchType = item;
+                            } else {
+                              rmType = item;
+                            }
 
                             regionItem = regionType;
                             areaItem = areaType;
@@ -818,59 +718,33 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                       ),
                       SizedBox(width: 7),
                       PopupMenuButton<String>(
-                        itemBuilder: segmentType == null
-                            ? (context) {
-                                return segmentList.map((item) {
-                                  return PopupMenuItem(
-                                    value: item,
-                                    child: Text(item),
-                                  );
-                                }).toList();
-                              }
-                            : regionType != null
-                                ? (context) {
-                                    return regionList!.map((item) {
-                                      return PopupMenuItem(
-                                        value: item,
-                                        child: Text(item),
-                                      );
-                                    }).toList();
-                                  }
-                                : areaType != null
-                                    ? (context) {
-                                        return areaByRegion!.map((item) {
-                                          return PopupMenuItem(
-                                            value: item,
-                                            child: Text(item),
-                                          );
-                                        }).toList();
-                                      }
-                                    : branchType != null
-                                        ? (context) {
-                                            return branchByArea!.map((item) {
-                                              return PopupMenuItem(
-                                                value: item,
-                                                child: Text(item),
-                                              );
-                                            }).toList();
-                                          }
-                                        : rmType != null
-                                            ? (context) {
-                                                return rmByBranch!.map((item) {
-                                                  return PopupMenuItem(
-                                                    value: item,
-                                                    child: Text(item),
-                                                  );
-                                                }).toList();
-                                              }
-                                            : (context) {
-                                                return segmentList.map((item) {
-                                                  return PopupMenuItem(
-                                                    value: item,
-                                                    child: Text(item),
-                                                  );
-                                                }).toList();
-                                              },
+                        itemBuilder: (BuildContext context) {
+                          List<String>? items;
+                          if (segmentType == null) {
+                            items = segmentList;
+                          } else if (regionType != null) {
+                            items = regionList;
+                          } else if (areaType != null) {
+                            items = areaByRegion;
+                          } else if (branchType != null) {
+                            items = branchByArea;
+                          } else if (rmType != null) {
+                            items = rmByBranch;
+                          } else {
+                            items = segmentList;
+                          }
+
+                          if (items == null) {
+                            return [];
+                          } else {
+                            return items.map((item) {
+                              return PopupMenuItem(
+                                value: item,
+                                child: Text(item),
+                              );
+                            }).toList();
+                          }
+                        },
                         child: Container(
                           padding: EdgeInsets.all(10),
                           height: 35,
@@ -902,19 +776,21 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                         ),
                         onSelected: (item) {
                           setState(() {
-                            segmentType == null
-                                ? segmentType = item
-                                : regionType != null
-                                    ? regionType = item
-                                    : areaType != null
-                                        ? areaType = item
-                                        : branchType != null
-                                            ? branchType = item
-                                            : rmType != null
-                                                ? rmType = item
-                                                : segmentType != null
-                                                    ? segmentType = item
-                                                    : segmentType = item;
+                            if (segmentType == null) {
+                              segmentType = item;
+                            } else if (regionType != null) {
+                              regionType = item;
+                            } else if (areaType != null) {
+                              areaType = item;
+                            } else if (branchType != null) {
+                              branchType = item;
+                            } else if (rmType != null) {
+                              rmType = item;
+                            } else if (segmentType != null) {
+                              segmentType = item;
+                            } else {
+                              segmentType = item;
+                            }
                           });
                         },
                       ),
@@ -971,281 +847,126 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                   ),
                   SizedBox(height: 20),
                   Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                      elevation: 5,
-                      child: regionActual.isNotEmpty
-                          ? active == false
-                              ? segmentType == null
-                                  ? regionType == null && areaType == null && branchType == null && rmType == null
-                                      ? MyBalanceSheetTableContainer(
-                                          balanceSheetDepData: bankDepActual,
-                                          balanceSheetLoanData: bankLoanActual,
-                                          selectedStartDate: selectedDate == null
-                                              ? yesterDayDateString
-                                              : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                          previousDate: selectedDate == null
-                                              ? previousDate
-                                              : previousSelectedDate ??
-                                                  DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                          monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                        )
-                                      : regionType != null && areaType == null && branchType == null && rmType == null
-                                          ? MyBalanceSheetTypeContainer(
-                                              balanceSheetData: regionActual,
-                                              selectedStartDate: selectedDate == null
-                                                  ? yesterDayDateString
-                                                  : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                              previousDate: selectedDate == null
-                                                  ? previousDate
-                                                  : previousSelectedDate ??
-                                                      DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                              monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                            )
-                                          : regionType != null && areaType != null && branchType == null && rmType == null
-                                              ? MyBalanceSheetTypeContainer(
-                                                  balanceSheetData: areaActual, // date = June 5
-                                                  selectedStartDate: selectedDate == null
-                                                      ? yesterDayDateString
-                                                      : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                  previousDate: selectedDate == null
-                                                      ? previousDate
-                                                      : previousSelectedDate ??
-                                                          DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                  monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                )
-                                              : regionType != null && areaType != null && branchType != null && rmType == null
-                                                  ? MyBalanceSheetTypeContainer(
-                                                      balanceSheetData: branchActual,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                                  : MyBalanceSheetRmContainer(
-                                                      balanceSheetData: rmData,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                  : regionType == null && areaType == null && branchType == null && rmType == null
-                                      ? MyBalanceSheetRmContainer(
-                                          balanceSheetData: segmentBankWide,
-                                          selectedStartDate: selectedDate == null
-                                              ? yesterDayDateString
-                                              : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                          previousDate: selectedDate == null
-                                              ? previousDate
-                                              : previousSelectedDate ??
-                                                  DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                          monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                        )
-                                      : // date = 2023-07-24
-                                      regionType != null && areaType == null && branchType == null && rmType == null
-                                          ? MyBalanceSheetRmContainer(
-                                              balanceSheetData: actualSegmentRegion,
-                                              selectedStartDate: selectedDate == null
-                                                  ? yesterDayDateString
-                                                  : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                              previousDate: selectedDate == null
-                                                  ? previousDate
-                                                  : previousSelectedDate ??
-                                                      DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                              monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                            )
-                                          : regionType != null && areaType != null && branchType == null && rmType == null
-                                              ? MyBalanceSheetRmContainer(
-                                                  balanceSheetData: actualSegmentArea,
-                                                  selectedStartDate: selectedDate == null
-                                                      ? yesterDayDateString
-                                                      : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                  previousDate: selectedDate == null
-                                                      ? previousDate
-                                                      : previousSelectedDate ??
-                                                          DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                  monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                )
-                                              : regionType != null && areaType != null && branchType != null && rmType == null
-                                                  ? MyBalanceSheetRmContainer(
-                                                      balanceSheetData: actualSegmentBranch,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                                  : MyBalanceSheetRmContainer(
-                                                      balanceSheetData: rmData,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                              : segmentType == null
-                                  ? regionType == null && areaType == null && branchType == null && rmType == null
-                                      ? MyBalanceSheetTableContainer(
-                                          balanceSheetDepData: bankWideDepAvg,
-                                          balanceSheetLoanData: bankWideLoanAvg,
-                                          selectedStartDate: selectedDate == null
-                                              ? yesterDayDateString
-                                              : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                          previousDate: selectedDate == null
-                                              ? previousDate
-                                              : previousSelectedDate ??
-                                                  DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                          monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                        )
-                                      : regionType != null && areaType == null && branchType == null && rmType == null
-                                          ? MyBalanceSheetTypeContainer(
-                                              balanceSheetData: regionAvg,
-                                              selectedStartDate: selectedDate == null ? yesterDayDateString : selectedStartDate,
-                                              previousDate: selectedDate == null ? previousDate : previousSelectedDate,
-                                              monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                            )
-                                          : regionType != null && areaType != null && branchType == null && rmType == null
-                                              ? MyBalanceSheetTypeContainer(
-                                                  balanceSheetData: areaAvg, // date = June 5
-                                                  selectedStartDate: selectedDate == null ? yesterDayDateString : selectedStartDate,
-                                                  previousDate: selectedDate == null ? previousDate : previousSelectedDate,
-                                                  monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                )
-                                              : regionType != null && areaType != null && branchType != null && rmType == null
-                                                  ? MyBalanceSheetTypeContainer(
-                                                      balanceSheetData: branchAvg,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                                  : MyBalanceSheetRmContainer(
-                                                      balanceSheetData: rmData,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                  : regionType == null && areaType == null && branchType == null && rmType == null
-                                      ? MyBalanceSheetRmContainer(
-                                          balanceSheetData: avgSegmentBankWide,
-                                          selectedStartDate: selectedDate == null
-                                              ? yesterDayDateString
-                                              : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                          previousDate: selectedDate == null
-                                              ? previousDate
-                                              : previousSelectedDate ??
-                                                  DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                          monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                        )
-                                      : // date = 2023-07-24
-                                      regionType != null && areaType == null && branchType == null && rmType == null
-                                          ? MyBalanceSheetRmContainer(
-                                              balanceSheetData: avgSegmentRegion,
-                                              selectedStartDate: selectedDate == null
-                                                  ? yesterDayDateString
-                                                  : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                              previousDate: selectedDate == null
-                                                  ? previousDate
-                                                  : previousSelectedDate ??
-                                                      DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                              monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                            )
-                                          : regionType != null && areaType != null && branchType == null && rmType == null
-                                              ? MyBalanceSheetRmContainer(
-                                                  balanceSheetData: avgSegmentArea,
-                                                  selectedStartDate: selectedDate == null
-                                                      ? yesterDayDateString
-                                                      : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                  previousDate: selectedDate == null
-                                                      ? previousDate
-                                                      : previousSelectedDate ??
-                                                          DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                  monthEndDate: selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                )
-                                              : regionType != null && areaType != null && branchType != null && rmType == null
-                                                  ? MyBalanceSheetTypeContainer(
-                                                      balanceSheetData: avgSegmentBranch,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                                                  : MyBalanceSheetRmContainer(
-                                                      balanceSheetData: rmData,
-                                                      selectedStartDate: selectedDate == null
-                                                          ? yesterDayDateString
-                                                          : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!)),
-                                                      previousDate: selectedDate == null
-                                                          ? previousDate
-                                                          : previousSelectedDate ??
-                                                              DateFormat('yyyy-MMM-dd')
-                                                                  .format(DateTime.parse(selectedDate!).subtract(Duration(days: 1))),
-                                                      monthEndDate:
-                                                          selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString,
-                                                    )
-                          : SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Container(
-                                color: Colors.grey.shade300,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    PipelineDealsHeader(title: 'Category'),
-                                    PipelineDealsHeader(
-                                        title: selectedStartDate == null ? yesterDayDateString ?? '(₦\'m)' : selectedStartDate ?? '(₦\'m)'),
-                                    PipelineDealsHeader(title: bankDate + '(₦\'m)'),
-                                    PipelineDealsHeader(title: 'Variance (₦\'m)'),
-                                    PipelineDealsHeader(
-                                        title: selectedDate != null
-                                            ? selectedLastDayOfLastMonthString ?? '(₦\'m)'
-                                            : lastDayOfLastMonthString ?? '(₦\'m)'),
-                                    PipelineDealsHeader(title: 'MTD Variance (₦\'m)'),
-                                    PipelineDealsHeader(title: 'Category Code (₦\'m)'),
-                                    PipelineDealsHeader(title: 'Budget (₦\'m)'),
-                                  ],
-                                ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                    elevation: 5,
+                    child: Builder(
+                      builder: (BuildContext context) {
+                        String? selectedStartDate =
+                            selectedDate == null ? yesterDayDateString : DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!));
+                        String? previousDateTemp = selectedDate == null
+                            ? previousDate
+                            : previousSelectedDate ?? DateFormat('yyyy-MMM-dd').format(DateTime.parse(selectedDate!).subtract(Duration(days: 1)));
+                        String? monthEndDate = selectedDate == null ? lastDayOfLastMonthString : selectedLastDayOfLastMonthString;
+
+                        Widget tableContainerBuilder(
+                            List<MyBalanceSheetResponse>? balanceSheetDepData, List<MyBalanceSheetResponse>? balanceSheetLoanData) {
+                          return MyBalanceSheetTableContainer(
+                            balanceSheetDepData: balanceSheetDepData,
+                            balanceSheetLoanData: balanceSheetLoanData,
+                            selectedStartDate: selectedStartDate,
+                            previousDate: previousDateTemp,
+                            monthEndDate: monthEndDate,
+                          );
+                        }
+
+                        Widget typeContainerBuilder(List<MyBalanceSheetTypeResponse>? balanceSheetData) {
+                          return MyBalanceSheetTypeContainer(
+                            balanceSheetData: balanceSheetData,
+                            selectedStartDate: selectedStartDate,
+                            previousDate: previousDateTemp,
+                            monthEndDate: monthEndDate,
+                          );
+                        }
+
+                        Widget rmContainerBuilder(dynamic balanceSheetData) {
+                          return MyBalanceSheetRmContainer(
+                            balanceSheetData: balanceSheetData,
+                            selectedStartDate: selectedStartDate,
+                            previousDate: previousDateTemp,
+                            monthEndDate: monthEndDate,
+                          );
+                        }
+
+                        if (regionActual.isNotEmpty) {
+                          if (active == false) {
+                            if (segmentType == null) {
+                              if (regionType == null && areaType == null && branchType == null && rmType == null) {
+                                return tableContainerBuilder(bankDepActual, bankLoanActual);
+                              } else if (regionType != null && areaType == null && branchType == null && rmType == null) {
+                                return typeContainerBuilder(regionActual);
+                              } else if (regionType != null && areaType != null && branchType == null && rmType == null) {
+                                return typeContainerBuilder(areaActual);
+                              } else if (regionType != null && areaType != null && branchType != null && rmType == null) {
+                                return typeContainerBuilder(branchActual);
+                              } else {
+                                return rmContainerBuilder(rmData);
+                              }
+                            } else {
+                              if (regionType == null && areaType == null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(segmentBankWide);
+                              } else if (regionType != null && areaType == null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(actualSegmentRegion);
+                              } else if (regionType != null && areaType != null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(actualSegmentArea);
+                              } else if (regionType != null && areaType != null && branchType != null && rmType == null) {
+                                return rmContainerBuilder(actualSegmentBranch);
+                              } else {
+                                return rmContainerBuilder(rmData);
+                              }
+                            }
+                          } else {
+                            if (segmentType == null) {
+                              if (regionType == null && areaType == null && branchType == null && rmType == null) {
+                                return tableContainerBuilder(bankWideDepAvg, bankWideLoanAvg);
+                              } else if (regionType != null && areaType == null && branchType == null && rmType == null) {
+                                return typeContainerBuilder(regionAvg);
+                              } else if (regionType != null && areaType != null && branchType == null && rmType == null) {
+                                return typeContainerBuilder(areaAvg);
+                              } else if (regionType != null && areaType != null && branchType != null && rmType == null) {
+                                return typeContainerBuilder(branchAvg);
+                              } else {
+                                return rmContainerBuilder(rmData);
+                              }
+                            } else {
+                              if (regionType == null && areaType == null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(avgSegmentBankWide);
+                              } else if (regionType != null && areaType == null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(avgSegmentRegion);
+                              } else if (regionType != null && areaType != null && branchType == null && rmType == null) {
+                                return rmContainerBuilder(avgSegmentArea);
+                              } else if (regionType != null && areaType != null && branchType != null && rmType == null) {
+                                return rmContainerBuilder(avgSegmentBranch);
+                              } else {
+                                return rmContainerBuilder(rmData);
+                              }
+                            }
+                          }
+                        } else {
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Container(
+                              color: Colors.grey.shade300,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  PipelineDealsHeader(title: 'Category'),
+                                  PipelineDealsHeader(title: selectedStartDate ?? '(₦\'m)'),
+                                  PipelineDealsHeader(title: bankDate + '(₦\'m)'),
+                                  PipelineDealsHeader(title: 'Variance (₦\'m)'),
+                                  PipelineDealsHeader(
+                                      title:
+                                          selectedDate != null ? selectedLastDayOfLastMonthString ?? '(₦\'m)' : lastDayOfLastMonthString ?? '(₦\'m)'),
+                                  PipelineDealsHeader(title: 'MTD Variance (₦\'m)'),
+                                  PipelineDealsHeader(title: 'Category Code (₦\'m)'),
+                                  PipelineDealsHeader(title: 'Budget (₦\'m)'),
+                                ],
                               ),
-                            )),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
