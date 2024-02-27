@@ -1,4 +1,4 @@
-import 'package:alero/screens/alero/components/bank_performance_items.dart';
+import 'package:alero/screens/alero/landing/components/bank_performance_items.dart';
 import 'package:alero/screens/alero/components/view_customer_dashboard_graphs.dart';
 import '../../../network/AleroAPIService.dart';
 import '../../../utils/Pandora.dart';
