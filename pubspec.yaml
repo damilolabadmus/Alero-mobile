@@ -1,19 +1,16 @@
 name: alero
 description: Alero Native Flutter Mobile Application
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.3+24
 
-
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-
 
   cupertino_icons: ^1.0.6
   flutter_secure_storage: ^8.1.0
@@ -50,19 +47,16 @@ dependencies:
   flutter_downloader: ^1.10.5
   scrollable_positioned_list: ^0.3.8
   percent_indicator: ^4.2.3
-
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.3.3
-
-
-
+  freezed: ^2.4.1
 
 # The following section is specific to Flutter.
 flutter:
-
   uses-material-design: true
 
   fonts:
@@ -89,10 +83,6 @@ flutter:
           weight: 600
         - asset: fonts/Nunito-Bold.ttf
           weight: 700
-
-
-
-
 
   assets:
     - assets/icons/
@@ -176,7 +166,7 @@ flutter:
     - assets/customer/trends/trends_touchpoint_icon.svg
     - assets/customer/trends/trends_cooporate_loans.svg
 
-#    - assets/icons/arrow_left.svg
+    #    - assets/icons/arrow_left.svg
     - assets/icons/budgeting.svg
     - assets/icons/customer.svg
     - assets/icons/kyc.svg
@@ -187,10 +177,10 @@ flutter:
     - assets/icons/music.png
     - assets/icons/performance.svg
     - assets/icons/person.svg
-#    - assets/icons/profile_user.svg
+    #    - assets/icons/profile_user.svg
     - assets/icons/reports.svg
     - assets/icons/search.svg
-#    - assets/icons/shopping_bag.svg
+    #    - assets/icons/shopping_bag.svg
     - assets/icons/star.svg
     - assets/icons/video_call.svg
     - assets/icons/customer_pr.svg
@@ -199,7 +189,3 @@ flutter:
     - assets/icons/account_pr.svg
 
     - assets/icons/profile_user.svg
-
-
-
-
