@@ -6,7 +6,7 @@ import '../../repository/deposits_repository.dart';
 part 'deposits_trend_bloc.freezed.dart';
 
 @freezed
-abstract class DepositsTrendState with _$DepositsState {
+abstract class DepositsTrendState with _$DepositsTrendState {
   const factory DepositsTrendState.initial() = _Initial;
   const factory DepositsTrendState.loading() = _Loading;
   const factory DepositsTrendState.loaded(AggregatedDepositsTrendData data) = _Loaded;

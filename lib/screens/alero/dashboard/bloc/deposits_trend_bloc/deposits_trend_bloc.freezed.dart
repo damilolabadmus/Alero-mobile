@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DepositsState {
+mixin _$DepositsTrendState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,14 +69,16 @@ mixin _$DepositsState {
 }
 
 /// @nodoc
-abstract class $DepositsStateCopyWith<$Res> {
-  factory $DepositsStateCopyWith(DepositsTrendState value, $Res Function(DepositsTrendState) then) =
-      _$DepositsStateCopyWithImpl<$Res, DepositsTrendState>;
+abstract class $DepositsTrendStateCopyWith<$Res> {
+  factory $DepositsTrendStateCopyWith(
+          DepositsTrendState value, $Res Function(DepositsTrendState) then) =
+      _$DepositsTrendStateCopyWithImpl<$Res, DepositsTrendState>;
 }
 
 /// @nodoc
-class _$DepositsStateCopyWithImpl<$Res, $Val extends DepositsTrendState> implements $DepositsStateCopyWith<$Res> {
-  _$DepositsStateCopyWithImpl(this._value, this._then);
+class _$DepositsTrendStateCopyWithImpl<$Res, $Val extends DepositsTrendState>
+    implements $DepositsTrendStateCopyWith<$Res> {
+  _$DepositsTrendStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,12 +88,17 @@ class _$DepositsStateCopyWithImpl<$Res, $Val extends DepositsTrendState> impleme
 
 /// @nodoc
 abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(_$_Initial value, $Res Function(_$_Initial) then) = __$$_InitialCopyWithImpl<$Res>;
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$DepositsStateCopyWithImpl<$Res, _$_Initial> implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then) : super(_value, _then);
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$DepositsTrendStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -101,12 +108,13 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'DepositsState.initial()';
+    return 'DepositsTrendState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -193,12 +201,17 @@ abstract class _Initial implements DepositsTrendState {
 
 /// @nodoc
 abstract class _$$_LoadingCopyWith<$Res> {
-  factory _$$_LoadingCopyWith(_$_Loading value, $Res Function(_$_Loading) then) = __$$_LoadingCopyWithImpl<$Res>;
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$DepositsStateCopyWithImpl<$Res, _$_Loading> implements _$$_LoadingCopyWith<$Res> {
-  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then) : super(_value, _then);
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$DepositsTrendStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -208,12 +221,13 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'DepositsState.loading()';
+    return 'DepositsTrendState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -300,14 +314,18 @@ abstract class _Loading implements DepositsTrendState {
 
 /// @nodoc
 abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) = __$$_LoadedCopyWithImpl<$Res>;
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
   @useResult
   $Res call({AggregatedDepositsTrendData data});
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res> extends _$DepositsStateCopyWithImpl<$Res, _$_Loaded> implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then) : super(_value, _then);
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$DepositsTrendStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -333,12 +351,15 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'DepositsState.loaded(data: $data)';
+    return 'DepositsTrendState.loaded(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other.runtimeType == runtimeType && other is _$_Loaded && (identical(other.data, data) || other.data == data));
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Loaded &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
@@ -347,7 +368,8 @@ class _$_Loaded implements _Loaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith => __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -429,19 +451,24 @@ abstract class _Loaded implements DepositsTrendState {
 
   AggregatedDepositsTrendData get data;
   @JsonKey(ignore: true)
-  _$$_LoadedCopyWith<_$_Loaded> get copyWith => throw _privateConstructorUsedError;
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$_ErrorCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) = __$$_ErrorCopyWithImpl<$Res>;
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$DepositsStateCopyWithImpl<$Res, _$_Error> implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then) : super(_value, _then);
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$DepositsTrendStateCopyWithImpl<$Res, _$_Error>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -467,13 +494,15 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'DepositsState.error(message: $message)';
+    return 'DepositsTrendState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Error && (identical(other.message, message) || other.message == message));
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
@@ -482,7 +511,8 @@ class _$_Error implements _Error {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ErrorCopyWith<_$_Error> get copyWith => __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -564,5 +594,6 @@ abstract class _Error implements DepositsTrendState {
 
   String get message;
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith => throw _privateConstructorUsedError;
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
 }
