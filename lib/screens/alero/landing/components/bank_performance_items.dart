@@ -1,5 +1,3 @@
-
-
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +22,13 @@ class _BankPerformanceItemsState extends State<BankPerformanceItems> {
   @override
   void initState() {
     super.initState();
-    bloc = BankPerformanceBloc(repository: BankPerformanceRepository(apiService: AleroAPIService()));
-    bloc.getBankPerformanceData();
+    bloc = BankPerformanceBloc(repository: BankPerformanceRepository(apiService: AleroAPIService()))..getBankPerformanceData();
+  }
+
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
   }
 
   @override
