@@ -11,15 +11,15 @@ class CustomerChannelsUsageRepository {
 
   Future<List<TouchPointData?>?> getCustomerChannelsUsage() async {
     return await this._asyncMemoizer.runOnce(() async {
-      var test = await apiService.getBankTouchPoint();
+      var result = await apiService.getBankTouchPoint();
       List<TouchPointData?> ccData = [];
-      List<TouchPointData?>? channels = test as List<TouchPointData?>?;
+      List<TouchPointData?> channels = result as List<TouchPointData?>;
       String channel = '';
       double averageSpend = 0.0;
       double volumeSpend = 0.0;
       int transactionChannelCount = 0;
 
-      if (channels?.length == 0) {
+      if (channels.length == 0) {
         ccData.add(TouchPointData(
           channel: '',
           averageSpend: 0.0,
@@ -27,7 +27,7 @@ class CustomerChannelsUsageRepository {
           transactionChannelCount: 0,
         ));
       } else {
-        channels?.forEach((usage) {
+        channels.forEach((usage) {
           ccData.add(usage);
         });
       }
