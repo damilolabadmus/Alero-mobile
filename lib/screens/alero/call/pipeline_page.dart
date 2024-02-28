@@ -8,11 +8,12 @@ import 'package:alero/screens/alero/pipeline/deals_item_container.dart';
 import 'package:alero/screens/alero/pipeline/pipeline_deals_add.dart';
 import 'package:alero/screens/alero/pipeline/status_update_page.dart';
 import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
-import 'package:alero/utils/constants.dart';
 import 'package:container_tab_indicator/container_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
+import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'package:one_context/one_context.dart';
+import '../../../utils/Pandora.dart';
 import '../pipeline/completed_page.dart';
 import '../pipeline/disbursement_page.dart';
 import 'package:async/async.dart';
@@ -76,12 +77,20 @@ class _PipelinePageState extends State<PipelinePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.none &&
-              snapshot.hasData == null ||
-              snapshot.connectionState == ConnectionState.waiting) {
-            return ShimmerLoadingWidget();
+              snapshot.hasData == true ||
+               snapshot.connectionState == ConnectionState.waiting) {
+             return Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 20),
+               child: FlutterShimmnerLoadingWidget(
+                 count: 2,
+                 animate: true,
+                 color: Colors.grey[200],
+               ),
+             );
           }
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -100,7 +109,7 @@ class _PipelinePageState extends State<PipelinePage> {
                           'Pipeline Deals',
                           style: TextStyle(
                             color: Colors.lightBlue,
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w700,
                             fontFamily: 'Poppins-Regular',
                           ),
@@ -112,7 +121,7 @@ class _PipelinePageState extends State<PipelinePage> {
                             'Create a new deal or view existing deals.',
                             style: TextStyle(
                               color: Style.Colors.blackTextColor,
-                              fontSize: 15.0,
+                              fontSize: 14.0,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Poppins-Regular',
                             ),),),],),
@@ -127,15 +136,7 @@ class _PipelinePageState extends State<PipelinePage> {
                         child: Row(
                           children: [
                             DealsItem(
-                              value: allDealsValue!.toInt().toString().length < 7 ?
-                              "₦ " + double.parse(allDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              allDealsValue!.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              allDealsValue!.toInt().toString().length <  12 ?
-                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              allDealsValue!.toInt().toString().length < 30 ?
-                              "₦ " + "${double.parse((allDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse(allDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: Pandora.itemsFormat(allDealsValue!),
                               count: allDeals,
                               text: allDealsText(),
                             ),
@@ -143,15 +144,7 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: completedDealsValue!.toInt().toString().length < 7 ?
-                              "₦ " + double.parse(completedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              completedDealsValue!.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              completedDealsValue!.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              completedDealsValue!.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((completedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()}tr" :
-                              "₦ " + double.parse(completedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: Pandora.itemsFormat(completedDealsValue!),
                               count: completedDeals,
                               text: 'Completed',
                             ),
@@ -159,15 +152,7 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: convertedDealsValue!.toInt().toString().length < 7 ?
-                              "₦ " + double.parse(convertedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              convertedDealsValue!.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              convertedDealsValue!.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              convertedDealsValue!.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((convertedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse(convertedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: Pandora.itemsFormat(convertedDealsValue!),
                               count: convertedDeals,
                               text: 'Converted',
                             ),
@@ -175,15 +160,7 @@ class _PipelinePageState extends State<PipelinePage> {
                               width: 20,
                             ),
                             DealsItem(
-                              value: declinedDealsValue!.toInt().toString().length < 7 ?
-                              "₦ " + double.parse(declinedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},') :
-                              declinedDealsValue!.toInt().toString().length < 9 ?
-                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForM).toStringAsFixed(2)).toString()} m" :
-                              declinedDealsValue!.toInt().toString().length < 12 ?
-                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForB).toStringAsFixed(2)).toString()} b" :
-                              declinedDealsValue!.toInt().toString().length > 30 ?
-                              "₦ " + "${double.parse((declinedDealsValue!/kDealsValueForTr).toStringAsFixed(2)).toString()} tr" :
-                              "₦ " + double.parse(declinedDealsValue!.toStringAsFixed(2)).toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},'),
+                              value: Pandora.itemsFormat(declinedDealsValue!),
                               count: declinedDeals,
                               text: 'Declined',
                             ),
@@ -211,7 +188,7 @@ class _PipelinePageState extends State<PipelinePage> {
                           'Existing Deals',
                           style: TextStyle(
                             color: Colors.lightBlue,
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w700,
                             fontFamily: 'Poppins-Regular',
                           ),
@@ -223,7 +200,7 @@ class _PipelinePageState extends State<PipelinePage> {
                           child: TextButton(
                               child: Row(
                                 children: [
-                                  Icon(Icons.person_add, color: Colors.white, size: 15),
+                                  Icon(Icons.person_add_outlined, color: Colors.white, size: 15),
                                   SizedBox(width: 5.0),
                                   Text('New Deal', style: TextStyle(color: Colors.white),
                                   ),],),
@@ -238,7 +215,8 @@ class _PipelinePageState extends State<PipelinePage> {
               ),
             ),
             bottomNavigationBar: CallBottomNavigationBar(),
-          );},
+          );
+          },
         future: getPipelineItems()
     );
   }
@@ -253,7 +231,7 @@ class _PipelinePageState extends State<PipelinePage> {
       icon: Icon(
         Icons.arrow_back_ios,
         color: Style.Colors.blackTextColor,
-        size: 24,
+        size: 20,
       ),
     ),
     backgroundColor: Style.Colors.searchActiveBg,
@@ -263,7 +241,7 @@ class _PipelinePageState extends State<PipelinePage> {
         child: TextButton(
           child: IconButton(
             icon: Icon(Icons.home),
-            iconSize: 30.0, onPressed: () {  },
+            iconSize: 26.0, onPressed: () {},
           ),
           onPressed: () {
             Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);

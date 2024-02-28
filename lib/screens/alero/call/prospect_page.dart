@@ -51,7 +51,7 @@ class _ProspectPageState extends State<ProspectPage> {
       icon: Icon(
         Icons.arrow_back_ios,
         color: Style.Colors.blackTextColor,
-        size: 24,
+        size: 20,
       ),
     ),
     backgroundColor: Style.Colors.searchActiveBg,
@@ -60,7 +60,7 @@ class _ProspectPageState extends State<ProspectPage> {
         padding: const EdgeInsets.only(right: 16.0),
         child: TextButton(
           child: IconButton(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, color: Colors.blueGrey.shade300),
             iconSize: 30.0, onPressed: () {  },
           ),
           onPressed: () {

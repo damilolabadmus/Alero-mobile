@@ -123,7 +123,7 @@ const kDisburseStyle = TextStyle(
 
 const kDealsBlueHeading = TextStyle(
   color: Colors.lightBlue,
-  fontSize: 18.0,
+  fontSize: 16.0,
   fontWeight: FontWeight.w700,
   fontFamily: 'Poppins-Regular',
 );

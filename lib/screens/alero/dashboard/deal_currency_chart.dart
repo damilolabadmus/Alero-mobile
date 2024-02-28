@@ -63,7 +63,7 @@ class _DealCurrencyChartState extends State<DealCurrencyChart> {
             child: SfCircularChart(
               title: ChartTitle(
                 text: 'Deals by Currency', textStyle: kTrendTextStyle.copyWith(
-                fontSize: 16,
+                fontSize: 14,
               ),
                 alignment: ChartAlignment.near,
               ),

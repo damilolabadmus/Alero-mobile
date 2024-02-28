@@ -78,13 +78,9 @@ class _DepositsChartState extends State<DepositsChart> {
           child: LineChart(
             LineChartData(
               minX: 0,
-              maxX: 12,
+              maxX: bankDeposits!.length.toDouble() - 1,
               minY: 1.05,
-              maxY: 1.9,
-              /* minX: 0,
-              maxX: 12,
-              minY: 1.05,
-              maxY: 1.5,*/
+              maxY: 2.2,
               titlesData: FlTitlesData(
                 show: yes,
                 bottomTitles: AxisTitles(

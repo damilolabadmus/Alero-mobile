@@ -60,8 +60,8 @@ class _DealProductTypeChartState extends State<DealProductTypeChart> {
             child: SfCircularChart(
               title: ChartTitle(
                 text: 'Deals by Product Type', textStyle: kTrendTextStyle.copyWith(
-                  fontSize: 16
-              ),
+                  fontSize: 14
+               ),
                 alignment: ChartAlignment.near,
               ),
               legend: Legend(

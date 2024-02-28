@@ -49,8 +49,7 @@ class CallTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         labelStyle: TextStyle(
-          color: Colors.blueGrey,
-          fontWeight: FontWeight.w700,
+            fontFamily: 'Poppins-Regular', fontSize: 16, color: Colors.blueGrey,
         ),
         fillColor: fillColor,
         filled: true,

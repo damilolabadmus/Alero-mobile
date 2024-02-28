@@ -21,7 +21,7 @@ class DealsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      width: 160,
+      width: 130,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
             Radius.circular(40.0)),

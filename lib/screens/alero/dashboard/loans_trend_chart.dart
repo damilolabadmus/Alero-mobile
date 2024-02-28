@@ -77,14 +77,9 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
           child: LineChart(
             LineChartData(
               minX: 0,
-              maxX: 12,
+              maxX: bankLoan!.length.toDouble() - 1,
               minY: 6.8,
-              maxY: 12.5,
-
-              /*minX: 0,
-              maxX: 12,
-              minY: 6.8,
-              maxY: 9.6,*/
+              maxY: 16,
               titlesData: FlTitlesData(
                 show: yes,
                 bottomTitles: AxisTitles(
@@ -102,13 +97,7 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
                       axisSide: AxisSide.bottom,
                       fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
                     ),
-                    // rotateAngle: kRotateAngle,
                     showTitles: yes,
-                    // getTextStyles: (value) => TextStyle(color: Colors.black45, fontWeight: FontWeight.bold, fontSize: 8.0),
-                    // getTitles: (value) {
-                    //   return bankLoan[value.toInt()].periodName.toString();
-                    // },
-                    // margin: 10.0,
                   ),
                 ),
                 topTitles: AxisTitles(

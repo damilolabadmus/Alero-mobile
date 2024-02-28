@@ -50,10 +50,11 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
           return Column(
             children: [
               Container(
+                height: 50,
                 child: TextField(
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    fillColor: Colors.blueGrey.shade200,
+                    fillColor: Colors.blueGrey.shade100.withOpacity(0.5),
                     filled: true,
                     hintText: "Search Prospect",
                     prefixIcon: Icon(
@@ -82,8 +83,8 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
               Center(
                 child: Text("No results found",
                   style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    fontSize: 16, fontWeight: FontWeight.bold,
+                    color: Colors.black45,
                   ),
                 ),
               ) :

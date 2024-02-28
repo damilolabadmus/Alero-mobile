@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
         // ,
         CustomPopupMenu(
           child: Container(
-            child: SvgPicture.asset('assets/icons/profile-user.svg',width: 30,height: 30,),
+            child: SvgPicture.asset('assets/icons/profile_user.svg',width: 30,height: 30,),
           ),
           menuBuilder: () => ClipRRect(
             borderRadius: BorderRadius.circular(5),
