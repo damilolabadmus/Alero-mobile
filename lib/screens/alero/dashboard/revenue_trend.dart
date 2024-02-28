@@ -3,7 +3,6 @@ import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/dashboard/revenue_trend_chart.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -25,6 +24,11 @@ class _RevenueTrendState extends State<RevenueTrend> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +70,10 @@ class _RevenueTrendState extends State<RevenueTrend> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RevenueItem(revenue: 'YTD Revenue', value: "${double.parse((data.ytdRevenue! / kRevenueChartDivisor).toStringAsFixed(2))}b"),
-                  RevenueItem(revenue: 'Assets', value: "${data.loansRevenue!.toInt().toString()}%"),
-                  RevenueItem(revenue: 'Liabilities', value: "${data.depositsRevenue!.toInt().toString()}%"),
-                  RevenueItem(revenue: 'Fees', value: "${data.commFeesRevenue!.toInt().toString()}%"),
+                  RevenueItem(revenue: 'YTD Revenue', value: "${double.parse((data.ytdRevenue / kRevenueChartDivisor).toStringAsFixed(2))}b"),
+                  RevenueItem(revenue: 'Assets', value: "${data.loansRevenue.toInt().toString()}%"),
+                  RevenueItem(revenue: 'Liabilities', value: "${data.depositsRevenue.toInt().toString()}%"),
+                  RevenueItem(revenue: 'Fees', value: "${data.commFeesRevenue.toInt().toString()}%"),
                 ],
               ),
               SizedBox(

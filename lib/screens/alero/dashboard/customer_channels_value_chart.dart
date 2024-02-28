@@ -1,5 +1,3 @@
-
-
 import 'package:alero/screens/alero/dashboard/repository/customer_channels_usage_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:alero/models/customer/TouchPointData.dart';
@@ -8,15 +6,11 @@ import 'package:alero/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../../../../style/theme.dart' as Style;
-import 'package:async/async.dart';
 import 'package:intl/intl.dart';
 
 import 'bloc/customer_channels_Usage_bloc/customer_channels_usage_bloc.dart';
 
-
 class CustomerChannelsUsageValueChart extends StatefulWidget {
-
   @override
   _CustomerChannelsUsageValueChartState createState() => _CustomerChannelsUsageValueChartState();
 }
@@ -30,6 +24,12 @@ class _CustomerChannelsUsageValueChartState extends State<CustomerChannelsUsageV
     bloc = CustomerChannelsUsageBloc(CustomerChannelsUsageRepository(apiService: AleroAPIService()))..fetch();
     _tooltipBehavior = TooltipBehavior(enable: true, header: 'Channel');
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
   }
 
   @override

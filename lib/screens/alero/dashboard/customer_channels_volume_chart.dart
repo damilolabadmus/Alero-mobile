@@ -26,6 +26,12 @@ class _CustomerChannelsUsageVolumeChartState extends State<CustomerChannelsUsage
   }
 
   @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<CustomerChannelsUsageBloc, CustomerChannelsUsageState>(
       bloc: bloc,

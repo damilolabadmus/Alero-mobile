@@ -21,6 +21,12 @@ class _DepositsTrendChartState extends State<DepositsTrendChart> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
+
   final List<Color> gradientColors = [
     Style.Colors.fourthColor,
     Style.Colors.fourthColor,

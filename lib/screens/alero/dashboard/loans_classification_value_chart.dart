@@ -25,6 +25,12 @@ class _LoansClassificationValueChartState extends State<LoansClassificationValue
   }
 
   @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoanClassificationStatusBloc, LoanClassificationStatusState>(
       bloc: bloc,

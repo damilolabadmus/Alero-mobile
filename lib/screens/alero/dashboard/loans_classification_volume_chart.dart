@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/network/AleroAPIService.dart';
-import 'package:alero/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../../../../style/theme.dart' as Style;
-import 'package:async/async.dart';
 import 'package:intl/intl.dart';
 
 import 'bloc/loans_classification_bloc/loans_classification_bloc.dart';
@@ -25,6 +22,12 @@ class _LoansClassificationVolumeChartState extends State<LoansClassificationVolu
     bloc = LoanClassificationStatusBloc(AleroAPIService())..getLoansClassificationStatus();
     _tooltipBehavior = TooltipBehavior(enable: true, header: 'Classification');
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
   }
 
   @override
