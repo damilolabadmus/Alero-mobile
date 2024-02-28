@@ -7,8 +7,8 @@ import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'bloc/bank_revenue_bloc/bank_revenue_bloc.dart';
-import 'repository/bank_revenue_repository.dart';
+import 'bloc/revenue_trend_bloc/revenue_trend_bloc.dart';
+import 'repository/revenue_trend_repository.dart';
 
 class RevenueTrend extends StatefulWidget {
   @override
@@ -17,18 +17,18 @@ class RevenueTrend extends StatefulWidget {
 
 class _RevenueTrendState extends State<RevenueTrend> {
   final formatCurrency = new NumberFormat.currency(symbol: '');
-  late final BankRevenueBloc bloc;
+  late final RevenueTrendBloc bloc;
 
   @override
   void initState() {
-    bloc = BankRevenueBloc(repository: BankRevenueRepository(apiService: AleroAPIService()))..getBankRevenueData();
+    bloc = RevenueTrendBloc(repository: RevenueTrendRepository(apiService: AleroAPIService()))..getBankRevenueData();
     super.initState();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BankRevenueBloc, BankRevenueState>(
+    return BlocBuilder<RevenueTrendBloc, RevenueTrendState>(
       bloc: bloc,
       builder: (context, state) {
         return state.when(
@@ -41,7 +41,7 @@ class _RevenueTrendState extends State<RevenueTrend> {
     );
   }
 
-  _buildRevenueTrend(BankRevenueData data) {
+  _buildRevenueTrend(AggregateRevenueTrendData data) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: Card(

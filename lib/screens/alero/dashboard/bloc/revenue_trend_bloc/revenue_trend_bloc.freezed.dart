@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'bank_revenue_bloc.dart';
+part of 'revenue_trend_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$BankRevenueState {
+mixin _$RevenueTrendState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(BankRevenueData data) loaded,
+    required TResult Function(AggregateRevenueTrendData data) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$BankRevenueState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(BankRevenueData data)? loaded,
+    TResult? Function(AggregateRevenueTrendData data)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$BankRevenueState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(BankRevenueData data)? loaded,
+    TResult Function(AggregateRevenueTrendData data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -69,16 +69,16 @@ mixin _$BankRevenueState {
 }
 
 /// @nodoc
-abstract class $BankRevenueStateCopyWith<$Res> {
-  factory $BankRevenueStateCopyWith(
-          BankRevenueState value, $Res Function(BankRevenueState) then) =
-      _$BankRevenueStateCopyWithImpl<$Res, BankRevenueState>;
+abstract class $RevenueTrendStateCopyWith<$Res> {
+  factory $RevenueTrendStateCopyWith(
+          RevenueTrendState value, $Res Function(RevenueTrendState) then) =
+      _$RevenueTrendStateCopyWithImpl<$Res, RevenueTrendState>;
 }
 
 /// @nodoc
-class _$BankRevenueStateCopyWithImpl<$Res, $Val extends BankRevenueState>
-    implements $BankRevenueStateCopyWith<$Res> {
-  _$BankRevenueStateCopyWithImpl(this._value, this._then);
+class _$RevenueTrendStateCopyWithImpl<$Res, $Val extends RevenueTrendState>
+    implements $RevenueTrendStateCopyWith<$Res> {
+  _$RevenueTrendStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +95,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$BankRevenueStateCopyWithImpl<$Res, _$_Initial>
+    extends _$RevenueTrendStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -108,7 +108,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'BankRevenueState.initial()';
+    return 'RevenueTrendState.initial()';
   }
 
   @override
@@ -125,7 +125,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(BankRevenueData data) loaded,
+    required TResult Function(AggregateRevenueTrendData data) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(BankRevenueData data)? loaded,
+    TResult? Function(AggregateRevenueTrendData data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(BankRevenueData data)? loaded,
+    TResult Function(AggregateRevenueTrendData data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -195,7 +195,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements BankRevenueState {
+abstract class _Initial implements RevenueTrendState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -208,7 +208,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$BankRevenueStateCopyWithImpl<$Res, _$_Loading>
+    extends _$RevenueTrendStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -221,7 +221,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'BankRevenueState.loading()';
+    return 'RevenueTrendState.loading()';
   }
 
   @override
@@ -238,7 +238,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(BankRevenueData data) loaded,
+    required TResult Function(AggregateRevenueTrendData data) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -249,7 +249,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(BankRevenueData data)? loaded,
+    TResult? Function(AggregateRevenueTrendData data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -260,7 +260,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(BankRevenueData data)? loaded,
+    TResult Function(AggregateRevenueTrendData data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -308,7 +308,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements BankRevenueState {
+abstract class _Loading implements RevenueTrendState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -317,12 +317,12 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({BankRevenueData data});
+  $Res call({AggregateRevenueTrendData data});
 }
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$BankRevenueStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$RevenueTrendStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -336,7 +336,7 @@ class __$$_LoadedCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as BankRevenueData,
+              as AggregateRevenueTrendData,
     ));
   }
 }
@@ -347,11 +347,11 @@ class _$_Loaded implements _Loaded {
   const _$_Loaded(this.data);
 
   @override
-  final BankRevenueData data;
+  final AggregateRevenueTrendData data;
 
   @override
   String toString() {
-    return 'BankRevenueState.loaded(data: $data)';
+    return 'RevenueTrendState.loaded(data: $data)';
   }
 
   @override
@@ -376,7 +376,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(BankRevenueData data) loaded,
+    required TResult Function(AggregateRevenueTrendData data) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(data);
@@ -387,7 +387,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(BankRevenueData data)? loaded,
+    TResult? Function(AggregateRevenueTrendData data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(data);
@@ -398,7 +398,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(BankRevenueData data)? loaded,
+    TResult Function(AggregateRevenueTrendData data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -446,10 +446,10 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements BankRevenueState {
-  const factory _Loaded(final BankRevenueData data) = _$_Loaded;
+abstract class _Loaded implements RevenueTrendState {
+  const factory _Loaded(final AggregateRevenueTrendData data) = _$_Loaded;
 
-  BankRevenueData get data;
+  AggregateRevenueTrendData get data;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -465,7 +465,7 @@ abstract class _$$_ErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$BankRevenueStateCopyWithImpl<$Res, _$_Error>
+    extends _$RevenueTrendStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
@@ -494,7 +494,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'BankRevenueState.error(message: $message)';
+    return 'RevenueTrendState.error(message: $message)';
   }
 
   @override
@@ -519,7 +519,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(BankRevenueData data) loaded,
+    required TResult Function(AggregateRevenueTrendData data) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -530,7 +530,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(BankRevenueData data)? loaded,
+    TResult? Function(AggregateRevenueTrendData data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -541,7 +541,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(BankRevenueData data)? loaded,
+    TResult Function(AggregateRevenueTrendData data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -589,7 +589,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements BankRevenueState {
+abstract class _Error implements RevenueTrendState {
   const factory _Error(final String message) = _$_Error;
 
   String get message;
