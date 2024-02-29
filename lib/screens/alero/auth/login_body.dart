@@ -295,18 +295,15 @@ class _BodyState extends State<Body> {
         pandora.saveToSharedPreferences('userID', username);
         presentLoginUser(presentResponse, context);
       } else {
-        pandora.showToast(presentResponse, context,
-            MessageTypes.FAILED.toString().split('.').last);
+        print('Failed');
       }
     } catch (error) {
       if (error != null &&
           error.toString().contains(
               'Exception: Exception: "You have exceeded password retries"')) {
-        pandora.showToast('Invalid username or password', context,
-            MessageTypes.FAILED.toString().split('.').last);
+        print('Invalid username and passsword');
       } else {
-        pandora.showToast('Failed to connect', context,
-            MessageTypes.FAILED.toString().split('.').last);
+        print('Failed to connect');
       }
     }
   }
