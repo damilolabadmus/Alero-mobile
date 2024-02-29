@@ -2,6 +2,7 @@
 
 import 'package:alero/models/customer/BankRevenueData.dart';
 import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                 LineChartBarData(
                   spots: bankRevenue!
                       .map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
-                          bankRev!.revenueData! >= 100000000000 ? bankRev.revenueData! / kDepositsDivisor : bankRev.revenueData! / kRevenueChartDivisor))
+                          Pandora.chartItemFormat(bankRev!.revenueData!)))
                       .toList(),
                   isCurved: yes,
                   color: gradientColors.first,
@@ -135,7 +136,6 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                     show: yes,
                     color: gradientColors.first.withOpacity(0.1),
                   ),
-                  // dotData: FlDotData(show: true),
                 ),
               ],
             ),

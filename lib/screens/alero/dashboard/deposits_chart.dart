@@ -2,6 +2,7 @@
 
 import 'package:alero/models/customer/BankDepositsData.dart';
 import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ class _DepositsChartState extends State<DepositsChart> {
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List<BankDepositsData?> dtcData = [];
-  int divisor = 1000000000000;
   String periodName = '';
   double depositsData = 0.0;
   List<BankDepositsData?>? bankDeposits;
@@ -98,13 +98,7 @@ class _DepositsChartState extends State<DepositsChart> {
                         axisSide: AxisSide.bottom,
                         fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
                         ),
-                    // rotateAngle: kRotateAngle,
                     showTitles: yes,
-                    // getTextStyles: (value) => TextStyle(color: Colors.black45, fontWeight: FontWeight.bold, fontSize: 9.0),
-                    // getTitles: (value) {
-                    //   return bankDeposits[value.toInt()].periodName.toString();
-                    // },
-                    // margin: 10.0,
                   ),
                 ),
                 topTitles: AxisTitles(
@@ -139,7 +133,7 @@ class _DepositsChartState extends State<DepositsChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankDeposits!.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), bankDep!.depositsData! / divisor)).toList(),
+                  spots: bankDeposits!.map((bankDep) => FlSpot((bankDepositsIndex++).toDouble(), Pandora.chartItemFormat2(bankDep!.depositsData!))).toList(),
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

@@ -2,6 +2,7 @@
 
 import 'package:alero/models/customer/BankLoanData.dart';
 import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +128,7 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankLoan!.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), bankLn!.loansData! / kLoansChartDivisor)).toList(),
+                  spots: bankLoan!.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), Pandora.chartItemFormat3(bankLn!.loansData!))).toList(),
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

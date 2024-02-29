@@ -18,18 +18,6 @@ const kPadding1 = 1.0;
 const String kAngle = '90';
 const double kRotateAngle = 320;
 
-// Divisors
-const int kDepositsDivisor = 1000000000000;
-const int kLoansChartDivisor = 100000000000;
-const int kRevenueChartDivisor = 10000000000;
-
-
-// const int kRevenueChartDivisor = 10000000000;
-const int kDealsValueForM = 1000000;
-const int kDivisor = 100000000;
-const int kDealsValueForB = 1000000000;
-const int kDealsValueForTr = 1000000000000;
-
 // My Text Styles
 const kHeadingextStyle = TextStyle(
   fontSize: 28,
