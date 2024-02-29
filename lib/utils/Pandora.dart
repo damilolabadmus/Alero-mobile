@@ -66,25 +66,6 @@ class Pandora {
     );
   }
 
-  /// logout user
-  static Future<void> logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    try {
-      OneContext().showProgressIndicator();
-      response = await apiService.logoutUser();
-      OneContext().hideProgressIndicator();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
-  }
-
   //Internet Connection manager
   Future<bool> hasInternet() async {
     bool hasInternet = false;

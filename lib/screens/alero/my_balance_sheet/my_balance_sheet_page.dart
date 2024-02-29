@@ -907,7 +907,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
                           _selectDate(context);
                         });
                       },
-                      updateSelectedDate: updateSelectedDate,
+                      // updateSelectedDate: updateSelectedDate,
                     ),
                   SizedBox(height: 20),
                   Card(

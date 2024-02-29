@@ -10,8 +10,8 @@ import '../../../../style/theme.dart' as Style;
 
 class PmTitleContainer extends StatelessWidget {
   String? measure, subTitle, subText, selectedDate/*, selectedState*/;
-  final Function? selectDate;
-  final Function? updateSelectedDate;
+  final Function()? selectDate;
+  final Function()? updateSelectedDate;
 
   PmTitleContainer ({this.measure, this.subTitle, this.subText, this.selectedDate, /*this.selectedState,*/ this.selectDate, this.updateSelectedDate});
 
@@ -88,8 +88,8 @@ class PmTitleContainer extends StatelessWidget {
                         size: 25,
                       ),
                       color: Style.Colors.buttonColor,
-                      onPressed: selectDate as void Function()?
-                  ), onChanged: () {},
+                      onPressed: selectDate
+                  ), onChanged: (value) {},
                 ),
               ),
             ],
