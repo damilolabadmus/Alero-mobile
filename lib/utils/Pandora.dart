@@ -66,6 +66,25 @@ class Pandora {
     );
   }
 
+  /// logout user
+  static Future<void> logoutUser(BuildContext context) async {
+    var apiService = AleroAPIService();
+    var response;
+    try {
+      OneContext().showProgressIndicator();
+      response = await apiService.logoutUser();
+      OneContext().hideProgressIndicator();
+      if (response != null) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        OneContext().hideProgressIndicator();
+      }
+    } catch (error) {
+      print(error);
+      OneContext().hideProgressIndicator();
+    }
+  }
+
   //Internet Connection manager
   Future<bool> hasInternet() async {
     bool hasInternet = false;
@@ -189,6 +208,15 @@ class Pandora {
     } else {
       return input;
     }
+  }
+
+  /// Format month
+  static String formatMonthKey(String monthKey) {
+    DateTime date = DateTime.parse(monthKey.substring(0, 4) +
+        '-' +
+        monthKey.substring(4, 6) +
+        '-01');
+    return '\n${DateFormat.MMM().format(date)} ${DateFormat('y').format(date)}';
   }
 
   Future<void> saveToSharedPreferences(String key, String value) async {
