@@ -152,10 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.of(context)
             .pushNamed('/single-customer-view', arguments: firstName);
         break;
-      case 1:
-        Navigator.of(context)
-            .pushNamed('/performance-management', arguments: firstName);
-        break;
       case 2:
         isCallManagement == true ?
         Navigator.of(context)
@@ -163,10 +159,6 @@ class _HomeScreenState extends State<HomeScreen> {
         pandora.showToast('Coming Soon', context,
             MessageTypes.INFO.toString().split('.').last);
         break;
-        /*case 3:
-        Navigator.of(context)
-            .pushNamed('/concession-dashboard', arguments: firstName);
-        break;*/
       default:
         pandora.showToast('Coming Soon', context,
             MessageTypes.INFO.toString().split('.').last);
