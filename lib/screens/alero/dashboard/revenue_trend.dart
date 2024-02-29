@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:intl/intl.dart';
 
+import '../../../utils/Pandora.dart';
+
 class RevenueTrend extends StatefulWidget {
 
   @override
@@ -92,7 +94,7 @@ class _RevenueTrendState extends State<RevenueTrend> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RevenueItem(revenue: 'YTD Revenue',
-                      value: "${double. parse((ytdRevenue/kRevenueChartDivisor).toStringAsFixed(2))}b"),
+                      value: Pandora.chartValueFormat(ytdRevenue)),
                   RevenueItem(revenue: 'Assets', value: "${loansRevenue.toInt().toString()}%"),
                   RevenueItem(revenue: 'Liabilities', value: "${depositsRevenue.toInt().toString()}%"),
                   RevenueItem(revenue: 'Fees', value: "${commFeesRevenue.toInt().toString()}%"),

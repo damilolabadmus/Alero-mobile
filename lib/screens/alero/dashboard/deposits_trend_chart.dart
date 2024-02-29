@@ -9,6 +9,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
+import '../../../utils/Pandora.dart';
+
 
 class DepositsTrendChart extends StatefulWidget {
 
@@ -107,9 +109,9 @@ class _DepositsTrendChartState extends State<DepositsTrendChart> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            DepositsItem(depositLine1: 'Actual', depositLine2: 'Deposit', value: "${double. parse((actualDeposits/kDepositsDivisor).toStringAsFixed(2))}tr"),
+                            DepositsItem(depositLine1: 'Actual', depositLine2: 'Deposit', value: Pandora.chartValueFormat(actualDeposits)),
                             DepositsItem(depositLine1: ' ', depositLine2: 'DoD', value: actualDepositsChange.toString()),
-                            DepositsItem(depositLine1: 'Average', depositLine2: 'Deposit', value: "${double. parse((averageDeposits/kDepositsDivisor).toStringAsFixed(2))}tr"),
+                            DepositsItem(depositLine1: 'Average', depositLine2: 'Deposit', value: Pandora.chartValueFormat(averageDeposits)),
                             DepositsItem(depositLine1: ' ', depositLine2: 'DoD', value: averageDepositsChange.toString()),
                           ],
                         ),
