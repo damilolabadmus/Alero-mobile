@@ -1,5 +1,4 @@
 import 'dart:io' show Platform;
-import 'package:alero/models/performance/ProfitabilityReportReponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/call/call_management_page.dart';
 import 'package:alero/screens/alero/call/customer_bottom_navigation_bar.dart';
@@ -7,7 +6,6 @@ import 'package:alero/screens/alero/prospect/call_bio_data_text_field.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import '../../../utils/Pandora.dart';
 import 'package:alero/style/theme.dart' as Style;
 
 class ProspectBioDataInput extends StatefulWidget {
