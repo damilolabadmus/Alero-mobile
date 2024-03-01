@@ -1,6 +1,7 @@
 
 
 import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
@@ -18,35 +19,27 @@ class _CustomerBottomNavigationBarState extends State<CustomerBottomNavigationBa
       onTap: (int index) {
         switchPage(index, context);
       },
-      backgroundColor: Colors.lightBlue.shade50,
+      backgroundColor: Colors.blueGrey.shade50,
       items: [
         BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.all(6),
             child: SvgPicture.asset(
               'assets/customer/customer_pnd.svg',
+              height: 15,
             ),
           ),
           label: "Prospects",
-          // title: Text("Prospects",
-          //     style: TextStyle(
-          //         fontSize: 10.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
             padding: EdgeInsets.all(6),
             child: SvgPicture.asset(
               'assets/customer/profile_logout.svg',
+              height: 15,
             ),
           ),
           label: "Logout",
-          // title: Text("Logout",
-          //     style: TextStyle(
-          //         fontSize: 10.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
       ],
     );
@@ -70,24 +63,6 @@ class _CustomerBottomNavigationBarState extends State<CustomerBottomNavigationBa
   }
 
   void returnLogin(BuildContext context) {
-    logoutUser(context);
-  }
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
+    Pandora.logoutUser(context);
   }
 }

@@ -57,7 +57,7 @@ class _ProspectAddState extends State<ProspectAdd> with TickerProviderStateMixin
           "Prospects",
           style: TextStyle(
             color: Colors.lightBlue,
-            fontSize: 20.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.w700,
             fontFamily: 'Poppins-Regular',
           ),
@@ -69,7 +69,7 @@ class _ProspectAddState extends State<ProspectAdd> with TickerProviderStateMixin
             'Add new prospect or view existing prospects.',
             style: TextStyle(
               color: Style.Colors.blackTextColor.withOpacity(controller.value),
-              fontSize: 15.0,
+              fontSize: 13.0,
               fontWeight: FontWeight.w600,
               fontFamily: 'Poppins-Regular',
             ),),),
@@ -82,7 +82,7 @@ class _ProspectAddState extends State<ProspectAdd> with TickerProviderStateMixin
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: Colors.lightBlue,
-                fontSize: 18.0,
+                fontSize: 14.0,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Poppins-Regular',
               ),

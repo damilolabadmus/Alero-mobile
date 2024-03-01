@@ -36,7 +36,7 @@ class _CallManagementDashboardState extends State<CallManagementDashboard> {
                     Text('Dashboard',
                       style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 18.0,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins-Regular',
                       ),
@@ -48,7 +48,7 @@ class _CallManagementDashboardState extends State<CallManagementDashboard> {
                         'View all pipeline reports here.',
                         style: TextStyle(
                           color: Style.Colors.subBlackTextColor,
-                          fontSize: 15.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.w500,
                           fontFamily: 'Poppins-Regular',
                         ),),),],),),

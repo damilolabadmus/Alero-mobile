@@ -13,7 +13,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 import 'package:alero/style/theme.dart' as Style;
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class DealsAdd extends StatefulWidget {
@@ -125,27 +124,30 @@ class _DealsAddState extends State<DealsAdd> {
                         style: kDealsHeading,
                       ),
                     ),
-                    TextField(
-                        controller: _filterController,
-                        decoration: InputDecoration(
-                          fillColor: Colors.grey.shade300,
-                          filled: true,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              borderSide: BorderSide.none),
-                          suffixIcon: IconButton(
-                            icon: Icon(EvaIcons.searchOutline),
-                            color: Style.Colors.buttonColor,
-                            onPressed: () async {
-                              customerDetails = await apiService.searchCustomer(_filterController.text);
-                              myController.value = TextEditingValue(text: customerDetails!["customerName"]);
-                              isProspect = true;
-                              setState(() {});
-                            },
-                          ),
-                        )),
+                    SizedBox(
+                      height: 50,
+                      child: TextField(
+                          controller: _filterController,
+                          decoration: InputDecoration(
+                            fillColor: Colors.grey.shade200,
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide.none),
+                            suffixIcon: IconButton(
+                              icon: Icon(EvaIcons.searchOutline),
+                              color: Style.Colors.buttonColor,
+                              onPressed: () async {
+                                customerDetails = await apiService.searchCustomer(_filterController.text);
+                                myController.value = TextEditingValue(text: customerDetails!["customerName"]);
+                                isProspect = true;
+                                setState(() {});
+                              },
+                            ),
+                          )),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 8.0),
                       child: Text(
@@ -165,34 +167,37 @@ class _DealsAddState extends State<DealsAdd> {
                               style: kDealsHeading,
                             ),
                           ),
-                          TextFormField(
-                            onTap: () async {
-                              var _prospects = await apiService.getProspects();
-                              visible = true;
-                              setState(() {
-                                prospects = _prospects;
-                                prospectOnSearch = prospects!.result!.userProspects!.toList();
-                              });
-                            },
-                            readOnly: true,
-                            decoration: InputDecoration(
-                              fillColor: Colors.grey.shade300,
-                              filled: true,
-                              hintText: prospectName,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10.0),
-                                  ),
-                                  borderSide: BorderSide.none),
-                              suffixIcon: IconButton(
-                                icon: Icon(EvaIcons.searchOutline),
-                                color: Style.Colors.buttonColor,
-                                onPressed: () {
-                                  setState(() {
-                                    visible = false;
-                                    isProspect = true;
-                                  });
-                                },
+                          SizedBox(
+                            height: 50,
+                            child: TextFormField(
+                              onTap: () async {
+                                var _prospects = await apiService.getProspects();
+                                visible = true;
+                                setState(() {
+                                  prospects = _prospects;
+                                  prospectOnSearch = prospects!.result!.userProspects!.toList();
+                                });
+                              },
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                fillColor: Colors.grey.shade200,
+                                filled: true,
+                                hintText: prospectName,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10.0),
+                                    ),
+                                    borderSide: BorderSide.none),
+                                suffixIcon: IconButton(
+                                  icon: Icon(EvaIcons.searchOutline),
+                                  color: Style.Colors.buttonColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      visible = false;
+                                      isProspect = true;
+                                    });
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -269,7 +274,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 height: 10.0,
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -366,7 +371,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -399,7 +404,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -447,7 +452,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -481,7 +486,7 @@ class _DealsAddState extends State<DealsAdd> {
                               ),
                               prospectType != null
                                   ? Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(6.0),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
@@ -502,7 +507,7 @@ class _DealsAddState extends State<DealsAdd> {
                                   : currencyDropDownComponent(context, customerTypes, true),
                               currencies == null ? Text('') : currencyDropDownComponent(context, currencies, false),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -535,7 +540,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -568,7 +573,7 @@ class _DealsAddState extends State<DealsAdd> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(6.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -729,7 +734,7 @@ class _DealsAddState extends State<DealsAdd> {
           icon: Icon(
             Icons.arrow_back_ios,
             color: Style.Colors.blackTextColor,
-            size: 24,
+            size: 20,
           ),
         ),
         backgroundColor: Colors.lightBlue.shade100,
@@ -738,8 +743,8 @@ class _DealsAddState extends State<DealsAdd> {
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(
                 icon: Icon(Icons.home),
-                iconSize: 30.0,
-                color: Style.Colors.blackTextColor,
+                iconSize: 28.0,
+                color: Style.Colors.buttonColor,
                 onPressed: () {
                   Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
                 }),

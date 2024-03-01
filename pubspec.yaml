@@ -177,15 +177,18 @@ flutter:
     - assets/icons/music.png
     - assets/icons/performance.svg
     - assets/icons/person.svg
+    - assets/icons/profile_user.svg
+    - assets/icons/reports.svg
+    - assets/icons/search.svg
+    - assets/icons/shopping_bag.svg
     #    - assets/icons/profile_user.svg
     - assets/icons/reports.svg
     - assets/icons/search.svg
-    #    - assets/icons/shopping_bag.svg
+    - assets/icons/shopping_bag.svg
     - assets/icons/star.svg
     - assets/icons/video_call.svg
     - assets/icons/customer_pr.svg
     - assets/icons/nrff.svg
     - assets/icons/monthly_pr.svg
     - assets/icons/account_pr.svg
-
     - assets/icons/profile_user.svg

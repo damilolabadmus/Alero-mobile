@@ -77,14 +77,10 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
           child: LineChart(
             LineChartData(
               minX: 0,
-              maxX: 12,
+              maxX: bankRevenue!.length.toDouble() - 1,
               minY: -1.5,
               maxY: 2.1,
 
-              /*minX: 0,
-              maxX: 12,
-              minY: 0,
-              maxY: 1.4,*/
               titlesData: FlTitlesData(
                 show: yes,
                 bottomTitles: AxisTitles(
@@ -98,13 +94,7 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                       axisSide: AxisSide.bottom,
                       fitInside: SideTitleFitInsideData.fromTitleMeta(meta, distanceFromEdge: 10.0),
                     ),
-                    // rotateAngle: kRotateAngle,
                     showTitles: yes,
-                    // getTextStyles: (value) => kRevTitlesTextStyle,
-                    // getTitles: (value) {
-                    //   return bankRevenue[value.toInt()].periodName.toString();
-                    // },
-                    // margin: 10.0,
                   ),
                 ),
                 topTitles: AxisTitles(
@@ -138,8 +128,6 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                       .map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
                           bankRev!.revenueData! >= 100000000000 ? bankRev.revenueData! / kDepositsDivisor : bankRev.revenueData! / kRevenueChartDivisor))
                       .toList(),
-                  /*spots: bankRevenue.map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
-                      bankRev.revenueData/kRevenueChartDivisor)).toList(),*/
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

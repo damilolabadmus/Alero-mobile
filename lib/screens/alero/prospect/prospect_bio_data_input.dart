@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:alero/models/performance/ProfitabilityReportReponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/call/call_management_page.dart';
 import 'package:alero/screens/alero/call/customer_bottom_navigation_bar.dart';
@@ -51,7 +52,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
     return Scaffold(
       appBar: appBar(),
       body: Container(
-        color: Colors.blueGrey.shade50,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Form(
@@ -71,7 +72,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                           "Add New Prospect",
                           style: TextStyle(
                             color: Colors.lightBlue,
-                            fontSize: 18.0,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.w700,
                             fontFamily: 'Poppins-Regular',
                           ),
@@ -83,7 +84,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       "Enter prospect information to add a prospect.",
                       style: TextStyle(
                         color: Colors.black45,
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins-Regular',
                       ),
@@ -92,9 +93,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       height: 10.0,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
                             return 'Pls, enter prospect\'s name.';
@@ -111,9 +112,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         onChanged: (value) {
                           prospectAddress = value;
                         },
@@ -131,9 +132,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
@@ -149,9 +150,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (value) {
                           if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
@@ -169,9 +170,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                     getDropDownComponent(context, prospectTypes, false),
                     businessSegments == null ? Text('') : getDropDownComponent(context, businessSegments, true),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (String? value) {
                           if (value != null && value.isEmpty) {
                             return 'Pls, fill out this field.';
@@ -188,9 +189,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (String? value) {
                           if (value == null) return null;
                           if (value.isEmpty) {
@@ -213,9 +214,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         validator: (String? value) {
                           if (value == null) return null;
                           if (value.isEmpty) {
@@ -236,9 +237,9 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: CallTextField(
-                        fillColor: Colors.white,
+                        fillColor: Colors.blueGrey.shade50,
                         onChanged: (value) {
                           keyPromoterName = value;
                         },
@@ -289,10 +290,10 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
           icon: Icon(
             Icons.arrow_back_ios,
             color: Style.Colors.blackTextColor,
-            size: 24,
+            size: 20,
           ),
         ),
-        backgroundColor: Colors.lightBlue.shade100,
+        backgroundColor: Colors.lightBlue.shade50,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -339,11 +340,11 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
     'Non individual',
   ];
 
-  Text getValue(String? value) {
+  Text getValue(String? value, bool isBusinessSeg) {
     if (value == null || value.isEmpty) {
-      return Text('Select One', style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text(isBusinessSeg ? 'Business Segment' : 'Product Type', style: TextStyle(fontFamily: 'Poppins-Regular', fontWeight: FontWeight.w600, fontSize: 14));
     } else {
-      return Text(value, style: TextStyle(height: 0.4, fontFamily: 'Poppins-Regular'));
+      return Text(value, style: TextStyle(fontFamily: 'Poppins-Regular'));
     }
   }
 
@@ -355,7 +356,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
         iconEnabledColor: Colors.lightBlue,
         iconSize: 37,
         dropdownColor: Colors.white,
-        hint: getValue(isBuissnessSeg ? businessSegment : prospectType),
+        hint: getValue(isBuissnessSeg ? businessSegment : prospectType, isBuissnessSeg),
         items: dropDownList.map(buildBusinessSegmentItem).toList(),
         onChanged: (value) {
           setState(() {
@@ -394,10 +395,10 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
 
   Widget getDropDownComponent(BuildContext context, List? dropDownList, bool isBuissnessSeg) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-      padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+      margin: EdgeInsets.all(12),
+      padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.blueGrey.shade50,
         borderRadius: BorderRadius.all(
           Radius.circular(10.0),
         ),
@@ -405,11 +406,6 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            isBuissnessSeg ? 'Business Segment' : 'Prospect Type',
-            style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.w700, fontSize: 15),
-          ),
-          SizedBox(height: 5),
           Platform.isIOS ? iOSPicker(dropDownList as List<String>, isBuissnessSeg) : androidDropDown(dropDownList as List<String>, isBuissnessSeg),
         ],
       ),
@@ -425,7 +421,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
           children: [
             Text(
               item,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 5, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+              style: TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
             ),
           ],
         ),
@@ -436,7 +432,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
         value: item,
         child: Text(
           item,
-          style: TextStyle(height: 0.2, fontWeight: FontWeight.w400, fontSize: 20, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, fontFamily: 'Poppins-Regular', fontStyle: FontStyle.italic),
         ),
       );
     }

@@ -6,8 +6,10 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:one_context/one_context.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../network/AleroAPIService.dart';
 import 'Global.dart';
 
 class Pandora {
@@ -78,38 +80,6 @@ class Pandora {
     return hasInternet;
   }
 
-  /*static String moneyFormat1(double price) {
-    String currency;
-    final formatCurrency = new NumberFormat.currency(
-        decimalDigits: 2, name: "", locale: "en_ZA");
-    if (price > 1000) return currency = formatCurrency.format(price).toString();
-    return currency = price.toString();
-  }*/
-
-
-/*
-static String moneyFormat2(double price) {
-  String currency;
-    // final formatCurrency = new NumberFormat('##,###,###.0#', 'en_ZA');
-    final formatCurrency = new NumberFormat('#,##0.00', 'en_ZA');
-    if (price > 1000) return currency = formatCurrency.format(price).toString();
-    return currency = price.toString();
-}
-*/
-
-
-  /*static String moneyFormat3(double price) {
-    String thousandsSeparator = ',';
-    String decimalSeparator = '.';
-    String formatString = '#,##0.00';
-
-    formatString = formatString.replaceAll(',', thousandsSeparator);
-    formatString = formatString.replaceAll('.', decimalSeparator);
-
-    NumberFormat formatter = NumberFormat(formatString);
-    return formatter.format(price);
-  }*/
-
   static String dynamicMoneyFormat(dynamic value) {
     if (value is num) {
       String thousandsSeparator = ',';
@@ -161,6 +131,30 @@ static String moneyFormat2(double price) {
     }
     return formattedPrice;
   }
+
+  static String itemsFormat(double input) {
+    int inputValue = input.toInt();
+    if (inputValue >= 1000000000 && inputValue < 10000000000) {
+      return '₦ ${(inputValue / 1000000000).toStringAsFixed(1)} b';
+    } else if (inputValue >= 10000000000 && inputValue < 1000000000000) {
+      return '₦ ${(inputValue / 1000000000).toStringAsFixed(0)} b';
+    } else if (inputValue >= 1000000000000 && inputValue < 10000000000000) {
+      return '₦ ${(inputValue / 1000000000000).toStringAsFixed(1)} t';
+    } else if (inputValue >= 10000000000000) {
+      return '₦ ${(inputValue / 1000000000000).toStringAsFixed(0)} t';
+    } else if (inputValue >= 1000000 && inputValue < 10000000) {
+      return '₦ ${(inputValue / 1000000).toStringAsFixed(1)} m';
+    } else if (inputValue >= 10000000 && inputValue < 1000000000) {
+      return '₦ ${(inputValue / 1000000).toStringAsFixed(0)} m';
+    } else if (inputValue >= 1000 && inputValue < 1000000) {
+      return '₦ ${(inputValue).toStringAsFixed(0)}';
+    } else if (inputValue >= 1000000000000000) {
+      return '₦ ${(inputValue / 1000000000000000).toStringAsFixed(1)} q';
+    } else {
+      return '₦ $inputValue';
+    }
+  }
+
 
 
   static String dateFormat(DateTime date) {
@@ -220,6 +214,24 @@ static String moneyFormat2(double price) {
       return s.substring(subString);
     }
     return s;
+  }
+
+  static logoutUser(BuildContext context) async {
+    var apiService = AleroAPIService();
+    var response;
+    OneContext().showProgressIndicator();
+    try {
+      OneContext().hideProgressIndicator();
+      response = await apiService.logoutUser();
+      if (response != null) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        OneContext().hideProgressIndicator();
+      }
+    } catch (error) {
+      print(error);
+      OneContext().hideProgressIndicator();
+    }
   }
 
   logFirebaseEvent(String action, String endpoint, String event) {

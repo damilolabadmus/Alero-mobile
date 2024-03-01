@@ -19,7 +19,6 @@ class TurnAroundTimeChart extends StatefulWidget {
 class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
   TooltipBehavior? _tooltipBehavior;
   var apiService = AleroAPIService();
-  final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   int count = 0;
   String turnAroundTime = '';
   List<TurnAroundTimeResponse?>? tat;
@@ -61,7 +60,7 @@ class _TurnAroundTimeChartState extends State<TurnAroundTimeChart> {
             child: SfCartesianChart(
               title: ChartTitle(
                 text: 'Turnaround Time (Completed Report)', textStyle: kTrendTextStyle.copyWith(
-                fontSize: 16,),
+                fontSize: 14),
                 alignment: ChartAlignment.near,),
               primaryXAxis: CategoryAxis(
                   labelRotation: 300,
