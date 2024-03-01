@@ -1,12 +1,13 @@
-
-
 import 'package:alero/dummy/dummy.dart';
 import 'package:alero/screens/alero/components/dashboard_item.dart';
+import 'package:alero/screens/alero/my_balance_sheet/bloc/balance_sheet_bloc/balance_sheet_bloc.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../my_balance_sheet/bloc/balance_sheet_nav_bloc/balance_sheet_nav_bloc.dart';
+import '../my_balance_sheet/bloc/log_out_bloc/log_out_bloc.dart';
 
 class PerformanceManagementDashboard extends StatefulWidget {
   const PerformanceManagementDashboard({Key? key}) : super(key: key);
@@ -41,7 +42,8 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 15),
-                  Text('Dashboard',
+                  Text(
+                    'Dashboard',
                     style: TextStyle(
                       color: Colors.lightBlue,
                       fontSize: 18.0,
@@ -52,15 +54,21 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                   SizedBox(height: 5.0),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Text(
-                        'Welcome, below are different reports to select from.',
-                        style: kBankItemTitle.copyWith(fontSize: 15)),),
+                    child: Text('Welcome, below are different reports to select from.', style: kBankItemTitle.copyWith(fontSize: 15)),
+                  ),
                   SizedBox(height: 20.0),
-                  GridView.count(
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 3,
-                    shrinkWrap: true,
-                    children: dashboardItem,
+                  MultiBlocProvider(
+                    providers: [
+                      BlocProvider<BalanceSheetNavBloc>(create: (context) => BalanceSheetNavBloc()),
+                      BlocProvider<BalanceSheetBloc>(create: (context) => BalanceSheetBloc()),
+                      BlocProvider<LogoutBloc>(create: (context) => LogoutBloc()),
+                    ],
+                    child: GridView.count(
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount: 3,
+                      shrinkWrap: true,
+                      children: dashboardItem,
+                    ),
                   ),
                 ],
               ),
@@ -77,7 +85,7 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
 
     var dashboardItems = performanceDashboardMenu;
     generateColors(dashboardItems.length);
-    
+
     int i = 0;
     dashboardItems.forEach((element) {
       _dashboardItem.add(DashboardItemAlign(
@@ -104,12 +112,10 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
         Navigator.of(context).pushNamed('/profitability-reports', arguments: firstName);
         break;
       case 2:
-        Navigator.of(context)
-            .pushNamed('/cost-allocation', arguments: firstName);
+        Navigator.of(context).pushNamed('/cost-allocation', arguments: firstName);
         break;
       default:
-        pandora.showToast('Coming soon...', context,
-            MessageTypes.INFO.toString().split('.').last);
+        pandora.showToast('Coming soon...', context, MessageTypes.INFO.toString().split('.').last);
         break;
     }
   }
