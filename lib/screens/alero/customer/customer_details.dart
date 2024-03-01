@@ -10,7 +10,6 @@ import '../../../network/AleroAPIService.dart';
 import '../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 import 'package:container_tab_indicator/container_tab_indicator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/templates_shimmer_widget.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,8 +17,6 @@ import '../search/shimmer_loading_widget.dart';
 import 'biodata/cooporate_bio_data.dart';
 import 'biodata/customer_bio_data.dart';
 import 'overview/customer_overview.dart';
-import 'trends/cooporate_trends.dart';
-import 'trends/customer_trends.dart';
 
 class CustomerDetails extends StatefulWidget {
   final String groupId;
@@ -248,8 +245,6 @@ class _CustomerDetailsState extends State<CustomerDetails> {
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context, false);
-          // return Future.value(false);
-          //returnLanding(context);
         },
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -275,13 +270,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
               'assets/customer/profile_dashboard.svg',
             ),
           ),
-          // ignore: deprecated_member_use
           label: "Dashboard",
-          // title: Text("Dashboard",
-          //     style: TextStyle(
-          //         fontSize: 10.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -289,13 +278,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
             child: SvgPicture.asset('assets/customer/profile_search.svg',
             ),
           ),
-          // ignore: deprecated_member_use
           label: "Search",
-          // title: Text("Search",
-          //     style: TextStyle(
-          //         fontSize: 10.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -303,13 +286,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
             child: SvgPicture.asset('assets/customer/profile_logout.svg',
             ),
           ),
-          // ignore: deprecated_member_use
           label: "Logout",
-          // title: Text("Logout",
-          //     style: TextStyle(
-          //         fontSize: 10.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
       ],
     );

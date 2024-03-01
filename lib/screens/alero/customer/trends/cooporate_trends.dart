@@ -53,7 +53,7 @@ class _CooporateTrendsState extends State<CooporateTrends> {
 
   void loadData() async {
     if (data == null) {
-      data = widget.customerDetails;
+      data = widget.customerDetails; /// Check here
       await Future.delayed(const Duration(seconds: 2), () {
         loadData();
       });

@@ -105,32 +105,6 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
     }
   }
 
-/*
-  Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
-      context: context,
-      initialDate: startDate,
-      firstDate: DateTime(1990),
-      lastDate: DateTime.now(),
-    );
-    if (_datePicker != null && DateFormat('yyyy-MM').format(_datePicker) != selectedDate) {
-      String newSelectedDate = DateFormat('yyyy-MM').format(_datePicker);
-      setState(() {
-        selectedDate = newSelectedDate;
-        print('THE NRFF DATE = $selectedDate');
-
-        List<String> dateParts = selectedDate.split('-');
-        int year = int.parse(dateParts[0]);
-        int month = int.parse(dateParts[1]);
-        DateTime dateTime = DateTime(year, month);
-        dateSelected = DateFormat('MMM yyyy').format(dateTime);
-
-        fetchData();
-      });
-    }
-  }
-*/
-
   List<String>? regionList;
   Future<List<String>?> getRegionList() async {
     List<String>? _listOfRegions = await apiService.getRegionList();
@@ -260,7 +234,7 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
     return PageStorage(
       bucket: PageStorageBucket(),
       child: isInitialLoading
-          ? Center(child: CircularProgressIndicator()) // Show loading indicator for the initial load
+          ? Center(child: CircularProgressIndicator())
           : Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: CallAppBar(),

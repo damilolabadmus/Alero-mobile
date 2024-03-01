@@ -9,8 +9,9 @@ import 'package:one_context/one_context.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../network/AleroAPIService.dart';
 import 'Global.dart';
+
 class Pandora {
-//Snackbar Conditions
+/// Snackbar Conditions
   void showToast(String message, BuildContext context, String messageType) {
     print(messageType);
     switch (messageType) {
@@ -28,7 +29,8 @@ class Pandora {
         break;
     }
   }
-//Snackbar Renderer
+
+/// Snackbar Renderer
   void displayToast(String message, BuildContext context, Color color) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
@@ -61,7 +63,8 @@ class Pandora {
       ),
     );
   }
-//Internet Connection manager
+
+/// Internet Connection manager
   Future<bool> hasInternet() async {
     bool hasInternet = false;
     try {
@@ -97,6 +100,8 @@ class Pandora {
 // return 'Invalid Input;
     }
   }
+
+
   static String moneyFormat(double price) {
     String thousandsSeparator = ',';
     String decimalSeparator = '.';
@@ -115,6 +120,8 @@ class Pandora {
     }
     return formattedPrice;
   }
+
+
   static String itemsFormat(double input) {
     int inputValue = input.toInt();
     if (inputValue >= 1000000000 && inputValue < 10000000000) {
@@ -137,6 +144,7 @@ class Pandora {
       return '₦ $inputValue';
     }
   }
+
   static String chartValueFormat(double input) {
     double inputValue = input.toDouble();
     if (inputValue >= 1000000000 && inputValue < 10000000000) {
@@ -176,6 +184,7 @@ class Pandora {
     DateTimeFormat.format(date, format: DateTimeFormats.americanAbbr);
     return processedDate = processedDate.substring(0, processedDate.length - 8);
   }
+
   static String? keyItemFormat(String value) {
     String modifiedString;
     int firstSpaceIndex = value.indexOf(' ');
@@ -187,6 +196,7 @@ class Pandora {
       print("String doesn't contain a second space.");
     }
   }
+
   static String replaceUnderscoreFormat(String value) {
     String combinedValue;
     combinedValue = value.replaceAll('_', ' ');
@@ -201,6 +211,7 @@ class Pandora {
       return input;
     }
   }
+
   /// Format month
   static String formatMonthKey(String monthKey) {
     DateTime date = DateTime.parse(monthKey.substring(0, 4) +
@@ -209,27 +220,32 @@ class Pandora {
         '-01');
     return '\n${DateFormat.MMM().format(date)} ${DateFormat('y').format(date)}';
   }
+
   Future<void> saveToSharedPreferences(String key, String value) async {
     var pref = await SharedPreferences.getInstance();
     pref.setString(key, value);
   }
+
   Future<String> getFromSharedPreferences(String key) async {
     var pref = await SharedPreferences.getInstance();
     var value = pref.getString(key) ?? '';
     return value;
   }
+
   static String reverse(String s) {
     if (s.isNotEmpty) {
       return s.split('').reversed.join('');
     }
     return s;
   }
+
   static String getStringsAfter(String s, int subString) {
     if (s.isNotEmpty) {
       return s.substring(subString);
     }
     return s;
   }
+
   static logoutUser(BuildContext context) async {
     var apiService = AleroAPIService();
     var response;
@@ -247,6 +263,7 @@ class Pandora {
       OneContext().hideProgressIndicator();
     }
   }
+
   logFirebaseEvent(String action, String endpoint, String event) {
     GetIt.I<FirebaseAnalytics>().logEvent(
       name: Global.USER_NAME!,
@@ -259,5 +276,6 @@ class Pandora {
     );
   }
 }
+
 enum MessageTypes { SUCCESS, FAILED, WARNING, INFO }
 enum ExceptionTypes { NODATAEXCEPTION, UNKNOWN, WARNING, INFO }
