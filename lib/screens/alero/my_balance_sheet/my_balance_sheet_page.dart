@@ -66,7 +66,7 @@ class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProv
   @override
   void initState() {
     super.initState();
-
+    context.read<BalanceSheetBloc>().add(BalanceSheetBlocEvent.loadData());
     context.read<BalanceSheetNavBloc>().add(BalanceSheetNavEvent.activeChanged(false));
     context.read<BalanceSheetNavBloc>().add(BalanceSheetNavEvent.isActiveChanged(true));
 
