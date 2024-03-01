@@ -72,6 +72,10 @@ TODO: How to use:
     - Code Review: The Alero Mobile development team will review your code. Be open to feedback, make necessary adjustments, and iterate on your changes based on the review
     - Approval and Merging: After the code review process, if your changes meet the project's standards, your PR will be approved and merged into the master branch
 
+# Links
+ - Google Play Console: https://play.google.com/console/u/0/signup
+ - Apple Developer Console: https://developer.apple.com/sign-in-with-apple
+
 # Roadmap
 The roadmap outlines the strategic plan and vision for the ongoing and future development of Alero Mobile. It serves as a dynamic guide, detailing upcoming features, enhancements, and milestones that the project aims to achieve. The roadmap provides a clear trajectory for the evolution of Alero Mobile, helping stakeholders, contributors, and users understand the direction of the project and the exciting developments to come
 
@@ -79,7 +83,7 @@ The roadmap outlines the strategic plan and vision for the ongoing and future de
 - The code is connected to firebase, which helps connect to Google Analytics which helps to track the user interactions and traffic
 - Flutter Plugin
 
-# Troubleshooting and Support                                                                                        (You can remove this when the login issue is resolved)
+# Troubleshooting and Support                                                                                       
 The points below will assist users in resolving common issues or challenges they may encounter while using Alero Mobile
 For additional assistance, please refer to the specified channels for prompt and effective support
 1. Unable to Access Alero Mobile:
