@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import '../../../../style/theme.dart' as Style;
 
 class CprSearchField extends StatefulWidget {
-  final Function(bool query) searchCprCallback;
-
-  CprSearchField({required this.searchCprCallback});
+  CprSearchField();
 
   @override
   State<CprSearchField> createState() => _CprSearchFieldState();
@@ -90,7 +88,6 @@ class _CprSearchFieldState extends State<CprSearchField> {
                       onTap: () {
                         setState(() {
                           isSearched = true;
-                          widget.searchCprCallback(isSearched);
                         });
 
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>

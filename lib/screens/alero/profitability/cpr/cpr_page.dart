@@ -17,30 +17,17 @@ class CustomerProfitabilityReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CprDataBloc(),
+      create: (context) => CprDataBloc()..add(CprDataEvent.fetchData()),
       child: _CustomerProfitabilityReportPage(searchQuery: searchQuery),
     );
   }
 }
 
-class _CustomerProfitabilityReportPage extends StatefulWidget {
+class _CustomerProfitabilityReportPage extends StatelessWidget {
   final String? searchQuery;
+  final List<String> tabTitles = ["Top Customer", "Bottom Customer"];
 
-  _CustomerProfitabilityReportPage({Key? key, required this.searchQuery}) : super(key: key);
-
-  @override
-  State<_CustomerProfitabilityReportPage> createState() => _CustomerProfitabilityReportPageState();
-}
-
-class _CustomerProfitabilityReportPageState extends State<_CustomerProfitabilityReportPage> {
-  List<String> tabTitles = ["Top Customer", "Bottom Customer"];
-  bool? isSearchCustomer;
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<CprDataBloc>().add(CprDataEvent.fetchData());
-  }
+  _CustomerProfitabilityReportPage({Key? key, this.searchQuery}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +61,7 @@ class _CustomerProfitabilityReportPageState extends State<_CustomerProfitability
                             ),
                           ),
                           SizedBox(height: 5),
-                          CprSearchField(searchCprCallback: (query) {
-                            setState(() {
-                              isSearchCustomer = query;
-                            });
-                          }),
+                          CprSearchField(),
                           SizedBox(height: 2),
                           cprDataTabs(cprTopData, cprBottomData),
                         ],
