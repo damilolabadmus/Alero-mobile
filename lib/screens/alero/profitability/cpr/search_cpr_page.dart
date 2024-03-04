@@ -89,7 +89,7 @@ class _SearchCprPageState extends State<SearchCprPage> {
           ),
         ),
       ),
-    bottomNavigationBar: CprBottomNavigationBar(cprDataNotNull: widget.searchedCprData == null ? false : true));
+    bottomNavigationBar: CprBottomNavigationBar());
   }
 }
 
