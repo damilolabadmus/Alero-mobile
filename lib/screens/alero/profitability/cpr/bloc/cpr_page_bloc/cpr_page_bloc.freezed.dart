@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'cpr_data_bloc.dart';
+part of 'cpr_page_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CprDataState {
+mixin _$CprPageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -73,16 +73,16 @@ mixin _$CprDataState {
 }
 
 /// @nodoc
-abstract class $CprDataStateCopyWith<$Res> {
-  factory $CprDataStateCopyWith(
-          CprDataState value, $Res Function(CprDataState) then) =
-      _$CprDataStateCopyWithImpl<$Res, CprDataState>;
+abstract class $CprPageStateCopyWith<$Res> {
+  factory $CprPageStateCopyWith(
+          CprPageState value, $Res Function(CprPageState) then) =
+      _$CprPageStateCopyWithImpl<$Res, CprPageState>;
 }
 
 /// @nodoc
-class _$CprDataStateCopyWithImpl<$Res, $Val extends CprDataState>
-    implements $CprDataStateCopyWith<$Res> {
-  _$CprDataStateCopyWithImpl(this._value, this._then);
+class _$CprPageStateCopyWithImpl<$Res, $Val extends CprPageState>
+    implements $CprPageStateCopyWith<$Res> {
+  _$CprPageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -99,7 +99,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$CprDataStateCopyWithImpl<$Res, _$_Initial>
+    extends _$CprPageStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -112,7 +112,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'CprDataState.initial()';
+    return 'CprPageState.initial()';
   }
 
   @override
@@ -203,7 +203,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements CprDataState {
+abstract class _Initial implements CprPageState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -216,7 +216,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$CprDataStateCopyWithImpl<$Res, _$_Loading>
+    extends _$CprPageStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -229,7 +229,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'CprDataState.loading()';
+    return 'CprPageState.loading()';
   }
 
   @override
@@ -320,7 +320,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements CprDataState {
+abstract class _Loading implements CprPageState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -334,7 +334,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$CprDataStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$CprPageStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -384,7 +384,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'CprDataState.loaded(topData: $topData, bottomData: $bottomData)';
+    return 'CprPageState.loaded(topData: $topData, bottomData: $bottomData)';
   }
 
   @override
@@ -488,7 +488,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements CprDataState {
+abstract class _Loaded implements CprPageState {
   const factory _Loaded(
           final List<CprResponse> topData, final List<CprResponse> bottomData) =
       _$_Loaded;
@@ -510,7 +510,7 @@ abstract class _$$_ErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$CprDataStateCopyWithImpl<$Res, _$_Error>
+    extends _$CprPageStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
@@ -539,7 +539,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'CprDataState.error(message: $message)';
+    return 'CprPageState.error(message: $message)';
   }
 
   @override
@@ -638,7 +638,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements CprDataState {
+abstract class _Error implements CprPageState {
   const factory _Error(final String message) = _$_Error;
 
   String get message;
@@ -648,7 +648,7 @@ abstract class _Error implements CprDataState {
 }
 
 /// @nodoc
-mixin _$CprDataEvent {
+mixin _$CprPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchData,
@@ -684,16 +684,16 @@ mixin _$CprDataEvent {
 }
 
 /// @nodoc
-abstract class $CprDataEventCopyWith<$Res> {
-  factory $CprDataEventCopyWith(
-          CprDataEvent value, $Res Function(CprDataEvent) then) =
-      _$CprDataEventCopyWithImpl<$Res, CprDataEvent>;
+abstract class $CprPageEventCopyWith<$Res> {
+  factory $CprPageEventCopyWith(
+          CprPageEvent value, $Res Function(CprPageEvent) then) =
+      _$CprPageEventCopyWithImpl<$Res, CprPageEvent>;
 }
 
 /// @nodoc
-class _$CprDataEventCopyWithImpl<$Res, $Val extends CprDataEvent>
-    implements $CprDataEventCopyWith<$Res> {
-  _$CprDataEventCopyWithImpl(this._value, this._then);
+class _$CprPageEventCopyWithImpl<$Res, $Val extends CprPageEvent>
+    implements $CprPageEventCopyWith<$Res> {
+  _$CprPageEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -710,7 +710,7 @@ abstract class _$$_FetchDataCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FetchDataCopyWithImpl<$Res>
-    extends _$CprDataEventCopyWithImpl<$Res, _$_FetchData>
+    extends _$CprPageEventCopyWithImpl<$Res, _$_FetchData>
     implements _$$_FetchDataCopyWith<$Res> {
   __$$_FetchDataCopyWithImpl(
       _$_FetchData _value, $Res Function(_$_FetchData) _then)
@@ -724,7 +724,7 @@ class _$_FetchData implements _FetchData {
 
   @override
   String toString() {
-    return 'CprDataEvent.fetchData()';
+    return 'CprPageEvent.fetchData()';
   }
 
   @override
@@ -793,6 +793,6 @@ class _$_FetchData implements _FetchData {
   }
 }
 
-abstract class _FetchData implements CprDataEvent {
+abstract class _FetchData implements CprPageEvent {
   const factory _FetchData() = _$_FetchData;
 }

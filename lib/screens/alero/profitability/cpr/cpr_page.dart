@@ -1,5 +1,4 @@
 import 'package:alero/models/performance/CprResponse.dart';
-import 'package:alero/screens/alero/profitability/cpr/bloc/cpr_data_bloc/cpr_data_bloc.dart';
 import 'package:alero/screens/alero/profitability/cpr/cpr_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/profitability/cpr/cpr_dashboard_table_container.dart';
 import 'package:container_tab_indicator/container_tab_indicator.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../profitability_app_bar.dart';
+import 'bloc/cpr_page_bloc/cpr_page_bloc.dart';
 import 'cpr_search_field.dart';
 
 class CustomerProfitabilityReportPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class CustomerProfitabilityReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CprDataBloc()..add(CprDataEvent.fetchData()),
+      create: (context) => CprPageBloc()..add(CprPageEvent.fetchData()),
       child: _CustomerProfitabilityReportPage(searchQuery: searchQuery),
     );
   }
@@ -31,7 +31,7 @@ class _CustomerProfitabilityReportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CprDataBloc, CprDataState>(
+    return BlocBuilder<CprPageBloc, CprPageState>(
       builder: (context, state) {
         return Scaffold(
             resizeToAvoidBottomInset: false,
