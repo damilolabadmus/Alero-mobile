@@ -57,18 +57,11 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                     child: Text('Welcome, below are different reports to select from.', style: kBankItemTitle.copyWith(fontSize: 15)),
                   ),
                   SizedBox(height: 20.0),
-                  MultiBlocProvider(
-                    providers: [
-                      BlocProvider<BalanceSheetNavBloc>(create: (context) => BalanceSheetNavBloc()),
-                      BlocProvider<BalanceSheetBloc>(create: (context) => BalanceSheetBloc()),
-                      BlocProvider<LogoutBloc>(create: (context) => LogoutBloc()),
-                    ],
-                    child: GridView.count(
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 3,
-                      shrinkWrap: true,
-                      children: dashboardItem,
-                    ),
+                  GridView.count(
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 3,
+                    shrinkWrap: true,
+                    children: dashboardItem,
                   ),
                 ],
               ),
