@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../models/customer/CompletenessAndValidityData.dart';
 import '../../repository/data_completeness_and_validity_repository.dart';
 
 part 'data_completeness_bloc.freezed.dart';
@@ -9,7 +10,7 @@ part 'data_completeness_bloc.freezed.dart';
 abstract class DataCompletenessState with _$DataCompletenessState {
   const factory DataCompletenessState.initial() = _Initial;
   const factory DataCompletenessState.loading() = _Loading;
-  const factory DataCompletenessState.loaded(AggregatedCAndVData data) = _Loaded;
+  const factory DataCompletenessState.loaded(List<CompletenessAndValidityData?> data) = _Loaded;
   const factory DataCompletenessState.error(String message) = _Error;
 }
 

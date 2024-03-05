@@ -8,24 +8,24 @@ class DataCompletenessAndValidityRepository {
 
   DataCompletenessAndValidityRepository({required this.apiService});
 
-  Future<AggregatedCAndVData> getDataCompletenessAndValidity() async {
+  Future<List<CompletenessAndValidityData?>> getDataCompletenessAndValidity() async {
     return await this._asyncMemoizer.runOnce(() async {
-      var data = await apiService.getDataCompletenessAndValidity() as List<CompletenessAndValidityData?>?;
-      String workflowStatus = '';
-      int incompleteDataCount = 0;
-      int invalidDataCount = 0;
+      var data = await apiService.getDataCompletenessAndValidity() as List<CompletenessAndValidityData?>;
+      List<CompletenessAndValidityData?> cavData = [];
 
-      data?.forEach((element) {
-        workflowStatus += element!.workflowStatus!;
-        incompleteDataCount += element.incompleteDataCount!;
-        invalidDataCount += element.invalidDataCount!;
-      });
+      if (data.length == 0) {
+        cavData.add(CompletenessAndValidityData(
+          workflowStatus: '',
+          incompleteDataCount: 0,
+          invalidDataCount: 0,
+        ));
+      } else {
+        data.forEach((element) {
+          cavData.add(element);
+        });
+      }
 
-      return AggregatedCAndVData(
-        workflowStatus: workflowStatus,
-        incompleteDataCount: incompleteDataCount,
-        invalidDataCount: invalidDataCount,
-      );
+      return cavData;
     });
   }
 }

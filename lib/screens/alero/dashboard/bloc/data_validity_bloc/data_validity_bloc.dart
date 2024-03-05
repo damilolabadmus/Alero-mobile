@@ -1,3 +1,4 @@
+import 'package:alero/models/customer/CompletenessAndValidityData.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,7 @@ part 'data_validity_bloc.freezed.dart';
 abstract class DataValidityState with _$DataValidityState {
   const factory DataValidityState.initial() = _Initial;
   const factory DataValidityState.loading() = _Loading;
-  const factory DataValidityState.loaded(AggregatedCAndVData data) = _Loaded;
+  const factory DataValidityState.loaded(List<CompletenessAndValidityData?> data) = _Loaded;
   const factory DataValidityState.error(String message) = _Error;
 }
 

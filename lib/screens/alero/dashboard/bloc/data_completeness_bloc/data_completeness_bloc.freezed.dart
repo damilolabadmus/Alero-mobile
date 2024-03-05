@@ -20,7 +20,7 @@ mixin _$DataCompletenessState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AggregatedCAndVData data) loaded,
+    required TResult Function(List<CompletenessAndValidityData?> data) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$DataCompletenessState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AggregatedCAndVData data)? loaded,
+    TResult? Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$DataCompletenessState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AggregatedCAndVData data)? loaded,
+    TResult Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AggregatedCAndVData data) loaded,
+    required TResult Function(List<CompletenessAndValidityData?> data) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AggregatedCAndVData data)? loaded,
+    TResult? Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AggregatedCAndVData data)? loaded,
+    TResult Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -239,7 +239,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AggregatedCAndVData data) loaded,
+    required TResult Function(List<CompletenessAndValidityData?> data) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -250,7 +250,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AggregatedCAndVData data)? loaded,
+    TResult? Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -261,7 +261,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AggregatedCAndVData data)? loaded,
+    TResult Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -318,7 +318,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({AggregatedCAndVData data});
+  $Res call({List<CompletenessAndValidityData?> data});
 }
 
 /// @nodoc
@@ -335,9 +335,9 @@ class __$$_LoadedCopyWithImpl<$Res>
   }) {
     return _then(_$_Loaded(
       null == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as AggregatedCAndVData,
+              as List<CompletenessAndValidityData?>,
     ));
   }
 }
@@ -345,10 +345,15 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.data);
+  const _$_Loaded(final List<CompletenessAndValidityData?> data) : _data = data;
 
+  final List<CompletenessAndValidityData?> _data;
   @override
-  final AggregatedCAndVData data;
+  List<CompletenessAndValidityData?> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
@@ -360,11 +365,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -377,7 +383,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AggregatedCAndVData data) loaded,
+    required TResult Function(List<CompletenessAndValidityData?> data) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(data);
@@ -388,7 +394,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AggregatedCAndVData data)? loaded,
+    TResult? Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(data);
@@ -399,7 +405,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AggregatedCAndVData data)? loaded,
+    TResult Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -448,9 +454,10 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements DataCompletenessState {
-  const factory _Loaded(final AggregatedCAndVData data) = _$_Loaded;
+  const factory _Loaded(final List<CompletenessAndValidityData?> data) =
+      _$_Loaded;
 
-  AggregatedCAndVData get data;
+  List<CompletenessAndValidityData?> get data;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -520,7 +527,7 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AggregatedCAndVData data) loaded,
+    required TResult Function(List<CompletenessAndValidityData?> data) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -531,7 +538,7 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AggregatedCAndVData data)? loaded,
+    TResult? Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -542,7 +549,7 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AggregatedCAndVData data)? loaded,
+    TResult Function(List<CompletenessAndValidityData?> data)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

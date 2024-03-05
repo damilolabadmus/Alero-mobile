@@ -14,10 +14,6 @@ class CustomerChannelsUsageRepository {
       var result = await apiService.getBankTouchPoint();
       List<TouchPointData?> ccData = [];
       List<TouchPointData?> channels = result as List<TouchPointData?>;
-      String channel = '';
-      double averageSpend = 0.0;
-      double volumeSpend = 0.0;
-      int transactionChannelCount = 0;
 
       if (channels.length == 0) {
         ccData.add(TouchPointData(
@@ -31,13 +27,7 @@ class CustomerChannelsUsageRepository {
           ccData.add(usage);
         });
       }
-      for (int i = 0; i < ccData.length; i++) {
-        channel = channel + ccData[i]!.channel!;
-        averageSpend = averageSpend + ccData[i]!.averageSpend!;
-        volumeSpend = volumeSpend + ccData[i]!.volumeSpend!;
-        transactionChannelCount = transactionChannelCount + ccData[i]!.transactionChannelCount!;
-      }
-      return channels;
+      return ccData;
     });
   }
 }

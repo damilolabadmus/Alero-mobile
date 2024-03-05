@@ -60,7 +60,7 @@ class _DataValidityState extends State<DataValidity> {
     );
   }
 
-  Widget _buildChart(data) {
+  Widget _buildChart(List<CompletenessAndValidityData?> data) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: Card(
