@@ -17,6 +17,7 @@ class CprPageState with _$CprPageState {
 @freezed
 class CprPageEvent with _$CprPageEvent {
   const factory CprPageEvent.fetchData() = _FetchData;
+  const factory CprPageEvent.startTimeout() = _StartTimeout;
 }
 
 class CprPageBloc extends Bloc<CprPageEvent, CprPageState> {
@@ -31,6 +32,14 @@ class CprPageBloc extends Bloc<CprPageEvent, CprPageState> {
         emit(CprPageState.loaded(topData, bottomData));
       } catch (e) {
         emit(CprPageState.error(e.toString()));
+      }
+    });
+
+    on<_StartTimeout>((event, emit) async {
+      await Future.delayed(const Duration(milliseconds: 500));
+      final currentState = state;
+      if (currentState is _Loading) {
+        emit(CprPageState.initial());
       }
     });
   }

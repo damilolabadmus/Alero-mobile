@@ -652,32 +652,38 @@ mixin _$CprPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchData,
+    required TResult Function() startTimeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchData,
+    TResult? Function()? startTimeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchData,
+    TResult Function()? startTimeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_StartTimeout value) startTimeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_StartTimeout value)? startTimeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchData value)? fetchData,
+    TResult Function(_StartTimeout value)? startTimeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -740,6 +746,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchData,
+    required TResult Function() startTimeout,
   }) {
     return fetchData();
   }
@@ -748,6 +755,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchData,
+    TResult? Function()? startTimeout,
   }) {
     return fetchData?.call();
   }
@@ -756,6 +764,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchData,
+    TResult Function()? startTimeout,
     required TResult orElse(),
   }) {
     if (fetchData != null) {
@@ -768,6 +777,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_StartTimeout value) startTimeout,
   }) {
     return fetchData(this);
   }
@@ -776,6 +786,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_StartTimeout value)? startTimeout,
   }) {
     return fetchData?.call(this);
   }
@@ -784,6 +795,7 @@ class _$_FetchData implements _FetchData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchData value)? fetchData,
+    TResult Function(_StartTimeout value)? startTimeout,
     required TResult orElse(),
   }) {
     if (fetchData != null) {
@@ -795,4 +807,106 @@ class _$_FetchData implements _FetchData {
 
 abstract class _FetchData implements CprPageEvent {
   const factory _FetchData() = _$_FetchData;
+}
+
+/// @nodoc
+abstract class _$$_StartTimeoutCopyWith<$Res> {
+  factory _$$_StartTimeoutCopyWith(
+          _$_StartTimeout value, $Res Function(_$_StartTimeout) then) =
+      __$$_StartTimeoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_StartTimeoutCopyWithImpl<$Res>
+    extends _$CprPageEventCopyWithImpl<$Res, _$_StartTimeout>
+    implements _$$_StartTimeoutCopyWith<$Res> {
+  __$$_StartTimeoutCopyWithImpl(
+      _$_StartTimeout _value, $Res Function(_$_StartTimeout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_StartTimeout implements _StartTimeout {
+  const _$_StartTimeout();
+
+  @override
+  String toString() {
+    return 'CprPageEvent.startTimeout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_StartTimeout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchData,
+    required TResult Function() startTimeout,
+  }) {
+    return startTimeout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchData,
+    TResult? Function()? startTimeout,
+  }) {
+    return startTimeout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchData,
+    TResult Function()? startTimeout,
+    required TResult orElse(),
+  }) {
+    if (startTimeout != null) {
+      return startTimeout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchData value) fetchData,
+    required TResult Function(_StartTimeout value) startTimeout,
+  }) {
+    return startTimeout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchData value)? fetchData,
+    TResult? Function(_StartTimeout value)? startTimeout,
+  }) {
+    return startTimeout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchData value)? fetchData,
+    TResult Function(_StartTimeout value)? startTimeout,
+    required TResult orElse(),
+  }) {
+    if (startTimeout != null) {
+      return startTimeout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartTimeout implements CprPageEvent {
+  const factory _StartTimeout() = _$_StartTimeout;
 }
