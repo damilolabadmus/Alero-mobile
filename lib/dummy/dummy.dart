@@ -237,7 +237,6 @@ const dashboardMenu = [
   {"image":'assets/icons/performance.svg',"name": "Performance\nManagement", 'position': 1},
   {"image":'assets/icons/video_call.svg',"name": "Call\nManagement", 'position': 2},
   {"image":'assets/icons/budgeting.svg',"name": "Concession", 'position': 3},
-  // {"image":'assets/icons/budgeting.svg',"name": "Budget\nManagement", 'position': 3},
 ];
 
 /// Use this If Call Management Authorization is false.
@@ -252,17 +251,6 @@ const performanceDashboardMenu = [
   {"image": 'assets/customer/trends/trends_nba.svg', "name": "Profitability\nReport", 'position': 1},
   {"image": 'assets/customer/customer_investments.svg', "name": "Cost\nAllocation", 'position': 2},
 ];
-
-
-// const performanceDashboardMenu = [
-//   {"image": 'assets/performance/scorecard.svg', "name": "Scorecard", 'position': 0},
-//   {"image": 'assets/performance/profitability.svg', "name": "P/L\nReport", 'position': 1},
-//   {"image": 'assets/performance/balance_sheet.svg', "name": "Balance\nSheet", 'position': 2},
-//   {"image": 'assets/performance/cost_allocation.svg', "name": "Cost\nAllocation", 'position': 3},
-//   {"image": 'assets/performance/commission.svg', "name": "Commission\n&Fee", 'position': 4},
-//   {"image": 'assets/performance/cost_report.svg', "name": "Cost\nReport", 'position': 5},
-// ];
-
 
 const profitabilityDashboardMenu = [
   {"image": 'assets/icons/customer_pr.svg', "name": "Customer\nPR", 'position': 0},

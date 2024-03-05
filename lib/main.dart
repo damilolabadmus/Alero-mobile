@@ -29,9 +29,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //FirebaseCrashlytics.instance.crash();
-    /*DeviceDetails details = DeviceDetails();
-    details.initPlatformState();*/
     return ScreenInteractionListener(
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

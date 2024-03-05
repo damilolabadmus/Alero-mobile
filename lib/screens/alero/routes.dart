@@ -22,9 +22,6 @@ import 'package:alero/screens/alero/prospect/prospect_bio_data_input.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'allocation/allocation_upload_summary.dart';
-import 'allocation/cost_allocation_page.dart';
-import 'allocation/cost_allocation_report.dart';
 import 'auth/login_page.dart';
 import 'call/call_management_page.dart';
 import 'components/route_animator.dart';
@@ -99,10 +96,6 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Profitability Reports');
         return RouteAnimator(page: ProfitabilityReportsPage(userId: arguments as String?));
-      case '/cost-allocation':
-        GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Cost Allocation');
-        return RouteAnimator(page: CostAllocationPage(userId: arguments as String?));
       case '/customer-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Customer Profitability Report');
@@ -119,14 +112,6 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Net Revenue From Funds');
         return RouteAnimator(page: NetRevenueFromFunds(userId: arguments as String?));
-      case '/cost-allocation-report':
-        GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Cost Allocation Report');
-        return RouteAnimator(page: CostAllocationReport(userId: arguments as String?));
-      case '/cost-allocation-upload-summary':
-        GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Cost Allocation Upload Summary');
-        return RouteAnimator(page: AllocationUploadSummary(userId: arguments as String?));
       case '/concession-dashboard':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Concession Dashboard');
@@ -179,10 +164,6 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Apr Balance Sheet');
         return RouteAnimator(page: AprBalanceSheet());
-      /*case '/searched-apr':
-        GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Searched Apr Page');
-        return RouteAnimator(page: S);*/
       default:
         return RouteAnimator(page: ErrorPage());
     }
