@@ -291,7 +291,7 @@ class _PipelinePageState extends State<PipelinePage> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 12.0),
+                              padding: const EdgeInsets.only(left: 16.0, top: 3, bottom: 3),
                               child: Text(tabTitles[0],
                                   style: TextStyle(
                                     fontSize: 9.0,

@@ -33,7 +33,6 @@ class _CompletedPageState extends State<CompletedPage> {
         completedDeals = _completed;
         completedStatus = completedDeals!.result!.completedDeals!.toList();
       });
-      print(completedStatus[0].customerName);
     });
   }
 
