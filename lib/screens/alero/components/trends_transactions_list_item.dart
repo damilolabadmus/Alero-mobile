@@ -1,7 +1,6 @@
 
 
 import 'package:alero/utils/Pandora.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../style/theme.dart' as Style;
 import 'package:flutter_svg/svg.dart';

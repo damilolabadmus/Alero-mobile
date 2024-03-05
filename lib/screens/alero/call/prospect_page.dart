@@ -1,14 +1,11 @@
 
 
-import 'package:alero/screens/alero/call/customer_bottom_navigation_bar.dart';
 import 'package:alero/screens/alero/prospect/prospect_add.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../prospect/prospect_search_controller.dart';
 import 'call_bottom_navigation_bar.dart';
 import 'call_management_page.dart';
 import 'package:alero/style/theme.dart' as Style;
-
 
 class ProspectPage extends StatefulWidget {
   final String? data;

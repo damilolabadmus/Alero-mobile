@@ -61,10 +61,11 @@ class LineChartInflowOutFlowState extends State<LineChartInflowOutFlow> {
                 series: <LineSeries<TransactionFlow, String>>[
                   LineSeries<TransactionFlow, String>(
                     dataSource: widget.tfData,
-                    xValueMapper: (TransactionFlow tFlow, _) => tFlow.transactionDate/*.substring(0, 3)*/,
+                    xValueMapper: (TransactionFlow tFlow, _) => tFlow.transactionDate,
                     yValueMapper: (TransactionFlow tFlow, _) => tFlow.totalSpend,
                     color: widget.color,
                   )
-                ])));
+                ])
+        ));
   }
 }

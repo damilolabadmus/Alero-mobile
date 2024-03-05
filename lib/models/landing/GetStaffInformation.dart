@@ -47,14 +47,12 @@ class GetStaffInformation {
       });
     }
     if (json['userAttributes'] != null) {
-      // ignore: deprecated_member_use
       userAttributes = <Object>[];
       json['userAttributes'].forEach((v) {
         userAttributes!.add(new Object());
       });
     }
     if (json['rights'] != null) {
-      // ignore: deprecated_member_use
       rights = <Rights>[];
       json['rights'].forEach((v) {
         rights.add(new Rights.fromJson(v));

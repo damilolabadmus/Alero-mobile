@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
-
 import 'bloc/customer_channels_Usage_bloc/customer_channels_usage_bloc.dart';
 
 class CustomerChannelsUsageValueChart extends StatefulWidget {
@@ -67,7 +66,6 @@ class _CustomerChannelsUsageValueChartState extends State<CustomerChannelsUsageV
       child: SfCartesianChart(
         primaryXAxis: CategoryAxis(labelRotation: 300, labelStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w600)),
         tooltipBehavior: _tooltipBehavior,
-        // primaryYAxis: NumericAxis(numberFormat: NumberFormat.compactCurrency(symbol: "₦")),
         primaryYAxis: NumericAxis(numberFormat: NumberFormat.compact()),
         series: <CartesianSeries>[
           StackedColumnSeries<TouchPointData?, String>(

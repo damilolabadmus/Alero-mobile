@@ -135,7 +135,6 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                     show: yes,
                     color: gradientColors.first.withOpacity(0.1),
                   ),
-                  // dotData: FlDotData(show: true),
                 ),
               ],
             ),

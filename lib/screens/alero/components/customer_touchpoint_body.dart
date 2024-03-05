@@ -6,7 +6,6 @@ import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/Global.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'package:flutter_svg/svg.dart';
@@ -41,7 +40,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     "AppId": Global.AppId,
     "DeviceIp": Global.DeviceIp,
     "DeviceManufacturer": Global.DeviceManufacturer,
-    // "DeviceName": Global.DeviceName,
+    "DeviceName": Global.DeviceName,
     "DeviceModel": Global.DeviceModel,
     "DeviceType": Global.DeviceType
   };
@@ -54,7 +53,7 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     "DeviceIp": Global.DeviceIp,
     "DeviceManufacturer": Global.DeviceManufacturer,
     "DeviceModel": Global.DeviceModel,
-    // "DeviceName": Global.DeviceName,
+    "DeviceName": Global.DeviceName,
     "DeviceType": Global.DeviceType
   };
 
@@ -284,126 +283,3 @@ class _CustomerTouchPointBodyState extends State<CustomerTouchPointBody> {
     );
   }
 }
-
-
-
-
-// Former code
-/*Widget loadCountData() {
-    return FutureBuilder(
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null ||
-            snapshot.connectionState == ConnectionState.waiting) {
-          return FlutterShimmnerLoadingWidget(
-            count: 2,
-            animate: true,
-            color: Colors.grey[200],
-          );
-        }
-        if (hasdata) {
-          return Expanded(
-            child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 18,
-                      ),
-                      Expanded(
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: PieChart(
-                            PieChartData(
-                                pieTouchData: PieTouchData(
-                                    touchCallback: (pieTouchResponse) {
-                                      if (mounted) {
-                                        setState(() {
-                                          if (pieTouchResponse.touchInput
-                                          is FlLongPressEnd ||
-                                              pieTouchResponse.touchInput
-                                              is FlPanEnd) {
-                                            touchedIndex = -1;
-                                          } else {
-                                            touchedIndex = pieTouchResponse
-                                                .touchedSectionIndex;
-                                          }});
-                                      }}),
-                                borderData: FlBorderData(
-                                  show: false,
-                                ),
-                                sectionsSpace: 0,
-                                centerSpaceRadius: 50,
-                                sections: showingTouchPointSections()),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Expanded(
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          childAspectRatio: 4.0,
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          children: indicators,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                    ],
-                  ),
-                )),);
-        } else {
-          return EmptyListItem(
-            message: 'No Customer Touch Points',
-          );
-        }
-      },
-      future: getTouchPoints(widget.groupId),
-    );
-  }
-
-  List<PieChartSectionData> showingTouchPointSections() {
-    if (tpData.isNotEmpty)
-      return List.generate(tpData.length, (i) {
-        final isTouched = i == touchedIndex;
-        final double fontSize = isTouched ? 25 : 16;
-        final double radius = isTouched ? 60 : 50;
-        return PieChartSectionData(
-            color: randomColors[i],
-            value: (!isTouchPointValue)
-                ? double.parse(tpData[i].transactionVolume)  // volume
-                : double.parse(tpData[i].touchPointCount),  // value
-            title: '',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: randomColors[i],
-            ));
-      });
-  }
-
-  void generateColors(int length) {
-    var list = [
-      0xFF99C9D9,
-      0xFF555555,
-      0xFF008EC4,
-      0xFFBBBBBB,
-      0xFFFFDAA6,
-      0xFFB3A369,
-      0xFFF4B459,
-      0xFF7AC369
-    ];
-    for (int i = 0; i < length; i++) {
-      if (!randomColors.contains(list[i])) {
-        randomColors.add(Color(list[i]));
-      }
-    }
-  }
-}
-*/

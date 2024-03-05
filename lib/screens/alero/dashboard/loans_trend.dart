@@ -4,7 +4,6 @@ import 'package:alero/screens/alero/dashboard/repository/loans_trend_repository.
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'bloc/loans_trend_bloc/loans_trend_bloc.dart';
 
 class LoansTrend extends StatefulWidget {

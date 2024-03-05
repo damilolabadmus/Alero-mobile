@@ -5,7 +5,6 @@ import 'package:alero/screens/alero/dashboard/revenue_trend.dart';
 import 'package:flutter/material.dart';
 import '../dashboard/data_completeness_chart.dart';
 import '../dashboard/data_validity_chart.dart';
-import '../dashboard/loans_overdue_volume_chart.dart';
 import '../dashboard/loans_trend.dart';
 import 'LoansClassification.dart';
 import 'customer_channels_usage.dart';

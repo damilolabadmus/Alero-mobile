@@ -3,7 +3,6 @@
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/prospect/prospect_bio_data.dart';
 import 'package:alero/screens/alero/prospect/prospect_icon_menu.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'delete_prospect_confirmed.dart';
 

@@ -21,15 +21,12 @@ import 'package:alero/models/customer/LoanClassificationStatus.dart';
 import 'package:alero/models/customer/TouchPointData.dart';
 import 'package:alero/models/landing/view_modules_response.dart';
 import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/models/performance/CostAllocationTypeResponse.dart';
-import 'package:alero/models/performance/CostAllocationUploadResponse.dart';
 import 'package:alero/models/performance/CprResponse.dart';
 import 'package:alero/models/performance/MprResponse.dart';
 import 'package:alero/models/performance/MyBalanceSheetRmResponse.dart';
 import 'package:alero/models/performance/MyBalanceSheetTypeResponse.dart';
 import 'package:alero/models/performance/MyBalanceSheetReponse.dart';
 import 'package:alero/models/performance/NrffReponse.dart';
-import 'package:alero/models/response/ExpenseList.dart';
 import 'package:alero/models/response/login_response.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:http/io_client.dart';
@@ -3132,71 +3129,6 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       pandora.logFirebaseEvent(
           'GET_SEGMENT_RM_NRFF', '/PLNrff/Rms/segment/$date?branchCode=$branchCode&segmentId=$segment&rmCode=$rmCode',
           response.body);
-      return [];
-    }
-  }
-
-  /// Get Expense Period for Cost Allocation Report
-  Future<List<ExpenseList>> getExpensePeriod() async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    var response = await http.get(
-        Uri.parse(Global.BaseUrlTest + '/cost-allocation-period'),
-        headers: preAuthHeaders);
-    if (response.statusCode == 200) {
-      return expenseListFromJson(response.body);
-    } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent(
-          'GET_EXPENSE_PERIOD', '/cost-allocation-period', response.body);
-      return [];
-    } else {
-      pandora.logFirebaseEvent(
-          'GET_EXPENSE_PERIOD', '/cost-allocation-period', response.body);
-      return [];
-    }
-  }
-
-  /// Get Cost Allocation Report
-  Future<List<CostAllocationTypeResponse>> getCostAllocationReportData(
-      String expensePeriod) async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    var response = await http.get(
-        Uri.parse(Global.BaseUrlTest + '/cost-allocation-report/$expensePeriod'),
-        headers: preAuthHeaders);
-    if (response.statusCode == 200) {
-      return costAllocationTypeResponseFromJson(response.body);
-    } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent('GET_COST_ALLOCATION_REPORT',
-          '/cost-allocation-report/$expensePeriod', response.body);
-      return [];
-    } else {
-      pandora.logFirebaseEvent('GET_COST_ALLOCATION_REPORT',
-          '/cost-allocation-report/$expensePeriod', response.body);
-      return [];
-    }
-  }
-
-  /// Get Cost Allocation Upload Summary
-  Future<List<CostAllocationUploadResponse>>
-  getCostAllocationUploadData() async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    var response = await http.get(
-        Uri.parse(Global.BaseUrlTest + '/cost-allocation-upload-summary'),
-        headers: preAuthHeaders);
-    if (response.statusCode == 200) {
-      return costAllocationUploadResponseFromJson(response.body);
-    } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent('GET_COST_ALLOCATION_UPLOAD',
-          '/cost-allocation-upload-summary', response.body);
-      return [];
-    } else {
-      pandora.logFirebaseEvent('GET_COST_ALLOCATION_UPLOAD',
-          '/cost-allocation-upload-summary', response.body);
       return [];
     }
   }

@@ -2,7 +2,6 @@
 
 import 'package:alero/screens/alero/components/transaction_inflow_card.dart';
 import 'package:alero/screens/alero/components/transaction_outflow_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomerTrendsGraphs extends StatefulWidget {

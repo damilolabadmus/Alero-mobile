@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-
 import '../../../models/response/CustomerList.dart';
 import '../../../style/theme.dart' as Style;
 import '../components/empty_list_item.dart';

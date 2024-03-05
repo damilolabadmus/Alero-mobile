@@ -112,26 +112,6 @@ class BarChartInflowState extends State<BarChartInflow> {
             sideTitles: SideTitles(showTitles: false),
           ),
         ),
-        // titlesData: FlTitlesData(
-        //   show: true,
-        //   bottomTitles: SideTitles(
-        //     showTitles: true,
-        //     getTextStyles: (value) => const TextStyle(
-        //         fontFamily: 'Poppins-Regular',
-        //         color: Colors.black,
-        //         fontWeight: FontWeight.bold,
-        //         fontSize: 6),
-        //     margin: 4,
-        //     getTitles: (double value) {
-        //       for (var i = 0; i < widget.tfData.length; i++) {
-        //         if (value.toInt() == i) {
-        //           return widget.tfData[i].transactionDate.substring(0, 3);
-        //         }
-        //       }
-        //     },
-        //   ),
-        //   leftTitles: SideTitles(showTitles: false),
-        // ),
         borderData: FlBorderData(
           show: false,
         ),

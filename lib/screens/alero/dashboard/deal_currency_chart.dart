@@ -6,8 +6,8 @@ import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
+
 class DealCurrencyChart extends StatefulWidget {
 
   @override
