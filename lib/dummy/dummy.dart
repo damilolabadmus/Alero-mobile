@@ -249,7 +249,6 @@ const dashboardMenuAccess = [
 const performanceDashboardMenu = [
   {"image": 'assets/customer/trends/trends_spend_icon.svg', "name": "My Balance\nsheet", 'position': 0},
   {"image": 'assets/customer/trends/trends_nba.svg', "name": "Profitability\nReport", 'position': 1},
-  {"image": 'assets/customer/customer_investments.svg', "name": "Cost\nAllocation", 'position': 2},
 ];
 
 const profitabilityDashboardMenu = [
@@ -257,11 +256,6 @@ const profitabilityDashboardMenu = [
   {"image": 'assets/icons/account_pr.svg', "name": "Account\nPR", 'position': 1},
   {"image": 'assets/icons/monthly_pr.svg', "name": "Monthly\nPR", 'position': 2},
   {"image": 'assets/icons/nrff.svg', "name": "NRFF", 'position': 3},
-];
-
-const costAllocationMenu = [
-  {"image": 'assets/icons/customer.svg', "name": "Cost Allocation\nReport", 'position': 0},
-  {"image": 'assets/icons/customer.svg', "name": "Cost Allocation\nUpload", 'position': 1},
 ];
 
 const concessionDashboardMenu = [

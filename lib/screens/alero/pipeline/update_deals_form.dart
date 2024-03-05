@@ -49,6 +49,7 @@ class _UpdateDealFormState extends State<UpdateDealForm> {
 
   @override
   void initState() {
+    super.initState();
     getStatusList();
     commentController = TextEditingController(text: comment);
   }

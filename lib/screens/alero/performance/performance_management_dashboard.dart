@@ -5,7 +5,6 @@ import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../my_balance_sheet/bloc/balance_sheet_nav_bloc/balance_sheet_nav_bloc.dart';
 import '../my_balance_sheet/bloc/log_out_bloc/log_out_bloc.dart';
 
@@ -110,9 +109,6 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
         break;
       case 1:
         Navigator.of(context).pushNamed('/profitability-reports', arguments: firstName);
-        break;
-      case 2:
-        Navigator.of(context).pushNamed('/cost-allocation', arguments: firstName);
         break;
       default:
         pandora.showToast('Coming soon...', context, MessageTypes.INFO.toString().split('.').last);

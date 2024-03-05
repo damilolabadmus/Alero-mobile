@@ -1,4 +1,4 @@
-# Introduction
+# Introduction 
 Alero Mobile- This is a cross platform mobile application for the Alero built in the flutter framework
 
 # Primary Goal
@@ -23,27 +23,27 @@ Dart: A general-purpose programming language that can be used for a wide range o
 # Getting Started
 TODO: How to use:
 1.	Installation process:
-    - Git clone the repository into android studio
-    - Run ```flutter doctor ```
-    - Run ```flutter doctor ```
-    - Start the project on your preferred emulator
+      - Git clone the repository into android studio
+      - Run ```flutter doctor ```
+      - Run ```flutter doctor ```
+      - Start the project on your preferred emulator
 
 2.	Project dependencies:
-    - [Flutter SDK](https://flutter.dev/docs)
-    - [Alero API](https://utrack.unionbankng.com/swagger/index.html#/)
-    - [Mobile UI/UX](https://www.figma.com/file/gEPmiVtRGBvTBL2O8iiURg/Untitled?node-id=33%3A0)
+      - [Flutter SDK](https://flutter.dev/docs)
+      - [Alero API](https://utrack.unionbankng.com/swagger/index.html#/)
+      - [Mobile UI/UX](https://www.figma.com/file/gEPmiVtRGBvTBL2O8iiURg/Untitled?node-id=33%3A0)
 
 3.	Latest releases
-    - None
+      - None
 
 4.	API references
-    - [Dio](https://pub.dev/packages/dio)
-    - [Flutter SVG](https://pub.dev/packages/flutter_svg)
-    - [Eva Icons](https://pub.dev/packages/eva_icons_flutter)
-    - [HTTP](https://pub.dev/packages/http)
-    - [Synchronized](https://pub.dev/packages/synchronized)
-    - [One Context](https://pub.dev/packages/one_context)
-    - [FL Chart](https://pub.dev/packages/fl_chart)
+      - [Dio](https://pub.dev/packages/dio)
+      - [Flutter SVG](https://pub.dev/packages/flutter_svg)
+      - [Eva Icons](https://pub.dev/packages/eva_icons_flutter)
+      - [HTTP](https://pub.dev/packages/http)
+      - [Synchronized](https://pub.dev/packages/synchronized)
+      - [One Context](https://pub.dev/packages/one_context)
+      - [FL Chart](https://pub.dev/packages/fl_chart)
 
 # Contribute
 1. Flutter code Location  (alero/lib)
@@ -57,20 +57,20 @@ TODO: How to use:
 7. Network (alero/lib/network)
 
 # Contribution Guidelines (Steps):
- - Request Repository Access: If you're a new developer, request access to the Alero Mobile repository. Contact the project administrators to be added to the list of contributors
- - Connect to Company Network: Ensure you are connected to the company's network to access Alero resources and collaborate securely
- - Clone the Repository: Clone the main repository (dao-organization/Alero_Mobile) to your local machine using the following command: git clone https://github.com/dao-organization/Alero_Mobile.git
- - Create a Feature Branch: Create a new branch for your feature or bug fix. Use a descriptive and meaningful branch name: git checkout -b feature/your-feature-name
- - Make Changes: Implement your changes or additions to the codebase in the feature branch. Ensure your changes align with the project's coding standards and guidelines
- - Commit and Push:
-      ```
-      git add .
-      git commit -m "Your commit message here"
-      git push origin feature/your-feature-name
-      ```
-      - Create a Pull Request (PR): Once your feature is complete, create a pull request from your feature branch to the master branch. Provide a detailed description of your changes in the PR
-      - Code Review: The Alero Mobile development team will review your code. Be open to feedback, make necessary adjustments, and iterate on your changes based on the review
-      - Approval and Merging: After the code review process, if your changes meet the project's standards, your PR will be approved and merged into the master branch
+- Request Repository Access: If you're a new developer, request access to the Alero Mobile repository. Contact the project administrators to be added to the list of contributors
+- Connect to Company Network: Ensure you are connected to the company's network to access Alero resources and collaborate securely
+- Clone the Repository: Clone the main repository (dao-organization/Alero_Mobile) to your local machine using the following command: git clone https://github.com/dao-organization/Alero_Mobile.git
+- Create a Feature Branch: Create a new branch for your feature or bug fix. Use a descriptive and meaningful branch name: git checkout -b feature/your-feature-name
+- Make Changes: Implement your changes or additions to the codebase in the feature branch. Ensure your changes align with the project's coding standards and guidelines
+- Commit and Push:
+     ```
+     git add .
+     git commit -m "Your commit message here"
+     git push origin feature/your-feature-name
+     ```
+    - Create a Pull Request (PR): Once your feature is complete, create a pull request from your feature branch to the master branch. Provide a detailed description of your changes in the PR
+    - Code Review: The Alero Mobile development team will review your code. Be open to feedback, make necessary adjustments, and iterate on your changes based on the review
+    - Approval and Merging: After the code review process, if your changes meet the project's standards, your PR will be approved and merged into the master branch
 
 # Roadmap
 The roadmap outlines the strategic plan and vision for the ongoing and future development of Alero Mobile. It serves as a dynamic guide, detailing upcoming features, enhancements, and milestones that the project aims to achieve. The roadmap provides a clear trajectory for the evolution of Alero Mobile, helping stakeholders, contributors, and users understand the direction of the project and the exciting developments to come

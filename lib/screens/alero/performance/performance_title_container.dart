@@ -9,11 +9,11 @@ import 'package:flutter/rendering.dart';
 import '../../../../style/theme.dart' as Style;
 
 class PmTitleContainer extends StatelessWidget {
-  String? measure, subTitle, subText, selectedDate/*, selectedState*/;
+  String? measure, subTitle, subText, selectedDate;
   final Function? selectDate;
   final Function? updateSelectedDate;
 
-  PmTitleContainer ({this.measure, this.subTitle, this.subText, this.selectedDate, /*this.selectedState,*/ this.selectDate, this.updateSelectedDate});
+  PmTitleContainer ({this.measure, this.subTitle, this.subText, this.selectedDate, this.selectDate, this.updateSelectedDate});
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,6 @@
 
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../../../../style/theme.dart' as Style;
 
 class DealsItem extends StatelessWidget {
