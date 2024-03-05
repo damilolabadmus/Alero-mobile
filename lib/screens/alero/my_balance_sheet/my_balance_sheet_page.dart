@@ -17,17 +17,34 @@ import 'bloc/balance_sheet_nav_bloc/balance_sheet_nav_bloc.dart';
 import 'my_balance_sheet_rm_container.dart';
 import 'my_balance_sheet_type_container.dart';
 
-class MyBalanceSheetPage extends StatefulWidget {
+class MyBalanceSheetPage extends StatelessWidget {
   final String? regionId;
 
   const MyBalanceSheetPage({this.regionId});
 
   @override
-  State<MyBalanceSheetPage> createState() => _MyBalanceSheetPageState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<BalanceSheetNavBloc>(create: (context) => BalanceSheetNavBloc()),
+        BlocProvider<BalanceSheetBloc>(create: (context) => BalanceSheetBloc()),
+        BlocProvider<LogoutBloc>(create: (context) => LogoutBloc()),
+      ],
+      child: _MyBalanceSheetPage(regionId: regionId),
+    );
+  }
 }
 
-class _MyBalanceSheetPageState extends State<MyBalanceSheetPage> with TickerProviderStateMixin {
+class _MyBalanceSheetPage extends StatefulWidget {
+  final String? regionId;
 
+  const _MyBalanceSheetPage({this.regionId});
+
+  @override
+  State<_MyBalanceSheetPage> createState() => _MyBalanceSheetPageState();
+}
+
+class _MyBalanceSheetPageState extends State<_MyBalanceSheetPage> with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation1;
   late Animation animation2;
