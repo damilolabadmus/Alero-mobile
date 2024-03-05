@@ -82,7 +82,7 @@ class _CprProfitAndLossPageState extends State<CprProfitAndLossPage> {
             ),
           ),
         ),
-      bottomNavigationBar: CprBottomNavigationBar(cprDataNotNull: widget.cprProfitAndLoss == null ? false : true),
+      bottomNavigationBar: CprBottomNavigationBar(),
     );
   }
 

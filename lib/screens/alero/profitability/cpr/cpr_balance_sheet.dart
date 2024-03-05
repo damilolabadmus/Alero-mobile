@@ -77,6 +77,6 @@ class _CprBalanceSheetState extends State<CprBalanceSheet> {
             ),
           ),
         ),
-       bottomNavigationBar: CprBottomNavigationBar(cprDataNotNull: cprData == null ? false : true));
+       bottomNavigationBar: CprBottomNavigationBar());
   }
 }

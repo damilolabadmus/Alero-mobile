@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CprBottomNavigationBar extends StatefulWidget {
-  final bool? cprDataNotNull;
   final bool? isFirstPage;
 
-  CprBottomNavigationBar({this.cprDataNotNull, this.isFirstPage});
+  CprBottomNavigationBar({this.isFirstPage});
 
   @override
   _CprBottomNavigationBarState createState() => _CprBottomNavigationBarState();

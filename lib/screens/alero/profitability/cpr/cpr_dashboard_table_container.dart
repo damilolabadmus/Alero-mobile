@@ -1,20 +1,13 @@
-
-
-import 'dart:async';
-import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:alero/utils/loading_quotes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'cpr_profit_loss_page.dart';
 
 class CprDashboardTableContainer extends StatefulWidget {
   final cprData;
-  final Function(bool data)? cprDataNotNull;
 
-  CprDashboardTableContainer({this.cprData, this.cprDataNotNull});
+  CprDashboardTableContainer({this.cprData});
 
   @override
   State<CprDashboardTableContainer> createState() => _CprDashboardTableContainerState();
@@ -22,20 +15,10 @@ class CprDashboardTableContainer extends StatefulWidget {
 
 class _CprDashboardTableContainerState extends State<CprDashboardTableContainer> {
   bool? isColor;
-  bool isDataLoaded = false;
 
   @override
   void initState() {
     super.initState();
-    Timer(Duration(minutes: 5), checkDataAndDisplayCard);
-  }
-
-  Future<void> checkDataAndDisplayCard() async {
-    if (widget.cprData == null || widget.cprData.isEmpty) {
-      setState(() {
-        isDataLoaded = true;
-      });
-    }
   }
 
   @override
@@ -134,7 +117,6 @@ class _CprDashboardTableContainerState extends State<CprDashboardTableContainer>
                         onTap: () {
                           setState(() {
                             isColor = true;
-                            widget.cprDataNotNull!(true);
                           });
                           Navigator.push(context, MaterialPageRoute(builder: (context) => CprProfitAndLossPage(
                               cprProfitAndLoss: widget.cprData,
