@@ -25,31 +25,21 @@ class _ConcessionBottomNavigationBarState extends State<ConcessionBottomNavigati
         items: [
           BottomNavigationBarItem(
             icon: Padding(
-              padding: EdgeInsets.all(6),
+              padding: EdgeInsets.all(2),
               child: SvgPicture.asset(
                 'assets/customer/profile_dashboard.svg',
               ),
             ),
             label: "Dashboard",
-            // title: Text("Dashboard",
-            //     style: TextStyle(
-            //         fontSize: 10.0,
-            //         fontFamily: 'Poppins-Regular',
-            //         fontWeight: FontWeight.normal)),
           ),
           BottomNavigationBarItem(
             icon: Padding(
-              padding: EdgeInsets.all(6),
+              padding: EdgeInsets.all(2),
               child: SvgPicture.asset(
                 'assets/customer/profile_logout.svg',
               ),
             ),
             label: "Logout",
-            // title: Text("Logout",
-            //     style: TextStyle(
-            //         fontSize: 10.0,
-            //         fontFamily: 'Poppins-Regular',
-            //         fontWeight: FontWeight.normal)),
           ),
         ],
       ),
@@ -69,8 +59,7 @@ class _ConcessionBottomNavigationBarState extends State<ConcessionBottomNavigati
   }
 
   void returnPerformanceManagement(BuildContext context) {
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/concession-dashboard', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil('/concession-dashboard', (Route<dynamic> route) => false);
   }
 
   void returnLogin(BuildContext context) {

@@ -1,6 +1,7 @@
 
 
 import 'package:alero/screens/alero/call/prospect_page.dart';
+import 'package:alero/screens/alero/concession/concession_dashboard.dart';
 import 'package:alero/screens/alero/concession/terminate_concession.dart';
 import 'package:alero/screens/alero/customer/customer_accounts.dart';
 import 'package:alero/screens/alero/home/home_screen.dart';
@@ -29,7 +30,7 @@ import 'auth/login_page.dart';
 import 'call/call_management_page.dart';
 import 'components/route_animator.dart';
 import 'concession/approve_concession.dart';
-import 'concession/concession_dashboard.dart';
+import 'concession/concession_menu.dart';
 import 'concession/create_concession.dart';
 import 'concession/retrieve_concession.dart';
 import 'concession/track_concession.dart';
@@ -127,6 +128,10 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Cost Allocation Upload Summary');
         return RouteAnimator(page: AllocationUploadSummary(userId: arguments as String?));
+      case '/concession-menu':
+        GetIt.I<FirebaseAnalytics>()
+            .setCurrentScreen(screenName: 'Concession Menu');
+        return RouteAnimator(page: ConcessionMenu());
       case '/concession-dashboard':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Concession Dashboard');

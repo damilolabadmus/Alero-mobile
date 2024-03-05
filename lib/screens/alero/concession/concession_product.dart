@@ -206,10 +206,6 @@ class _ConcessionProductState extends State<ConcessionProduct> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TextField(),
-          // TextField(),
-          // SizedBox(height: 10),
-          // ListView.builder(itemBuilder: (BuildContext context))
           ],),
       actions: [
         closeButton

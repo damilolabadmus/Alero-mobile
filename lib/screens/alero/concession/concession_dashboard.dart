@@ -1,152 +1,225 @@
-
-
-import 'package:alero/dummy/dummy.dart';
-import 'package:alero/screens/alero/components/call_app_bar.dart';
-import 'package:alero/screens/alero/components/dashboard_item.dart';
-import 'package:alero/utils/Pandora.dart';
-import 'package:alero/utils/constants.dart';
+import 'package:alero/screens/alero/concession/concession_amended.dart';
+import 'package:alero/screens/alero/concession/concession_approval.dart';
+import 'package:alero/screens/alero/concession/create_concession.dart';
+import 'package:container_tab_indicator/container_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;
-
+import '../components/call_app_bar.dart';
 import 'concession_bottom_nav_bar.dart';
+import 'concession_review.dart';
 
 class ConcessionDashboard extends StatefulWidget {
-  const ConcessionDashboard({Key? key}) : super(key: key);
 
   @override
   State<ConcessionDashboard> createState() => _ConcessionDashboardState();
 }
 
 class _ConcessionDashboardState extends State<ConcessionDashboard> {
+    List<String> tabTitles = [
+      "In Review",
+      "To be Amended",
+      "Add Concession",
+      "List of Approval"
+    ];
 
-  final Pandora pandora = new Pandora();
-  List<Widget> dashboardItem = [];
-  List<Color> randomColors = [];
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: CallAppBar(),
+        body: DefaultTabController(
+          length: 4,
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50.0),
+                        topRight: Radius.circular(50.0)),
+                    color: Style.Colors.tabBackGround,
+                  ),
+                  child: Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 9),
+                      child: TabBar(
+                        unselectedLabelColor: Style.Colors.blackTextColor,
+                        labelColor: Colors.white,
+                        indicator: ContainerTabIndicator(
+                          width: 96,
+                          height: 30,
+                          color: Style.Colors.buttonColor,
+                          radius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            bottomRight: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0),
+                            bottomLeft: Radius.circular(30.0),
+                          ),
+                          borderWidth: 2.0,
+                          borderColor: Colors.transparent,
+                        ),
+                        tabs: [
+                          Tab(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 12.0),
+                                child: Text(tabTitles[0],
+                                    style: TextStyle(
+                                      fontSize: 9.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins-Bold',
+                                    )),),
+                            ),
+                          ),
+                          Tab(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(tabTitles[1],
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins-Bold',
+                                  )),),
+                          ),
+                          Tab(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(tabTitles[2],
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins-Bold',
+                                  )),),),
+                          Tab(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(tabTitles[3],
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins-Bold',
+                                  )),),),
+                        ],),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      ConcessionReview(),
+                      ConcessionAmended(),
+                      CreateConcession(),
+                      ConcessionApproval(
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        bottomNavigationBar: ConcessionBottomNavigationBar(),
+      );
+    }
 
-  @override
-  void initState() {
-    super.initState();
-    getDashboardItems();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBody: true,
-      appBar: CallAppBar(),
-      backgroundColor: Style.Colors.elementBack,
-      body: Padding(
-        padding: EdgeInsets.only(left: 12, right: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 5),
-                    Text('Dashboard',
-                      style: TextStyle(
-                        color: Colors.lightBlue,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Poppins-Regular',
+    Widget concessionDataTabs() {
+      return DefaultTabController(
+        length: 4,
+        child: Expanded(
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            body: Container(
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50.0),
+                          topRight: Radius.circular(50.0)),
+                      color: Style.Colors.tabBackGround,
+                    ),
+                    child: Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 9),
+                        child: TabBar(
+                          unselectedLabelColor: Style.Colors.blackTextColor,
+                          labelColor: Colors.white,
+                          indicator: ContainerTabIndicator(
+                            width: 96,
+                            height: 30,
+                            color: Style.Colors.buttonColor,
+                            radius: BorderRadius.only(
+                              topLeft: Radius.circular(30.0),
+                              bottomRight: Radius.circular(30.0),
+                              topRight: Radius.circular(30.0),
+                              bottomLeft: Radius.circular(30.0),
+                            ),
+                            borderWidth: 2.0,
+                            borderColor: Colors.transparent,
+                          ),
+                          tabs: [
+                            Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 12.0),
+                                  child: Text(tabTitles[0],
+                                      style: TextStyle(
+                                        fontSize: 9.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins-Bold',
+                                      )),),
+                              ),
+                            ),
+                            Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(tabTitles[1],
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins-Bold',
+                                    )),),
+                            ),
+                            Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(tabTitles[2],
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins-Bold',
+                                    )),),),
+                            Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(tabTitles[3],
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins-Bold',
+                                    )),),),
+                          ],),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                          'Please select from the modules below.',
-                          style: kBankItemTitle.copyWith(fontSize: 15)),),
-                    SizedBox(height: 10.0),
-                    GridView.count(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      children: dashboardItem,
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        ConcessionReview(),
+                        ConcessionAmended(),
+                        CreateConcession(),
+                        ConcessionApproval(
+                        )
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-          ],
+            ),
+          ),
         ),
-      ),
-      bottomNavigationBar: ConcessionBottomNavigationBar(),
-    );
-  }
-
-  void getDashboardItems() {
-    dashboardItem = [];
-    List<Widget> _dashboardItem = [];
-
-    var dashboardItems = concessionDashboardMenu;
-    generateColors(dashboardItems.length);
-
-    int i = 0;
-    dashboardItems.forEach((element) {
-      _dashboardItem.add(DashboardItem(
-        message: element['name'] as String?,
-        image: element['image'] as String?,
-        color: randomColors[i].withOpacity(0.5),
-        press: () {
-          onMenuClick(element['position'] as int?);
-        },
-      ));
-      i++;
-    });
-    setState(() {
-      dashboardItem = _dashboardItem;
-    });
-  }
-
-  onMenuClick(int? element) {
-    switch (element) {
-      case 0:
-        Navigator.of(context).pushNamed('/create-concession');
-        break;
-      case 1:
-        Navigator.of(context).pushNamed('/approve-concession');
-        break;
-      case 2:
-        Navigator.of(context)
-            .pushNamed('/treat-concession');
-        break;
-      case 3:
-        Navigator.of(context)
-            .pushNamed('/retrieve-concession');
-        break;
-      case 4:
-        Navigator.of(context)
-            .pushNamed('/terminate-concession');
-        break;
-      case 5:
-        Navigator.of(context)
-            .pushNamed('/track-concession');
-        break;
-      default:
-        pandora.showToast('Coming soon...', context,
-            MessageTypes.INFO.toString().split('.').last);
-        break;
+      );
     }
   }
-
-  void generateColors(int length) {
-    var list = [
-      0xFF99C9D9,
-      0xFF008EC4,
-      0xFFBBBBBB,
-      0xFFFFDAA6,
-      0xFFB3A369,
-      0xFFF4B459,
-      0xFF7AC369
-    ];
-    for (int i = 0; i < length; i++) {
-      if (!randomColors.contains(list[i])) {
-        randomColors.add(Color(list[i]));
-      }
-    }
-  }
-}

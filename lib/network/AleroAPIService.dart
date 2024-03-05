@@ -134,8 +134,8 @@ class AleroAPIService {
     return null;
   }
 
-/// Login user to generate token for Performance management
- Future<LoginResponseForPm?> loginUserForPm(String email, String password) async {
+  /// Login user to generate token for Performance management
+  Future<LoginResponseForPm?> loginUserForPm(String email, String password) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
@@ -691,7 +691,7 @@ class AleroAPIService {
   }
 
   /// Get PND data with account number
-Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
+  Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
@@ -771,7 +771,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
- /// Get Channels Data With Account Number
+  /// Get Channels Data With Account Number
   Future<List<dynamic>> getChannelsDataWithAccountNo(String accountNo) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -857,18 +857,18 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
         (X509Certificate cert, String host, int port) => true;
     final http = new IOClient(ioc);
     var response = await http.get(
-      Uri.parse(Global.InitialBaseUrl + '/customer-loan-data-with-accno/$accountNumber'),
-      headers: postAuthHeaders(Global.API_TOKEN!));
+        Uri.parse(Global.InitialBaseUrl + '/customer-loan-data-with-accno/$accountNumber'),
+        headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       if (jsonDecode(response.body) is List) {
         return jsonDecode(response.body);
-    } else {
+      } else {
+        pandora.logFirebaseEvent('GET_CUSTOMER_LOANS_WITH_ACCOUNTNO', '/customer-loan-data-with-accno/$accountNumber', response.body);
+        return [];
+      }
+    } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent('GET_CUSTOMER_LOANS_WITH_ACCOUNTNO', '/customer-loan-data-with-accno/$accountNumber', response.body);
-       return [];
-    }
-   } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent('GET_CUSTOMER_LOANS_WITH_ACCOUNTNO', '/customer-loan-data-with-accno/$accountNumber', response.body);
-       return [];
+      return [];
     }
     return null;
   }
@@ -1003,12 +1003,12 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       return [];
     } else {
       pandora.logFirebaseEvent('GET_TOUCH_POINT_DATA',
-           '/get-customerGrp-touch-point/$groupId', response.body);
+          '/get-customerGrp-touch-point/$groupId', response.body);
       return [];
     }
   }
 
- /// Get account touch point data
+  /// Get account touch point data
   Future<List<dynamic>> getAccountTouchPointData(String customerAccountNo) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -1094,7 +1094,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get total inflow with account number
+  /// Get total inflow with account number
   Future<List<dynamic>> getTransactionInflowWithAccountNo(
       String accountNo, String startDate, String endDate) async {
     ioc.badCertificateCallback =
@@ -1158,7 +1158,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
   }
 
 
-/// Get customer outflow
+  /// Get customer outflow
   Future<List<dynamic>> getTransactionOutflowWithAccountNo(
       String accountNo, String startDate, String endDate) async {
     ioc.badCertificateCallback =
@@ -2200,26 +2200,26 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
 
   /// Get My Balance Sheet Actual Geography-BankWide Deposit
   Future<List<MyBalanceSheetResponse>> getBankWideDepositActual(String date) async {
-   ioc.badCertificateCallback =
-       (X509Certificate cert, String host, int port) => true;
-   final http = new IOClient(ioc);
-   var response = await http.get(
-       Uri.parse(Global.BaseUrlTest + '/Scorecard/GetBankDep?date=$date'),
-       headers: preAuthHeaders);
-   print('Bank wide dep actual');
-   print(response.body);
-   if (response.statusCode == 200) {
-     return myBalanceSheetResponseFromJson(response.body);
-   } else if (response.statusCode == 404) {
-     pandora.logFirebaseEvent('GET_BANK_ACTUAL_Deposit_DATA',
-         '/Scorecard/GetBankDep?date=$date', response.body);
-     return [];
-   } else {
-     pandora.logFirebaseEvent('GET_BANK_ACTUAL_Deposit_DATA',
-         '/Scorecard/GetBankDep?date=$date', response.body);
-     return [];
-   }
- }
+    ioc.badCertificateCallback =
+        (X509Certificate cert, String host, int port) => true;
+    final http = new IOClient(ioc);
+    var response = await http.get(
+        Uri.parse(Global.BaseUrlTest + '/Scorecard/GetBankDep?date=$date'),
+        headers: preAuthHeaders);
+    print('Bank wide dep actual');
+    print(response.body);
+    if (response.statusCode == 200) {
+      return myBalanceSheetResponseFromJson(response.body);
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent('GET_BANK_ACTUAL_Deposit_DATA',
+          '/Scorecard/GetBankDep?date=$date', response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent('GET_BANK_ACTUAL_Deposit_DATA',
+          '/Scorecard/GetBankDep?date=$date', response.body);
+      return [];
+    }
+  }
 
   /// Get My Balance Sheet Actual Geography-BankWide Loan
   Future<List<MyBalanceSheetResponse>> getBankWideLoanActual(String date) async {
@@ -2242,7 +2242,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Actual Geography-Region Deposit and Loan
+  /// Get My Balance Sheet Actual Geography-Region Deposit and Loan
   Future<List<MyBalanceSheetTypeResponse>> getRegionActual(String date, String regionName) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2264,7 +2264,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Actual Geography-Area Deposit and Loan
+  /// Get My Balance Sheet Actual Geography-Area Deposit and Loan
   Future<List<MyBalanceSheetTypeResponse>> getAreaActual(String regionId, String area, String date) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2285,7 +2285,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Actual Geography-Branch Deposit and Loan
+  /// Get My Balance Sheet Actual Geography-Branch Deposit and Loan
   Future<List<MyBalanceSheetTypeResponse>> getBranchActual(String zoneId, String branch, String date) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2306,7 +2306,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Actual Geography-Rm Deposit and Loan / Get My Balance Sheet Actual Segment-Rm
+  /// Get My Balance Sheet Actual Geography-Rm Deposit and Loan / Get My Balance Sheet Actual Segment-Rm
   Future<List<MyBalanceSheetRmResponse>> getRmActual(String rmCode, String date) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2463,14 +2463,14 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     if (response.statusCode == 200) {
       print('Region list =');
       print(response.body);
-        List<dynamic> regions = json.decode(response.body);
-        regionList = regions.map((item) => item['location']).cast<String>().toList();
-        return regionList;
-      } else if (response.statusCode == 404) {
-        pandora.logFirebaseEvent(
-            'GET_REGIONS', '/aleroUserMgt/getRegions', response.body);
-        return [];
-      } else {
+      List<dynamic> regions = json.decode(response.body);
+      regionList = regions.map((item) => item['location']).cast<String>().toList();
+      return regionList;
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_REGIONS', '/aleroUserMgt/getRegions', response.body);
+      return [];
+    } else {
       pandora.logFirebaseEvent(
           'GET_REGIONS', '/aleroUserMgt/getRegions', response.body);
     }
@@ -2572,19 +2572,19 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     var response = await http.get(Uri.parse(Global.PresentBaseUrl + '/aleroUserMgt/getRegions'), headers: postAuthHeaders(Global.API_TOKEN!));
     if (response.statusCode == 200) {
       print(response.body);
-        List<dynamic> regionCode = json.decode(response.body);
-        print('Code is = $regionCode');
-        for (var region in regionCode) {
-          if (region.containsKey('locationCode') && region['locationCode'] is String && region['location'] == regionItem) {
-            return region['locationCode'].toString();
-          }
+      List<dynamic> regionCode = json.decode(response.body);
+      print('Code is = $regionCode');
+      for (var region in regionCode) {
+        if (region.containsKey('locationCode') && region['locationCode'] is String && region['location'] == regionItem) {
+          return region['locationCode'].toString();
         }
-        return '';
-      } else if (response.statusCode == 404) {
-        pandora.logFirebaseEvent(
-            'GET_REGION_CODE', '/aleroUserMgt/getRegions', response.body);
-        return [];
-      } else {
+      }
+      return '';
+    } else if (response.statusCode == 404) {
+      pandora.logFirebaseEvent(
+          'GET_REGION_CODE', '/aleroUserMgt/getRegions', response.body);
+      return [];
+    } else {
       pandora.logFirebaseEvent(
           'GET_REGION_CODE', '/aleroUserMgt/getRegions', response.body);
     }
@@ -2722,7 +2722,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Actual Segment Region
+  /// Get My Balance Sheet Actual Segment Region
   Future<List<MyBalanceSheetRmResponse>> getActualSegmentRegion(String segment, String runDate, String regionCode) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -2806,7 +2806,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     }
   }
 
-/// Get My Balance Sheet Average Segment Region
+  /// Get My Balance Sheet Average Segment Region
   Future<List<MyBalanceSheetRmResponse>> getAvgSegmentRegion(String segment, String date, String regionCode) async {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -3062,7 +3062,7 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     final http = new IOClient(ioc);
     var pmToken = await pandora.getFromSharedPreferences('token');
     var response = await http.get(Uri.parse(Global.PresentBaseUrl +
-            '/PLNrff/Areas/region/$date?regionId=$regionId&segmentId=$segment&areaId=$areaId'),
+        '/PLNrff/Areas/region/$date?regionId=$regionId&segmentId=$segment&areaId=$areaId'),
         headers: postAuthHeaders(pmToken));
     if (response.statusCode == 200) {
       return nrffResponseFromJson(response.body);
@@ -3322,22 +3322,22 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       List<dynamic> jsonResponse = jsonDecode(response.body);
       List<MprResponse> mprList = jsonResponse.map((json) =>
           MprResponse.fromJson(json)).toList();
-       print('Mpr bank wide data =');
-       print(response.statusCode);
-       print(mprList);
-        return mprList;
+      print('Mpr bank wide data =');
+      print(response.statusCode);
+      print(mprList);
+      return mprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent(
-            'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
-            response.body);
-        return [];
-      } else {
-        pandora.logFirebaseEvent(
-            'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
-            response.body);
-        return [];
-      }
+          'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
+          response.body);
+      return [];
+    } else {
+      pandora.logFirebaseEvent(
+          'GET_BANK_WIDE_MPR', '/mpr/report/bank?reportDate=$reportDate',
+          response.body);
+      return [];
     }
+  }
 
   /// Get Mpr Geography Region
   Future<List<MprResponse>> getMprGeoRegionData(String regionName, String regionId, String startDate, String endDate) async {
@@ -3406,10 +3406,10 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = jsonDecode(response.body);
       List<MprResponse> mprList = jsonResponse.map((json) => MprResponse.fromJson(json)).toList();
-       print('Mpr branch in 200 =');
-       print(response.statusCode);
-       print(mprList);
-        return mprList;
+      print('Mpr branch in 200 =');
+      print(response.statusCode);
+      print(mprList);
+      return mprList;
     } else if (response.statusCode == 404) {
       pandora.logFirebaseEvent('GET_BRANCH_MPR_DATA', '/mpr/report/branch?reportLevel=$branchName&$branchId=branchId&startDate=$startDate&endDate=$endDate', response.body);
       return [];
@@ -3599,56 +3599,4 @@ Future<List<dynamic>> getPNDWithAccountNo(String accountNumber) async {
       return [];
     }
   }
-
-  /*/// Old API
-  /// Get APR By Customer.
-  Future<List<AprResponse>> searchAprByCustomer(String customer) async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    var pmToken = await pandora.getFromSharedPreferences('token');
-    var response = await http.get(
-        Global.PresentBaseUrl + '/apr/apr-customer-search/$customer',
-        headers: postAuthHeaders(pmToken));
-    if (response.statusCode == 200) {
-      List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<AprResponse> searchApr = jsonResponse.map((json) => AprResponse.fromJson(json)).toList();
-      return searchApr;
-    } else if (response.statusCode == 404) {
-      pandora.logFirebaseEvent(
-          'GET_APR_CUSTOMER', '/apr/apr-customer-search/$customer',
-          response.body);
-      return [];
-    } else {
-      pandora.logFirebaseEvent(
-          'GET_APR_CUSTOMER', '/apr/apr-customer-search/$customer',
-          response.body);
-      return [];
-    }
-  }*/
-
-  /// Create concession
-  /* Future<ConcessionResponse> createConcession(dynamic dealData) async {
-    ioc.badCertificateCallback =
-        (X509Certificate cert, String host, int port) => true;
-    final http = new IOClient(ioc);
-    try {
-      var response = await http.post(Global.InitialBaseUrl + '/concession/add-new-concession',
-          headers: postAuthHeaders(Global.API_TOKEN),
-          body: jsonEncode(dealData));
-      if (response.statusCode == 200) {
-        ConcessionResponse newConcession = ConcessionResponse.fromJson(jsonDecode(response.body));
-        return newConcession;
-      } else if (response.statusCode == 401) {
-        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
-        throw Exception(response.body);
-      } else {
-        pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', response.body);
-      }
-    }  catch (error) {
-      pandora.logFirebaseEvent('ADD_NEW_CONCESSION', '/concession/add-new-concession', error.toString());
-      throw error;
-    }
-  }*/
-
 }
