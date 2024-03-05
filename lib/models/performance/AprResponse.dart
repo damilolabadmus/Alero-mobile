@@ -1,7 +1,4 @@
 
-
-import 'package:flutter/cupertino.dart';
-
 class AprResponse {
   final String? customerId;
   final String? accountNumber;

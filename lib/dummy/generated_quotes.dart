@@ -1,7 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
-
 class Quote {
   final String title;
   final String description;

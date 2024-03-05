@@ -1,8 +1,3 @@
-// To parse this JSON data, do
-//
-//     final rmByBranchCodeList = rmByBranchCodeListFromJson(jsonString);
-
-
 
 import 'dart:convert';
 

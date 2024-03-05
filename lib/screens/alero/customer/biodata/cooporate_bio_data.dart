@@ -4,7 +4,6 @@ import 'package:alero/screens/alero/components/customer_directors_list.dart';
 import 'package:alero/screens/alero/components/customer_signatories_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_it/get_it.dart';
-
 import '../../../../models/customer/CustomerDetailsResponse.dart';
 import '../../../../network/AleroAPIService.dart';
 import '../../../../style/theme.dart' as Style;

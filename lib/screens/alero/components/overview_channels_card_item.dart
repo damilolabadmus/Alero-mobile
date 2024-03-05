@@ -64,6 +64,5 @@ class OverviewChannelsCardItem extends StatelessWidget {
   }
 
   String? splitPan(String hashedPan) {
-    // return hashed.replace(/^(.{4})(.{4})(.{4})(.*)$/, "   ";
   }
 }

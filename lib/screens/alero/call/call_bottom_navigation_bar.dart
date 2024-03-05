@@ -30,11 +30,6 @@ class _CallBottomNavigationBarState extends State<CallBottomNavigationBar> {
             ),
           ),
           label: "Dashboard",
-          // title: Text("Dashboard",
-          //     style: TextStyle(
-          //         fontSize: 12.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -45,11 +40,6 @@ class _CallBottomNavigationBarState extends State<CallBottomNavigationBar> {
             ),
           ),
           label: "Prospects",
-          // title: Text("Prospects",
-          //     style: TextStyle(
-          //         fontSize: 12.0,
-          //         fontFamily: 'Poppins-Regular',
-          //         fontWeight: FontWeight.normal)),
         ),
         BottomNavigationBarItem(
           icon: Padding(
@@ -61,11 +51,6 @@ class _CallBottomNavigationBarState extends State<CallBottomNavigationBar> {
             ),
           ),
           label: "Pipeline Deals",
-          // title: Text("Pipeline Deals",
-          //   style: TextStyle(
-          //     fontSize: 12.0,
-          //     fontFamily: 'Poppins-Regular',
-          //     fontWeight: FontWeight.normal)),
         ),
       ],
     );

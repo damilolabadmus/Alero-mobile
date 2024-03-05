@@ -4,10 +4,8 @@ import 'package:alero/models/call/TurnaroundTimeCompletedResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../../../../style/theme.dart' as Style;
 
 class TurnAroundTimeChart extends StatefulWidget {
   const TurnAroundTimeChart({Key? key}) : super(key: key);

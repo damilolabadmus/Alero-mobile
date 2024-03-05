@@ -79,7 +79,7 @@ The roadmap outlines the strategic plan and vision for the ongoing and future de
 - The code is connected to firebase, which helps connect to Google Analytics which helps to track the user interactions and traffic
 - Flutter Plugin
 
-# Troubleshooting and Support                                                                                        (You can remove this when the login issue is resolved)
+# Troubleshooting and Support
 The points below will assist users in resolving common issues or challenges they may encounter while using Alero Mobile
 For additional assistance, please refer to the specified channels for prompt and effective support
 1. Unable to Access Alero Mobile:

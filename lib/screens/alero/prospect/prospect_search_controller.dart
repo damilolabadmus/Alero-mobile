@@ -5,7 +5,6 @@ import 'package:alero/models/call/ProspectDetailsResponse.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/prospect/view_prospect_button.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:one_context/one_context.dart';

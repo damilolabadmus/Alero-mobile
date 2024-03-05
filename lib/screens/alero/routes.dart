@@ -112,10 +112,6 @@ class Routes {
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Net Revenue From Funds');
         return RouteAnimator(page: NetRevenueFromFunds(userId: arguments as String?));
-      /*case '/concession-menu':
-        GetIt.I<FirebaseAnalytics>()
-            .setCurrentScreen(screenName: 'Concession Menu');
-        return RouteAnimator(page: ConcessionMenu());*/
       case '/concession-dashboard':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Concession Dashboard');

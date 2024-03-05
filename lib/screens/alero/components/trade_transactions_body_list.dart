@@ -2,7 +2,6 @@
 
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_list_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:alero/screens/alero/components/overview_trade_transactions_list_item.dart';
@@ -82,7 +81,7 @@ class _TradeTransactionsBodyListState extends State<TradeTransactionsBodyList> {
                 return Align(
                     alignment: Alignment.topCenter, child: tradeTransactions[index]);
               }));
-    },
+      },
       future: getTradeTransactionsDetails(widget.groupId),
     );
   }

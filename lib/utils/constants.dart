@@ -23,8 +23,6 @@ const int kDepositsDivisor = 1000000000000;
 const int kLoansChartDivisor = 100000000000;
 const int kRevenueChartDivisor = 10000000000;
 
-
-// const int kRevenueChartDivisor = 10000000000;
 const int kDealsValueForM = 1000000;
 const int kDivisor = 100000000;
 const int kDealsValueForB = 1000000000;

@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/material.dart';
-import '../../../style/theme.dart' as Style;
 
 class ProspectDataCard extends StatelessWidget {
   const ProspectDataCard({Key? key,

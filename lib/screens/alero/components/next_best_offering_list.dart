@@ -2,7 +2,6 @@
 
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/nbo_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';

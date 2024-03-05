@@ -2,7 +2,6 @@
 
 import 'package:alero/models/customer/TransactionFlow.dart';
 import 'package:alero/network/AleroAPIService.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../style/theme.dart' as Style;
@@ -72,8 +71,6 @@ class TransactionOutflowCardState extends State<TransactionOutflowCard> {
 
   @override
   Widget build(BuildContext context) {
-    String initialStartDate = DateFormat('MMM, yyyy').format(DateTime.parse(initialDate.subtract(Duration(days: 366)).toString()));
-    String initialEndDate = DateFormat('MMM, yyyy').format(DateTime.parse(initialDate.toString()));
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.none &&

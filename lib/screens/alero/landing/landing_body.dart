@@ -39,7 +39,6 @@ class _LandingBodyState extends State<LandingBody> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    Size size = MediaQuery.of(context).size;
     return CustomScrollView(
       physics: ClampingScrollPhysics(),
       slivers: [

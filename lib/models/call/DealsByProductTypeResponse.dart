@@ -2,8 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:alero/models/customer/LoanClassificationStatus.dart';
-
 DealsByProductTypeResponse dealsByProductTypeResponseFromJson(String str) => DealsByProductTypeResponse.fromJson(json.decode(str));
 
 String dealsByProductTypeResponseToJson(DealsByProductTypeResponse data) => json.encode(data.toJson());

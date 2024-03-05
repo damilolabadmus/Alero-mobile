@@ -1,6 +1,3 @@
-/// canView : false
-
-
 
 class ViewStatusResponse {
   bool? _canView;

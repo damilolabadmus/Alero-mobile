@@ -48,20 +48,4 @@ class NrffResponse {
     "EffFtpRate": effFtpRate,
     "Nrff": nrff,
   };
-
-  /*@override
-  String toString() {
-    return 'NrffResponse{Product: $product, ActualValue: $actualValue, AverageValue: $averageValue, InterestExpense: $interestExpense, EffInRate: $effInRate, FtpExpense: $ftpExpense, EffFtpRate: $effFtpRate, Nrff: $nrff}';
-  }
-
-  double getSum() {
-    return actualValue +
-        averageValue +
-        interestExpense +
-        effInRate +
-        ftpExpense +
-        effFtpRate +
-        nrff;
-  }*/
-
 }

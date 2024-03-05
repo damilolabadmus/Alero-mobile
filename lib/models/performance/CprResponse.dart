@@ -1,7 +1,5 @@
 
 
-import 'package:flutter/cupertino.dart';
-
 class CprResponse {
   final String? customerNo;
   final String? customerName;

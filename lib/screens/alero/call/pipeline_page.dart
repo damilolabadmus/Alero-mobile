@@ -7,7 +7,6 @@ import 'package:alero/screens/alero/call/call_management_page.dart';
 import 'package:alero/screens/alero/pipeline/deals_item_container.dart';
 import 'package:alero/screens/alero/pipeline/pipeline_deals_add.dart';
 import 'package:alero/screens/alero/pipeline/status_update_page.dart';
-import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
 import 'package:container_tab_indicator/container_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:alero/style/theme.dart' as Style;

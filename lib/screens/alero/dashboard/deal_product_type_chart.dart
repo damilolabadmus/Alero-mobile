@@ -5,7 +5,6 @@ import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../style/theme.dart' as Style;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DealProductTypeChart extends StatefulWidget {

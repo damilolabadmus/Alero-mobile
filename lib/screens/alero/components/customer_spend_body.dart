@@ -4,7 +4,6 @@ import 'package:alero/models/customer/LifeStyleCount.dart';
 import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_list_item.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer_widget/flutter_shimmer_loading_widget.dart';
 import 'package:flutter_svg/svg.dart';

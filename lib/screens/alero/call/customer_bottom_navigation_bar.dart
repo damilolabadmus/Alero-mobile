@@ -1,10 +1,8 @@
 
 
-import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:one_context/one_context.dart';
 
 class CustomerBottomNavigationBar extends StatefulWidget {
 

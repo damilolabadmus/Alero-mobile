@@ -8,7 +8,6 @@ import 'package:alero/screens/alero/components/next_best_offering_body.dart';
 import 'package:alero/screens/alero/components/next_best_offering_list.dart';
 import 'package:alero/screens/alero/components/recent_tansactions_list.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:one_context/one_context.dart';
