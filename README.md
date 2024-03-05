@@ -1,4 +1,4 @@
-# Introduction and Overview
+# Introduction
 Alero Mobile- This is a cross platform mobile application for the Alero built in the flutter framework
 
 # Primary Goal
