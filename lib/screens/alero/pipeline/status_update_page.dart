@@ -294,7 +294,6 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
         ],),),
   );
 
-  // Update deal status alert
   showAlertDialog(BuildContext context, int index) {
     showDialog(
       useRootNavigator: false,

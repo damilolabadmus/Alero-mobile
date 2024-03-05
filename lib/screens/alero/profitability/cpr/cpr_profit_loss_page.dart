@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
 import '../../../../../style/theme.dart' as Style;
+import '../../../../utils/Pandora.dart';
 import 'cpr_bottom_navigation_bar.dart';
 import 'cpr_profit_loss_table_container.dart';
 
@@ -108,27 +109,9 @@ class _CprProfitAndLossPageState extends State<CprProfitAndLossPage> {
         padding: const EdgeInsets.only(right: 24.0),
         child: GestureDetector(
           onTap: () {
-            logoutUser(context);
+            Pandora.logoutUser(context);
      },
      child: SvgPicture.asset('assets/customer/profile_logout.svg', width: 17),
     )),],
   );
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
-  }
 }

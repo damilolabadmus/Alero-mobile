@@ -1,13 +1,10 @@
 
 
 import 'dart:async';
-import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:alero/utils/loading_quotes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'apr_details_page.dart';
 
 class AprDashboardTableContainer extends StatefulWidget {

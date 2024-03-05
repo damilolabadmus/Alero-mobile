@@ -1,6 +1,5 @@
 
 
-import 'package:alero/utils/Pandora.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -81,11 +80,9 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
           'assets/customer/profile_dashboard.svg',
-          color: Colors.black45,
           height: 12,
         ),
         label: "Dashboard",
-        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -94,16 +91,13 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           size: 18,
         ),
         label: "Account Details",
-        // title: Text("Account Details"),
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
           'assets/customer/biodata/biodata_id.svg',
-          color: Colors.black45,
           height: 12,
         ),
         label: "Balance Sheet",
-        // title: Text("Balance Sheet"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -112,7 +106,6 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           size: 18,
         ),
         label: "Searched Account.",
-        // title: Text("Searched Account."),
       ),
     ];}
 
@@ -122,11 +115,9 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
           'assets/customer/profile_dashboard.svg',
-          color: Colors.black45,
           height: 12,
         ),
         label: "Dashboard",
-        // title: Text("Dashboard"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -135,7 +126,6 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           size: 18,
         ),
         label: "Account Details",
-        // title: Text("Account Details"),
       ),
       BottomNavigationBarItem(
         icon: Icon(
@@ -144,7 +134,6 @@ class _AprBottomNavigationBarState extends State<AprBottomNavigationBar> {
           size: 18,
         ),
         label: "Searched Account.",
-        // title: Text("Searched Account"),
       ),
     ];
   }

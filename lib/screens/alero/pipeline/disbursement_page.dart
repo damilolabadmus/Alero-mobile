@@ -23,7 +23,6 @@ class DisbursementPage extends StatefulWidget {
 class _DisbursementPageState extends State<DisbursementPage> {
   String? customerName;
   String? prospectName;
-
   String? pipelineId;
   String? status;
   String? subStatus;

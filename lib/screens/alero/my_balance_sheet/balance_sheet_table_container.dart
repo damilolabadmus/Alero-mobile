@@ -1,11 +1,8 @@
 
 
-import 'dart:ui';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MyBalanceSheetTableContainer extends StatelessWidget {
   final balanceSheetDepData;
@@ -54,15 +51,15 @@ class MyBalanceSheetTableContainer extends StatelessWidget {
                       ], rows: List.generate(balanceSheetDepData.length, (index) {
                       return DataRow(
                         color:  MaterialStateProperty.resolveWith<Color?>(
-                                (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.selected)) {
-                                return Theme.of(context).colorScheme.primary.withOpacity(0.08);
-                              }
-                              if (index.isOdd) {
-                                return Colors.grey.withOpacity(0.15);
-                              }
-                              return null;
-                            }),
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Theme.of(context).colorScheme.primary.withOpacity(0.08);
+                            }
+                            if (index.isOdd) {
+                              return Colors.grey.withOpacity(0.15);
+                            }
+                            return null;
+                          }),
                           cells: [
                              DataCell(Text(balanceSheetDepData[index].product == "Demand_Deposits" ? 'CURRENT'
                                 : balanceSheetDepData[index].product == "Savings_Deposits" ? 'SAVINGS'

@@ -1,8 +1,5 @@
 
 
-import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/network/AleroAPIService.dart';
-import 'package:alero/screens/alero/profitability/apr/apr_details_table_container.dart';
 import 'package:alero/screens/alero/profitability/singleton.dart';
 import 'package:flutter/material.dart';
 import '../../../../../style/theme.dart' as Style;

@@ -1,9 +1,7 @@
 
 
-import 'dart:ui';
 import 'package:alero/screens/alero/components/empty_details_item.dart';
 import 'package:alero/screens/alero/profitability/singleton.dart';
-import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
 import 'package:alero/utils/constants.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:flutter/material.dart';

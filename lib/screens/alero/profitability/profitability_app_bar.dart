@@ -1,12 +1,11 @@
 
 
-import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/profitability/profitability_reports_page.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:one_context/one_context.dart';
 import '../../../style/theme.dart' as Style;
+import '../../../utils/Pandora.dart';
 
 class ProfitabilityAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -33,7 +32,7 @@ class ProfitabilityAppBar extends StatelessWidget implements PreferredSizeWidget
             padding: const EdgeInsets.only(right: 24.0),
             child: GestureDetector(
               onTap: () {
-                logoutUser(context);
+                Pandora.logoutUser(context);
               },
               child: SvgPicture.asset(
                 'assets/customer/profile_logout.svg',
@@ -47,22 +46,4 @@ class ProfitabilityAppBar extends StatelessWidget implements PreferredSizeWidget
 
   @override
   Size get preferredSize => const Size.fromHeight(50);
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
-  }
 }

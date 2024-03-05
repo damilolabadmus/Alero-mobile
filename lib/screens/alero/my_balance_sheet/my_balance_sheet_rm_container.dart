@@ -2,10 +2,7 @@
 
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 class MyBalanceSheetRmContainer extends StatefulWidget {
   final balanceSheetData;
@@ -82,7 +79,6 @@ class _MyBalanceSheetRmContainerState extends State<MyBalanceSheetRmContainer> {
                   DataColumn(label: Text('MTD Variance (₦\'m)')),
                   DataColumn(label: Text('Budget (₦\'m)')),
                   DataColumn(label: Text('Variance From Budget (₦\'m)')),
-                  // DataColumn(label: Text('Achievement % (₦\'m)')),
                 ],
                 rows: productTotals.keys.map((product) {
                   final displayProduct = product != previousProduct ? product : '';
@@ -109,7 +105,6 @@ class _MyBalanceSheetRmContainerState extends State<MyBalanceSheetRmContainer> {
                         DataCell(Text(Pandora.moneyFormat(productTotals[product]['varianceFromMonthEnd']).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.moneyFormat(productTotals[product]['budget']).toString(), style: kDealsHeaderStyle)),
                         DataCell(Text(Pandora.moneyFormat(productTotals[product]['varianceFromBudget']).toString(), style: kDealsHeaderStyle)),
-                        // DataCell(Text((widget.balanceSheetData[index].achievementPercent).String(), style: kDealsHeaderStyle)),
                       ]);
                 }).toList(),
                 ),

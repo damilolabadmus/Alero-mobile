@@ -5,9 +5,7 @@ import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/call_app_bar.dart';
 import 'package:alero/screens/alero/performance/performance_title_container.dart';
 import 'package:alero/screens/alero/components/simple_bottom_nav.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'mpr_table_container.dart';
 
@@ -110,68 +108,6 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     }
   }
 
-/*
-  void _selectDate(BuildContext context) async {
-    try {
-      setState(() {
-        isFetchingData = true;
-      });
-
-      DateTime _datePicker = await showDatePicker(
-        context: context,
-        initialDate: startDate,
-        firstDate: DateTime(1990),
-        lastDate: DateTime.now(),
-      );
-
-      if (_datePicker != null && DateFormat('yyyy-MM').format(_datePicker) != selectedDate) {
-        String newSelectedDate = DateFormat('yyyy-MM').format(_datePicker);
-        setState(() {
-          selectedDate = newSelectedDate;
-
-          List<String> dateParts = selectedDate.split('-');
-          int year = int.parse(dateParts[0]);
-          int month = int.parse(dateParts[1]);
-          DateTime dateTime = DateTime(year, month);
-          dateSelected = DateFormat('MMM yyyy').format(dateTime);
-        });
-        await fetchData();
-      }
-    } catch (e) {
-    } finally {
-      setState(() {
-        isFetchingData = false;
-      });
-    }
-  }
-*/
-
-/*
-  Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
-        context: context,
-        initialDate: startDate,
-        firstDate: DateTime(1990),
-        lastDate: DateTime.now(),
-    );
-    if (_datePicker != null && DateFormat('yyyy-MM').format(_datePicker) != selectedDate) {
-      String newSelectedDate = DateFormat('yyyy-MM').format(_datePicker);
-      setState(() {
-        selectedDate = newSelectedDate;
-        print('THE MPR DATE = $selectedDate');
-
-        List<String> dateParts = selectedDate.split('-');
-        int year = int.parse(dateParts[0]);
-        int month = int.parse(dateParts[1]);
-        DateTime dateTime = DateTime(year, month);
-        dateSelected = DateFormat('MMM yyyy').format(dateTime);
-
-
-          fetchData();
-      });
-    }
-  }
-*/
 
   List<String> segmentList = [
     'SME',

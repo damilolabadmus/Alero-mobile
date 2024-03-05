@@ -1,16 +1,10 @@
 
 
-import 'dart:ui';
 import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/models/performance/CprResponse.dart';
-import 'package:alero/network/AleroAPIService.dart';
 import 'package:alero/screens/alero/components/empty_details_item.dart';
-import 'package:alero/screens/alero/search/shimmer_loading_widget.dart';
 import 'package:alero/utils/Pandora.dart';
 import 'package:alero/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AprBalanceSheetTableContainer extends StatefulWidget {
   final aprData;
