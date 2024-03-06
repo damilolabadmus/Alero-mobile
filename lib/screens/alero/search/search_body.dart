@@ -40,7 +40,7 @@ class _SearchBody extends StatelessWidget {
                   initial: () => Text('Please wait ...'),
                   loading: () => Text('Please wait ...'),
                   loaded: (customerList) => Text(customerList.length.toString() + ' matches found'),
-                  error: (message) => Text('An error occurred.'),
+                  error: (message) => Text('0 matches found'),
                 );
               },
             ),
@@ -102,13 +102,27 @@ class _SearchBody extends StatelessWidget {
               initial: () => Container(),
               loading: () => ShimmerLoadingWidget(),
               loaded: (customerList) => _buildCustomerList(customerList),
-              error: (message) => Center(child: Text('An error occurred.')),
+              error: (message) => _buildUserNotFound(),
             );
           },
         ),
       ],
     );
   }
+
+  Widget _buildUserNotFound() => Expanded(
+      child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: EmptyListItem(message: 'User not Found'),
+              ),
+          ],
+        ),
+      ),
+    );
 
   Widget _buildCustomerList(List<CustomerList> customerList) {
     return Expanded(
