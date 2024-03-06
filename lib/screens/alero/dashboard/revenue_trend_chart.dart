@@ -10,6 +10,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
 
+import '../../../utils/Pandora.dart';
+
 class RevenueTrendChart extends StatefulWidget {
   @override
   _RevenueTrendChartState createState() => _RevenueTrendChartState();
@@ -80,7 +82,6 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
               maxX: bankRevenue!.length.toDouble() - 1,
               minY: -1.5,
               maxY: 2.1,
-
               titlesData: FlTitlesData(
                 show: yes,
                 bottomTitles: AxisTitles(
@@ -126,7 +127,7 @@ class _RevenueTrendChartState extends State<RevenueTrendChart> {
                 LineChartBarData(
                   spots: bankRevenue!
                       .map((bankRev) => FlSpot((bankRevenueindex++).toDouble(),
-                          bankRev!.revenueData! >= 100000000000 ? bankRev.revenueData! / kDepositsDivisor : bankRev.revenueData! / kRevenueChartDivisor))
+                      Pandora.chartItemFormat(bankRev!.revenueData!)))
                       .toList(),
                   isCurved: yes,
                   color: gradientColors.first,

@@ -5,7 +5,6 @@ import 'package:alero/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 import 'bloc/revenue_trend_bloc/revenue_trend_bloc.dart';
 import 'repository/revenue_trend_repository.dart';
 

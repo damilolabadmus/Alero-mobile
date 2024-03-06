@@ -18,7 +18,6 @@ class ProspectSearchController extends StatefulWidget {
 
 class _ProspectSearchControllerState extends State<ProspectSearchController> {
   TextEditingController textController = new TextEditingController();
-
   var apiService = AleroAPIService();
   final AsyncMemoizer _asyncMemoizer = AsyncMemoizer();
   List prospectOnSearch = [];
@@ -169,7 +168,7 @@ class _ProspectSearchControllerState extends State<ProspectSearchController> {
             ],
           );
         },
-        future: getProspectList()
+       future: getProspectList()
     );
   }
 }
