@@ -14,19 +14,22 @@ class RevenueTrendRepository {
       double totalLoansRevenue = 0.0;
       double totalDepositsRevenue = 0.0;
       double totalCommFeesRevenue = 0.0;
-      List<AggregateRevenueTrendData> rtData = [];
-        revenue.forEach((revenueTrend) {
-          rtData.add(AggregateRevenueTrendData(
-            ytdRevenue: totalYtdRevenue += revenueTrend["ytdRevenue"],
-            loansRevenue: totalLoansRevenue += revenueTrend["loansRevenue"],
-            depositsRevenue: totalDepositsRevenue += revenueTrend["depositsRevenue"],
-            commFeesRevenue: totalCommFeesRevenue += revenueTrend["commFeesRevenue"],
-          ));
-        });
-      return rtData;
+
+      revenue.forEach((revenueTrend) {
+        totalYtdRevenue += revenueTrend["ytdRevenue"];
+        totalLoansRevenue += revenueTrend["loansRevenue"];
+        totalDepositsRevenue += revenueTrend["depositsRevenue"];
+        totalCommFeesRevenue += revenueTrend["commFeesRevenue"];
+      });
+      
+      return AggregateRevenueTrendData(
+        ytdRevenue: totalYtdRevenue,
+        loansRevenue: totalLoansRevenue,
+        depositsRevenue: totalDepositsRevenue,
+        commFeesRevenue: totalCommFeesRevenue,
+      );
     });
   }
-
 }
 
 class AggregateRevenueTrendData {
