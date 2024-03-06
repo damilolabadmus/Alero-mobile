@@ -39,7 +39,7 @@ class _RevenueTrendState extends State<RevenueTrend> {
           initial: () => Container(),
           loading: () => CircularProgressIndicator(),
           loaded: (data) => _buildRevenueTrend(data),
-          error: (message) => Text('Error: $message'),
+          error: (message) => Center(child: Text('An error occurred.')),
         );
       },
     );

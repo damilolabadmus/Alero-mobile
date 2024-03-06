@@ -40,7 +40,7 @@ class _SearchBody extends StatelessWidget {
                   initial: () => Text('Please wait ...'),
                   loading: () => Text('Please wait ...'),
                   loaded: (customerList) => Text(customerList.length.toString() + ' matches found'),
-                  error: (message) => Text('Error: $message'),
+                  error: (message) => Text('An error occurred.'),
                 );
               },
             ),
@@ -102,7 +102,7 @@ class _SearchBody extends StatelessWidget {
               initial: () => Container(),
               loading: () => ShimmerLoadingWidget(),
               loaded: (customerList) => _buildCustomerList(customerList),
-              error: (message) => Text('Error: $message'),
+              error: (message) => Center(child: Text('An error occurred.')),
             );
           },
         ),

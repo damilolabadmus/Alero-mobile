@@ -40,7 +40,7 @@ class _BankPerformanceItemsState extends State<BankPerformanceItems> {
           initial: () => Container(),
           loading: () => CircularProgressIndicator(),
           loaded: (data) => _buildCards(data),
-          error: (message) => Text('Error: $message'),
+          error: (message) => Text('An error occurred.'),
         );
       },
     );
