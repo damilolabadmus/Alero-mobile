@@ -91,7 +91,7 @@ class Routes {
       case '/my-balance-sheet-page':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'My BalanceSheet Page');
-        return RouteAnimator(page: MyBalanceSheetPage(regionId: arguments as String?));
+        return RouteAnimator(page: MyBalanceSheetPage());
       case '/profitability-reports':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Profitability Reports');
@@ -103,7 +103,7 @@ class Routes {
       case '/account-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Account Profitability Report');
-        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments as String?));
+        return RouteAnimator(page: AccountProfitabilityReportPage());
       case '/monthly-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Monthly Profitability Report');
@@ -155,7 +155,7 @@ class Routes {
       case '/account-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Account Profitability Report Page');
-        return RouteAnimator(page: AccountProfitabilityReportPage(userId: arguments as String?));
+        return RouteAnimator(page: AccountProfitabilityReportPage());
       case '/apr-details':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Apr Details Page');

@@ -49,7 +49,8 @@ class _PerformanceManagementDashboardState extends State<PerformanceManagementDa
                   SizedBox(height: 5.0),
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Text('Welcome, below are different reports to select from.', style: kBankItemTitle.copyWith(fontSize: 15)),
+                    child: Text('Welcome, below are different reports to select from.',
+                        style: kBankItemTitle.copyWith(fontSize: 15)),
                   ),
                   SizedBox(height: 20.0),
                   GridView.count(

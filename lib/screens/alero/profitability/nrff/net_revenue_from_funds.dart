@@ -5,6 +5,7 @@ import 'package:alero/screens/alero/performance/performance_title_container.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:one_context/one_context.dart';
+import '../../../../utils/Pandora.dart';
 import 'nfrr_table_container.dart';
 import 'package:intl/intl.dart';
 
@@ -72,7 +73,6 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
         ),
       );
 
-      Overlay.of(context).insert(overlayEntry);
 
       DateTime? _datePicker = await showDatePicker(
         context: context,
@@ -104,32 +104,6 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
       });
     }
   }
-
-/*
-  Future<Null> _selectDate(BuildContext context) async {
-    DateTime _datePicker = await showDatePicker(
-      context: context,
-      initialDate: startDate,
-      firstDate: DateTime(1990),
-      lastDate: DateTime.now(),
-    );
-    if (_datePicker != null && DateFormat('yyyy-MM').format(_datePicker) != selectedDate) {
-      String newSelectedDate = DateFormat('yyyy-MM').format(_datePicker);
-      setState(() {
-        selectedDate = newSelectedDate;
-        print('THE NRFF DATE = $selectedDate');
-
-        List<String> dateParts = selectedDate.split('-');
-        int year = int.parse(dateParts[0]);
-        int month = int.parse(dateParts[1]);
-        DateTime dateTime = DateTime(year, month);
-        dateSelected = DateFormat('MMM yyyy').format(dateTime);
-
-        fetchData();
-      });
-    }
-  }
-*/
 
   List<String>? regionList;
   Future<List<String>?> getRegionList() async {
@@ -186,6 +160,7 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
 
   List<String> regionLis = ['HEAD OFFICE', 'SOUTH', 'NORTH 1', 'NORTH 2', 'LAGOS AND SOUTHWEST', 'CORPORATE BANKING GROUP', 'TREASURY'];
 
+  // Look here....
   @override
   void initState() {
     super.initState();
@@ -696,29 +671,12 @@ class _NetRevenueFromFundsState extends State<NetRevenueFromFunds> {
                         'assets/customer/profile_logout.svg',
                       ),
                       onTap: () {
-                        logoutUser(context);
+                        Pandora.logoutUser(context);
                       },
                     )
                   ],
                 ),
               ))),
     );
-  }
-
-  void logoutUser(BuildContext context) async {
-    var apiService = AleroAPIService();
-    var response;
-    OneContext().showProgressIndicator();
-    try {
-      OneContext().hideProgressIndicator();
-      response = await apiService.logoutUser();
-      if (response != null) {
-        Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-        OneContext().hideProgressIndicator();
-      }
-    } catch (error) {
-      print(error);
-      OneContext().hideProgressIndicator();
-    }
   }
 }
