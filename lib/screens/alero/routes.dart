@@ -107,11 +107,11 @@ class Routes {
       case '/monthly-pr':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Monthly Profitability Report');
-        return RouteAnimator(page: MonthlyProfitabilityReport(userId: arguments as String?));
+        return RouteAnimator(page: MonthlyProfitabilityReport());
       case '/nrff':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Net Revenue From Funds');
-        return RouteAnimator(page: NetRevenueFromFunds(userId: arguments as String?));
+        return RouteAnimator(page: NetRevenueFromFunds());
       case '/concession-dashboard':
         GetIt.I<FirebaseAnalytics>()
             .setCurrentScreen(screenName: 'Concession Dashboard');

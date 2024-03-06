@@ -10,9 +10,6 @@ import 'nfrr_table_container.dart';
 import 'package:intl/intl.dart';
 
 class NetRevenueFromFunds extends StatefulWidget {
-  final String? userId;
-
-  NetRevenueFromFunds({required this.userId});
 
   @override
   State<NetRevenueFromFunds> createState() => _NetRevenueFromFundsState();
