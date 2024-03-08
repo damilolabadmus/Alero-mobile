@@ -28,7 +28,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<SearchStarted>((event, emit) async {
       emit(SearchState.loading());
       try {
-        final searchResponse = await apiService.searchCustomer(event.query) as List;
+        final searchResponse = await apiService.searchForUser(event.query) as List;
         List<CustomerList> customerList = [];
         searchResponse.forEach((customer) {
           customerList.add(CustomerList(
