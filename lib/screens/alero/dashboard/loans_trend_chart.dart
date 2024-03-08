@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../style/theme.dart' as Style;
 import 'package:async/async.dart';
+import '../../../utils/Pandora.dart';
 
 class LoansTrendChart extends StatefulWidget {
   @override
@@ -127,7 +128,7 @@ class _LoansTrendChartState extends State<LoansTrendChart> {
               ),
               lineBarsData: [
                 LineChartBarData(
-                  spots: bankLoan!.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), bankLn!.loansData! / kLoansChartDivisor)).toList(),
+                  spots: bankLoan!.map((bankLn) => FlSpot((bankLoanIndex++).toDouble(), Pandora.chartItemFormat3(bankLn!.loansData!))).toList(),
                   isCurved: yes,
                   color: gradientColors.first,
                   barWidth: 2,

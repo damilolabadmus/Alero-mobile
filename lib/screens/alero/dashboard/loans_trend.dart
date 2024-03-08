@@ -93,55 +93,6 @@ class _LoansTrendState extends State<LoansTrend> {
   }
 }
 
-// @override
-// Widget build(BuildContext context) {
-//   return Padding(
-//     padding: const EdgeInsets.only(bottom: 20.0),
-//     child: Card(
-//       elevation: 4.0,
-//       child: Container(
-//         margin: EdgeInsets.all(10.0),
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(10.0),
-//           color: Colors.white,
-//         ),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text('Loans Trend (N\'M) - YOY/12 Months',
-//               style: kTrendTextStyle.copyWith(
-//                   fontSize: 16),
-//             ),
-//             SizedBox(
-//               height: 15.0,
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 LoansItem(loansLine1: 'Actual', loansLine2: 'Loans',
-//                     value: "${double. parse((actualLoans/divisor).toStringAsFixed(2))}b"),
-//                 LoansItem(loansLine1: ' ', loansLine2: 'DoD',
-//                     value: actualLoansChange.toString()),
-//                 LoansItem(loansLine1: 'Average', loansLine2: 'Loans',
-//                     value: "${double. parse((averageLoans/divisor).toStringAsFixed(2))}b"),
-//                 LoansItem(loansLine1: ' ', loansLine2: 'DoD',
-//                     value: averageLoansChange.toString()),
-//               ],
-//             ),
-//             SizedBox(
-//               height: 10.0,
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
-//               child: LoansTrendChart(),
-//             ),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }
 
 class LoansItem extends StatelessWidget {
   LoansItem({this.loansLine1, this.loansLine2, this.value});

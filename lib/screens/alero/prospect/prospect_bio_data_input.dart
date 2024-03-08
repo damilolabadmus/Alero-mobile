@@ -472,7 +472,7 @@ class _ProspectBioDataInputState extends State<ProspectBioDataInput> {
             padding: const EdgeInsets.only(bottom: 10.0),
             child: Center(child: Icon(Icons.thumb_up_alt_sharp, size: 35, color: Colors.lightBlueAccent)),
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           Text(
             'Prospect Added Successfully.',
             style: TextStyle(

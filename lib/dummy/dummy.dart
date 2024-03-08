@@ -232,6 +232,15 @@ const SearchData = [
   }
 ];
 
+const List<String> segmentList = [
+  'SME',
+  'RETAIL',
+  'COMMERCIAL',
+  'PUBLIC SECTOR',
+  'CORPORATE',
+  'UNTAGGED',
+];
+
 const dashboardMenu = [
   {"image":'assets/icons/customer.svg',"name": "Single\nCustomer View", 'position': 0},
   {"image":'assets/icons/performance.svg',"name": "Performance\nManagement", 'position': 1},
@@ -239,7 +248,7 @@ const dashboardMenu = [
   {"image":'assets/icons/budgeting.svg',"name": "Concession", 'position': 3},
 ];
 
-/// Use this If Call Management Authorization is false.
+/// If Call Management Authorization is false.
 const dashboardMenuAccess = [
   {"image":'assets/icons/customer.svg',"name": "Single\nCustomer View", 'position': 0},
   {"image":'assets/icons/performance.svg',"name": "Performance\nManagement", 'position': 1},

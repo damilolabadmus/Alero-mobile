@@ -18,9 +18,6 @@ import 'my_balance_sheet_rm_container.dart';
 import 'my_balance_sheet_type_container.dart';
 
 class MyBalanceSheetPage extends StatelessWidget {
-  final String? regionId;
-
-  const MyBalanceSheetPage({this.regionId});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +27,12 @@ class MyBalanceSheetPage extends StatelessWidget {
         BlocProvider<BalanceSheetBloc>(create: (context) => BalanceSheetBloc()),
         BlocProvider<LogoutBloc>(create: (context) => LogoutBloc()),
       ],
-      child: _MyBalanceSheetPage(regionId: regionId),
+      child: _MyBalanceSheetPage(),
     );
   }
 }
 
 class _MyBalanceSheetPage extends StatefulWidget {
-  final String? regionId;
-
-  const _MyBalanceSheetPage({this.regionId});
 
   @override
   State<_MyBalanceSheetPage> createState() => _MyBalanceSheetPageState();
@@ -92,7 +86,6 @@ class _MyBalanceSheetPageState extends State<_MyBalanceSheetPage> with TickerPro
       duration: Duration(seconds: 1),
     );
     animation1 = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-
     animation2 = ColorTween(begin: Colors.white12, end: Colors.black54).animate(controller);
     controller.forward();
 
@@ -103,7 +96,6 @@ class _MyBalanceSheetPageState extends State<_MyBalanceSheetPage> with TickerPro
         controller.forward();
       }
     });
-
     controller.addListener(() {
       setState(() {});
     });
@@ -212,7 +204,6 @@ class _MyBalanceSheetPageState extends State<_MyBalanceSheetPage> with TickerPro
                           ),
                           Builder(
                             builder: (BuildContext context) {
-                              // Finds the first non-null value within the types list, prioritizing those earlier in the list.
                               var types = [
                                 sheetState.areaType,
                                 sheetState.branchType,

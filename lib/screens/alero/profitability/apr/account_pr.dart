@@ -11,9 +11,6 @@ import '../profitability_app_bar.dart';
 import 'apr_search_field.dart';
 
 class AccountProfitabilityReportPage extends StatefulWidget {
-  final String? userId;
-
-  AccountProfitabilityReportPage({required this.userId});
 
   @override
   State<AccountProfitabilityReportPage> createState() => _AccountProfitabilityReportPageState();
@@ -30,7 +27,6 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
 
   List<AprResponse> topAprData = [];
   List<AprResponse> bottomAprData = [];
-  // List<AprResponse> aprPeriodData = [];
 
   @override
   void initState() {
@@ -56,7 +52,6 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
       List<Future<List<AprResponse>>> futures = [
         apiService.getTopAprData().timeout(Duration(minutes: 15)),
         apiService.getBottomAprData().timeout(Duration(minutes: 15)),
-        // apiService.getAprPeriod().timeout(Duration(minutes: 15)),
       ];
 
       List<List<AprResponse>> results = await Future.wait(futures);
@@ -65,7 +60,6 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
         setState(() {
           topAprData = results[0];
           bottomAprData = results[1];
-          // aprPeriodData = results[2];
 
           dataLoaded = true;
           isInitialLoading = false;

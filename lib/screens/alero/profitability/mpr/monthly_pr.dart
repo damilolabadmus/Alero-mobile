@@ -7,12 +7,10 @@ import 'package:alero/screens/alero/performance/performance_title_container.dart
 import 'package:alero/screens/alero/components/simple_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../../../dummy/dummy.dart';
 import 'mpr_table_container.dart';
 
 class MonthlyProfitabilityReport extends StatefulWidget {
-  final String? userId;
-
-  MonthlyProfitabilityReport({required this.userId});
 
   @override
   State<MonthlyProfitabilityReport> createState() =>
@@ -21,9 +19,9 @@ class MonthlyProfitabilityReport extends StatefulWidget {
 
 class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport> {
   var apiService = AleroAPIService();
+  List<MprResponse> mprSummary = [];
   String? dateSelected;
   Function? search;
-  List<MprResponse> mprSummary = [];
 
   String? regionType;
   String? segmentType;
@@ -53,15 +51,12 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
   String bankDate = DateFormat('MMM yyyy').format(DateTime.now());
   String initialDate = DateFormat('yyyy-MM').format(DateTime.now());
 
-
   void _selectDate(BuildContext context) async {
     OverlayEntry? overlayEntry;
-
     try {
       setState(() {
         isFetchingData = true;
       });
-
       overlayEntry = OverlayEntry(
         builder: (context) => Positioned(
           top: MediaQuery.of(context).size.height * 0.5,
@@ -74,16 +69,13 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
           ),
         ),
       );
-
       Overlay.of(context).insert(overlayEntry);
-
       DateTime? _datePicker = await showDatePicker(
         context: context,
         initialDate: startDate,
         firstDate: DateTime(1990),
         lastDate: DateTime.now(),
       );
-
       if (_datePicker != null && DateFormat('yyyy-MM').format(_datePicker) != selectedDate) {
         String newSelectedDate = DateFormat('yyyy-MM').format(_datePicker);
         setState(() {
@@ -95,36 +87,16 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
           DateTime dateTime = DateTime(year, month);
           dateSelected = DateFormat('MMM yyyy').format(dateTime);
         });
-
         await fetchData();
       }
     } catch (e) {
     } finally {
       overlayEntry?.remove();
-
       setState(() {
         isFetchingData = false;
       });
     }
   }
-
-
-  List<String> segmentList = [
-    'SME',
-    'RETAIL',
-    'COMMERCIAL',
-    'PUBLIC SECTOR',
-    'CORPORATE',
-    'UNTAGGED',
-  ];
-
-  List<String> segmentLis = [
-    'SME',
-    'COMMERCIAL',
-    'PUBLIC SECTOR',
-    'CORPORATE',
-    'UNTAGGED',
-  ];
 
   List<String>? regionList;
   Future<List<String>?> getRegionList() async {
@@ -135,41 +107,31 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     return regionList;
   }
 
-  List<String> regionLis = [
-    'HEAD OFFICE',
-    'NORTH 1',
-    'NORTH 2',
-    'NORTH 3',
-    'LAGOS AND SOUTHWEST',
-    'CORPORATE BANKING GROUP',
-    'TREASURY'
-  ];
-
-  List<String>? areaByRegion;
+  List<String>? areaList;
   Future<List<String>?> getAreaListByRegionId(String regionId) async {
     List<String>? _listOfAreas = await apiService.getAreaList(regionId);
     setState(() {
-      areaByRegion = _listOfAreas;
+      areaList = _listOfAreas;
     });
-    return areaByRegion;
+    return areaList;
   }
 
-  List<String>? branchByArea;
+  List<String>? branchList;
   Future<List<String>?> getBranchListByAreaCode(String areaCode) async {
     List<String>? _branchArea = await apiService.getBranchList(areaCode);
     setState(() {
-      branchByArea = _branchArea;
+      branchList = _branchArea;
     });
-    return branchByArea;
+    return branchList;
   }
 
-  List<String>? rmByBranch;
+  List<String>? rmList;
   Future<List<String>?> getRmListByAreaCode(String branchCode) async {
     List<String>? _rmBranch = await apiService.getRmList(branchCode);
     setState(() {
-      rmByBranch = _rmBranch;
+      rmList = _rmBranch;
     });
-    return rmByBranch;
+    return rmList;
   }
 
   @override
@@ -185,7 +147,6 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
     if (!dataLoaded) {
       fetchData();
     }
-
     startTimeout();
   }
 
@@ -241,7 +202,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CallAppBar(),
-        body: isInitialLoading ? Center(child: CircularProgressIndicator()) // Show loading indicator for the initial load
+        body: isInitialLoading ? Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(left: 10, top: 10, right: 5),
@@ -354,7 +315,8 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                       PopupMenuButton<String>(
                         itemBuilder: regionType == null && areaType == null && branchType == null && rmType == null
                             ? (context) {
-                          return regionList == null ? regionLis.map((item) {
+                          return regionList == null ? regionList!.map((item) {
+                          // return regionList == null ? regionLis.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -367,7 +329,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : regionType != null && areaType == null && branchType == null && rmType == null ?
                             (context) {
-                          return areaByRegion == null ? [] : areaByRegion!.map((item) {
+                          return areaList == null ? [] : areaList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -375,7 +337,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : regionType != null && areaType != null && branchType == null && rmType == null ?
                             (context) {
-                          return branchByArea == null ? [] : branchByArea!.map((item) {
+                          return branchList == null ? [] : branchList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -383,14 +345,14 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         }
                         : regionType != null && areaType != null && branchType != null && rmType == null ? (context) {
-                          return rmByBranch == null ? [] : rmByBranch!.map((item) {
+                          return rmList == null ? [] : rmList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
                             );
                           }).toList();
                         } : (context) {
-                          return rmByBranch == null ? [] : rmByBranch!.map((item) {
+                          return rmList == null ? [] : rmList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -447,7 +409,8 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : regionType != null ?
                             (context) {
-                          return regionLis.map((item) {
+                          return regionList!.map((item) {
+                          // return regionLis.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -456,7 +419,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                         }
                             : areaType != null ?
                             (context) {
-                          return areaByRegion!.map((item) {
+                          return areaList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -464,7 +427,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : branchType != null ?
                             (context) {
-                          return branchByArea!.map((item) {
+                          return branchList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -472,7 +435,7 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         } : rmType != null ?
                             (context) {
-                          return rmByBranch!.map((item) {
+                          return rmList!.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
@@ -480,7 +443,8 @@ class _MonthlyProfitabilityReportState extends State<MonthlyProfitabilityReport>
                           }).toList();
                         }
                             : (context) {
-                          return segmentLis.map((item) {
+                          return segmentList.map((item) {
+                          // return segmentLis.map((item) {
                             return PopupMenuItem(
                               value: item,
                               child: Text(item),
