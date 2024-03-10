@@ -27,8 +27,8 @@ class CprPageBloc extends Bloc<CprPageEvent, CprPageState> {
     on<_FetchData>((event, emit) async {
       emit(CprPageState.loading());
       try {
-        final topData = await apiService.getTopCprData();
-        final bottomData = await apiService.getBottomCprData();
+        final topData = await apiService.getTopCprData().timeout(Duration(minutes: 15));
+        final bottomData = await apiService.getBottomCprData().timeout(Duration(minutes: 15));
         emit(CprPageState.loaded(topData, bottomData));
       } catch (e) {
         emit(CprPageState.error(e.toString()));
