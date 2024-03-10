@@ -17,7 +17,9 @@ class CustomerProfitabilityReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CprPageBloc()..add(CprPageEvent.fetchData()),
+      create: (context) => CprPageBloc()
+        ..add(CprPageEvent.fetchData())
+        ..add(CprPageEvent.startTimeout()),
       child: _CustomerProfitabilityReportPage(searchQuery: searchQuery),
     );
   }
