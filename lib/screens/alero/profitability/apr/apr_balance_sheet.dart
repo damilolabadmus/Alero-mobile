@@ -78,6 +78,6 @@ class _AprBalanceSheetState extends State<AprBalanceSheet> {
             ),
           ),
         ),
-      bottomNavigationBar: AprBottomNavigationBar(aprDataNotNull: aprData == null ? false : true));
+      bottomNavigationBar: AprBottomNavigationBar());
   }
 }

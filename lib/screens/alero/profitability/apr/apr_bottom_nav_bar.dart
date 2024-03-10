@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AprBottomNavigationBar extends StatefulWidget {
-  final bool? aprDataNotNull;
   final bool? isFirstPage;
 
-  AprBottomNavigationBar({this.aprDataNotNull, this.isFirstPage});
+  AprBottomNavigationBar({this.isFirstPage});
 
   @override
   State<AprBottomNavigationBar> createState() => _AprBottomNavigationBarState();

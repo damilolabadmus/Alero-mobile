@@ -73,13 +73,7 @@ class _SearchAprPageState extends State<SearchAprPage> {
                       ),),
                   ),
                   SizedBox(height: 12),
-                  AprSearchField(
-                      searchAprCallback: (query) {
-                        setState(() {
-                          widget.isSearched = query;
-                        });
-                      }
-                  ),
+                  AprSearchField(),
                   SizedBox(height: 12),
                   AprDashboardTableContainer(
                     aprData: widget.searchedAprData,
@@ -89,6 +83,6 @@ class _SearchAprPageState extends State<SearchAprPage> {
             ),
           ),
         ),
-        bottomNavigationBar: AprBottomNavigationBar(aprDataNotNull: widget.searchedAprData == null ? false : true));
+        bottomNavigationBar: AprBottomNavigationBar());
   }
 }

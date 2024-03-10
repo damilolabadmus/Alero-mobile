@@ -1,119 +1,79 @@
-
-
-import 'package:alero/models/performance/AprResponse.dart';
-import 'package:alero/network/AleroAPIService.dart';
+import 'package:alero/screens/alero/profitability/apr/bloc/apr_page_bloc/apr_page_bloc.dart';
 import 'package:alero/style/theme.dart' as Style;
 import 'package:container_tab_indicator/container_tab_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'apr_bottom_nav_bar.dart';
 import 'apr_dashboard_table_container.dart';
 import '../profitability_app_bar.dart';
 import 'apr_search_field.dart';
 
-class AccountProfitabilityReportPage extends StatefulWidget {
-
+class AccountProfitabilityReportPage extends StatelessWidget {
   @override
-  State<AccountProfitabilityReportPage> createState() => _AccountProfitabilityReportPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => APRPageBloc()
+        ..add(APRPageEvent.fetchData())
+        ..add(APRPageEvent.startTimeout()),
+      child: _AccountProfitabilityReportPage(),
+    );
+  }
 }
 
-class _AccountProfitabilityReportPageState extends State<AccountProfitabilityReportPage> {
-  List<String> tabTitles = ["Top Account", "Bottom Account"];
-
-  var apiService = AleroAPIService();
-  bool dataLoaded = false;
-  bool isInitialLoading = true;
-  bool? isSearchAccount;
-  bool? aprDataNotNull;
-
-  List<AprResponse> topAprData = [];
-  List<AprResponse> bottomAprData = [];
-
-  @override
-  void initState() {
-    super.initState();
-    if (!dataLoaded) {
-      fetchData();
-    }
-    startTimeout();
-  }
-
-  void startTimeout() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (isInitialLoading) {
-        setState(() {
-          isInitialLoading = false;
-        });
-      }
-    });
-  }
-
-  void fetchData() async {
-    try {
-      List<Future<List<AprResponse>>> futures = [
-        apiService.getTopAprData().timeout(Duration(minutes: 15)),
-        apiService.getBottomAprData().timeout(Duration(minutes: 15)),
-      ];
-
-      List<List<AprResponse>> results = await Future.wait(futures);
-
-      if (mounted) {
-        setState(() {
-          topAprData = results[0];
-          bottomAprData = results[1];
-
-          dataLoaded = true;
-          isInitialLoading = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          isInitialLoading = false;
-        });
-      }
-    }
-  }
+class _AccountProfitabilityReportPage extends StatelessWidget {
+  final List<String> tabTitles = ["Top Account", "Bottom Account"];
 
   @override
   Widget build(BuildContext context) {
     return PageStorage(
       bucket: PageStorageBucket(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: ProfitabilityAppBar(),
-        body: isInitialLoading ? Center(child: CircularProgressIndicator())
-            : Padding(
-            padding: EdgeInsets.only(left: 8.0, top: 10, right: 5.0),
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 4.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Account Profitability Report', style: TextStyle(
-                      color: Colors.lightBlue,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins-Regular'),
-                    ),
-                    Text('View all account profitability reports here.', style: TextStyle(
-                      color: Style.Colors.subBlackTextColor,
-                      fontSize: 10.0,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Poppins-Regular'),),
-                    SizedBox(height: 4),
-                    AprSearchField(searchAprCallback: (query) { setState(() {isSearchAccount = query;});}
-                     ),
-                    SizedBox(height: 2),
-                    aprDataTabs()],),
-                ),
-            ),
-        ),
-       bottomNavigationBar: AprBottomNavigationBar(aprDataNotNull: aprDataNotNull, isFirstPage: true)),
+      child: BlocBuilder<APRPageBloc, APRPageState>(
+        builder: (context, state) {
+          return Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: ProfitabilityAppBar(),
+              body: state.when(
+                  initial: () => Container(),
+                  loading: () => Center(child: CircularProgressIndicator()),
+                  loaded: (topData, bottomData) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: 8.0, top: 10, right: 5.0),
+                      child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 4.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Account Profitability Report',
+                                style: TextStyle(color: Colors.lightBlue, fontSize: 15.0, fontWeight: FontWeight.bold, fontFamily: 'Poppins-Regular'),
+                              ),
+                              Text(
+                                'View all account profitability reports here.',
+                                style: TextStyle(
+                                    color: Style.Colors.subBlackTextColor,
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Poppins-Regular'),
+                              ),
+                              SizedBox(height: 4),
+                              AprSearchField(),
+                              SizedBox(height: 2),
+                              aprDataTabs(topData, bottomData)
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  error: (message) => Center(child: Text(message))),
+              bottomNavigationBar: AprBottomNavigationBar(isFirstPage: true));
+        },
+      ),
     );
   }
 
-  Widget aprDataTabs() {
+  Widget aprDataTabs(topAprData, bottomAprData) {
     return DefaultTabController(
       length: 2,
       child: Expanded(
@@ -125,9 +85,7 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
                     color: Style.Colors.tabBackGround,
                   ),
                   child: TabBar(
@@ -175,12 +133,8 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
                 Expanded(
                   child: TabBarView(
                     children: [
-                      AprDashboardTableContainer(
-                        aprData: topAprData,
-                      ),
-                      AprDashboardTableContainer(
-                          aprData: bottomAprData
-                      ),
+                      AprDashboardTableContainer(aprData: topAprData),
+                      AprDashboardTableContainer(aprData: bottomAprData),
                     ],
                   ),
                 ),
@@ -189,5 +143,6 @@ class _AccountProfitabilityReportPageState extends State<AccountProfitabilityRep
           ),
         ),
       ),
-   );}
+    );
+  }
 }

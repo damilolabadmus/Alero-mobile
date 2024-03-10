@@ -80,7 +80,7 @@ class _AprDetailsPageState extends State<AprDetailsPage> {
             ),
           ),
         ),
-      bottomNavigationBar: AprBottomNavigationBar(aprDataNotNull: widget.aprDetails == null ? false : true));
+      bottomNavigationBar: AprBottomNavigationBar());
   }
 
   AppBar appBar() => AppBar(
